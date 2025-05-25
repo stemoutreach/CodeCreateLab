@@ -10,14 +10,14 @@ This program is organized into progressive skill levels that help students devel
 
 | Level | Track        | Challenge                               | Summary                                                                     | Estimated Time |
 | ----- | ------------ | --------------------------------------- | --------------------------------------------------------------------------- | -------------- |
-| 1     | Beginner     | Pi Setup & Python Intro                 | Learn how to set up a Raspberry Pi and write your first Python commands.    | 45–60 min      |
-| 2     | Beginner     | Python Basics                           | Explore Python fundamentals: variables, loops, conditionals, and functions. | 60–90 min      |
-| 3     | Intermediate | Sense HAT Lab                           | Code interactive input/output using the Sense HAT without breadboarding.    | 60–90 min      |
-| 4     | Intermediate | Breadboarding Basics                    | Learn to use LEDs, buttons, and sensors with GPIO pins.                     | 60–90 min      |
-| 5     | Intermediate | PicoBot: 2-Wheel Driving                | Program a simple robot to drive and follow logic sequences.                 | 60–90 min      |
-| 6     | Advanced     | MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 60–90 min      |
-| 7     | Advanced     | MasterPi: Ultrasonic Sensor Integration | Add obstacle detection to your robot.                                       | 60 min         |
-| 8     | Advanced     | MasterPi: Arm Movement                  | Learn to control a robotic arm using servos.                                | 60 min         |
+| 1     | Beginner     | Pi Setup & Python Intro                 | Learn how to set up a Raspberry Pi and write your first Python commands.    | 30–60 min      |
+| 2     | Beginner     | Python Basics                           | Explore Python fundamentals: variables, loops, conditionals, and functions. | 30–60 min      |
+| 3     | Intermediate | Sense HAT Lab                           | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
+| 4     | Intermediate | Breadboarding Basics                    | Learn to use LEDs, buttons, and sensors with GPIO pins.                     | 30–60 min      |
+| 5     | Intermediate | PicoBot: 2-Wheel Driving                | Program a simple robot to drive and follow logic sequences.                 | 30–60 min      |
+| 6     | Advanced     | MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 30–60 min      |
+| 7     | Advanced     | MasterPi: Ultrasonic Sensor Integration | Add obstacle detection to your robot.                                       | 30–60 min      |
+| 8     | Advanced     | MasterPi: Arm Movement                  | Learn to control a robotic arm using servos.                                | 30–60 min      |
 | 9     | Advanced     | MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
 
 ---
