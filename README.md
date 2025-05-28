@@ -10,7 +10,7 @@ This program is organized into progressive skill levels that help students devel
 
 | Level | Track        | Challenge                               | Summary                                                                     | Estimated Time |
 | ----- | ------------ | --------------------------------------- | --------------------------------------------------------------------------- | -------------- |
-| 1     | Beginner     | Pi Setup & Python Intro                 | Learn how to set up a Raspberry Pi and write your first Python commands.    | 30–60 min      |
+| 1     | Beginner     | Pi Setup & Python Intro                 | Learn how to set up a Raspberry Pi and write your first Python commands.    | 15-30 min      |
 | 2     | Beginner     | Python Basics                           | Explore Python fundamentals: variables, loops, conditionals, and functions. | 30–60 min      |
 | 3     | Intermediate | Sense HAT Lab                           | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
 | 4     | Intermediate | Breadboarding Basics                    | Learn to use LEDs, buttons, and sensors with GPIO pins.                     | 30–60 min      |
