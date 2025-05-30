@@ -7,7 +7,7 @@ Welcome to Lesson 1B of the Code and Create Lab! Now that your Raspberry Pi is s
 ## 🎓 Goals
 
 * Open Thonny Python editor
-* Understand what a variable is
+* Understand variables
 * Use `print()` to display messages
 * Use `input()` to get user input
 
