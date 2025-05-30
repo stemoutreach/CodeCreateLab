@@ -42,8 +42,8 @@ Each level has its own page with:
 
 Visit the individual level pages to begin:
 
-* [Level 1A – Pi Setup](Lesson1A.md)
-* [Level 1B – Python Intro](Lesson1B.md)
+* [Level 1A – Pi Setup](Level1A.md)
+* [Level 1B – Python Intro](Level1B.md)
 * [Level 2 – Python Basics](Level2.md)
 * [Level 3 – Sense HAT Lab](Level3.md)
 * [Level 4 – Breadboarding Basics](Level4.md)
