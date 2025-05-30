@@ -1,95 +1,73 @@
-# Lesson 1B – Python Intro: Print, Input, and Variables
+# Lesson 1A – Raspberry Pi Setup
 
-Welcome to Lesson 1B of the Code and Create Lab! Now that your Raspberry Pi is set up, it’s time to write your first Python code using Thonny.
-
----
-
-## 🎓 Goals
-
-* Open Thonny Python editor
-* Understand what a variable is
-* Use `print()` to display messages
-* Use `input()` to get user input
+Welcome to Lesson 1A of the Code and Create Lab! In this part, you will focus on getting your Raspberry Pi set up and ready to go. No coding yet—just the essentials to get started!
 
 ---
 
-## 📒 What is Thonny?
+## 🚀 Goals
 
-Thonny is a beginner-friendly Python editor already installed on Raspberry Pi.
-
-### Open Thonny:
-
-* Go to **Raspberry Pi Menu → Programming → Thonny Python IDE**
-
----
-
-## 📃 What is a Variable?
-
-A **variable** is a way to store information in your program.
-
-```python
-name = "Alex"
-age = 12
-```
+* Connect Raspberry Pi to monitor, keyboard, and mouse
+* Boot the Raspberry Pi
+* Connect to Wi-Fi
+* Open the terminal
+* Understand the Raspberry Pi desktop environment
 
 ---
 
-## 📄 What is `print()`?
+## ⚖️ Materials Needed
 
-The `print()` function tells Python to show something on the screen.
-
-```python
-print("Hello, world!")
-```
-
-Output:
-
-```
-Hello, world!
-```
-
-You can also print variables:
-
-```python
-name = "Alex"
-print("My name is", name)
-```
+* Raspberry Pi (any model with desktop OS installed)
+* MicroSD card (preloaded with Raspberry Pi OS)
+* Monitor and HDMI cable
+* Keyboard and mouse
+* Power supply
 
 ---
 
-## 🤔 What is `input()`?
+## ⚡ Step-by-Step Instructions
 
-`input()` asks the user to type something.
+### 1. Connect Your Pi
 
-```python
-name = input("What is your name? ")
-print("Hello,", name)
+* Insert the microSD card into the Raspberry Pi.
+* Connect the keyboard, mouse, and monitor.
+* Plug in the power supply to turn on your Pi.
+
+### 2. First Boot
+
+* Wait for the Raspberry Pi OS to start.
+* Follow the on-screen setup: choose country, time zone, and set a password.
+
+### 3. Connect to Wi-Fi
+
+* Click the network icon (top right) and choose your Wi-Fi.
+* Enter the password to connect.
+
+### 4. Update the System
+
+Open the terminal and type:
+
+```bash
+sudo apt update && sudo apt full-upgrade
 ```
 
-### Input Numbers:
+Press Enter and wait for the update to finish.
 
-Use `int()` to turn text into a number:
+### 5. Explore the Desktop
 
-```python
-age = input("How old are you? ")
-age = int(age)
-print("In 5 years, you will be", age + 5)
-```
+* Open the terminal (black icon on top bar)
+* Open the Raspberry Pi menu (top left corner)
+* Find Thonny Python under Programming menu
 
 ---
 
-## 🎯 Practice Activities
+## 🔧 Helpful Tips
 
-Try these in Thonny:
-
-1. Print your name
-2. Print `5 + 3`
-3. Ask the user their favorite color and repeat it
-4. Ask for two numbers and print their sum
-5. Make a greeting using a name
+* If your Pi doesn’t boot, check that the SD card is inserted properly.
+* Use a good quality power supply—low power can cause problems.
+* Don’t remove the power plug without shutting down! Use the shutdown option in the menu.
 
 ---
 
-## ✅ What’s Next?
+## 🎯 What’s Next?
 
-You’re ready for Level 2, where you’ll learn about loops, conditionals, and functions!
+You're ready for **Lesson 1B**, where you'll write your first Python programs!
