@@ -70,4 +70,4 @@ Press Enter and wait for the update to finish.
 
 ## 🎯 What’s Next?
 
-You're ready for **[Level 1B](Level1B.md)**, where you'll write your first Python programs! 
+You're ready for [Level 1B](Level1B.md), where you'll write your first Python programs! 
