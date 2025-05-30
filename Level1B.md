@@ -177,4 +177,4 @@ print("You created the phrase:", word1 + " " + word2 + " " + word3)
 
 ## ✅ What’s Next?
 
-You’re ready for Level 2, where you’ll learn about loops, conditionals, and functions!
+You’re ready for [Level 2](Level2.md), where you’ll learn about loops, conditionals, and functions!
