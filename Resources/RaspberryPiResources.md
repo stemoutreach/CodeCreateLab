@@ -1,6 +1,6 @@
-# 📚 Raspberry Pi References for Kids
+# 📚 Raspberry Pi References
 
-A curated list of beginner-friendly resources for kids learning Raspberry Pi—covering books, websites, videos, and hands-on kits.
+A curated list of beginner-friendly resources for learning Raspberry Pi—covering books, websites, videos, and hands-on kits.
 
 ---
 
@@ -49,7 +49,7 @@ A curated list of beginner-friendly resources for kids learning Raspberry Pi—c
 
 ---
 
-## 🧰 Raspberry Pi Kits for Kids
+## 🧰 Raspberry Pi Kits
 
 - **[Piper Computer Kit](https://www.playpiper.com/)**  
   Build your own computer and code using Minecraft. Aimed at ages 8–13.
