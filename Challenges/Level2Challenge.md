@@ -63,3 +63,15 @@ Before moving to Level 3, your script should include:
 - [ ] One `if`/`else` statement
 - [ ] One function (custom-defined)
 - [ ] User input and printed output
+
+---
+
+## 🧪 Leveling Up?
+
+Once you've completed the above tasks, show your work to a mentor or coach to be able to move on.
+
+---
+
+## ✅ What’s Next?
+
+You’re ready for  **[Level 3 – Sense HAT Lab](../Level3.md)**!, where you’ll learn about Sense HAT where you will Code interactive input/output using the Sense HAT without breadboarding.
