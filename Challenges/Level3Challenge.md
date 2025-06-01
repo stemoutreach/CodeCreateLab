@@ -59,4 +59,12 @@ Make sure your program includes:
 
 ---
 
-[Back to Level 3 Overview](Level3.md)
+## 🧪 Leveling Up?
+
+Once you've completed the above tasks, show your work to a mentor or coach to be able to move on.
+
+---
+
+## ✅ What’s Next?
+
+You’re ready for  **[Level 4 – Breadboarding Basics](../Level4.md)**!, where you’ll learn breadboarding and use LEDs, buttons, and sensors with GPIO pins.
