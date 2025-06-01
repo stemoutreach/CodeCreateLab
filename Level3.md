@@ -8,6 +8,11 @@ The **Sense HAT** is an add-on board for the Raspberry Pi featuring:
 
 It’s a great tool for learning **input/output**, **sensor data**, and **interactive display**.
 
+## 🌐 Helpful References
+- [Raspberry Pi Sense HAT Documentation](https://www.raspberrypi.com/documentation/accessories/sense-hat.html)
+- [Trinket Sense HAT Simulator](https://trinket.io/sense-hat)
+- [Sense HAT Python API Docs](https://sense-hat.readthedocs.io/en/latest/)
+
 ## 🧰 Materials Needed
 - Raspberry Pi with Sense HAT attached
 - Thonny Python IDE
