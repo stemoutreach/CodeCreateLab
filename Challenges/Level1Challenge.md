@@ -60,10 +60,9 @@ Complete any **2** of these for bonus credit:
 
 ---
 
-## 🧪 Ready to Level Up?
+## 🧪 Leveling Up?
 
-Once you've completed all required tasks, show your work to a mentor or coach to move on to
-Keep your code saved—your creativity matters!
+Once you've completed the above tasks, show your work to a mentor or coach to be able to move on.
 
 ---
 
