@@ -68,4 +68,4 @@ Once you've completed the above tasks, show your work to a mentor or coach to be
 
 ## ✅ What’s Next?
 
-You’re ready for  **[Level 2 – Python Basics](Level2.md)**!, where you’ll learn about loops, conditionals, and functions!
+You’re ready for  **[Level 2 – Python Basics](../Level2.md)**!, where you’ll learn about loops, conditionals, and functions!
