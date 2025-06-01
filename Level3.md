@@ -74,4 +74,6 @@ Demonstrate all of the following:
 
 ---
 
-[Back to Main README](../README.md)
+## 🧪 Ready to Level Up?
+
+Complete the [Level 3 – Challenge](Challenges/Level3Challenge.md) and show your work to a mentor or coach to move on.
