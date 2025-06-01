@@ -24,6 +24,14 @@ Welcome to Lesson 1A of the Code and Create Lab! In this part, you will focus on
 
 ---
 
+## 🧩 What Is the Raspberry Pi 3? (10 min)
+- Overview of ports (USB, HDMI, GPIO, SD card)
+- Differences from a regular laptop
+- Introduce concept of general-purpose computing and sensors
+
+    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/RPi3-B-intro.jpg" width="400" > 
+
+---
 ## ⚡ Step-by-Step Instructions
 
 ### 1. Connect Your Pi
