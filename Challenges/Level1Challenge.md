@@ -62,6 +62,11 @@ Complete any **2** of these for bonus credit:
 
 ## 🧪 Ready to Level Up?
 
-Once you've completed all required tasks, show your work to a mentor or coach to move on to **[Level 2 – Python Basics](Level2.md)**!
-
+Once you've completed all required tasks, show your work to a mentor or coach to move on to
 Keep your code saved—your creativity matters!
+
+---
+
+## ✅ What’s Next?
+
+You’re ready for  **[Level 2 – Python Basics](Level2.md)**!, where you’ll learn about loops, conditionals, and functions!
