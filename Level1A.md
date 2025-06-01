@@ -2,6 +2,8 @@
 
 Welcome to Lesson 1A of the Code and Create Lab! In this part, you will focus on getting your Raspberry Pi set up and ready to go. No coding yet—just the essentials to get started!
 
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/Pi3Setup.jpg" width="400" > 
+    
 ---
 
 ## 🚀 Goals
@@ -39,6 +41,11 @@ Welcome to Lesson 1A of the Code and Create Lab! In this part, you will focus on
 * Insert the microSD card into the Raspberry Pi.
 * Connect the keyboard, mouse, and monitor.
 * Plug in the power supply to turn on your Pi.
+
+    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/Connecting.jpg" width="400" > 
+    
+    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/Connected.jpg" width="400" > 
+
 
 ### 2. First Boot
 
