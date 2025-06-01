@@ -105,4 +105,7 @@ To complete Level 2, show:
 Optional: Draw a shape with `turtle`.
 
 ---
-[Back to Main README](README.md)
+
+## 🧪 Ready to Level Up?
+
+Complete the [Level 2 – Challenge](Challenges/Level2Challenge.md) and show your work to a mentor or coach to move on.
