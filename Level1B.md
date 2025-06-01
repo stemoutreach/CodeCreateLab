@@ -177,6 +177,6 @@ print("You created the phrase:", word1 + " " + word2 + " " + word3)
 
 ## 🧪 Ready to Level Up?
 
-Show your work to a mentor or coach to move on to [Level 1 – Challenge](Challenges/Level1Challenge.md)
+Complete the [Level 1 – Challenge](Challenges/Level1Challenge.md) and show your work to a mentor or coach to move on.
 
 
