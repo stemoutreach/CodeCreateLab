@@ -3,8 +3,8 @@
 Welcome to **CodeCreateLab!**  
 Our mission is to introduce students to the world of **Raspberry Pi** and **Python programming** through hands-on exploration, creativity, and problem-solving.
 
-This program is geared for **6th through 10th graders**.  
-Younger students, 4th and 5th graders, are welcome but must be accompanied by an adult who can help them work through the levels.  
+This program is geared for **6th through 10th grader students**.  
+Younger students, 4th and 5th greade, are welcome but must be accompanied by an adult who can help them work through the levels.
 Students are also encouraged to bring their own **Raspberry Pi** projects to get help and guidance from mentors.
 
 
@@ -22,7 +22,7 @@ Students are also encouraged to bring their own **Raspberry Pi** projects to get
 
 - The program is **self-paced**, allowing students to move forward as they master each skill level.  
 - Each level introduces new concepts and builds on the last—growing in complexity as students grow in capability.  
-- **Progress is earned**, not given. Students must complete all challenges in a level before unlocking the next one.  
+- **Progress is earned**, not given. Students must demonstrate understanding and complete all challenges in a level before unlocking the next one.  
 - Students are encouraged to go as far as they want. Whether they complete one level or all of them, we celebrate their effort and growth.
 
 ---
