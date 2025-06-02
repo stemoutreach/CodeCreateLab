@@ -22,8 +22,9 @@ Students are also encouraged to bring their own **Raspberry Pi** projects to get
 
 - The program is **self-paced**, allowing students to move forward as they master each skill level.  
 - Each level introduces new concepts and builds on the last—growing in complexity as students grow in capability.  
-- **Progress is earned**, not given. Students must demonstrate understanding and complete all challenges in a level before unlocking the next one.  
-- Students are encouraged to go as far as they want. Whether they complete one level or all of them, we celebrate their effort and growth.
+- **Progress is earned**, not given. Students must **demonstrate understanding** and complete all challenges in a level before advancing to the next.  
+- Students are encouraged to go as far as they want. Whether they complete one level or many, we celebrate their effort and growth.
+
 
 ---
 
