@@ -2,7 +2,7 @@
 
 Welcome to the **Code & Create Lab** – a self-paced learning experience designed to introduce students to Raspberry Pi, physical computing, and robotics through hands-on challenges.
 
-This program is organized into progressive skill levels that help students develop confidence and competence in programming, electronics, and real-world problem-solving. Students must complete each level before advancing to the next.
+This program is organized into progressive skill levels that help students develop confidence and competence in programming, electronics, and real-world problem-solving. Students must demonstrate understanding and complete all challenges in a level before advancing to the next.
 
 ---
 
