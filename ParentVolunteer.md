@@ -1,7 +1,12 @@
-# CodeCreateLab – Parent & Volunteer
+# CodeCreateLab – Parent & Volunteer Pitch
 
 Welcome to **CodeCreateLab!**  
 Our mission is to introduce students to the world of **Raspberry Pi** and **Python programming** through hands-on exploration, creativity, and problem-solving.
+
+This program is geared for **6th through 10th graders**.  
+Younger students, 4th and 5th graders, are welcome but must be accompanied by an adult who can help them work through the levels.  
+Students are also encouraged to bring their own **Raspberry Pi** projects to get help and guidance from mentors.
+
 
 ---
 
