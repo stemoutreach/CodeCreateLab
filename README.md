@@ -2,19 +2,6 @@
 
 Welcome to the **Code & Create Lab** – a self-paced learning experience designed to introduce students to Raspberry Pi, physical computing, and robotics through hands-on challenges.
 
-### 👋 Welcome, Parents & Volunteers
-
-**CodeCreateLab** is more than just a coding program.  
-Our mission is to introduce students to Raspberry Pi and Python through hands-on, creative problem-solving.
-
-- Students will learn **how to figure things out**, not just follow directions.
-- The program is **self-paced**, but progress requires effort.
-- Each level builds on the last—and students must complete a level before moving to the next.
-- We celebrate **wherever a student finishes**, but we're especially looking for those who show the drive to keep learning and growing.
-
-Your support means encouraging persistence, curiosity, and confidence.  
-Thank you for being a part of the journey!
-
 This program is organized into progressive skill levels that help students develop confidence and competence in programming, electronics, and real-world problem-solving. Students must complete each level before advancing to the next.
 
 ---
