@@ -1,4 +1,4 @@
-# CodeCreateLab – Parent & Volunteer Pitch
+# CodeCreateLab – Parent & Volunteer
 
 Welcome to **CodeCreateLab!**  
 Our mission is to introduce students to the world of **Raspberry Pi** and **Python programming** through hands-on exploration, creativity, and problem-solving.
