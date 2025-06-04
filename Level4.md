@@ -26,7 +26,7 @@
 ### Intro to GPIO & Breadboarding (10–15 min)
 - What are GPIO pins?
 - Why and how to use a breadboard
-- Show how a Pi pin can power or control an LED
+- Show how a Pi pin can power an LED
 
      <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/SimpleLEDBreadboardExample.jpg" width="400" > 
 
