@@ -102,6 +102,11 @@ for i in range(5):
     t.forward(100)
     t.right(120)
   t.right(72)
+
+elsa.penup()
+elsa.forward(350)
+elsa.pendown()
+
 wn.exitonclick()
 ```
 
