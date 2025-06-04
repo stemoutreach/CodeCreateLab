@@ -48,6 +48,65 @@ Write a function `double_number(num)` that returns **twice** the number you give
 
 ---
 
+## ✅ Challenge 6: Turtle Art
+Write a turtle program to that completes this image
+
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/turtle.jpg" width="400" > 
+
+Finish the code for the 4th design
+```python
+import turtle
+import random
+wn = turtle.Screen()
+t = turtle.Turtle()
+
+wn.bgcolor("blue")
+t.color("white")
+
+t.penup()
+t.backward(600)
+t.right(90)
+t.forward(200)
+t.left(90)
+t.forward(700)
+t.pendown()
+
+for i in range(2):
+  t.forward(100)
+  t.right(60)
+  t.forward(100)
+  t.right(120)
+
+t.penup()
+t.forward(-350)
+t.pendown()
+
+for i in range(3):
+  for i in range(2):
+    t.forward(100)
+    t.right(60)
+    t.forward(100)
+    t.right(120)
+  t.right(120)
+  
+t.penup()
+t.right(90)
+t.forward(-400)
+t.left(90)
+t.pendown()
+
+for i in range(5):
+  for i in range(2):
+    t.forward(100)
+    t.right(60)
+    t.forward(100)
+    t.right(120)
+  t.right(72)
+wn.exitonclick()
+```
+
+
+
 ## 🎓 Bonus Challenge: Mix It Up
 Create a simple math quiz:
 - Ask the user a random addition question (e.g., 5 + 3)
