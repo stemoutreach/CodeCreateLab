@@ -53,7 +53,7 @@ Write a turtle program to that completes this image
 
 <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/turtle.jpg" width="400" > 
 
-Finish the code for the 4th design
+Finish the code for the 4th design in the above image.
 ```python
 import turtle
 import random
