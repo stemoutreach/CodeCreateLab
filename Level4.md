@@ -14,28 +14,43 @@
 * Push button
 * (Optional) sensor such as TMP36 or photoresistor
 
-## 📝 Instructions
+## section title
 
-1. **Blink an LED**:
+### What Is the Raspberry Pi 3? (10 min)
+- Overview of ports (USB, HDMI, GPIO, SD card)
+- Differences from a regular laptop
+- Introduce concept of general-purpose computing and sensors
 
+    <img src="https://github.com/stemoutreach/Intro-to-Physical-Computing-with-Raspberry-Pi-3/blob/main/images/RPi3-B-intro.jpg" width="400" > 
+
+### Intro to GPIO & Breadboarding (10–15 min)
+- What are GPIO pins?
+- Why and how to use a breadboard
+- Show how a Pi pin can power or control an LED
+
+     <img src="https://github.com/stemoutreach/Intro-to-Physical-Computing-with-Raspberry-Pi-3/blob/main/images/SimpleLEDBreadboardExample.jpg" width="400" > 
+
+    [GPIO Pin Numbering](https://gpiozero.readthedocs.io/en/stable/recipes.html#pin-numbering)
+
+### 5. Blink an LED Using GPIOZero (30 min)
+- Wire LED + resistor to GPIO pin using a breadboard
+- Use the gpiozero library for easy code
+
+**Example Code:**
 ```python
-import RPi.GPIO as GPIO
-import time
+from gpiozero import LED
+from time import sleep
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.OUT)
+led = LED(17)
 
-for i in range(10):
-    GPIO.output(18, True)
-    time.sleep(0.5)
-    GPIO.output(18, False)
-    time.sleep(0.5)
-
-GPIO.cleanup()
+while True:
+    led.on()
+    sleep(1)
+    led.off()
+    sleep(1)
 ```
 
-2. **Add a Button**: Use GPIO input and `GPIO.wait_for_edge()` or polling.
-3. **Sensor Read**: Read an analog sensor with an ADC like MCP3008 if available.
+<img src="https://github.com/stemoutreach/Intro-to-Physical-Computing-with-Raspberry-Pi-3/blob/main/images/BlinkLED-GPIO17.jpg" width="400" > 
 
 ## 🧪 Mini Challenge
 
