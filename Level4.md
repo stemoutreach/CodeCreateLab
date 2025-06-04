@@ -21,14 +21,14 @@
 - Differences from a regular laptop
 - Introduce concept of general-purpose computing and sensors
 
-    <img src="https://github.com/stemoutreach/Intro-to-Physical-Computing-with-Raspberry-Pi-3/blob/main/images/RPi3-B-intro.jpg" width="400" > 
+    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/RPi3-B-intro.jpg" width="400" > 
 
 ### Intro to GPIO & Breadboarding (10–15 min)
 - What are GPIO pins?
 - Why and how to use a breadboard
 - Show how a Pi pin can power or control an LED
 
-     <img src="https://github.com/stemoutreach/Intro-to-Physical-Computing-with-Raspberry-Pi-3/blob/main/images/SimpleLEDBreadboardExample.jpg" width="400" > 
+     <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/SimpleLEDBreadboardExample.jpg" width="400" > 
 
     [GPIO Pin Numbering](https://gpiozero.readthedocs.io/en/stable/recipes.html#pin-numbering)
 
@@ -50,7 +50,7 @@ while True:
     sleep(1)
 ```
 
-<img src="https://github.com/stemoutreach/Intro-to-Physical-Computing-with-Raspberry-Pi-3/blob/main/images/BlinkLED-GPIO17.jpg" width="400" > 
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/BlinkLED-GPIO17.jpg" width="400" > 
 
 ## 🧪 Mini Challenge
 
