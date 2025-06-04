@@ -1,4 +1,3 @@
-
 # Level 2 – Python Basics
 
 ## 🧠 Learning Objectives
@@ -79,6 +78,52 @@ def add(x, y):
 result = add(5, 3)
 print("5 + 3 =", result)
 ```
+
+---
+
+## 🐢 Turtle Graphics
+
+### What is Turtle?
+Turtle is a Python module that lets you draw pictures and shapes by controlling a virtual "turtle" on the screen.
+
+### How to Use It
+1. Start by importing the module:
+   ```python
+   import turtle
+   ```
+2. Create a turtle:
+   ```python
+   t = turtle.Turtle()
+   ```
+3. Move and draw:
+   ```python
+   t.forward(100)
+   t.right(90)
+   ```
+
+### Simple Examples
+
+Draw a square:
+```python
+import turtle
+t = turtle.Turtle()
+
+for _ in range(4):
+    t.forward(100)
+    t.right(90)
+```
+
+Draw a star:
+```python
+import turtle
+t = turtle.Turtle()
+
+for _ in range(5):
+    t.forward(100)
+    t.right(144)
+```
+
+Click the "X" on the turtle window to close it when done.
 
 ---
 
