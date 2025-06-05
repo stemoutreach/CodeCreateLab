@@ -17,6 +17,23 @@
 
 ---
 
+## 🔌 Intro to GPIO & Breadboards
+
+GPIO stands for General Purpose Input/Output. These are the physical pins on your Raspberry Pi that can be used to control electronic components like LEDs, buttons, and sensors.
+
+Breadboards are tools for prototyping electronic circuits without soldering. They allow you to easily connect components together using jumper wires.
+
+### Key Concepts:
+- GPIO pins can send or receive signals
+- Breadboards help you organize and test circuits
+- Use resistors to protect LEDs from too much current
+- Each GPIO pin has a number — use the [GPIO Pinout Guide](https://gpiozero.readthedocs.io/en/stable/recipes.html#pin-numbering)
+
+Example:
+Connect an LED's long leg (positive) to GPIO17 through a resistor, and the short leg (ground) to a GND pin on the Pi.
+
+---
+
 ## 🧭 Explore GPIOZero Recipes
 
 Visit: [GPIOZero Recipes](https://gpiozero.readthedocs.io/en/latest/recipes.html)  
