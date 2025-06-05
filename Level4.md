@@ -34,9 +34,6 @@ Breadboards are tools for prototyping electronic circuits without soldering. The
 - Use resistors to protect LEDs from too much current
 - Each GPIO pin has a number — use the [GPIO Pinout Guide](https://gpiozero.readthedocs.io/en/stable/recipes.html#pin-numbering)
 
-Example:
-Connect an LED's long leg (positive) to GPIO17 through a resistor, and the short leg (ground) to a GND pin on the Pi.
-
 ---
 
 ## 🧭 Explore GPIOZero Recipes
