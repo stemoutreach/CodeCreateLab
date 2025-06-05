@@ -23,10 +23,9 @@ GPIO stands for General Purpose Input/Output. These are the physical pins on you
 
 Breadboards are tools for prototyping electronic circuits without soldering. They allow you to easily connect components together using jumper wires.
 
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/Insidebread.jpg" width="400" >
+   Inside a breadboard
 
-
-
+   <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/Insidebread.jpg" width="400" >
 
 ### Key Concepts:
 - GPIO pins can send or receive signals
