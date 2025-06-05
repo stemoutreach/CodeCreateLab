@@ -1,42 +1,30 @@
-# Level 4 – Breadboarding Basics
+
+# Level 4 – Breadboarding Basics: Learn by Recipe
 
 ## 🧠 Learning Objectives
 
-* Wire an LED with a resistor and control it with GPIO
-* Use a button to trigger actions
-* Read values from simple sensors (e.g., temperature or light sensor)
+- Learn how to use GPIO pins through real-world projects
+- Understand how inputs (buttons/sensors) and outputs (LEDs) work together
+- Explore and modify recipes from the official [GPIOZero Recipes](https://gpiozero.readthedocs.io/en/latest/recipes.html)
 
 ## 🧰 Materials Needed
 
-* Raspberry Pi with GPIO access
-* Breadboard, jumper wires
-* LED, resistor (220Ω–330Ω)
-* Push button
-* (Optional) sensor such as TMP36 or photoresistor
+- Raspberry Pi with GPIO access
+- Breadboard and jumper wires
+- LEDs (2–3) and resistors (220–330Ω)
+- Push button
+- (Optional) sensors like TMP36 or light sensor
 
-## section title
+---
 
-### What Is the Raspberry Pi 3? (10 min)
-- Overview of ports (USB, HDMI, GPIO, SD card)
-- Differences from a regular laptop
-- Introduce concept of general-purpose computing and sensors
+## 🧭 Explore GPIOZero Recipes
 
-    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/RPi3-B-intro.jpg" width="400" > 
+Visit: [GPIOZero Recipes](https://gpiozero.readthedocs.io/en/latest/recipes.html)  
+Start exploring how to blink an LED, use a button, and interact with sensors. Below are a few recommended recipes to try.
 
-### Intro to GPIO & Breadboarding (10–15 min)
-- What are GPIO pins?
-- Why and how to use a breadboard
-- Show how a Pi pin can power an LED
+### 💡 Recipe 1: Blink an LED
+[Recipe: Blinking an LED](https://gpiozero.readthedocs.io/en/latest/recipes.html#led)
 
-     <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/SimpleLEDBreadboardExample.jpg" width="400" > 
-
-    [GPIO Pin Numbering](https://gpiozero.readthedocs.io/en/stable/recipes.html#pin-numbering)
-
-### 5. Blink an LED Using GPIOZero (30 min)
-- Wire LED + resistor to GPIO pin using a breadboard
-- Use the gpiozero library for easy code
-
-**Example Code:**
 ```python
 from gpiozero import LED
 from time import sleep
@@ -50,20 +38,57 @@ while True:
     sleep(1)
 ```
 
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/BlinkLED-GPIO17.jpg" width="400" > 
-
-## 🧪 Mini Challenge
-
-* Build a simple traffic light simulator using 2 LEDs and a button.
-
-## ✅ Checkpoint
-
-To pass this level, demonstrate:
-
-* A working LED blink script
-* A button controlling a light or script action
-* (Optional) Sensor data logging
+> 💬 Try: Change the timing, or make it blink twice quickly, then pause.
 
 ---
 
-[Back to Main README](README.md)
+### 🟢 Recipe 2: Button Press LED
+[Recipe: Button Input](https://gpiozero.readthedocs.io/en/latest/recipes.html#button)
+
+```python
+from gpiozero import LED, Button
+
+led = LED(17)
+button = Button(2)
+
+button.when_pressed = led.on
+button.when_released = led.off
+```
+
+> 💬 Try: Reverse the behavior, or make it toggle instead of just on/off.
+
+---
+
+### 🚦 Mini Challenge: Traffic Light Controller
+
+Use 2 LEDs (red and green) and a button to create a basic traffic light:
+- Green is on by default.
+- When button is pressed, red turns on.
+- After a few seconds, green turns back on.
+
+---
+
+### 🌡️ Recipe 3 (Optional): Read a Sensor Value
+If you have a TMP36 or light sensor, try this advanced recipe:
+[Analog Sensor with MCP3008](https://gpiozero.readthedocs.io/en/latest/recipes.html#light-sensor)
+
+---
+
+## ✅ Level Checkpoint
+
+To pass this level, show:
+- Working LED blink or button project
+- You modified a recipe in some way (change pins, timing, behavior)
+- (Optional) Used a sensor to read or display data
+
+---
+
+## 🧠 Reflect & Share
+
+- What did you change or experiment with?
+- Did you encounter an error? How did you figure it out?
+- What’s one idea you’d like to try next?
+
+---
+
+[🔙 Back to Main README](README.md)
