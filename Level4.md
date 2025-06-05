@@ -40,64 +40,29 @@ Breadboards are tools for prototyping electronic circuits without soldering. The
 Visit: [GPIOZero Recipes](https://gpiozero.readthedocs.io/en/latest/recipes.html)  
 Start exploring how to blink an LED, use a button, and interact with sensors. Below are a few recommended recipes to try.
 
-### 💡 Recipe 1: Blink an LED
-[Recipe: Blinking an LED](https://gpiozero.readthedocs.io/en/latest/recipes.html#led)
+- 2.5. Button
+- 2.6. Button controlled LED
+- 2.9. LEDBoard
+- 2.10. LEDBarGraph
+- 2.12. Traffic Lights
+- 2.14. Reaction Game
+- 2.17. Full color LED
+- 2.18. Motion sensor
+- 2.20. Distance sensor
 
-```python
-from gpiozero import LED
-from time import sleep
+### 🚦 (Optional) Motor Challenge: servos and motors
 
-led = LED(17)
-
-while True:
-    led.on()
-    sleep(1)
-    led.off()
-    sleep(1)
-```
-
-> 💬 Try: Change the timing, or make it blink twice quickly, then pause.
-
----
-
-### 🟢 Recipe 2: Button Press LED
-[Recipe: Button Input](https://gpiozero.readthedocs.io/en/latest/recipes.html#button)
-
-```python
-from gpiozero import LED, Button
-
-led = LED(17)
-button = Button(2)
-
-button.when_pressed = led.on
-button.when_released = led.off
-```
-
-> 💬 Try: Reverse the behavior, or make it toggle instead of just on/off.
-
----
-
-### 🚦 Mini Challenge: Traffic Light Controller
-
-Use 2 LEDs (red and green) and a button to create a basic traffic light:
-- Green is on by default.
-- When button is pressed, red turns on.
-- After a few seconds, green turns back on.
-
----
-
-### 🌡️ Recipe 3 (Optional): Read a Sensor Value
-If you have a TMP36 or light sensor, try this advanced recipe:
-[Analog Sensor with MCP3008](https://gpiozero.readthedocs.io/en/latest/recipes.html#light-sensor)
+- 2.22. Servo
+- 2.23 to 2.26 Motors
 
 ---
 
 ## ✅ Level Checkpoint
 
 To pass this level, show:
-- Working LED blink or button project
+- Demonstrate a Working Reaction Game 
 - You modified a recipe in some way (change pins, timing, behavior)
-- (Optional) Used a sensor to read or display data
+- Create your own project using combination of sensor, LEDs, motors etc...
 
 ---
 
@@ -109,4 +74,3 @@ To pass this level, show:
 
 ---
 
-[🔙 Back to Main README](README.md)
