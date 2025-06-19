@@ -95,7 +95,6 @@ Start exploring how to blink an LED, use a button, and interact with sensors. Be
 - RGB LEDs
 - Buzzer
 - Speaker
-- Internal temperature sensor
 - Ultrasonic distance sensor
 
   PicoZero does not have many pictures to show how to wire the pico and breadboard. [GPIOZero](https://gpiozero.readthedocs.io/en/stable/recipes.html) may have some images that can be used. 
@@ -105,7 +104,7 @@ Start exploring how to blink an LED, use a button, and interact with sensors. Be
 ## ✅ Level Checkpoint
 
 To pass this level, show:
-- Demonstrate a Working Reaction Game 
+- Demonstrate a Working Reaction Game based on the GPIOZero Recipe - https://gpiozero.readthedocs.io/en/stable/recipes.html#reaction-game
 - You modified a recipe in some way (change pins, timing, behavior)
 - Create your own project using combination of sensor, LEDs, motors etc...
 
