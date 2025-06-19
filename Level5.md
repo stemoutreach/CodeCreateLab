@@ -10,6 +10,7 @@
 
 * PicoBot robot (prebuilt)
 * Raspberry Pi Pico with MicroPython
+Control motors with Python
 * Thonny IDE with Pico connected via USB
 
 ## 📝 Instructions
@@ -57,4 +58,4 @@ To pass this level, demonstrate:
 
 ---
 
-[Back to Main README](README.md)
+Next [Level 6 – PicoBot:2 more inputs and outputs](Level6.md)
