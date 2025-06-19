@@ -1,15 +1,17 @@
 
-# Level 4 – Breadboarding Basics: Learn by Recipe
+# Level 4 Pico – Breadboarding Basics: Learn by Recipe
 
 ## 🧠 Learning Objectives
 
 - Learn how to use GPIO pins through real-world projects
 - Understand how inputs (buttons/sensors) and outputs (LEDs) work together
-- Explore and modify recipes from the official [GPIOZero Recipes](https://gpiozero.readthedocs.io/en/latest/recipes.html)
+- Configure Thonny to use the MicroPython interpreter on the Pico.
+- Run a script that blinks the onboard LED.
+- Explore and modify recipes from the official [PICOZero](https://picozero.readthedocs.io/en/latest/gettingstarted.html)
 
 ## 🧰 Materials Needed
 
-- Raspberry Pi with GPIO access
+- Raspberry Pi Pico
 - Breadboard and jumper wires
 - LEDs (2–3) and resistors (220–330Ω)
 - Push button
@@ -31,29 +33,72 @@ Breadboards are tools for prototyping electronic circuits without soldering. The
 - GPIO pins can send or receive signals
 - Breadboards help you organize and test circuits
 - Use resistors to protect LEDs from too much current
-- Each GPIO pin has a number — use the [GPIO Pinout Guide](https://gpiozero.readthedocs.io/en/stable/recipes.html#pin-numbering)
+- Each GPIO pin has a number — use the [PICO GPIO Pinout Guide](https://picozero.readthedocs.io/en/latest/recipes.html#pin-out)
+
+
+## Connect & Configure Thonny
+
+1. Plug the Pico into the Pi 500 using the USB cable (no BOOTSEL needed).  
+2. Open **Thonny** → *Tools ▸ Options ▸ Interpreter*.  
+3. Select **Interpreter** = **MicroPython (Raspberry Pi Pico)**, **Port** = *Automatic* (or `/dev/ttyACM0`).  
+4. Click **OK**. The Shell should show the `>>>` MicroPython prompt.
+
+---
+
+### 🚦 Blink the On‑Board LED
+
+```python
+from picozero import pico_led
+from time import sleep
+
+while True:
+    pico_led.on()
+    sleep(0.5)
+    pico_led.off()
+    sleep(0.5)
+```
+
+Press ▶️ Run. The small **green LED near the antenna** blinks five times.
+
+## 4 · Blink an LED
+
+1. Plug in the LED to the breadboard - long lead to GPIO 14, short lead to ground (GPIO 13)
+2. Load the below
+3. Press ▶️ Run.
+   
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/LEDOnOff.jpg" width="500" >   
+
+
+```python
+from picozero import LED
+from time import sleep
+
+led = LED(14)
+
+led.on()
+sleep(1)
+led.off()
+
+```
+Try additional LED function 
+https://picozero.readthedocs.io/en/latest/recipes.html#leds
 
 ---
 
 ## 🧭 Explore GPIOZero Recipes
 
-Visit: [GPIOZero Recipes](https://gpiozero.readthedocs.io/en/latest/recipes.html)  
+Visit: [PICOZero Recipes](https://picozero.readthedocs.io/en/latest/recipes.html#)  
 Start exploring how to blink an LED, use a button, and interact with sensors. Below are a few recommended recipes to try.
 
-- 2.5. Button
-- 2.6. Button controlled LED
-- 2.9. LEDBoard
-- 2.10. LEDBarGraph
-- 2.12. Traffic Lights
-- 2.14. Reaction Game
-- 2.17. Full color LED
-- 2.18. Motion sensor
-- 2.20. Distance sensor
+- LEDs
+- Buttons
+- RGB LEDs
+- Buzzer
+- Speaker
+- Internal temperature sensor
+- Ultrasonic distance sensor
 
-### 🚦 (Optional) Motor Challenge: servos and motors
-
-- 2.22. Servo
-- 2.23 to 2.26 Motors
+  PicoZero does not have many pictures to show how to wire the pico and breadboard. [GPIOZero](https://gpiozero.readthedocs.io/en/stable/recipes.html) may have some images that can be used. 
 
 ---
 
