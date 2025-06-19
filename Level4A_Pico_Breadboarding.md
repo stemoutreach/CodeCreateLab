@@ -25,6 +25,7 @@
 **Breadboards** are tools for prototyping circuits without soldering. They make it easy to test and modify electronic setups.
 
 **Inside a Breadboard**:
+
 ![Inside Breadboard](https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/Insidebread.jpg)
 
 ### Key Concepts
@@ -78,8 +79,6 @@ led.off()
 ```
 
 ![LED Wiring Example](https://github.com/stemoutreach/PicoBot/blob/main/zzimages/LEDOnOff.jpg)
-
-➡️ Try other LED functions from the [PicoZero Recipes – LEDs](https://picozero.readthedocs.io/en/latest/recipes.html#leds).
 
 ---
 
