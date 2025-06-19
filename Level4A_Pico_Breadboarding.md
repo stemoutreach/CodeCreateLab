@@ -108,3 +108,5 @@ To complete Level 4, show:
 - What’s one idea or project you’d like to attempt next?
 
 ---
+
+Next [Level 5 – PicoBot:1 2-Wheel Driving](Level5.md)
