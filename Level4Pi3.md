@@ -1,5 +1,5 @@
 
-# Level 4 – Raspberry Pi 3 Breadboarding Basics: Learn by Recipe
+# Level 4 Raspberry Pi 3 - Breadboarding Basics: Learn by Recipe
 
 ## 🧠 Learning Objectives
 
