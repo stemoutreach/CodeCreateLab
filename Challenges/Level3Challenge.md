@@ -67,4 +67,4 @@ Once you've completed the above tasks, show your work to a mentor or coach to be
 
 ## ✅ What’s Next?
 
-You’re ready for  **[Level 4 – Breadboarding Basics](../Level4.md)**!, where you’ll learn breadboarding and use LEDs, buttons, and sensors with GPIO pins.
+You’re ready for  **[Pico Breadboarding Basics](../Level4A_Pico_Breadboarding.md)**!, where you’ll learn breadboarding and use LEDs, buttons, and sensors with GPIO pins.
