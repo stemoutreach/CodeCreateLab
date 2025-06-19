@@ -21,7 +21,7 @@ This program is organized into progressive skill levels that help students devel
 | 7     | Advanced     | MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 30–60 min      |
 | 8     | Advanced     | MasterPi: Ultrasonic Sensor Integration | Add obstacle detection to your robot.                                       | 30–60 min      |
 | 9     | Advanced     | MasterPi: Arm Movement                  | Learn to control a robotic arm using servos.                                | 30–60 min      |
-| 10    | Advanced     | MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
+| V1    | Advanced     | MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
 
 ---
 
