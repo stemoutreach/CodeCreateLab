@@ -1,6 +1,5 @@
-# Import the turtle and random libraries
+# Import the turtle libraries
 import turtle
-import random
 
 # Create a window for turtle to draw in
 wn = turtle.Screen()
