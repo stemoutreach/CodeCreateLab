@@ -4,7 +4,7 @@ Welcome to Lesson 1B of the Code and Create Lab! Now that your Raspberry Pi is s
 
 ---
 
-## 🎓 Goals
+## 🧠 Learning Objectives
 
 * Open Thonny Python editor
 * Understand variables
