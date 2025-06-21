@@ -42,7 +42,7 @@ def move_forward():
 # Get 5 commands from user
 commands = []
 for i in range(5):
-    cmd = input("Enter command (forward, backward, left, right, stop): ").lower()
+    cmd = input("Enter command (forward): ").lower()
     commands.append(cmd)
 
 # Run the first command as an example
@@ -51,15 +51,11 @@ if commands[0] == "forward":
 elif commands[0] == "backward":
     # call your move_backward function
     pass
-elif commands[0] == "left":
-    # call your turn_left function
-    pass
-elif commands[0] == "right":
-    # call your turn_right function
-    pass
-elif commands[0] == "stop":
-    # call your stop function
-    pass
+elif 
+.
+.
+.
+.
 else:
     print("Unknown command.")
 
