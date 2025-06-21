@@ -4,56 +4,60 @@
 Use Turtle graphics to simulate robot commands and draw the path on the screen.
 
 ## What To Do
-- [ ] Create a function for each command: forward, backward, left turn, right turn.
+- [ ] Define a function for the `forward` command using Turtle.
+- [ ] Add your own functions for `backward`, `left`, and `right`.
 - [ ] Ask the user for 5 commands using input().
-- [ ] Use Turtle to draw each movement on the screen.
+- [ ] Use your functions to move the turtle and draw the robot’s path.
 - [ ] Challenge: Add a stop command that lifts the pen and prints 'Robot paused'.
 
 ---
 
 ## 🧪 Starter Code
 ```python
-# Turtle Robot Path Drawer
-
 import turtle
 
 # Setup turtle
 t = turtle.Turtle()
 
-# TODO: Define command functions
-# def move_forward():
-#     t.forward(50)
+# Example: Move forward
+def move_forward():
+    t.forward(50)
 
+# TODO: Define move_backward
 # def move_backward():
-#     t.backward(50)
+#     ...
 
+# TODO: Define turn_left
 # def turn_left():
-#     t.left(90)
+#     ...
 
+# TODO: Define turn_right
 # def turn_right():
-#     t.right(90)
+#     ...
 
+# TODO: Define stop (optional challenge)
 # def stop():
-#     t.penup()
-#     print("Robot paused.")
+#     ...
 
-# TODO: Ask user for 5 commands
-# Example commands: forward, backward, left, right, stop
-# for i in range(5):
-#     cmd = input("Enter command (forward, backward, left, right, stop): ").lower()
-#     if cmd == "forward":
-#         move_forward()
-#     elif cmd == "backward":
-#         move_backward()
-#     elif cmd == "left":
-#         turn_left()
-#     elif cmd == "right":
-#         turn_right()
-#     elif cmd == "stop":
-#         stop()
-#     else:
-#         print("Unknown command")
+# Get 5 commands from user
+for i in range(5):
+    cmd = input("Enter command (forward, backward, left, right, stop): ").lower()
+    if cmd == "forward":
+        move_forward()
+    elif cmd == "backward":
+        # call your move_backward function
+        pass
+    elif cmd == "left":
+        # call your turn_left function
+        pass
+    elif cmd == "right":
+        # call your turn_right function
+        pass
+    elif cmd == "stop":
+        # call your stop function
+        pass
+    else:
+        print("Unknown command.")
 
-# Keep the window open until closed by user
 turtle.done()
 ```
