@@ -26,6 +26,7 @@ Each project builds on core skills like:
 | 08             | [Secret Word Decoder](08_SecretWordDecoder.md) | Reverse and decode a secret word |
 | 09             | [Quiz Game](09_QuizGame.md) | Ask questions and keep score |
 | 10             | [Animal Match Game](10_AnimalMatchGame.md) | Match animals to their sounds |
+| 11             | [Turtle Robot Path Drawer](11_TurtleRobotPathDrawer.md) | Draw robot commands using Turtle graphics |
 
 ---
 
