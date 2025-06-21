@@ -40,24 +40,28 @@ def move_forward():
 #     ...
 
 # Get 5 commands from user
+commands = []
 for i in range(5):
     cmd = input("Enter command (forward, backward, left, right, stop): ").lower()
-    if cmd == "forward":
-        move_forward()
-    elif cmd == "backward":
-        # call your move_backward function
-        pass
-    elif cmd == "left":
-        # call your turn_left function
-        pass
-    elif cmd == "right":
-        # call your turn_right function
-        pass
-    elif cmd == "stop":
-        # call your stop function
-        pass
-    else:
-        print("Unknown command.")
+    commands.append(cmd)
 
-turtle.done()
+# Run the first command as an example
+if commands[0] == "forward":
+    move_forward()
+elif commands[0] == "backward":
+    # call your move_backward function
+    pass
+elif commands[0] == "left":
+    # call your turn_left function
+    pass
+elif commands[0] == "right":
+    # call your turn_right function
+    pass
+elif commands[0] == "stop":
+    # call your stop function
+    pass
+else:
+    print("Unknown command.")
+
+# TODO: Repeat the above logic for the rest of the commands (commands[1] to commands[4])
 ```
