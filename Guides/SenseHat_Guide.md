@@ -38,10 +38,9 @@ sudo apt install sense-hat
 To test the install:
 
 ```bash
-python3
->>> from sense_hat import SenseHat
->>> sense = SenseHat()
->>> sense.show_message("Hi!")
+from sense_hat import SenseHat
+sense = SenseHat()
+sense.show_message("Hi!")
 ```
 
 If “Hi!” scrolls across the LEDs, you're good to go!
