@@ -8,20 +8,18 @@ This program is organized into progressive skill levels that help students devel
 
 ## 🚀 Skill Quest Levels
 
-| Level | Track        | Challenge                               | Summary                                                                     | Estimated Time |
-| ----- | ------------ | --------------------------------------- | --------------------------------------------------------------------------- | -------------- |
-| 1     | Beginner     | Pi Setup & Python Intro                 | Learn how to set up a Raspberry Pi and write your first Python commands.    | 15-30 min      |
-| 2     | Beginner     | Python Basics                           | Explore Python fundamentals: variables, loops, conditionals, and functions. | 30–60 min      |
-| 3     | Intermediate | Sense HAT Lab                           | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
-| 4A    | Intermediate | Pico Breadboarding Basics:              | Learn by Recipe                                                             | 60–120 min     |
-| 4B    | Intermediate | Raspberry Pi 3 Breadboarding Basics     | Learn to use LEDs, buttons, and sensors with GPIO pins.                     | 60–120 min     |
-| 5     | Intermediate | PicoBot:1 2-Wheel Driving               | Program a simple robot to drive and follow logic sequences.                 | 30–60 min      |
-| 6     | Intermediate | PicoBot:2 more inputs and outputs       | Program a robot to drive using buttons, LEDs and Distance sensor            | 30–60 min      |
-|       |              | Below levels are still in devlopment    |                                                                             |                |
-| 7     | Advanced     | MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 30–60 min      |
-| 8     | Advanced     | MasterPi: Ultrasonic Sensor Integration | Add obstacle detection to your robot.                                       | 30–60 min      |
-| 9     | Advanced     | MasterPi: Arm Movement                  | Learn to control a robotic arm using servos.                                | 30–60 min      |
-| V1    | Advanced     | MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
+| Level        | Challenge                               | Summary                                                                     | Estimated Time |
+| ------------ | --------------------------------------- | --------------------------------------------------------------------------- | -------------- |
+| Beginner     | Python Intro & Python Basics            | Explore Python fundamentals: variables, loops, conditionals, and functions. | 30–60 min      |
+| Intermediate | Sense HAT Lab                           | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
+| Intermediate | Pico Breadboarding Basics:              | Learn by Recipe                                                             | 60 min         |
+| Intermediate | Raspberry Pi 3 Breadboarding Basics     | Learn to use LEDs, buttons, and sensors with GPIO pins.                     | 60 min         |
+| Intermediate | PicoBot:1 Drive,inputs and outputs      | Program a simple robot to drive and follow logic sequences using sensors.   | 60 min         |
+|              | Below levels are still in devlopment    |                                                                             |                |
+| Advanced     | MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 30–60 min      |
+| Advanced     | MasterPi: Ultrasonic Sensor Integration | Add obstacle detection to your robot.                                       | 30–60 min      |
+| Advanced     | MasterPi: Arm Movement                  | Learn to control a robotic arm using servos.                                | 30–60 min      |
+| Advanced     | MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
 
 ---
 
