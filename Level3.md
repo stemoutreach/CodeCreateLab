@@ -1,4 +1,4 @@
-# 🧠 Level 3 – Sense HAT Lab
+# 🧠 Sense HAT Lab
 
 ## 🚀 Overview
 The **Sense HAT** is an add-on board for the Raspberry Pi featuring:
