@@ -132,14 +132,7 @@ future_age = int(age) + 5
 print("In 5 years, you will be", future_age, "years old.")
 ```
 
-6. **Emoji Banner**
-
-```python
-emoji = input("Enter your favorite emoji (like 😀): ")
-print(emoji * 5)
-```
-
-7. **Custom Robot Name**
+6. **Custom Robot Name**
 
 ```python
 first = input("Enter a word: ")
@@ -147,12 +140,12 @@ number = input("Enter a number: ")
 print("Your robot name is:", first + number)
 ```
 
-8. **ASCII Art**
+7. **ASCII Art**
 
 ```python
 print("  ^  ")
-print(" / \")
-print("/___\")
+print(" / \ ")
+print("/___\ ")
 print("|   |")
 print("|___|")
 ```
