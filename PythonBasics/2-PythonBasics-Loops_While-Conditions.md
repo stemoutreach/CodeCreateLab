@@ -1,4 +1,4 @@
-# Level 2 – Python Basics
+# Python Basics:  If Conditions, For and While Loops
 
 ## 🧠 Learning Objectives
 
