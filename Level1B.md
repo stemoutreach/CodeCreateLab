@@ -150,14 +150,14 @@ print("|   |")
 print("|___|")
 ```
 
-9. **Repeat User Input**
+8. **Repeat User Input**
 
 ```python
 word = input("Say something: ")
 print("You said:", word)
 ```
 
-10. **Build a Phrase**
+9. **Build a Phrase**
 
 ```python
 word1 = input("Word 1: ")
