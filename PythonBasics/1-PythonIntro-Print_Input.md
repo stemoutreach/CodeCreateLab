@@ -1,6 +1,6 @@
-# Python Intro: Print, Input, and Variables
+# Python Intro: Print and Input
 
-Welcome to Lesson 1B of the Code and Create Lab! Now that your Raspberry Pi is set up, it’s time to write your first Python code using Thonny.
+Welcome to Python Intro for Code and Create Lab! Now it’s time to write your first Python code using Thonny.
 
 ---
 
@@ -78,8 +78,6 @@ print("In 5 years, you will be", age + 5)
 
 
 ## 🎯 More Beginner Python Script Ideas
-
-Try one or more of these practice activities:
 
 1. **Favorite Food**
 
