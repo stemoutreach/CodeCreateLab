@@ -1,4 +1,4 @@
-# Solution: Sense HAT Mission Dashboard
+# Solution: Advance Sense HAT Mission Dashboard
 
 ```python
 #!/usr/bin/env python3
