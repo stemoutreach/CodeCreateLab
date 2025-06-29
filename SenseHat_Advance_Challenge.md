@@ -49,4 +49,4 @@ Everything is shown on the 8 × 8 LED matrix; no extra hardware is allowed.
 * `sensehat_mission_dashboard.py` – fully working program.  
 * Short **README paragraph** at the top of the file explaining how to run it.
 
-Ready? Go build your dashboard, then compare your work with the reference solution!  
+Ready? Go build your dashboard, then compare your work with others!  
