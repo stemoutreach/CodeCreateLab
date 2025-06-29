@@ -1,4 +1,4 @@
-# Code & Create Lab – Sense HAT Challenge  
+# Code & Create Lab – Sense HAT Advanced Challenge  
 Use **almost every sensor** on the Sense HAT to build an interactive “Mission Dashboard” that engineers can run on their Raspberry Pi.
 
 ## Scenario  
