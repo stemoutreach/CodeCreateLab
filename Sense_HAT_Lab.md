@@ -78,7 +78,10 @@ Demonstrate all of the following:
 ## 🧪 Ready to level Up?
 
 Complete the one of the Sense Hat Challanges 
-4th to 7th grade - [SenseHat Basic Challenge](/SenseHat_Basic_Challenge.md) 
-8th to 10th grade - [SenseHat Advance Challenge](/SenseHat_Advance_Challenge.md) 
+
+- 4th to 7th grade - [SenseHat Basic Challenge](/SenseHat_Basic_Challenge.md) 
+- 8th to 10th grade - [SenseHat Advance Challenge](/SenseHat_Advance_Challenge.md)
+- 
 Show your work to a mentor or coach to move on.
+
 
