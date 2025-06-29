@@ -1,4 +1,4 @@
-# Sense HAT Weather Warning Light – Challenge (Grades 4‑8)
+# Sense HAT Weather Warning Light – Challenge 
 
 Your Pi rover needs a **Weather Warning Light**.  
 Use the Sense HAT to read the *temperature* and *humidity* every few seconds.  
