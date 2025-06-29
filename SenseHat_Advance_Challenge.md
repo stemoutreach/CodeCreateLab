@@ -25,7 +25,7 @@ Everything is shown on the 8 × 8 LED matrix; no extra hardware is allowed.
 | Feature | Details |
 |---------|---------|
 | **Mode 1 — Orientation** | Display an arrow that shows which way “up” is (uses gyro/accelerometer). |
-| **Mode 2 — Environment** | Scroll the current °C, %RH, and hPa across the LEDs, color‑coded: red = temp, green = humidity, blue = pressure. |
+| **Mode 2 — Environment** | Scroll the current temp, humidity, and pressure across the LEDs, color‑coded: red = temp, green = humidity, blue = pressure. |
 | **Mode 3 — Compass** | Draw a white dot in the center and a red “needle” pixel that rotates as the magnetometer heading changes. |
 | **Joystick** | Middle‑click switches modes; any other direction resets the LED matrix to a solid color that indicates the direction pressed. |
 | **Graceful Exit** | `Ctrl +C` stops the loop, clears the LED matrix, and prints a goodbye message. |
