@@ -50,13 +50,6 @@ pressure = sense.get_pressure()
 print(f"Temp: {temp:.1f} C, Humidity: {humidity:.1f}%, Pressure: {pressure:.1f} hPa")
 ```
 
-### 4️⃣ Joystick Input
-```python
-for event in sense.stick.get_events():
-    print(event.direction, event.action)
-```
-Directions include `'up'`, `'down'`, `'left'`, `'right'`, `'middle'`.
-
 ---
 
 ## 🧪 Mini Challenges
@@ -66,7 +59,6 @@ Use `show_message()` to scroll your name in your favorite color.
 
 ### 🔷 Challenge 2: Weather Station
 - Show temperature and humidity on the LED display.
-- Use the joystick to switch between temperature and humidity display.
 
 ### 🔷 Challenge 3: Tilt Detector
 Print a message when the Pi is tilted beyond a certain angle.
@@ -79,11 +71,14 @@ Print a message when the Pi is tilted beyond a certain angle.
 
 Demonstrate all of the following:
 - [ ] Scroll a custom message on the LED matrix
-- [ ] Capture and respond to a joystick direction
 - [ ] Read at least one sensor and display the result
 
 ---
 
-## 🧪 Ready to Level Up?
+## 🧪 Ready to level Up?
 
-Complete the [Level 3 – Challenge](Challenges/Level3Challenge.md) and show your work to a mentor or coach to move on.
+Complete the one of the Sense Hat Challanges 
+4th to 7th grade - [SenseHat Basic Challenge](/SenseHat_Basic_Challenge.md) 
+8th to 10th grade - [SenseHat Advance Challenge](/SenseHat_Advance_Challenge.md) 
+Show your work to a mentor or coach to move on.
+
