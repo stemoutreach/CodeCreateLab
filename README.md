@@ -10,10 +10,8 @@ This program is organized into progressive skill levels that help students devel
 
 | Level        | Challenge                               | Summary                                                                     | Estimated Time |
 | ------------ | --------------------------------------- | --------------------------------------------------------------------------- | -------------- |
-| Beginner     | Python Intro & Python Basics            | Explore Python fundamentals: variables, loops, conditionals, and functions. | 30–60 min      |
 | Intermediate | Sense HAT Lab                           | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
 | Intermediate | Pico Breadboarding Basics:              | Learn by Recipe                                                             | 60 min         |
-| Intermediate | Raspberry Pi 3 Breadboarding Basics     | Learn to use LEDs, buttons, and sensors with GPIO pins.                     | 60 min         |
 | Intermediate | PicoBot:1 Drive,inputs and outputs      | Program a simple robot to drive and follow logic sequences using sensors.   | 60 min         |
 |              | Below levels are still in devlopment    |                                                                             |                |
 | Advanced     | MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 30–60 min      |
