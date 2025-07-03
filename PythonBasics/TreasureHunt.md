@@ -67,6 +67,8 @@ def choose_cave():
 Use `random` to secretly pick the treasure cave. Then check if the player guessed right.
 
 ```python
+import random
+
 def reveal_outcome(chosen_cave, treasure_cave):
     """Tell the player if they found treasure or a trap."""
     # TODO: If the caves match, celebrate!
