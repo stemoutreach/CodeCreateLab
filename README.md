@@ -23,8 +23,8 @@ This program is organized into progressive skill levels that help students devel
 
 ## 🛠️ Getting Started
 
-* Each level includes a set of objectives, sample code, and a mini challenge.
-* Students should work through levels in order, checking off skills as they go.
+* Each lab includes a set of objectives, sample code, and a mini challenge.
+* Students should work through the labs in order, checking off skills as they go.
 * Mentors are available to assist with troubleshooting and questions.
 
 ---
