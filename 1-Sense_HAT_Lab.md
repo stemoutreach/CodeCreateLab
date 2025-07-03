@@ -1,4 +1,4 @@
-# 🧠 Sense HAT Lab
+# 🧠 1 Sense HAT Lab
 
 ## 🚀 Overview
 The **Sense HAT** is an add-on board for the Raspberry Pi featuring:
