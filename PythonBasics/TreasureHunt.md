@@ -35,10 +35,12 @@ Start with a function to say hello and ask for their name.
 
 ```python
 def greet_player():
+    """Say hello and ask for the player's name."""
     print("🏴‍☠️  Welcome to the Mini Treasure Hunt!")
-    name = input("What’s your explorer name? ")
-    print(f"\nAhoy, {name}! Your quest is to find the hidden treasure chest.\n")
-    return name
+    # TODO: Ask for the player's explorer name.
+    # TODO: Store the answer in a variable called 'name'.
+    # TODO: Print a friendly greeting that uses their name.
+    return name  # Make sure 'name' exists!
 ```
 
 ---
@@ -49,11 +51,13 @@ Use a loop to make sure they choose **1** or **2**.
 
 ```python
 def choose_cave():
+    """Ask the player to pick cave 1 or 2 until they type a valid choice."""
     while True:
-        choice = input("Do you enter cave 1 or cave 2? (type 1 or 2) ")
-        if choice in ("1", "2"):
-            return int(choice)
-        print("Please choose 1 or 2! 🧐")
+        # TODO: Ask the player: "Do you enter cave 1 or cave 2? (type 1 or 2) "
+        # TODO: If they typed "1" or "2", return their choice as an int.
+        # TODO: Otherwise, print a helpful message and repeat the loop.
+        pass  # remove this when you write the code
+
 ```
 
 ---
@@ -63,15 +67,12 @@ def choose_cave():
 Use `random` to secretly pick the treasure cave. Then check if the player guessed right.
 
 ```python
-import random
-
 def reveal_outcome(chosen_cave, treasure_cave):
-    if chosen_cave == treasure_cave:
-        print("✨  You found the treasure! Congratulations! 🎉")
-        return True
-    else:
-        print("💥  Oh no! A sneaky trap—better luck next time.")
-        return False
+    """Tell the player if they found treasure or a trap."""
+    # TODO: If the caves match, celebrate!
+    # TODO: Otherwise, tell them they hit a trap.
+    # TODO: Return True if they won, False if they lost.
+    pass
 ```
 
 ---
@@ -82,14 +83,16 @@ Create a main function that calls the others and repeats the game if the player 
 
 ```python
 def play_game():
-    name = greet_player()
-    play_again = "yes"
-    while play_again == "yes":
-        treasure_cave = random.randint(1, 2)
-        chosen_cave = choose_cave()
-        reveal_outcome(chosen_cave, treasure_cave)
-        play_again = input("\nDo you want to play again? (yes/no) ").lower()
-    print(f"\nThanks for playing, {name}! See you on the next adventure. 👋")
+    """Main game loop so players can play many times."""
+    # TODO: Call greet_player() and save the returned name.
+    # TODO: Set a variable 'play_again' to "yes".
+    # TODO: While the player wants to keep playing:
+    #       * Pick a random treasure cave (1 or 2) with random.randint()
+    #       * Call choose_cave() to get the player's guess
+    #       * Call reveal_outcome() to see if they won
+    #       * Ask if they want to play again (yes/no)
+    # TODO: After the loop ends, say goodbye to the player by name.
+    pass
 ```
 
 Then run it:
