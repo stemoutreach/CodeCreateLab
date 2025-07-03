@@ -64,11 +64,9 @@ def choose_cave():
 
 ### 3️⃣ Determine the Outcome
 
-Use `random` to secretly pick the treasure cave. Then check if the player guessed right.
+ Then check if the player guessed right.
 
 ```python
-import random
-
 def reveal_outcome(chosen_cave, treasure_cave):
     """Tell the player if they found treasure or a trap."""
     # TODO: If the caves match, celebrate!
@@ -81,9 +79,11 @@ def reveal_outcome(chosen_cave, treasure_cave):
 
 ### 4️⃣ Build the Main Game Loop
 
-Create a main function that calls the others and repeats the game if the player wants to.
+Create a main function that calls the others and repeats the game if the player wants to. Use `random` to secretly pick the treasure cave.
 
 ```python
+import random
+
 def play_game():
     """Main game loop so players can play many times."""
     # TODO: Call greet_player() and save the returned name.
