@@ -79,8 +79,8 @@ Demonstrate all of the following:
 
 Complete the one of the Sense Hat Challanges 
 
-- 4th to 7th grade - [SenseHat Basic Challenge](/SenseHat_Basic_Challenge.md) 
-- 8th to 10th grade - [SenseHat Advance Challenge](/SenseHat_Advance_Challenge.md)
+- 4th to 7th grade - [1a SenseHat Basic Challenge](/1a-SenseHat_Basic_Challenge.md) 
+- 8th to 10th grade - [1b SenseHat Advance Challenge](/1b-SenseHat_Advance_Challenge.md)
   
 Show your work to a mentor or coach to move on.
 
