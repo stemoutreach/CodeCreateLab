@@ -10,9 +10,9 @@ This program is organized into progressive skill levels that help students devel
 
 | Level        | Challenge                               | Summary                                                                     | Estimated Time |
 | ------------ | --------------------------------------- | --------------------------------------------------------------------------- | -------------- |
-| Intermediate | Sense HAT Lab                           | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
-| Intermediate | Pico Breadboarding Basics:              | Learn by Recipe                                                             | 60 min         |
-| Intermediate | PicoBot:1 Drive,inputs and outputs      | Program a simple robot to drive and follow logic sequences using sensors.   | 60 min         |
+| Intermediate | 1 Sense HAT Lab                         | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
+| Intermediate | 2 Pico Breadboarding Basics:            | Learn by Recipe                                                             | 60 min         |
+| Intermediate | 3 PicoBot: Drive,inputs and outputs     | Program a simple robot to drive and follow logic sequences using sensors.   | 60 min         |
 |              | Below levels are still in devlopment    |                                                                             |                |
 | Advanced     | MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 30–60 min      |
 | Advanced     | MasterPi: Ultrasonic Sensor Integration | Add obstacle detection to your robot.                                       | 30–60 min      |
@@ -29,9 +29,9 @@ This program is organized into progressive skill levels that help students devel
 
 ---
 
-## 📁 Level Pages
+## 📁 Labs 1-3
 
-Each level has its own page with:
+Each Lab has its own page with:
 
 * Learning objectives
 * Required materials
@@ -41,17 +41,9 @@ Each level has its own page with:
 
 Visit the individual level pages to begin:
 
-* [Level 1A – Pi Setup](Level1A.md)
-* [Level 1B – Python Intro](Level1B.md)
-* [Level 2 – Python Basics](Level2.md)
-* [Level 3 – Sense HAT Lab](Level3.md)
-* [Level 4A – Breadboarding Basics](Level4A_Pico_Breadboarding.md)
-* [Level 4B – Breadboarding Basics](Level4B_Pi3_Breadboarding.md)
-* [Level 5 – PicoBot:1](Level5.md)
-* [Level 6 – PicoBot:2](Level6.md)
-* [Level 7 – Mecanum Movement](Level7.md)
-* [Level 8 – Ultrasonic Sensor](Level8.md)
-* [Level 9 – Arm Movement](Level9.md)
-* [Level V1 – Computer Vision](LevelV1.md)
+* [1 Sense HAT Lab](1-Sense_HAT_Lab.md)
+* [2 Breadboarding Basics](2-Pico_Breadboarding.md)
+* [3 PicoBot](3-PicoBot.md)
+
 
 Let’s get started and bring your code to life!
