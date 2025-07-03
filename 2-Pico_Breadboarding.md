@@ -1,5 +1,5 @@
 
-# Level 4 – Pico Breadboarding Basics: Learn by Recipe
+# 2 Pico Breadboarding Basics: Learn by Recipe
 
 ## 🧠 Learning Objectives
 - Understand how to use GPIO pins with the Raspberry Pi Pico
