@@ -1,47 +1,111 @@
-# Code & Create Lab
 
-Welcome to the **Code & Create Lab** – a self-paced learning experience designed to introduce students to Raspberry Pi, physical computing, and robotics through hands-on challenges.
+# Code & Create Lab
 
-This program is organized into progressive skill levels that help students develop confidence and competence in programming, electronics, and real-world problem-solving. Students must demonstrate understanding and complete all challenges in a level before advancing to the next.
+**Learn by building.** Code & Create Lab is a self‑paced quest that walks students—from absolute beginners to budding roboticists—through the fundamentals of **Python programming**, **physical computing**, and **autonomous navigation**.
 
----
-
-## 🚀 Skill Quest Levels
-
-| Labs                                    | Summary                                                                     | Estimated Time |
-| --------------------------------------- | --------------------------------------------------------------------------- | -------------- |
-| 0 Treasure Hunt Lab                     | interactive adventure using print, input, conditions (if), loops (while),   | 30–60 min      |
-| 1 Sense HAT Lab                         | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
-| 2 Pico Breadboarding Basics:            | use GPIO pins with the Raspberry Pi Pico                                    | 60 min         |
-| 3.0 PicoBot: Understand DC motor basics | wire and program a simple robot to drive a simple path                      | 60 min         |
-| 3.1 PicoBot: inputs and outputs         | wire and program a simple robot to drive                                    | 60 min         |
-| 4.0 MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
+Each **Lab** is a milestone project.  Each **Guide** teaches the skills needed to beat that project.  By the final level you’ll have a mecanum‑wheel robot that can recognise AprilTags and drive itself around a course.
 
 ---
 
-## 🛠️ Getting Started
+## 🎯 Updated Purpose
 
-* Each lab includes a set of objectives, sample code, and a mini challenge.
-* Students should work through the labs in order, checking off skills as they go.
-* Mentors are available to assist with troubleshooting and questions.
+1. **Make STEM approachable** – lower the entry barrier so anyone (Grades 4–10 +) can start creating with code and electronics.  
+2. **Turn theory into practice** – every concept is immediately applied in a real, working artefact.  
+3. **Promote a growth mindset** – short wins build confidence; stretch goals reward curiosity.  
+4. **Empower instructors & mentors** – modular guides, checklists, and wiring diagrams shorten prep time.
 
 ---
 
-## 📁 Labs 1-3
+## 🧠 Core Concepts
 
-Each Lab has its own page with:
+| Theme | What you’ll learn |
+|-------|-------------------|
+| Python Fundamentals | `print`, `input`, variables, conditionals, loops, functions |
+| Sensor I/O | Reading temperature, humidity, IMU, ultrasonic distance |
+| Actuators & Signalling | LEDs, RGB colour mixing, DC & mecanum motors |
+| Microcontrollers | Programming the Raspberry Pi Pico with MicroPython |
+| Robotics Algorithms | Wall‑following, maze solving, PID tuning |
+| Computer Vision | OpenCV basics, AprilTag detection, pose estimation |
+| Engineering Practice | Breadboarding, wiring diagrams, iterative debugging |
+| Collaboration | Pair‑programming tips, code reviews, documentation |
 
-* Learning objectives
-* Required materials
-* Instructions and examples
-* Challenge to complete
-* Checkpoint for level-up verification
+---
 
-Visit the individual level pages to begin:
+## 📂 Repository Layout (high‑level)
 
-* [1 Sense HAT Lab](1-Sense_HAT_Lab.md)
-* [2 Breadboarding Basics](2-Pico_Breadboarding.md)
-* [3 PicoBot](3-PicoBot.md)
+```text
+Labs/        ← final challenge projects
+Guides/      ← step‑by‑step how‑tos
+Assets/      ← wiring diagrams, images, datasets
+README.md    ← (this file)
+```
 
+---
 
-Let’s get started and bring your code to life!
+## 🗺️ Learning Path
+
+| Level | Lab | Highlights | Hardware | Time |
+|:----:|------|------------|----------|------|
+| **0** | Treasure Hunt | Text adventure, loops & logic | Computer only | 30 min |
+| **1** | Sense HAT Basics | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
+| **1.5** | Sense HAT Mission Dashboard | Multi‑sensor fusion, joystick events | Same | 60 min |
+| **2** | Pico Breadboarding | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
+| **3.0** | PicoBot Maze Explorer | Motor control, obstacle avoidance | PicoBot | 90 min |
+| **4.0** | MasterPi AprilTags Navigator | OpenCV, AprilTags, mecanum drive | MasterPi | 2 h |
+
+> 🔗 **Guides** for each stage live in the `/Guides` folder.
+
+---
+
+## 📂 Full Repo Layout
+
+```text
+CodeCreateLab/
+│
+├── README.md
+│
+├── Labs/
+│   ├── 0-Treasure_Hunt_Lab.md
+│   ├── 1-SenseHat_Basic_Lab.md
+│   ├── 1.5-SenseHat_Advance_Lab.md
+│   ├── 2-Pico_Breadboarding_Lab.md
+│   ├── 3.0-PicoBot_Lab.md
+│   └── 4.0-MasterPi_Lab.md
+│
+├── Guides/
+│   ├── Python_Basics_Guide.md
+│   ├── SenseHat_Guide.md
+│   ├── Pico_Breadboard_Guide.md
+│   ├── PicoBot_Guide.md
+│   └── MasterPi_AprilTags_Guide.md
+│
+└── Assets/
+    └── (schematics, images, sample data)
+```
+
+---
+
+## 🚀 Quick Start
+
+1. **Clone the repo**
+
+   ```bash
+   git clone https://github.com/stemoutreach/CodeCreateLab.git
+   cd CodeCreateLab
+   ```
+
+2. Pick a **Lab** from `/Labs`.  
+3. Skim its **Guide** for wiring & install steps.  
+4. Open the starter `.py`, fill the `# TODO:` blocks, and run!
+
+---
+
+## 🤝 Contributing
+
+Pull requests and issue reports are welcome.  
+Mentors: see `Guides/Mentoring_Tips.md` (coming soon) for checkpoints and facilitation advice.
+
+---
+
+Made with ❤️ by STEM Outreach volunteers & community mentors.  
+Licensed under the MIT License.
