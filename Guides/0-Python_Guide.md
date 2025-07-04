@@ -255,3 +255,4 @@ result = add(5, 3)
 print("5 + 3 =", result)
 ```
 
+[0 Treasure Hunt Lab](/Labs/0-Treasure_Hunt_Lab.md)
