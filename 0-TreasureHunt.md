@@ -61,7 +61,7 @@ def choose_cave():
         # TODO: Ask the player: "Do you enter cave 1 or cave 2? (type 1 or 2) "
         # TODO: If they typed "1" or "2", return their choice as an int.
         # TODO: Otherwise, print a helpful message and repeat the loop.
-        pass  # remove this when you write the code
+
 
 ```
 
@@ -77,7 +77,7 @@ def reveal_outcome(chosen_cave, treasure_cave):
     # TODO: If the caves match, celebrate!
     # TODO: Otherwise, tell them they hit a trap.
     # TODO: Return True if they won, False if they lost.
-    pass
+
 ```
 
 ---
@@ -99,7 +99,7 @@ def play_game():
     #       * Call reveal_outcome() to see if they won
     #       * Ask if they want to play again (yes/no)
     # TODO: After the loop ends, say goodbye to the player by name.
-    pass
+
 ```
 
 Then run it:
@@ -127,14 +127,14 @@ def choose_cave():
         # TODO: Prompt the player: "Do you enter cave 1 or cave 2? (type 1 or 2) "
         # TODO: If the answer is "1" or "2", return it as an int
         # TODO: Otherwise, print "Please choose 1 or 2!" and loop again
-        pass  # remove when implemented
+
 
 def reveal_outcome(chosen_cave, treasure_cave):
     """Tell the player if they found treasure or a trap."""
     # TODO: If chosen_cave equals treasure_cave, print a win message
     # TODO: Else, print a trap message
     # TODO: Return True for win, False for trap
-    pass
+
 
 def play_game():
     """Main loop so the player can play multiple rounds."""
@@ -145,11 +145,11 @@ def play_game():
     #       3. Reveal the outcome
     #       4. Ask if they want to play again (yes/no)
     # TODO: After the loop, say goodbye using their name
-    pass
+
 
 # TODO: Add the usual main guard:
-# if __name__ == "__main__":
-#     play_game()
+if __name__ == "__main__":
+    play_game()
 ```
 
 
