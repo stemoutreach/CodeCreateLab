@@ -8,16 +8,18 @@ This program is organized into progressive skill levels that help students devel
 
 ## 🚀 Skill Quest Levels
 
-| Level        | Challenge                               | Summary                                                                     | Estimated Time |
-| ------------ | --------------------------------------- | --------------------------------------------------------------------------- | -------------- |
-| Intermediate | 1 Sense HAT Lab                         | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
-| Intermediate | 2 Pico Breadboarding Basics:            | Learn by Recipe                                                             | 60 min         |
-| Intermediate | 3 PicoBot: Drive,inputs and outputs     | Program a simple robot to drive and follow logic sequences using sensors.   | 60 min         |
-|              | Below levels are still in devlopment    |                                                                             |                |
-| Advanced     | MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 30–60 min      |
-| Advanced     | MasterPi: Ultrasonic Sensor Integration | Add obstacle detection to your robot.                                       | 30–60 min      |
-| Advanced     | MasterPi: Arm Movement                  | Learn to control a robotic arm using servos.                                | 30–60 min      |
-| Advanced     | MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
+| Labs                                    | Summary                                                                     | Estimated Time |
+| --------------------------------------- | --------------------------------------------------------------------------- | -------------- |
+| 0 Treasure Hunt Lab                     | interactive adventure using print, input, conditions (if), loops (while),   | 30–60 min      |
+| 1 Sense HAT Lab                         | Code interactive input/output using the Sense HAT without breadboarding.    | 30–60 min      |
+| 2 Pico Breadboarding Basics:            | use GPIO pins with the Raspberry Pi Pico                                    | 60 min         |
+| 3.0 PicoBot: Understand DC motor basics | wire and program a simple robot to drive a simple path                      | 60 min         |
+| 3.1 PicoBot: inputs and outputs         | wire and program a simple robot to drive                                    | 60 min         |
+| Below levels are still in devlopment    |                                                                             |                |
+| MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 30–60 min      |
+| MasterPi: Ultrasonic Sensor Integration | Add obstacle detection to your robot.                                       | 30–60 min      |
+| MasterPi: Arm Movement                  | Learn to control a robotic arm using servos.                                | 30–60 min      |
+| MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
 
 ---
 
