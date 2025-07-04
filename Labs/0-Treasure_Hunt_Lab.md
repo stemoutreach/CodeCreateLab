@@ -176,3 +176,5 @@ After finishing the game:
 ---
 
 Happy coding, adventurer! 🧭
+
+[Back to the main page](/README.md)
