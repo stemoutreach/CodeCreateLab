@@ -3,11 +3,11 @@
 
 **Learn by building.** Code & Create Lab is a self‑paced quest that walks students—from absolute beginners to budding roboticists—through the fundamentals of **Python programming**, **physical computing**, and **autonomous navigation**.
 
-Each **Lab** is a milestone project.  Each **Guide** teaches the skills needed to beat that project.  By the final level you’ll have a mecanum‑wheel robot that can recognise AprilTags and drive itself around a course.
+Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to beat that project. By the final level, you’ll have a mecanum‑wheel robot that recognises AprilTags and drives itself around a course.
 
 ---
 
-## 🎯 Updated Purpose
+## 🎯 Purpose
 
 1. **Make STEM approachable** – lower the entry barrier so anyone (Grades 4–10 +) can start creating with code and electronics.  
 2. **Turn theory into practice** – every concept is immediately applied in a real, working artefact.  
@@ -20,72 +20,50 @@ Each **Lab** is a milestone project.  Each **Guide** teaches the skills needed t
 
 | Theme | What you’ll learn |
 |-------|-------------------|
-| Python Fundamentals | `print`, `input`, variables, conditionals, loops, functions |
-| Sensor I/O | Reading temperature, humidity, IMU, ultrasonic distance |
-| Actuators & Signalling | LEDs, RGB colour mixing, DC & mecanum motors |
-| Microcontrollers | Programming the Raspberry Pi Pico with MicroPython |
+| Python Fundamentals | Variables, conditionals, loops, functions |
+| Sensor I/O | Temperature, humidity, IMU, ultrasonic distance |
+| Actuators & Signalling | LEDs, RGB mixing, DC & mecanum motors |
+| Microcontrollers | Programming Raspberry Pi Pico with MicroPython |
 | Robotics Algorithms | Wall‑following, maze solving, PID tuning |
-| Computer Vision | OpenCV basics, AprilTag detection, pose estimation |
+| Computer Vision | OpenCV basics, AprilTag detection |
 | Engineering Practice | Breadboarding, wiring diagrams, iterative debugging |
-| Collaboration | Pair‑programming tips, code reviews, documentation |
+| Collaboration | Pair‑programming, code reviews, documentation |
 
 ---
 
-## 📂 Repository Layout (high‑level)
-
-```text
-Labs/        ← final challenge projects
-Guides/      ← step‑by‑step how‑tos
-Assets/      ← wiring diagrams, images, datasets
-README.md    ← (this file)
-```
-
----
-
-## 🗺️ Learning Path
+## 🚀 Learning Path
 
 | Level | Lab | Highlights | Hardware | Time |
 |:----:|------|------------|----------|------|
-| **0** | Treasure Hunt | Text adventure, loops & logic | Computer only | 30 min |
-| **1** | Sense HAT Basics | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
-| **1.5** | Sense HAT Mission Dashboard | Multi‑sensor fusion, joystick events | Same | 60 min |
-| **2** | Pico Breadboarding | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
-| **3.0** | PicoBot Maze Explorer | Motor control, obstacle avoidance | PicoBot | 90 min |
-| **4.0** | MasterPi AprilTags Navigator | OpenCV, AprilTags, mecanum drive | MasterPi | 2 h |
-
-> 🔗 **Guides** for each stage live in the `/Guides` folder.
+| **0** | [Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md) | Text adventure, loops & logic | Computer only | 30 min |
+| **1** | [Sense HAT Basics](Labs/1-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
+| **1.5** | [Sense HAT Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md) | Multi‑sensor fusion, joystick events | Same | 60 min |
+| **2** | [Pico Breadboarding](Labs/2-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
+| **3.0** | [PicoBot Maze Explorer](Labs/3.0-PicoBot_Lab.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
+| **4.0** | [MasterPi AprilTags Navigator](Labs/4.0-MasterPi_Lab.md) | OpenCV, AprilTags, mecanum drive | MasterPi | 2 h |
 
 ---
 
-## 📂 Full Repo Layout
+## 📑 Quick Links
 
-```text
-CodeCreateLab/
-│
-├── README.md
-│
-├── Labs/
-│   ├── 0-Treasure_Hunt_Lab.md
-│   ├── 1-SenseHat_Basic_Lab.md
-│   ├── 1.5-SenseHat_Advance_Lab.md
-│   ├── 2-Pico_Breadboarding_Lab.md
-│   ├── 3.0-PicoBot_Lab.md
-│   └── 4.0-MasterPi_Lab.md
-│
-├── Guides/
-│   ├── Python_Basics_Guide.md
-│   ├── SenseHat_Guide.md
-│   ├── Pico_Breadboard_Guide.md
-│   ├── PicoBot_Guide.md
-│   └── MasterPi_AprilTags_Guide.md
-│
-└── Assets/
-    └── (schematics, images, sample data)
-```
+### Labs  
+- [0‑Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md)  
+- [1‑Sense HAT Basics](Labs/1-SenseHat_Basic_Lab.md)  
+- [1.5‑Sense HAT Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md)  
+- [2‑Pico Breadboarding](Labs/2-Pico_Breadboarding_Lab.md)  
+- [3.0‑PicoBot Maze Explorer](Labs/3.0-PicoBot_Lab.md)  
+- [4.0‑MasterPi AprilTags Navigator](Labs/4.0-MasterPi_Lab.md)
+
+### Guides  
+- [Python Basics Guide](Guides/Python_Basics_Guide.md)  
+- [Sense HAT Guide](Guides/SenseHat_Guide.md)  
+- [Pico Breadboard Guide](Guides/Pico_Breadboard_Guide.md)  
+- [PicoBot Guide](Guides/PicoBot_Guide.md)  
+- [MasterPi AprilTags Guide](Guides/MasterPi_AprilTags_Guide.md)
 
 ---
 
-## 🚀 Quick Start
+## 🛠️ Getting Started
 
 1. **Clone the repo**
 
@@ -94,9 +72,9 @@ CodeCreateLab/
    cd CodeCreateLab
    ```
 
-2. Pick a **Lab** from `/Labs`.  
-3. Skim its **Guide** for wiring & install steps.  
-4. Open the starter `.py`, fill the `# TODO:` blocks, and run!
+2. Pick a **Lab** from the links above.  
+3. Open its **Guide** to set up software, wire hardware, and review syntax.  
+4. Launch the starter `.py`, fill the `# TODO:` lines, and run!
 
 ---
 
