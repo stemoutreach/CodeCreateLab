@@ -27,7 +27,7 @@ In this game:
 
 If you need help with the above concepts, take a look at these examples
 - [Python Intro: Print and Input](PythonBasics/0.1-PythonIntro-Print_Input.md)
-- [Pytho nBasics: Loops and Conditions](PythonBasics/0.2-PythonBasics-Loops_Conditions.md)
+- [Python Basics: Loops and Conditions](PythonBasics/0.2-PythonBasics-Loops_Conditions.md)
 - [Pytho Basics: Functions](PythonBasics/0.3-PythonBasics-Functions.md)
 
 ---
