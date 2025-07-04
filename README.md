@@ -15,11 +15,7 @@ This program is organized into progressive skill levels that help students devel
 | 2 Pico Breadboarding Basics:            | use GPIO pins with the Raspberry Pi Pico                                    | 60 min         |
 | 3.0 PicoBot: Understand DC motor basics | wire and program a simple robot to drive a simple path                      | 60 min         |
 | 3.1 PicoBot: inputs and outputs         | wire and program a simple robot to drive                                    | 60 min         |
-| Below levels are still in devlopment    |                                                                             |                |
-| MasterPi: Mecanum Movement              | Navigate a course with full directional control.                            | 30–60 min      |
-| MasterPi: Ultrasonic Sensor Integration | Add obstacle detection to your robot.                                       | 30–60 min      |
-| MasterPi: Arm Movement                  | Learn to control a robotic arm using servos.                                | 30–60 min      |
-| MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
+| 4.0 MasterPi: Computer Vision               | Use AprilTags, line tracking, and object detection with OpenCV.             | 90–120 min     |
 
 ---
 
