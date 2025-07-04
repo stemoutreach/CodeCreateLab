@@ -25,7 +25,7 @@ In this game:
 | `while`     | `while play_again == "yes":`  | Repeats parts of your code               |
 | `def`       | `def greet_player():`         | Creates a function you can call later    |
 
-If you need help with the above concepts, take a look at the [/Python Guide](Guides/0-Python_Guide.md)
+If you need help with the above concepts, take a look at the [Python Guide](/Guides/0-Python_Guide.md)
 
 ---
 
