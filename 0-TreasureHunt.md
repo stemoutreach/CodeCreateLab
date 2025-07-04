@@ -109,6 +109,52 @@ if __name__ == "__main__":
     play_game()
 ```
 
+This is what the program will look like
+
+```python
+import random
+
+def greet_player():
+    """Say hello and ask for the player's name."""
+    print("🏴‍☠️  Welcome to the Mini Treasure Hunt!")
+    # TODO: Ask the player for their explorer name and store it in 'name'
+    # TODO: Print a greeting that includes their name
+    return name  # <- Make sure this variable exists!
+
+def choose_cave():
+    """Ask the player to pick cave 1 or 2 until a valid answer is given."""
+    while True:
+        # TODO: Prompt the player: "Do you enter cave 1 or cave 2? (type 1 or 2) "
+        # TODO: If the answer is "1" or "2", return it as an int
+        # TODO: Otherwise, print "Please choose 1 or 2!" and loop again
+        pass  # remove when implemented
+
+def reveal_outcome(chosen_cave, treasure_cave):
+    """Tell the player if they found treasure or a trap."""
+    # TODO: If chosen_cave equals treasure_cave, print a win message
+    # TODO: Else, print a trap message
+    # TODO: Return True for win, False for trap
+    pass
+
+def play_game():
+    """Main loop so the player can play multiple rounds."""
+    # TODO: Call greet_player() and store the name
+    # TODO: Loop while the player types "yes" to play again
+    #       1. Pick a random treasure cave (1 or 2)
+    #       2. Ask the player to choose a cave
+    #       3. Reveal the outcome
+    #       4. Ask if they want to play again (yes/no)
+    # TODO: After the loop, say goodbye using their name
+    pass
+
+# TODO: Add the usual main guard:
+# if __name__ == "__main__":
+#     play_game()
+```
+
+
+
+
 ---
 
 ## 💡 Bonus Ideas
