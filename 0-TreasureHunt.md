@@ -25,6 +25,11 @@ In this game:
 | `while`     | `while play_again == "yes":`  | Repeats parts of your code               |
 | `def`       | `def greet_player():`         | Creates a function you can call later    |
 
+If you need help with the above concepts, take a look at these examples
+[Python Intro: Print and Input](PythonBasics/0.1-PythonIntro-Print_Input.md)
+[Pytho nBasics: Loops and Conditions](PythonBasics/0.2-PythonBasics-Loops_Conditions.md)
+[Pytho Basics: Functions](PythonBasics/0.3-PythonBasics-Functions.md)
+
 ---
 
 ## 🧱 Step-by-Step Instructions
