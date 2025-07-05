@@ -3,7 +3,7 @@
 
 **Learn by building.** Code & Create Lab is a self‑paced quest that walks students—from absolute beginners to budding roboticists—through the fundamentals of **Python programming**, **physical computing**, and **autonomous navigation**.
 
-Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to beat that project. By the final level, you’ll have a mecanum‑wheel robot that recognises AprilTags and drives itself around a course.
+Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to complete that project. By the final level, you’ll have a mecanum‑wheel robot that recognises AprilTags and drives itself around a course.
 
 ---
 
@@ -23,7 +23,7 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 | Python Fundamentals | Variables, conditionals, loops, functions |
 | Sensor I/O | Temperature, humidity, IMU, ultrasonic distance |
 | Actuators & Signalling | LEDs, RGB mixing, DC & mecanum motors |
-| Microcontrollers | Programming Raspberry Pi Pico with MicroPython |
+| Microcontrollers | Programming Raspberry Pi Pico with MicroPython and Raspberry Pi's with Python |
 | Robotics Algorithms | Wall‑following, maze solving, PID tuning |
 | Computer Vision | OpenCV basics, AprilTag detection |
 | Engineering Practice | Breadboarding, wiring diagrams, iterative debugging |
@@ -35,55 +35,33 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 
 | Lab | Highlights | Hardware | Time |
 |------|------------|----------|------|
-| [Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md) | Text adventure, loops & logic | Computer only | 30 min |
+| [Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md) | Text adventure: Python basics with loops & logic | Computer only | 30 min |
 | [Sense HAT Basics](Labs/1-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
-| [Sense HAT Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md) | Multi‑sensor fusion, joystick events | Same | 60 min |
+| [Sense HAT Advanced Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md) | Multi‑sensor fusion, joystick events | Pi + Sense HAT | 60 min |
 | [Pico Breadboarding](Labs/2-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
 | [PicoBot Maze Explorer](Labs/3.0-PicoBot_Lab.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
-| [MasterPi AprilTags Navigator](Labs/4.0-MasterPi_Lab.md) | OpenCV, AprilTags, mecanum drive | MasterPi | 2 h |
+| [Pi Robot AprilTags Navigator](Labs/4.0-PiRobot_Lab.md) | OpenCV, AprilTags, mecanum drive | Raspberry Pi advanced robot | 2 h |
 
 ---
 
-## 📑 Quick Links
+## 📑 Guides Quick Links
 
-### Labs  
-- [0‑Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md)  
-- [1‑Sense HAT Basics](Labs/1-SenseHat_Basic_Lab.md)  
-- [1.5‑Sense HAT Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md)  
-- [2‑Pico Breadboarding](Labs/2-Pico_Breadboarding_Lab.md)  
-- [3.0‑PicoBot Maze Explorer](Labs/3.0-PicoBot_Lab.md)  
-- [4.0‑MasterPi AprilTags Navigator](Labs/4.0-MasterPi_Lab.md)
-
-### Guides  
-- [Python Basics Guide](Guides/Python_Basics_Guide.md)  
+- [Treasure Hunt - Python Basics Guide](Guides/Python_Basics_Guide.md)  
 - [Sense HAT Guide](Guides/SenseHat_Guide.md)  
 - [Pico Breadboard Guide](Guides/Pico_Breadboard_Guide.md)  
 - [PicoBot Guide](Guides/PicoBot_Guide.md)  
-- [MasterPi AprilTags Guide](Guides/MasterPi_AprilTags_Guide.md)
+- [Pi Robot AprilTags Guide](Guides/PiRobot_AprilTags_Guide.md)
 
 ---
 
 ## 🛠️ Getting Started
 
-1. **Clone the repo**
+1. Pick a **Lab** from the links above.  
+1. Open its **Guide** to get up up to speed.  
 
-   ```bash
-   git clone https://github.com/stemoutreach/CodeCreateLab.git
-   cd CodeCreateLab
-   ```
-
-2. Pick a **Lab** from the links above.  
-3. Open its **Guide** to set up software, wire hardware, and review syntax.  
-4. Launch the starter `.py`, fill the `# TODO:` lines, and run!
 
 ---
 
-## 🤝 Contributing
-
-Pull requests and issue reports are welcome.  
-Mentors: see `Guides/Mentoring_Tips.md` (coming soon) for checkpoints and facilitation advice.
-
----
 
 Made with ❤️ by STEM Outreach volunteers & community mentors.  
 Licensed under the MIT License.
