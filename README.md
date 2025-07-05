@@ -37,7 +37,7 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 |------|------------|----------|------|
 | [Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md) | Text adventure: Python basics with loops & logic | Computer only | 30 min |
 | [Sense HAT Basics](Labs/1-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
-| [Sense HAT Advanced Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md) | Multi‑sensor fusion, joystick events | Pi + Sense HAT | 60 min |
+| [(Optional) Sense HAT Advanced Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md) | Multi‑sensor fusion, joystick events | Pi + Sense HAT | 60 min |
 | [Pico Breadboarding](Labs/2-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
 | [PicoBot Maze Explorer](Labs/3.0-PicoBot_Lab.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
 | [Pi Robot AprilTags Navigator](Labs/4.0-PiRobot_Lab.md) | OpenCV, AprilTags, mecanum drive | Raspberry Pi advanced robot | 2 h |
