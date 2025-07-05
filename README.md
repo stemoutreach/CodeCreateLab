@@ -33,14 +33,14 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 
 ## 🚀 Learning Path
 
-| Level | Lab | Highlights | Hardware | Time |
-|:----:|------|------------|----------|------|
-| **0** | [Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md) | Text adventure, loops & logic | Computer only | 30 min |
-| **1** | [Sense HAT Basics](Labs/1-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
-| **1.5** | [Sense HAT Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md) | Multi‑sensor fusion, joystick events | Same | 60 min |
-| **2** | [Pico Breadboarding](Labs/2-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
-| **3.0** | [PicoBot Maze Explorer](Labs/3.0-PicoBot_Lab.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
-| **4.0** | [MasterPi AprilTags Navigator](Labs/4.0-MasterPi_Lab.md) | OpenCV, AprilTags, mecanum drive | MasterPi | 2 h |
+| Lab | Highlights | Hardware | Time |
+|------|------------|----------|------|
+| [Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md) | Text adventure, loops & logic | Computer only | 30 min |
+| [Sense HAT Basics](Labs/1-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
+| [Sense HAT Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md) | Multi‑sensor fusion, joystick events | Same | 60 min |
+| [Pico Breadboarding](Labs/2-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
+| [PicoBot Maze Explorer](Labs/3.0-PicoBot_Lab.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
+| [MasterPi AprilTags Navigator](Labs/4.0-MasterPi_Lab.md) | OpenCV, AprilTags, mecanum drive | MasterPi | 2 h |
 
 ---
 
