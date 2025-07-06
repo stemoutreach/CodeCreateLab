@@ -1,4 +1,4 @@
-# Solution: Sense HAT Weather Warning Light
+# Solution: 1 Sense Hat Basic Lab: Weather Warning Light
 
     ```python
     #!/usr/bin/env python3
@@ -36,8 +36,7 @@
         # Ask the user for limits
         temp_limit = float(input("Enter the high‑temperature limit (°C): "))
         hum_limit  = float(input("Enter the low‑humidity limit (%): "))
-        print("Press Ctrl‑C to exit.
-")
+        print("Press Ctrl‑C to exit.")
 
         try:
             while True:
