@@ -1,4 +1,4 @@
-# 🏴‍☠️ Mini Treasure Hunt Game (Python)
+# 🏴‍☠️ 0 Treasure Hunt Lab: Mini Treasure Hunt Game 
 
 Welcome to the **Mini Treasure Hunt Game** – a fun way to learn Python by creating an interactive adventure! You'll use `print`, `input`, conditions (`if`), loops (`while`), and functions to build your very own treasure hunt.
 
