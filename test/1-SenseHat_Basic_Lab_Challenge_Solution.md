@@ -1,52 +1,55 @@
 # Solution: 1 Sense Hat Basic Lab: Weather Warning Light
 
-    ```python
-    #!/usr/bin/env python3
-    """
-    Weather Warning Light for Sense HAT
-    Shows red if the environment is outside safe limits,
-    otherwise shows green. Demonstrates input, print,
-    conditions, and functions.
-    """
+Solution Code
 
-    from sense_hat import SenseHat
-    import time
+```python
 
-    sense = SenseHat()
-    sense.clear()
+#!/usr/bin/env python3
+"""
+Weather Warning Light for Sense HAT
+Shows red if the environment is outside safe limits,
+otherwise shows green. Demonstrates input, print,
+conditions, and functions.
+"""
 
-    def get_readings():
-        """Return rounded temperature (°C) and humidity (%) as a tuple."""
-        temp = round(sense.get_temperature(), 1)
-        hum  = round(sense.get_humidity(), 1)
-        return temp, hum
+from sense_hat import SenseHat
+import time
 
-    def show_status(temp, hum, temp_limit, hum_limit):
-        """Print readings and set LED colour based on the limits."""
-        print(f"Temp: {temp} °C | Humidity: {hum} %")
-        if temp > temp_limit or hum < hum_limit:
-            sense.clear(255, 0, 0)   # Red alert
-            print("⚠️  WARNING: Unsafe environment!")
-        else:
-            sense.clear(0, 255, 0)   # Green OK
-            print("Environment OK")
+sense = SenseHat()
+sense.clear()
 
-    def main():
-        print("Sense HAT Weather Warning Light")
-        # Ask the user for limits
-        temp_limit = float(input("Enter the high‑temperature limit (°C): "))
-        hum_limit  = float(input("Enter the low‑humidity limit (%): "))
-        print("Press Ctrl‑C to exit.")
+def get_readings():
+    """Return rounded temperature (°C) and humidity (%) as a tuple."""
+    temp = round(sense.get_temperature(), 1)
+    hum  = round(sense.get_humidity(), 1)
+    return temp, hum
 
-        try:
-            while True:
-                temp, hum = get_readings()
-                show_status(temp, hum, temp_limit, hum_limit)
-                time.sleep(2)
-        except KeyboardInterrupt:
-            sense.clear()
-            print("\nProgram ended. Stay safe!")
+def show_status(temp, hum, temp_limit, hum_limit):
+    """Print readings and set LED colour based on the limits."""
+    print(f"Temp: {temp} °C | Humidity: {hum} %")
+    if temp > temp_limit or hum < hum_limit:
+        sense.clear(255, 0, 0)   # Red alert
+        print("⚠️  WARNING: Unsafe environment!")
+    else:
+        sense.clear(0, 255, 0)   # Green OK
+        print("Environment OK")
 
-    if __name__ == "__main__":
-        main()
-    ```
+def main():
+    print("Sense HAT Weather Warning Light")
+    # Ask the user for limits
+    temp_limit = float(input("Enter the high‑temperature limit (°C): "))
+    hum_limit  = float(input("Enter the low‑humidity limit (%): "))
+    print("Press Ctrl‑C to exit.")
+
+    try:
+        while True:
+            temp, hum = get_readings()
+            show_status(temp, hum, temp_limit, hum_limit)
+            time.sleep(2)
+    except KeyboardInterrupt:
+        sense.clear()
+        print("\nProgram ended. Stay safe!")
+
+if __name__ == "__main__":
+    main()
+```
