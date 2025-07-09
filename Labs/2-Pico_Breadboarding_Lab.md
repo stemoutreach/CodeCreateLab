@@ -1,66 +1,89 @@
-# Lab 2 – Raspberry Pi Pico Breadboarding
 
-## Overview
-Interface a push‑button, an ultrasonic distance sensor (HC‑SR04), a single‑colour LED, and an RGB LED.  
-Press the button to trigger a distance reading; LEDs provide immediate visual feedback.
+# Lab 2 – Raspberry Pi Pico Breadboarding
 
-## Learning objectives
-- Wire digital input (button with pull‑down)
-- Drive digital output (LED)
-- Use PWM for RGB LED colour mixing
-- Measure distance with `machine.Pin` and `machine.time_pulse_us`
-- Structure MicroPython code with functions and modules
+## Overview  
+In this lab, you’ll build an interactive breadboard circuit using a Raspberry Pi Pico. Your design will include required components to start a distance-measuring system and provide visual feedback, along with optional enhancements to make it your own.
 
-## Prerequisites
-Complete [Pico Breadboarding Guide](/Guides/2-Pico_Breadboarding_Guide.md)
+You’ll write code that activates on a button press, reads from an ultrasonic distance sensor, and displays the result in inches. Visual cues will be given through an RGB LED. You’re encouraged to explore and personalize your project using the optional components.
 
-## Circuit
-See `Assets/Pico_Breadboard_Schematic.png`.
+---
 
-## Starter code
+## Learning Objectives  
+By completing this lab, you will:
+
+- Use a button with pull-down resistor as a digital input.
+- Control a standard LED and RGB LED using digital and PWM outputs.
+- Measure distance using the HC-SR04 ultrasonic sensor and convert to inches.
+- Display distance using both code output and RGB LED feedback.
+- Organize code using MicroPython functions and logic blocks.
+- (Optional) Add enhancements using additional components.
+
+---
+
+## Prerequisites  
+- Complete the [Pico Breadboarding Guide](/Guides/2-Pico_Breadboarding_Guide.md)
+- Know basic Python syntax and logic (loops, conditionals, functions)
+
+---
+
+## Hardware Requirements
+
+### 🧩 Required Components  
+- **Push-button** – used to initiate a distance reading.  
+- **Ultrasonic Distance Sensor (HC-SR04)** – measure distance to nearby objects.  
+- **RGB LED** – provides color-based feedback tied to distance.  
+  - Example: red = close, green = far, blue = medium range.
+
+### 💡 Optional Components (Add Your Creative Touch!)  
+- **Piezo Buzzer** – give audio feedback based on proximity.  
+- **Single-Color LEDs with variable brightness** – use PWM for effects like fading or traffic light logic.  
+- **Traffic Light LED Module** – simulate stoplight behavior depending on distance.  
+- **LED Matrix or LED Board** – display animations or bar graphs based on distance.
+
+---
+
+## Circuit Diagram  
+Refer to `Assets/Pico_Breadboard_Schematic.png`. Build the required portion first, then integrate optional components if desired.
+
+---
+
+## Starter Code (with TODOs)
 
 ```python
-# pico_distance_alert.py
-from machine import Pin, PWM
-import time
+# TODO: Import necessary modules
 
-TRIG = Pin(3, Pin.OUT)
-ECHO = Pin(2, Pin.IN)
-BUTTON = Pin(15, Pin.IN, Pin.PULL_DOWN)
-LED  = Pin(13, Pin.OUT)
-RGB  = (PWM(Pin(18)), PWM(Pin(19)), PWM(Pin(20)))  # R, G, B pins
+# TODO: Define pins for TRIG, ECHO, BUTTON, and RGB (use PWM for RGB)
 
-SPEED_CM_PER_US = 0.0343 / 2
+# TODO: Define constant for SPEED_CM_PER_US
 
-def set_rgb(r, g, b):
-    for pwm, val in zip(RGB, (r, g, b)):
-        pwm.freq(1000)
-        pwm.duty_u16(int(val * 65535 / 255))
+# TODO: Define set_rgb() function
+# - Set frequency for each color channel
+# - Convert RGB values (0–255) to duty cycle (0–65535)
 
-def read_distance_cm():
-    TRIG.high()
-    time.sleep_us(10)
-    TRIG.low()
-    us = time_pulse_us(ECHO, 1, 30000)
-    return us * SPEED_CM_PER_US
+# TODO: Define read_distance_inches() function
+# - Trigger ultrasonic pulse
+# - Measure pulse duration
+# - Convert to distance in inches
 
-while True:
-    if BUTTON.value():
-        dist = read_distance_cm()
-        print(f"Distance: {dist:.1f} cm")
-
-        if dist < 20:
-            LED.high()
-            set_rgb(255, 0, 0)        # red
-        else:
-            LED.low()
-            set_rgb(0, 255, 0)        # green
-
-        time.sleep(0.3)
-
-    # TODO: maybe add a heartbeat LED blink here
+# TODO: Main loop
+# - If button is pressed:
+#   - Read distance
+#   - Print distance in inches
+#   - Set RGB LED color based on range (e.g., red < 8", blue < 16", green otherwise)
+# - Add optional features here (buzzer, LEDs, etc.)
 ```
 
-## Stretch goals
-- Cycle RGB colours proportionally to distance.
-- Display distance on an I²C OLED (see Guide).
+---
+
+## Challenges & Stretch Goals  
+
+🛠 **Basic Challenge**  
+- Complete the required circuit and code.
+- Make sure RGB color changes based on distance.
+
+🎯 **Stretch Goals (Optional)**  
+- Use the buzzer to beep faster as objects get closer.
+- Fade LED brightness based on distance.
+- Create a traffic light behavior: green (safe), yellow (caution), red (too close).
+- Use an LED board to show distance as a visual meter.
+- Add a second button to reset or change modes.
