@@ -12,7 +12,7 @@ Press the button to trigger a distance reading; LEDs provide immediate visual fe
 - Structure MicroPython code with functions and modules
 
 ## Prerequisites
-Follow **Guides/Pico_Breadboard_Guide.md** to verify your Thonny setup.
+Complete [Pico Breadboarding Guide](/Guides/2-Pico_Breadboarding_Guide.md)
 
 ## Circuit
 See `Assets/Pico_Breadboard_Schematic.png`.
