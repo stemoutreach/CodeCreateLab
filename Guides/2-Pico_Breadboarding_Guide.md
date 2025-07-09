@@ -94,11 +94,11 @@ Visit [PicoZero Recipes](https://picozero.readthedocs.io/en/latest/recipes.html)
 
 ---
 
-## ✅ Level Checkpoint
-To complete Level 4, show:
+## ✅ Guide Checkpoint
+To get ready for Lab 2 – Raspberry Pi Pico Breadboarding, show:
 - ✅ A working **Reaction Game** based on [GPIOZero’s Reaction Game](https://gpiozero.readthedocs.io/en/stable/recipes.html#reaction-game)
-- ✅ A modification of an existing recipe (e.g., different pins, changed delay)
-- ✅ A self-designed project using a mix of LEDs, buttons, or sensors
+- ✅ working RGB LED example
+- ✅ Ultrasonic distance sensors example
 
 ---
 
@@ -109,4 +109,4 @@ To complete Level 4, show:
 
 ---
 
-Next [Level 5 – PicoBot:1 2-Wheel Driving](Level5.md)
+Next [Lab 2 – Raspberry Pi Pico Breadboarding](/Labs/2-Pico_Breadboarding_Lab.md)
