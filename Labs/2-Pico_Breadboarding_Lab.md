@@ -43,7 +43,9 @@ By completing this lab, you will:
 ---
 
 ## Circuit Diagram  
-Refer to `Assets/Pico_Breadboard_Schematic.png`. Build the required portion first, then integrate optional components if desired.
+
+See [PicoZero Recipes](https://picozero.readthedocs.io/en/latest/recipes.html) 
+NOTE: PicoZero documentation doesn’t always show wiring pictures. You may refer to [GPIOZero Recipes](https://gpiozero.readthedocs.io/en/stable/recipes.html) for circuit examples.
 
 ---
 
