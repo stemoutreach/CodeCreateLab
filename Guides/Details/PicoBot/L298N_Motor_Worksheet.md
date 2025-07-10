@@ -1,5 +1,5 @@
 
-# 🧠 Raspberry Pi Robotics Worksheet: Controlling Motors with L298N
+# 🧠 PicoBot Motor Controller: Controlling Motors with L298N
 
 **Objective:**  
 Learn how to control two DC motors using Python and a Raspberry Pi Pico with the L298N motor driver.
