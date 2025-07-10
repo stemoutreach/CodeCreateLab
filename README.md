@@ -35,12 +35,12 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 
 | Lab | Highlights | Hardware | Time |
 |------|------------|----------|------|
-| [Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md) | Text adventure: Python basics with loops & logic | Computer only | 30 min |
-| [Sense HAT Basics](Labs/1-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
-| [(Optional) Sense HAT Advanced Lab: Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md) | Multi‑sensor fusion, joystick events | Pi + Sense HAT | 60 min |
-| [Pico Breadboarding Lab](Labs/2-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
-| [PicoBot Maze Explorer Lab](Labs/3.0-PicoBot_Lab.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
-| [Pi Robot AprilTags Navigator Lab](Labs/4.0-PiRobot_Lab.md) | OpenCV, AprilTags, mecanum drive | Raspberry Pi advanced robot | 2 h |
+| [0  Python basics Lab: Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md) | Text adventure: Python basics with loops & logic | Computer only | 30 min |
+| [1 Sense HAT Lab: Basics](Labs/1-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
+| [(Optional) 1.5 Sense HAT Advanced Lab: Mission Dashboard](Labs/1.5-SenseHat_Advance_Lab.md) | Multi‑sensor fusion, joystick events | Pi + Sense HAT | 60 min |
+| [2 Pico Breadboarding Lab](Labs/2-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
+| [3 PicoBot Lab: Maze Explorer ](Labs/3.0-PicoBot_Lab-Maze_Explorer.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
+| Pi Robot AprilTags Navigator Lab - 7/18 | OpenCV, AprilTags, mecanum drive | Raspberry Pi advanced robot | 2 h |
 
 ---
 
