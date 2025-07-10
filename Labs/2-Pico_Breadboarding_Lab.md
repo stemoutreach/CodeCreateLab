@@ -45,6 +45,7 @@ By completing this lab, you will:
 ## Circuit Diagram  
 
 See [PicoZero Recipes](https://picozero.readthedocs.io/en/latest/recipes.html) 
+
 NOTE: PicoZero documentation doesn’t always show wiring pictures. You may refer to [GPIOZero Recipes](https://gpiozero.readthedocs.io/en/stable/recipes.html) for circuit examples.
 
 ---
