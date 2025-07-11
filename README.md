@@ -26,7 +26,6 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 | Microcontrollers | Programming Raspberry Pi Pico with MicroPython and Raspberry Pi's with Python |
 | Robotics Algorithms | Wall‑following, maze solving, PID tuning |
 | Engineering Practice | Breadboarding, wiring diagrams, iterative debugging |
-| Collaboration | Pair‑programming, code reviews, documentation |
 
 ---
 
@@ -44,10 +43,11 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 
 ## 📑 Guides Quick Links
 
-- [Treasure Hunt - Python Basics Guide](Guides/Python_Basics_Guide.md)  
-- [Sense HAT Guide](Guides/SenseHat_Guide.md)  
-- [Pico Breadboard Guide](Guides/Pico_Breadboard_Guide.md)  
-- [PicoBot Guide](Guides/PicoBot_Guide.md)  
+- [Python Quick Reference Cheatsheet](Guides/Python_Quick_Reference_Cheatsheet.md)  
+- [0 Treasure Hunt - Python Basics Guide](Guides/Python_Basics_Guide.md)  
+- [1 Sense HAT Guide](Guides/SenseHat_Guide.md)  
+- [2 Pico Breadboard Guide](Guides/Pico_Breadboard_Guide.md)  
+- [3 PicoBot Guide](Guides/PicoBot_Guide.md)  
 
 ---
 
