@@ -21,8 +21,10 @@ By completing this lab, you will:
 ---
 
 ## Prerequisites  
-- Complete the [Pico Breadboarding Guide](/Guides/2-Pico_Breadboarding_Guide.md)
-- Know basic Python syntax and logic (loops, conditionals, functions)
+- Complete the following
+- [Python Guide](/Guides/0-Python_Guide.md)
+- [Sense HAT Guide](Guides/1-SenseHat_Guide.md)
+- [Pico Breadboarding Guide](/Guides/2-Pico_Breadboarding_Guide.md)
 
 ---
 
