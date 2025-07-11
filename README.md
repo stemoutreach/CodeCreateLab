@@ -25,7 +25,6 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 | Actuators & Signalling | LEDs, RGB mixing, DC & mecanum motors |
 | Microcontrollers | Programming Raspberry Pi Pico with MicroPython and Raspberry Pi's with Python |
 | Robotics Algorithms | Wall‑following, maze solving, PID tuning |
-| Computer Vision | OpenCV basics, AprilTag detection |
 | Engineering Practice | Breadboarding, wiring diagrams, iterative debugging |
 | Collaboration | Pair‑programming, code reviews, documentation |
 
