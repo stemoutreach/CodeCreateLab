@@ -68,4 +68,10 @@ except KeyboardInterrupt:
 
 ---
 
+## 📑Optional Advanced Lab
+[1.5 Sense HAT Advanced Lab: Mission Dashboard](1.5-SenseHat_Advance_Lab.md) 
+
+
+---
+
 **Have fun coding! When you’re done, compare with the solution file.**
