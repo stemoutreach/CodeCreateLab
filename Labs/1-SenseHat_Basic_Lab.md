@@ -10,6 +10,9 @@ If it gets **too hot** **OR** **too dry**, the LED matrix must flash **red**; ot
 * Make decisions with **`if / else`**.
 * Organise code into **functions**.
 
+If you need help with the above concepts, take a look at the following
+- [Python Guide](/Guides/0-Python_Guide.md)
+- [Sense HAT Guide](Guides/1-SenseHat_Guide.md)
 ---
 
 ## Your Mission
