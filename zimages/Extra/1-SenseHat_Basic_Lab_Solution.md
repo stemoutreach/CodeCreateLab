@@ -4,7 +4,7 @@ Solution Code
 
 ```python
 
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
 Weather Warning Light for Sense HAT
 Shows red if the environment is outside safe limits,
