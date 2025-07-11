@@ -49,7 +49,6 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 - [Sense HAT Guide](Guides/SenseHat_Guide.md)  
 - [Pico Breadboard Guide](Guides/Pico_Breadboard_Guide.md)  
 - [PicoBot Guide](Guides/PicoBot_Guide.md)  
-- [Pi Robot AprilTags Guide](Guides/PiRobot_AprilTags_Guide.md)
 
 ---
 
