@@ -44,10 +44,10 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 ## 📑 Guides Quick Links
 
 - [Python Quick Reference Cheatsheet](Guides/Python_Quick_Reference_Cheatsheet.md)  
-- [0 Treasure Hunt - Python Basics Guide](Guides/Python_Basics_Guide.md)  
-- [1 Sense HAT Guide](Guides/SenseHat_Guide.md)  
-- [2 Pico Breadboard Guide](Guides/Pico_Breadboard_Guide.md)  
-- [3 PicoBot Guide](Guides/PicoBot_Guide.md)  
+- [0 Treasure Hunt - Python Basics Guide](Guides/0-Python_Guide.md)  
+- [1 Sense HAT Guide](Guides/1-SenseHat_Guide.md)  
+- [2 Pico Breadboard Guide](Guides/2-Pico_Breadboarding_Guide.md)  
+- [3 PicoBot Guide](Guides/3.0-PicoBot_Guide.md)  
 
 ---
 
