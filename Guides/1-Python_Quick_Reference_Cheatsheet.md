@@ -56,40 +56,5 @@ greet("Alice")
 
 ---
 
-## 🎮 Sense HAT (Basic)
-
-```python
-from sense_hat import SenseHat
-sense = SenseHat()
-
-# Show a message
-sense.show_message("Hello!")
-
-# Get sensor data
-t = sense.get_temperature()
-h = sense.get_humidity()
-p = sense.get_pressure()
-
-# Set LED color (x, y, [R,G,B])
-sense.set_pixel(3, 3, [255, 0, 0])
-sense.clear()  # Turns off LEDs
-```
-
----
-
-## 🎮 Sense HAT Joystick
-
-```python
-from sense_hat import ACTION_PRESSED
-
-def handle_joystick(event):
-    if event.action == ACTION_PRESSED:
-        print("You pressed", event.direction)
-
-sense.stick.direction_any = handle_joystick
-```
-
----
-
 ✅ **Tip:** Use `Ctrl + C` to stop a running program safely.
 
