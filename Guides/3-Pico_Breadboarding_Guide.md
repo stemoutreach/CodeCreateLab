@@ -1,5 +1,5 @@
 
-# Pico Breadboarding Guide: Learn by Recipe
+# 3 Pico Breadboarding Guide: Learn by Recipe
 
 ## 🧠 Learning Objectives
 - Understand how to use GPIO pins with the Raspberry Pi Pico
