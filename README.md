@@ -31,10 +31,10 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 
 ## 🚀 Learning Path
 
-| Lab | Highlights | Hardware | Time |
-|------|------------|----------|------|
-| [1  Python basics Lab: Treasure Hunt](Labs/1-Treasure_Hunt_Lab.md) | Text adventure: Python basics with loops & logic | Computer only | 30 min |
-| [2 Sense HAT Lab: Basics](Labs/2-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
+| Guide | Lab (goal) | Highlights | Hardware | Time |
+|------|------|------------|----------|------|
+|[Python Basics Guide – Getting Started](Guides/0-Python_Basics_Guide.md)| [1  Python Basics Lab: Treasure Hunt](Labs/1-Treasure_Hunt_Lab.md) | Text adventure: Python basics with loops & logic | Computer only | 30 min |
+|[]() | [2 Sense HAT Lab: Basics](Labs/2-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
 | [3 Pico Breadboarding Lab](Labs/3-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
 | [4 PicoBot Lab: Maze Explorer ](Labs/4-PicoBot_Lab-Maze_Explorer.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
 | Pi Robot AprilTags Navigator Lab - 7/18 | OpenCV, AprilTags, mecanum drive | Raspberry Pi advanced robot | 2 h |
