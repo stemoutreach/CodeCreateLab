@@ -1,4 +1,4 @@
-# 3.0 PicoBot Lab – Maze Explorer 🧭
+# 4 PicoBot Lab – Maze Explorer 🧭
 
 Program your PicoBot to **think** its way through a cardboard maze!  
 This lab uses the motors and ultrasonic‑distance code you created in the *3.0 PicoBot Guide*.  
