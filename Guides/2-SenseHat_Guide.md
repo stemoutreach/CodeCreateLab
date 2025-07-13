@@ -1,4 +1,4 @@
-# 🛰️ Sense HAT Guide – Code & Create Lab
+# 🛰️2 Sense HAT Guide – Code & Create Lab
 
 ## What is the Sense HAT?
 
