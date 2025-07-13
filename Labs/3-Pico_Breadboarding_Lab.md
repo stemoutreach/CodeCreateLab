@@ -1,5 +1,5 @@
 
-# Lab 2 – Raspberry Pi Pico Breadboarding
+# Lab 3 – Raspberry Pi Pico Breadboarding
 
 ## Overview  
 In this lab, you’ll build an interactive breadboard circuit using a Raspberry Pi Pico. Your design will include required components to start a distance-measuring system and provide visual feedback, along with optional enhancements to make it your own.
