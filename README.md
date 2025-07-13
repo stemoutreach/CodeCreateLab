@@ -33,21 +33,21 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 
 | Lab | Highlights | Hardware | Time |
 |------|------------|----------|------|
-| [0  Python basics Lab: Treasure Hunt](Labs/0-Treasure_Hunt_Lab.md) | Text adventure: Python basics with loops & logic | Computer only | 30 min |
-| [1 Sense HAT Lab: Basics](Labs/1-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
-| [2 Pico Breadboarding Lab](Labs/2-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
-| [3 PicoBot Lab: Maze Explorer ](Labs/3.0-PicoBot_Lab-Maze_Explorer.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
+| [1  Python basics Lab: Treasure Hunt](Labs/1-Treasure_Hunt_Lab.md) | Text adventure: Python basics with loops & logic | Computer only | 30 min |
+| [2 Sense HAT Lab: Basics](Labs/2-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
+| [3 Pico Breadboarding Lab](Labs/3-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
+| [4 PicoBot Lab: Maze Explorer ](Labs/4-PicoBot_Lab-Maze_Explorer.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
 | Pi Robot AprilTags Navigator Lab - 7/18 | OpenCV, AprilTags, mecanum drive | Raspberry Pi advanced robot | 2 h |
 
 ---
 
 ## 📑 Guides Quick Links
 
-- [Python Quick Reference Cheatsheet](Guides/Python_Quick_Reference_Cheatsheet.md)  
-- [0 Treasure Hunt - Python Basics Guide](Guides/0-Python_Guide.md)  
-- [1 Sense HAT Guide](Guides/1-SenseHat_Guide.md)  
-- [2 Pico Breadboard Guide](Guides/2-Pico_Breadboarding_Guide.md)  
-- [3 PicoBot Guide](Guides/3.0-PicoBot_Guide.md)  
+- [0 Python Quick Reference Cheatsheet](Guides/0-Python_Quick_Reference_Cheatsheet.md)  
+- [1 Treasure Hunt - Python Basics Guide](Guides/1-Python_Guide.md)  
+- [2 Sense HAT Guide](Guides/2-SenseHat_Guide.md)  
+- [3 Pico Breadboard Guide](Guides/3-Pico_Breadboarding_Guide.md)  
+- [4 PicoBot Guide](Guides/4-PicoBot_Guide.md)  
 
 ---
 
