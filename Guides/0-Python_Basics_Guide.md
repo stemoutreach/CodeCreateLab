@@ -1,4 +1,4 @@
-# 🐍 Python Guide – Code & Create Lab
+# 🐍 Python Basics Guide – Getting Started
 
 This guide includes an introduction to Python basics: printing, input, conditionals, loops, and functions.
 
