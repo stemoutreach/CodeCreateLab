@@ -1,4 +1,4 @@
-# 3.0 PicoBot Guide
+# 4 PicoBot Guide
 
 ## Overview
 
