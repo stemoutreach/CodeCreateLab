@@ -116,4 +116,4 @@ while True:
 
 ## ✅ Next Step
 
-Next [3 Pico Breadboarding Lab](/Labs/3-Pico_Breadboarding_Lab.md) 
+Next [2 SenseHat Basic Lab](/Labs/2-SenseHat_Basic_Lab.md) 
