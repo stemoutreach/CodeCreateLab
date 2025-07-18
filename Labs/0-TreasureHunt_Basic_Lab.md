@@ -1,4 +1,4 @@
-#  1 Treasure Hunt Lab (Basic)
+#  0 Treasure Hunt Lab (Basic)
 
 Welcome to your first coding adventure! In this lab, you'll build a simple Treasure Hunt game using only Python basics.
 
