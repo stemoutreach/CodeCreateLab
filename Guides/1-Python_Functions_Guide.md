@@ -43,4 +43,4 @@ Create a program with:
 
 ---
 
-Next [1 Python Functions Guide](/Guides/1-Python_Functions_Guide.md) 
+Next [1 TreasureHunt Functions Lab](/Labs/1-TreasureHunt_Functions_Lab.md) 
