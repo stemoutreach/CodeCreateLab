@@ -1,4 +1,4 @@
-# Lab 0.5 – Treasure Hunt (With Functions) - Solution
+# 1 Treasure Hunt Lab (With Functions) - Solution
 
 def welcome():
     print("Welcome to the improved Treasure Hunt!")
