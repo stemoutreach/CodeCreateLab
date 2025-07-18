@@ -1,4 +1,4 @@
-# Lab 0.5 – Treasure Hunt (With Functions)
+# 1 Treasure Hunt Lab (With Functions)
 
 Time to level up! In this version of the Treasure Hunt, you'll improve your code by using functions.
 
