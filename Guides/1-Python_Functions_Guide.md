@@ -40,3 +40,7 @@ Create a program with:
 - A function to ask for input
 - A function to print different messages based on input
 - A loop that calls the functions until the correct answer is given
+
+---
+
+Next [1 Python Functions Guide](/Guides/1-Python_Functions_Guide.md) 
