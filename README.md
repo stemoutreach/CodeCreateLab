@@ -36,9 +36,9 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 |[0 Python Basics Guide – Getting Started](Guides/0-Python_Basics_Guide.md)|  [0 TreasureHunt Basic Lab](Labs/0-TreasureHunt_Basic_Lab.md) | Text adventure: Python basics with loops & logic | Computer only | 30 min |
 |[1 Python Functions Guide](Guides/1-Python_Functions_Guide.md) | [1 TreasureHunt Functions Lab](Labs/1-TreasureHunt_Functions_Lab.md) | Text adventure: Python basics adding Function with loops & logic | Computer only | 30 min |
 |[2 Sense Hat Guide](Guides/2-SenseHat_Guide.md) | [2 Sense HAT Lab: Basics](Labs/2-SenseHat_Basic_Lab.md) | Environmental sensing, LED display | Pi + Sense HAT | 45 min |
-| [3 Pico Breadboarding Lab](Labs/3-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
-| [4 PicoBot Lab: Maze Explorer ](Labs/4-PicoBot_Lab-Maze_Explorer.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
-| Pi Robot AprilTags Navigator Lab - 7/18 | OpenCV, AprilTags, mecanum drive | Raspberry Pi advanced robot | 2 h |
+|[3 Pico Breadboarding Guide](Guides/3-Pico_Breadboarding_Guide.md) | [3 Pico Breadboarding Lab](Labs/3-Pico_Breadboarding_Lab.md) | Button, ultrasonic, RGB LED | Pi Pico + breadboard | 60 min |
+|[4 PicoBot Guide](Guides/4-PicoBot_Guide.md) | [4 PicoBot Lab: Maze Explorer ](Labs/4-PicoBot_Lab-Maze_Explorer.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
+
 
 ---
 
