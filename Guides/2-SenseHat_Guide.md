@@ -116,8 +116,4 @@ while True:
 
 ## ✅ Next Step
 
-Check the `03_SenseHatChallenge/` folder to complete the challenge for this lesson. You’ll use the LED display, joystick, and one sensor to build a simple Sense HAT project.
-
----
-
 Next [3 Pico Breadboarding Lab](/Labs/3-Pico_Breadboarding_Lab.md) 
