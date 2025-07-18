@@ -47,3 +47,7 @@ Make a program that:
 - Asks for your name
 - Asks your favorite color
 - Repeats it back
+
+---
+
+Next [0 TreasureHunt Basic Lab](/Labs/0-TreasureHunt_Basic_Lab.md) 
