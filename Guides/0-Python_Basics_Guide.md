@@ -1,4 +1,4 @@
-# Python Basics Guide
+# 0 Python Basics Guide
 
 Welcome to the Python Basics Guide! This guide will prepare you to complete Lab 0 – Treasure Hunt (Basic).
 
