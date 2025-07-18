@@ -109,4 +109,4 @@ To get ready for Lab 2 – Raspberry Pi Pico Breadboarding, show:
 
 ---
 
-Next [Lab 2 – Raspberry Pi Pico Breadboarding](/Labs/2-Pico_Breadboarding_Lab.md)
+Next [Lab 2 – Raspberry Pi Pico Breadboarding](Labs/3-Pico_Breadboarding_Lab.md)
