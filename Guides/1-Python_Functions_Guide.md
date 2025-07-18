@@ -1,4 +1,4 @@
-# Python Functions Guide
+# 1 Python Functions Guide
 
 This guide will help you add functions to your Python programs.
 
