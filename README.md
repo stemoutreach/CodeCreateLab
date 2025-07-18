@@ -40,23 +40,6 @@ Each **Lab** is a milestone project. Each **Guide** teaches the skills needed to
 |[4 PicoBot Guide](Guides/4-PicoBot_Guide.md) | [4 PicoBot Lab: Maze Explorer ](Labs/4-PicoBot_Lab-Maze_Explorer.md) | Motor control, obstacle avoidance | PicoBot | 90 min |
 
 
----
-
-## 📑 Guides Quick Links
-
-- [0 Python Quick Reference Cheatsheet](Guides/0-Python_Quick_Reference_Cheatsheet.md)  
-- [1 Treasure Hunt - Python Basics Guide](Guides/1-Python_Guide.md)  
-- [2 Sense HAT Guide](Guides/2-SenseHat_Guide.md)  
-- [3 Pico Breadboard Guide](Guides/3-Pico_Breadboarding_Guide.md)  
-- [4 PicoBot Guide](Guides/4-PicoBot_Guide.md)  
-
----
-
-## 🛠️ Getting Started
-
-1. Pick a **Lab** from the links above.  
-1. Open its **Guide** to get up up to speed.  
-
 
 ---
 
