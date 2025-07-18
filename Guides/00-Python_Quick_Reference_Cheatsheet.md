@@ -1,4 +1,4 @@
-# 🐍 1 Python Quick-Reference Cheatsheet
+# 🐍 Python Quick-Reference Cheatsheet
 
 ## 🧰 Basics
 
