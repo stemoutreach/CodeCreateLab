@@ -1,11 +1,10 @@
 
----
-title: "Code & Create Lab — Parent & Volunteer Guide"
-version: "v1.1"
-last_updated: "2025-10-28"
-audience: "Parents, guardians, adult volunteers, mentors"
-summary: "What the program is, how it runs, how to support students, and what to expect."
----
+# Code & Create Lab — Parent & Volunteer Guide
+*Version: v1.1 • Updated: 2025-10-28*
+
+> Audience: Parents, guardians, adult volunteers, mentors  
+> Summary: What the program is, how it runs, how to support students, and what to expect.
+
 
 # BLUF (Bottom Line Up Front)
 **We help students learn by doing.** Your main job as a parent/volunteer is to **encourage persistence and thinking**, not to give answers. This guide explains how we run sessions and how you can best support learners.
