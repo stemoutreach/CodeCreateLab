@@ -41,7 +41,6 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 | 00 | [Python Basics](Guides/00-python-basics.md) | [Treasure Hunt (Basic)](Labs/00-treasure-hunt-basic.md) — text adventure with loops & logic | Computer only | 30–45 min |
 | 01 | [Python Functions](Guides/01-python-functions.md) | [Treasure Hunt (Functions)](Labs/01-treasure-hunt-functions.md) — refactor with functions | Computer only | 35–60 min |
 | 02 | [Sense HAT](Guides/02-sense-hat.md) | [Sense HAT Basics — Weather Warning Light](Labs/02-sense-hat-basics.md) | Raspberry Pi + Sense HAT | 30–45 min |
-| 02.5 | — | [Sense HAT Advanced — Mission Dashboard](Labs/02-5-sense-hat-advanced.md) | Raspberry Pi + Sense HAT | 45–75 min |
 | 03 | [Pico Breadboarding](Guides/03-pico-breadboarding.md) | [Pico Breadboard Lab](Labs/03-pico-breadboard-lab.md) — button + LED (+ RGB/ultrasonic option) | Pico + breadboard | 45–75 min |
 | 04 | [PicoBot — Motors & Ultrasonic](Guides/04-picobot.md) | [PicoBot Maze Explorer](Labs/04-picobot-maze-explorer.md) — avoid obstacles & navigate | PicoBot (Pico + L298N + HC‑SR04) | 60–90 min |
 
