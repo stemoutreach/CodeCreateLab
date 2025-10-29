@@ -1,7 +1,3 @@
----
-title: "Python Functions"
----
-
 # Python Functions
 
 > ### Quick info
