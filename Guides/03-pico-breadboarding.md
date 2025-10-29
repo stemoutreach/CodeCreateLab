@@ -1,7 +1,3 @@
----
-title: "Raspberry Pi Pico Breadboarding"
----
-
 # Raspberry Pi Pico Breadboarding
 
 > ### Quick info
