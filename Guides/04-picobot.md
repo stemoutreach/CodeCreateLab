@@ -1,7 +1,3 @@
----
-title: "PicoBot – Motors & Ultrasonic"
----
-
 # PicoBot – Motors & Ultrasonic
 
 > ### Quick info
