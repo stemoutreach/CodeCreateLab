@@ -1,23 +1,24 @@
+
 ---
-title: Treasure Hunt (Functions)
-level: 01
-estimated_time: 35–60 min
-difficulty: Beginner → Intermediate
+title: "Treasure Hunt (Functions)"
+level: "01"
+estimated_time: "35-60 min"
+difficulty: "Beginner → Intermediate"
 prereqs:
-  - Lab: [00 – Treasure Hunt (Basic)](../Labs/00-treasure-hunt-basic.md)
-  - Guide: [01 – Python Functions](../Guides/01-python-functions.md)
+  - "Lab: 00 – Treasure Hunt (Basic) (../Labs/00-treasure-hunt-basic.md)"
+  - "Guide: 01 – Python Functions (../Guides/01-python-functions.md)"
 rubric:
-  - ✅ Must: Uses **at least three functions** (welcome, input, evaluate/check)
-  - ✅ Must: Returns values from a function (e.g., `check_direction` returns win/lose/continue)
-  - ✅ Must: Main loop calls functions and ends cleanly on win or quit
-  - ⭐ Stretch: Adds a helper function (e.g., `normalize`) and a tiny state/map
+  - "✅ Must: Uses at least three functions (welcome, input, evaluate/check)"
+  - "✅ Must: Returns values from a function (e.g., check_direction returns win/lose/continue)"
+  - "✅ Must: Main loop calls functions and ends cleanly on win or quit"
+  - "⭐ Stretch: Adds a helper function (e.g., normalize) and a tiny state/map"
 ---
 
 # Goal
-Refactor your basic Treasure Hunt into a **function‑based design** that’s easier to read and extend.
+Refactor your basic Treasure Hunt into a **function-based design** that’s easier to read and extend.
 
 ## Materials
-- Computer only (Python 3 or browser‑based Python environment)
+- Computer only (Python 3 or browser-based Python environment)
 
 ## Steps
 1) **Plan** — List the functions you’ll write (see starter). Decide your map/win condition.
