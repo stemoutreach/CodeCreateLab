@@ -1,17 +1,17 @@
 ---
-title: Python Functions
-level: 01
-estimated_time: 35–60 min
-prereqs:
-  - Guide: ../Guides/00-python-basics.md
-outcomes:
-  - Define and call functions with and without parameters
-  - Return values from functions and capture results
-  - Use default parameters and keyword arguments
-  - Understand variable scope (local vs. global)
-  - Write simple, reusable utilities with docstrings
-hardware:
-  - Computer only
+title: "Python Functions"
+level: "01"
+estimated_time: "35–60 min"
+prereqs: 
+  - "Guide: ../Guides/00-python-basics.md"
+outcomes: 
+  - "Define and call functions with and without parameters"
+  - "Return values from functions and capture results"
+  - "Use default parameters and keyword arguments"
+  - "Understand variable scope (local vs. global)"
+  - "Write simple, reusable utilities with docstrings"
+hardware: 
+  - "Computer only"
 ---
 
 # BLUF

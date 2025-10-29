@@ -1,16 +1,16 @@
 ---
-title: Python Basics
-level: 00
-estimated_time: 30–45 min
+title: "Python Basics"
+level: "00"
+estimated_time: "30–45 min"
 prereqs: []
-outcomes:
-  - Use print() to display output
-  - Read user input with input()
-  - Store values in variables
-  - Use if statements for simple decisions
-  - Loop with while for repetition
-hardware:
-  - Computer only
+outcomes: 
+  - "Use print() to display output"
+  - "Read user input with input()"
+  - "Store values in variables"
+  - "Use if statements for simple decisions"
+  - "Loop with while for repetition"
+hardware: 
+  - "Computer only"
 ---
 
 # BLUF
