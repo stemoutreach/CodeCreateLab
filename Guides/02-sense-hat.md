@@ -1,19 +1,19 @@
 ---
 title: "Sense HAT"
-level: "02"
-estimated_time: "45–75 min"
-prereqs: 
-  - "Guide: ../Guides/00-python-basics.md"
-  - "Guide: ../Guides/01-python-functions.md"
-outcomes: 
-  - "Install and import the Sense HAT Python library"
-  - "Control the 8×8 LED matrix (text and pixels)"
-  - "Read temperature, humidity, and pressure"
-  - "Handle joystick input events"
-  - "Use IMU readings (accelerometer/gyroscope) at a basic level"
-hardware: 
-  - "Raspberry Pi + Sense HAT"
 ---
+
+# Sense HAT
+
+> ### Quick info
+> **Level:** 02 • **Time:** 45–75 min
+> **Prereqs:** Guide: ../Guides/00-python-basics.md; Guide: ../Guides/01-python-functions.md
+> **Hardware:** Raspberry Pi + Sense HAT
+> **You’ll practice:**
+> - Install and import the Sense HAT Python library
+> - Control the 8×8 LED matrix (text and pixels)
+> - Read temperature, humidity, and pressure
+> - Handle joystick input events
+> - Use IMU readings (accelerometer/gyroscope) at a basic level
 
 # BLUF
 The Sense HAT adds real-world sensors and an 8×8 LED display to your Raspberry Pi. In this guide you’ll learn to display messages, read environment data, and react to joystick/IMU input—skills you’ll use in the matching lab, **Sense HAT Basics**.

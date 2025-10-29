@@ -1,17 +1,19 @@
 ---
 title: "Python Basics"
-level: "00"
-estimated_time: "30–45 min"
-prereqs: []
-outcomes: 
-  - "Use print() to display output"
-  - "Read user input with input()"
-  - "Store values in variables"
-  - "Use if statements for simple decisions"
-  - "Loop with while for repetition"
-hardware: 
-  - "Computer only"
 ---
+
+# Python Basics
+
+> ### Quick info
+> **Level:** 00 • **Time:** 30–45 min
+> **Prereqs:** None
+> **Hardware:** Computer only
+> **You’ll practice:**
+> - Use print() to display output
+> - Read user input with input()
+> - Store values in variables
+> - Use if statements for simple decisions
+> - Loop with while for repetition
 
 # BLUF
 This guide gives you the absolute essentials of Python—printing, input, variables, conditions, and loops—so you’re ready to complete the matching lab, **Treasure Hunt (Basic)**. Keep this open while you work; the lab will build directly on these skills.

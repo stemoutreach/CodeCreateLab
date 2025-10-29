@@ -1,18 +1,19 @@
 ---
 title: "Python Functions"
-level: "01"
-estimated_time: "35–60 min"
-prereqs: 
-  - "Guide: ../Guides/00-python-basics.md"
-outcomes: 
-  - "Define and call functions with and without parameters"
-  - "Return values from functions and capture results"
-  - "Use default parameters and keyword arguments"
-  - "Understand variable scope (local vs. global)"
-  - "Write simple, reusable utilities with docstrings"
-hardware: 
-  - "Computer only"
 ---
+
+# Python Functions
+
+> ### Quick info
+> **Level:** 01 • **Time:** 35–60 min
+> **Prereqs:** Guide: ../Guides/00-python-basics.md
+> **Hardware:** Computer only
+> **You’ll practice:**
+> - Define and call functions with and without parameters
+> - Return values from functions and capture results
+> - Use default parameters and keyword arguments
+> - Understand variable scope (local vs. global)
+> - Write simple, reusable utilities with docstrings
 
 # BLUF
 Functions let you name a chunk of code and reuse it. They make programs shorter, clearer, and easier to test—skills you’ll need in the matching lab, **Treasure Hunt (Functions)**, where you’ll organize logic into well‑named functions.

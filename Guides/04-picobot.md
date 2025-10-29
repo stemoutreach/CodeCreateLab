@@ -1,22 +1,18 @@
 ---
 title: "PicoBot – Motors & Ultrasonic"
-level: "04"
-estimated_time: "60–90 min"
-prereqs: 
-  - "Guide: ../Guides/03-pico-breadboarding.md"
-outcomes: 
-  - "Wire an L298N motor driver to the Pico and power the motors safely"
-  - "Write reusable motor control functions (forward, backward, stop, left, right)"
-  - "Read distance with an HC‑SR04 (ultrasonic) using MicroPython"
-  - "Combine movement + sensing for simple obstacle-avoidance behaviors"
-hardware: 
-  - "Raspberry Pi Pico (or Pico W)"
-  - "L298N motor driver + 2 DC gear motors + wheels + chassis"
-  - "External battery pack for motors (e.g., 4xAA or 2S Li‑ion)"
-  - "Breadboard/jumper wires"
-  - "HC‑SR04 ultrasonic sensor"
-  - "(Recommended) switch and separate 5V regulator for logic"
 ---
+
+# PicoBot – Motors & Ultrasonic
+
+> ### Quick info
+> **Level:** 04 • **Time:** 60–90 min
+> **Prereqs:** Guide: ../Guides/03-pico-breadboarding.md
+> **Hardware:** Raspberry Pi Pico (or Pico W); L298N motor driver + 2 DC gear motors + wheels + chassis; External battery pack for motors (e.g., 4xAA or 2S Li‑ion); Breadboard/jumper wires; HC‑SR04 ultrasonic sensor; (Recommended) switch and separate 5V regulator for logic
+> **You’ll practice:**
+> - Wire an L298N motor driver to the Pico and power the motors safely
+> - Write reusable motor control functions (forward, backward, stop, left, right)
+> - Read distance with an HC‑SR04 (ultrasonic) using MicroPython
+> - Combine movement + sensing for simple obstacle-avoidance behaviors
 
 # BLUF
 In this guide, you’ll **wire** your PicoBot, create **reusable motor functions**, and add an **ultrasonic distance sensor**. These foundations set you up for the matching lab, **PicoBot Maze Explorer**, where the bot navigates around obstacles.

@@ -1,20 +1,19 @@
 ---
 title: "Raspberry Pi Pico Breadboarding"
-level: "03"
-estimated_time: "45–75 min"
-prereqs: 
-  - "Guide: ../Guides/00-python-basics.md"
-  - "Guide: ../Guides/01-python-functions.md"
-outcomes: 
-  - "Configure Thonny for MicroPython on the Pico"
-  - "Explain breadboard layout and use resistors safely"
-  - "Use picozero to control onboard/external LEDs"
-  - "Read inputs from a pushbutton"
-  - "Explore and adapt PicoZero recipes (RGB LED, ultrasonic sensor, etc.)"
-hardware: 
-  - "Raspberry Pi Pico + micro‑USB cable"
-  - "Breadboard, jumper wires, resistors (220–330Ω), LEDs, pushbutton"
 ---
+
+# Raspberry Pi Pico Breadboarding
+
+> ### Quick info
+> **Level:** 03 • **Time:** 45–75 min
+> **Prereqs:** Guide: ../Guides/00-python-basics.md; Guide: ../Guides/01-python-functions.md
+> **Hardware:** Raspberry Pi Pico + micro‑USB cable; Breadboard, jumper wires, resistors (220–330Ω), LEDs, pushbutton
+> **You’ll practice:**
+> - Configure Thonny for MicroPython on the Pico
+> - Explain breadboard layout and use resistors safely
+> - Use picozero to control onboard/external LEDs
+> - Read inputs from a pushbutton
+> - Explore and adapt PicoZero recipes (RGB LED, ultrasonic sensor, etc.)
 
 # BLUF
 This guide gets your **Raspberry Pi Pico** ready for **hands‑on electronics**. You’ll set up MicroPython in Thonny, learn breadboard basics, blink LEDs (onboard and external), read a button, and explore PicoZero recipes—preparing you for the **Pico Breadboard Lab**.
