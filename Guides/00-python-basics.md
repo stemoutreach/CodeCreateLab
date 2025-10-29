@@ -1,7 +1,3 @@
----
-title: "Python Basics"
----
-
 # Python Basics
 
 > ### Quick info
