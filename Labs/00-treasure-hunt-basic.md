@@ -74,4 +74,4 @@ print(f"You won in {tries} tries!")
 - If you had more time, what feature would you add next?
 
 ## Next up
-Do **[01 – Treasure Hunt (Functions)](../Labs/01-treasure-hunt-functions.md)** to refactor your game using functions.
+Do **[Python Functions)](../Guides/01-python-functions.md)**
