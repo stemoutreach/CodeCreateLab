@@ -1,7 +1,3 @@
----
-title: "Sense HAT"
----
-
 # Sense HAT
 
 > ### Quick info
