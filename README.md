@@ -78,52 +78,9 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 └─ assets/ (images, wiring diagrams)
 ```
 
----
-
-## ✅ Contribution guidelines
-We welcome fixes and new content. Please:
-- Follow the **NN‑prefix** and **kebab‑case** filenames used above.  
-- Keep each Guide/Lab under ~2 pages; include **rubric**, **troubleshooting**, **extensions**.  
-- Put images in `assets/` and use relative links.  
-- Run Markdown/YAML checks (see below).
-
----
-
-## 🔧 Quality checks (optional but recommended)
-Add these to `.github/workflows/docs-qc.yml` to lint Markdown and validate links:
-
-```yaml
-name: Docs QC
-on: [push, pull_request]
-jobs:
-  lint-and-links:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: DavidAnson/markdownlint-cli2-action@v15
-        with:
-          globs: "**/*.md"
-      - name: Check links
-        uses: lycheeverse/lychee-action@v1
-        with:
-          args: --verbose --no-progress --exclude-mailto "README.md **/*.md"
-```
-
----
-
 ## 🪪 License & attribution
 Made with ❤️ by STEM Outreach volunteers & community mentors. Licensed under the **MIT License**.  
 If you reuse or remix, please include attribution (“Code & Create Lab”).
 
 ---
 
-## 🙋 FAQ
-**Do students need to install software?**  
-- For **Pico** work, use **Thonny** with MicroPython firmware.  
-- For **Sense HAT**, use Raspberry Pi OS with the `sense-hat` package.
-
-**Can we reorder modules?**  
-Yes—00 ↔ 01 are a pair; 02/02.5 (Sense HAT) and 03/04 (Pico → PicoBot) can run as separate tracks depending on hardware.
-
-**Where are slides?**  
-Use the **Guides** as your speaking notes. If you want a docs site, consider MkDocs + Material and point it at these files.
