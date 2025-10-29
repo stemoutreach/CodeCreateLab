@@ -74,4 +74,5 @@ print(f"You won in {tries} tries!")
 - If you had more time, what feature would you add next?
 
 ## Next up
-Do **[Python Functions](../Guides/01-python-functions.md)**
+Do 
+Advance to **[Python Functions](../Guides/01-python-functions.md)** when you’re ready.
