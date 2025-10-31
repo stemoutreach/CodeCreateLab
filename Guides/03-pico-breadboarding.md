@@ -28,6 +28,21 @@ This guide gets your **Raspberry Pi Pico** ready for **hands‑on electronics**.
 - 1 pushbutton
 - (Optional) RGB LED, ultrasonic distance sensor (HC‑SR04), TMP36 or light sensor
 
+## Intro to GPIO & Breadboards
+**GPIO** stands for *General Purpose Input/Output*. These pins allow your Pico to send or receive signals, enabling control over LEDs, buttons, motors, sensors, etc.
+
+**Breadboards** are tools for prototyping circuits without soldering. They make it easy to test and modify electronic setups.
+
+**Inside a Breadboard**:
+
+![Inside Breadboard](https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/Insidebread.jpg)
+
+### Key Concepts
+- GPIO pins can be configured as input or output
+- Breadboards help organize and test circuits
+- Resistors protect LEDs from too much current
+- Each GPIO pin is numbered — reference the [Pico GPIO Pinout Guide](https://picozero.readthedocs.io/en/latest/recipes.html#pin-out)
+
 ## Setup
 1. **Connect the Pico** to your computer with micro‑USB.
 2. Open **Thonny** → **Tools ▸ Options ▸ Interpreter**.
@@ -69,6 +84,8 @@ while True:
     sleep(1)
 ```
 
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/LEDOnOff.jpg" width="600" > 
+
 ### 3) Read a pushbutton
 **Wiring**
 - One side of button → **GPIO 15**
@@ -91,6 +108,7 @@ while True:
 ```
 
 ### 4) Explore PicoZero recipes (pick 1–2 to try)
+Visit [PicoZero Recipes](https://picozero.readthedocs.io/en/latest/recipes.html) to explore:
 - RGB LED (set colors with `(r,g,b)`)
 - Ultrasonic distance sensor (measure cm)
 - Buzzer tones
