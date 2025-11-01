@@ -30,8 +30,8 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 - Raspberry Pi Pico (W or non‑W)
 - Breadboard, jumper wires
 - **LED(s)** and **220–330Ω** resistors (one resistor **in series** with each LED)
-- One **pushbutton** (tact switch)
-- (Optional) RGB LED, buzzer, ultrasonic sensor (HC‑SR04)
+- **pushbutton(s)** (tact switch)
+- RGB LED, buzzer, ultrasonic sensor (HC‑SR04)
 
 ---
 
@@ -49,6 +49,7 @@ A breadboard is a grid of spring clips hidden under plastic. Certain holes are i
                                           a b c d e   gap   f g h i j
                                           ─────────   ---   ─────────
 ```
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/Insidebread.jpg" width="400" >
 
 **Key rules**
 - The long **power rails** run top‑to‑bottom (often split in the middle on some boards). Use them for **3V3** and **GND**.
