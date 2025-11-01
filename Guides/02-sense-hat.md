@@ -20,8 +20,7 @@ The Sense HAT adds real-world sensors and an 8×8 LED display to your Raspberry 
 - Reading joystick events
 - Basics of motion sensing (accelerometer/gyroscope)
 
-## Setup
-**Quick test** (Python REPL):
+## **Quick test** (Python REPL):
    ```python
    from sense_hat import SenseHat
    sense = SenseHat()
