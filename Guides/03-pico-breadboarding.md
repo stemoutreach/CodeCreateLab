@@ -10,7 +10,7 @@
 > - using `picozero` for LEDs & buttons
 > - safe wiring with resistors
 > - debouncing
-> - and adapting recipes
+> - adapting recipes
 
 # Why This Matters
 Breadboards let you prototype **electronics without soldering**. Pairing the **Raspberry Pi Pico** with MicroPython gives you instant results: blink LEDs, read buttons, and build mini‑games. Mastering these basics prepares you for sensors, buzzers, motors, and bigger projects.
@@ -230,6 +230,126 @@ led.off()
 - Use `time.ticks_ms()` to print reaction time in milliseconds.
 
 ---
+
+
+---
+
+### 6) RGB LED Blink (three pins + common pin)
+
+**Goal:** Control an RGB LED by blinking colors and mixing red/green/blue.
+
+**Parts & wiring**
+- Use a **common cathode RGB LED** (recommended for beginners).  
+- **Common cathode** → **GND** through a **single shared resistor** *or* one resistor **per color** (best practice).  
+- Connect the three color pins to **three GPIOs** via resistors (e.g., 220–330 Ω each).
+
+**Example wiring (per-color resistors)**
+- **GPIO 16** → resistor → **R pin**  
+- **GPIO 17** → resistor → **G pin**  
+- **GPIO 18** → resistor → **B pin**  
+- **Common cathode** → **GND**
+
+> If your LED is **common anode**, connect the common pin to **3V3** and set `active_high=False` in `RGBLED(...)` (so the logic is inverted).
+
+**Code (based on picozero recipe: Blink)**
+```python
+from picozero import RGBLED
+from time import sleep
+
+# Common cathode: active_high=True (default)
+led = RGBLED(red=16, green=17, blue=18)
+
+# Simple blink through a few colors
+while True:
+    led.color = (1, 0, 0)   # red (1=on, 0=off) for each channel
+    sleep(0.5)
+    led.color = (0, 1, 0)   # green
+    sleep(0.5)
+    led.color = (0, 0, 1)   # blue
+    sleep(0.5)
+    led.off()
+    sleep(0.5)
+```
+
+**Mix your own colors**
+- Use **floats 0..1** for each channel: `(r, g, b)`  
+- Example: purple ≈ `(1, 0, 0.4)`, cyan ≈ `(0, 1, 1)`, yellow ≈ `(1, 1, 0)`
+
+```python
+# Fade red up and down
+for i in range(0, 11):
+    led.color = (i/10, 0, 0)  # 0.0 → 1.0
+    sleep(0.05)
+for i in range(10, -1, -1):
+    led.color = (i/10, 0, 0)
+    sleep(0.05)
+```
+
+**Pitfalls & tips**
+- RGB LEDs have **four legs**; the **longest** is usually the **common**. Check the datasheet or trial-and-error.  
+- Use **one resistor per color** so brightness is consistent.  
+- If colors look “inverted,” you likely have a **common anode** LED—set `active_high=False`.  
+- Brightness varies by color (green/blue often look brighter); you can lower those channels slightly, e.g. `(1, 0.7, 0.6)`.
+
+---
+
+### 7) Ultrasonic Distance Sensor (HC-SR04) with picozero
+
+**Goal:** Measure distance to an object using sound. The sensor sends a ping and measures the echo time.
+
+**Safety & voltage note (important)**
+- Many **HC‑SR04** modules run on **5V** and return a **5V echo** signal, which can **damage** the Pico (3.3V max on inputs).  
+- Solutions:
+  1) Use a **voltage divider** on the **ECHO** line (e.g., **1 kΩ** to Pico + **2 kΩ** to GND, from the sensor’s echo output).  
+  2) Use a **3.3V‑safe module** (e.g., HC‑SR04P) or a proper **level shifter**.  
+  3) Some modules *may* work on 3.3V Vcc but are unreliable—prefer 5V with a **stepped‑down echo**.
+
+**Wiring (typical HC‑SR04)**
+- **VCC** → **5V** (or 3V3 if your module supports it)  
+- **GND** → **GND**  
+- **TRIG** → **GPIO 19**  
+- **ECHO** → **voltage divider → GPIO 20** (see note above)
+
+**Code (based on picozero recipe: Ultrasonic distance sensor)**
+```python
+from picozero import DistanceSensor
+from time import sleep
+
+# echo pin first, then trigger (picozero signature: DistanceSensor(echo, trigger))
+sensor = DistanceSensor(echo=20, trigger=19)
+
+while True:
+    # distance is in meters
+    d_m = sensor.distance
+    d_cm = d_m * 100
+    print(f"{d_cm:.1f} cm")
+    sleep(0.2)
+```
+
+**Make it interactive (LED indicator)**
+```python
+from picozero import DistanceSensor, LED
+from time import sleep
+
+near_led = LED(14)  # reuse your LED circuit
+sensor = DistanceSensor(echo=20, trigger=19)
+
+THRESH_CM = 20
+
+while True:
+    if sensor.distance * 100 < THRESH_CM:
+        near_led.on()
+    else:
+        near_led.off()
+    sleep(0.05)
+```
+
+**Pitfalls & tips**
+- Point the sensor **straight** at the target; soft or angled surfaces reflect poorly.  
+- Minimum range is ~2–3 cm; maximum ~3–4 m for typical modules.  
+- Avoid very fast polling; ~5–10 readings/second is plenty.  
+- If readings seem random, check **ground common** between Pico and sensor, and verify the **ECHO** line is **3.3V‑safe**.
+
 
 ## Check your understanding
 1. On a breadboard, which holes are connected together in a row? What does the center **gap** do?  
