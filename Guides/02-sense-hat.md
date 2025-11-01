@@ -12,29 +12,10 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
 ---
 
 ## What you’ll learn
-- Install & import the Sense HAT Python library
 - Show text and draw pixels on the 8×8 LED matrix
 - Read environmental sensors (temperature, humidity, pressure)
 - Handle joystick input (pressed/held/released)
 - Use simple IMU readings (accelerometer/gyroscope/orientation)
-
-## Setup & Install
-1. **Raspberry Pi OS (Bookworm or later)** with Python 3.  
-2. Seat the Sense HAT firmly on the Pi’s GPIO header (power **off**).  
-3. Power on and install the library:
-   ```bash
-   sudo apt update
-   sudo apt install -y sense-hat
-   sudo reboot
-   ```
-
-**Quick test (Python REPL):**
-```python
-from sense_hat import SenseHat
-sense = SenseHat()
-sense.show_message("Hi!", scroll_speed=0.07)
-```
-If you see scrolling text, you’re good to go.
 
 ---
 
