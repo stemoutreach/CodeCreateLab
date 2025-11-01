@@ -15,20 +15,13 @@
 The Sense HAT adds real-world sensors and an 8×8 LED display to your Raspberry Pi. In this guide you’ll learn to display messages, read environment data, and react to joystick/IMU input—skills you’ll use in the matching lab, **Sense HAT Basics**.
 
 ## What you’ll learn
-- Installing and importing `sense_hat`
 - Showing text and pixels on the LED matrix
 - Reading environmental sensors (temperature, humidity, pressure)
 - Reading joystick events
 - Basics of motion sensing (accelerometer/gyroscope)
 
 ## Setup
-1. **Attach the Sense HAT** to the Raspberry Pi GPIO header.
-2. **Install the library** (Raspberry Pi OS):
-   ```bash
-   sudo apt update
-   sudo apt install -y sense-hat
-   ```
-3. **Quick test** (Python REPL):
+**Quick test** (Python REPL):
    ```python
    from sense_hat import SenseHat
    sense = SenseHat()
