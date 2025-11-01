@@ -120,7 +120,7 @@ from picozero import Button, LED
 from time import sleep
 import random
 
-led = LED(17)
+led = LED(14)
 
 player_1 = Button(15)
 player_2 = Button(17)
