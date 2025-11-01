@@ -11,7 +11,7 @@
 > - Read inputs from a pushbutton
 > - Explore and adapt PicoZero recipes (RGB LED, ultrasonic sensor, etc.)
 
-# BLUF
+# Why This Matters
 This guide gets your **Raspberry Pi Pico** ready for **hands‑on electronics**. You’ll set up MicroPython in Thonny, learn breadboard basics, blink LEDs (onboard and external), read a button, and explore PicoZero recipes—preparing you for the **Pico Breadboard Lab**.
 
 ## What you’ll learn
