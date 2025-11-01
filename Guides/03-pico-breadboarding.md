@@ -35,12 +35,11 @@ This guide gets your **Raspberry Pi Pico** ready for **hands‑on electronics**.
 
 **Inside a Breadboard**:
 
-![Inside Breadboard](https://github.com/stemoutreach/CodeCreateLab/blob/main/zimages/Insidebread.jpg)
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/Insidebread.jpg" width="400" >
 
 ### Key Concepts
 - GPIO pins can be configured as input or output
 - Breadboards help organize and test circuits
-- Resistors protect LEDs from too much current
 - Each GPIO pin is numbered — reference the [Pico GPIO Pinout Guide](https://picozero.readthedocs.io/en/latest/recipes.html#pin-out)
 
 ## Setup
@@ -84,7 +83,7 @@ while True:
     sleep(1)
 ```
 
-<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/LEDOnOff.jpg" width="600" > 
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="400" >   <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED2.jpeg" width="400" > 
 
 ### 3) Read a pushbutton
 **Wiring**
@@ -106,6 +105,42 @@ while True:
         led.off()
     sleep(0.02)  # simple debounce
 ```
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/ReadpushbuttonOn.jpeg" width="500" > <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/ReadpushbuttonOFF.jpeg" width="450" >  
+
+## Try it: Mini‑exercise (Reaction Game)
+- See example here - [PicoZero Recipes](https://gpiozero.readthedocs.io/en/stable/recipes.html#reaction-game) 
+- LED turns off after a random delay (0.5–3 s).  
+- When it lights up, press the button **as fast as you can**.  
+- Print the reaction time in milliseconds.  
+> Stretch: Keep best‑of‑3 score; add a penalty if the button is pressed too early.
+
+**Code**
+```python
+from picozero import Button, LED
+from time import sleep
+import random
+
+led = LED(17)
+
+player_1 = Button(15)
+player_2 = Button(17)
+
+time = random.uniform(5, 10)
+sleep(time)
+led.on()
+
+while True:
+    if player_1.is_pressed:
+        print("Player 1 wins!")
+        break
+    if player_2.is_pressed:
+        print("Player 2 wins!")
+        break
+
+led.off()
+```
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/ReactionGame.jpeg" width="500" > 
+
 
 ### 4) Explore PicoZero recipes (pick 1–2 to try)
 Visit [PicoZero Recipes](https://picozero.readthedocs.io/en/latest/recipes.html) to explore:
@@ -115,15 +150,8 @@ Visit [PicoZero Recipes](https://picozero.readthedocs.io/en/latest/recipes.html)
 > Start from examples in the PicoZero docs and modify pins to match your wiring.
 
 ## Check your understanding
-1. Why do we use a **resistor** with an LED? What happens if you omit it?
 2. What’s the difference between **GPIO input** and **output**?
 3. How are breadboard rows/rails connected internally?
-
-## Try it: Mini‑exercise (Reaction Game)
-- LED turns off after a random delay (0.5–3 s).  
-- When it lights up, press the button **as fast as you can**.  
-- Print the reaction time in milliseconds.  
-> Stretch: Keep best‑of‑3 score; add a penalty if the button is pressed too early.
 
 ## Troubleshooting
 - **LED doesn’t light** → Check LED orientation, resistor, and pin number. Try `led.blink()` to test.
@@ -134,6 +162,3 @@ Visit [PicoZero Recipes](https://picozero.readthedocs.io/en/latest/recipes.html)
 ## Next up
 Do the matching lab: **[03 – Pico Breadboard Lab](../Labs/03-pico-breadboard-lab.md)**
 
-## Attributions & License
-- Adapted from “3 Pico Breadboarding Guide” and PicoZero examples.
-- See repository LICENSE for terms.
