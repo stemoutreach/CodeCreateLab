@@ -4,7 +4,13 @@
 > **Level:** 03 • **Time:** 60–90 min  
 > **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md) & [Python Functions](../Guides/01-python-functions.md)  
 > **Hardware:** Raspberry Pi Pico + micro‑USB cable; Breadboard, jumper wires, LEDs, pushbutton, resistors  
-> **You’ll practice:** setting up MicroPython/Thonny, understanding breadboard internals, using `picozero` for LEDs & buttons, safe wiring with resistors, debouncing, and adapting recipes
+> **You’ll practice:**
+> - setting up MicroPython/Thonny
+> - understanding breadboard internals
+> - using `picozero` for LEDs & buttons
+> - safe wiring with resistors
+> - debouncing
+> - and adapting recipes
 
 # Why This Matters
 Breadboards let you prototype **electronics without soldering**. Pairing the **Raspberry Pi Pico** with MicroPython gives you instant results: blink LEDs, read buttons, and build mini‑games. Mastering these basics prepares you for sensors, buzzers, motors, and bigger projects.
