@@ -1,9 +1,9 @@
 # Raspberry Pi Pico Breadboarding
 
 > ### Quick info
-> **Level:** 03 • **Time:** 45–75 min
-> **Prereqs:** Guide: ../Guides/00-python-basics.md; Guide: ../Guides/01-python-functions.md
-> **Hardware:** Raspberry Pi Pico + micro‑USB cable; Breadboard, jumper wires, LEDs, pushbutton
+> **Level:** 03 • **Time:** 45–75 min  
+> **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md) & [Python Functions](../Guides/01-python-functions.md)  
+> **Hardware:** Raspberry Pi Pico + micro‑USB cable; Breadboard, jumper wires, LEDs, pushbutton  
 > **You’ll practice:**
 > - Configure Thonny for MicroPython on the Pico
 > - Explain breadboard layout and use resistors safely
