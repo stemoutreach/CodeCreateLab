@@ -1,9 +1,9 @@
 # Python Functions
 
 > ### Quick info
-> **Level:** 01 • **Time:** 35–60 min 
-> **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md) 
-> **Hardware:** Computer only 
+> **Level:** 01 • **Time:** 35–60 min    
+> **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md)    
+> **Hardware:** Computer only     
 > **You’ll practice:** 
 > - Define and call functions with and without parameters
 > - Return values from functions and capture results
