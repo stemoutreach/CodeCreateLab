@@ -254,6 +254,3 @@ Write a mini greeter:
 ## Next up
 Do the matching lab: **[00 – Treasure Hunt (Basic)](../Labs/00-treasure-hunt-basic.md)**
 
-## Attributions & License
-- Examples adapted from the original “0 Python Basics Guide.”  
-- See repository LICENSE for terms.
