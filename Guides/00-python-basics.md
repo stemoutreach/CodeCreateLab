@@ -11,7 +11,7 @@
 > - Use if statements for simple decisions
 > - Loop with while for repetition
 
-# BLUF
+# Why This Matters
 This guide gives you the absolute essentials of Python—printing, input, variables, conditions, and loops—so you’re ready to complete the matching lab, **Treasure Hunt (Basic)**. Keep this open while you work; the lab will build directly on these skills.
 
 ## What you’ll learn
@@ -93,6 +93,4 @@ Create a short program that:
 ## Next up
 Do the matching lab: **[00 – Treasure Hunt (Basic)](../Labs/00-treasure-hunt-basic.md)**
 
-## Attributions & License
-- Examples adapted from the original “0 Python Basics Guide.”
-- See repository LICENSE for terms.
+
