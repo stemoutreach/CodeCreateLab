@@ -1,17 +1,17 @@
 # Python Functions
 
 > ### Quick info
-> **Level:** 01 • **Time:** 35–60 min
-> **Prereqs:** Guide: ../Guides/00-python-basics.md
-> **Hardware:** Computer only
-> **You’ll practice:**
+> **Level:** 01 • **Time:** 35–60 min 
+> **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md) 
+> **Hardware:** Computer only 
+> **You’ll practice:** 
 > - Define and call functions with and without parameters
 > - Return values from functions and capture results
 > - Use default parameters and keyword arguments
 > - Understand variable scope (local vs. global)
 > - Write simple, reusable utilities with docstrings
 
-# BLUF
+# Why This Matters 
 Functions let you name a chunk of code and reuse it. They make programs shorter, clearer, and easier to test—skills you’ll need in the matching lab, **Treasure Hunt (Functions)**, where you’ll organize logic into well‑named functions.
 
 ## What you’ll learn
@@ -105,6 +105,3 @@ Build a tiny quiz game using functions:
 ## Next up
 Do the matching lab: **[01 – Treasure Hunt (Functions)](../Labs/01-treasure-hunt-functions.md)**
 
-## Attributions & License
-- Adapted from the original “1 Python Functions Guide.”
-- See repository LICENSE for terms.
