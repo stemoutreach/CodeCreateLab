@@ -36,6 +36,8 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 ---
 ## Meet the Raspberry Pi Pico (RP2040) — What it is & how code runs
 
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/5544-02.jpg" width="400" >
+
 **What is it?**  
 The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2040** chip.  
 - Runs **MicroPython** or **C/C++** directly on the chip (no operating system).  
@@ -380,6 +382,7 @@ while True:
     print(f"{d_cm:.1f} cm")
     sleep(0.2)
 ```
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Ultrasonic.jpeg" width="400" >
 
 **Make it interactive (LED indicator)**
 ```python
