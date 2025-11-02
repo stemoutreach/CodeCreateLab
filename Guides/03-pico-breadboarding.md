@@ -65,7 +65,7 @@ The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2
 
 ## GPIO Map (numbering & special pins)
 
-<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/picodiagram.jpg" width="600" >
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/picodiagram.jpg" width="400" >
 
 **Key points**
 - **Digital GPIO:** `GP0`–`GP22` (most common for LEDs, buttons, drivers).  
@@ -99,7 +99,7 @@ A breadboard is a grid of spring clips hidden under plastic. Certain holes are i
                                           a b c d e   gap   f g h i j
                                           ─────────   ---   ─────────
 ```
- <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="600" >
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="400" >
 
 **Key rules**
 - The long **power rails** run top‑to‑bottom (often split in the middle on some boards). Use them for **3V3** and **GND**.
@@ -175,7 +175,7 @@ while True:
     led.off()
     sleep(1)
 ```
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="600" >
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="400" >
 
 **Check yourself**
 - LED still dark? Flip it: the **long leg** should face the GPIO (through the series path).
@@ -209,7 +209,7 @@ while True:
         led.off()
     sleep(0.02)  # small delay reduces switch bounce noise
 ```
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/ReadpushbuttonON.jpeg" width="600" >
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/ReadpushbuttonON.jpeg" width="400" >
 
 **What’s “debouncing”?** Real buttons can “chatter” (rapid on/off) when pressed.  
 - A tiny delay (`sleep(0.02)`) smooths this.  
@@ -418,43 +418,104 @@ while True:
 
 **Code — quick beeps (picozero Speaker)**
 ```python
+from time import sleep
+from picozero import Buzzer
+
+buzzer = Buzzer(14)
+
+buzzer.on()
+sleep(1)
+buzzer.off()
+sleep(1)
+
+buzzer.beep()
+sleep(4)
+buzzer.off()
+```
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Speaker.jpeg" width="400" >
+
+**Control a passive buzzer or speaker that can play different tones or frequencies:**
+```python
 from picozero import Speaker
 from time import sleep
 
-sp = Speaker(14)
+speaker = Speaker(14)
 
-# Three short beeps
-sp.beep(on_time=0.2, off_time=0.2, n=3)
+def tada():
+    c_note = 523
+    speaker.play(c_note, 0.1)
+    sleep(0.1)
+    speaker.play(c_note, 0.9)
 
-# One long beep
-sp.on()
-sleep(0.5)
-sp.off()
+def chirp():
+    global speaker
+    for _ in range(5):
+        for i in range(5000, 2999, -100):
+          speaker.play(i, 0.01)
+        sleep(0.2)
+
+
+try: 
+    tada()
+    sleep(1)
+    chirp()
+    
+finally: # Turn the speaker off if interrupted
+    speaker.off()
 ```
 
-**Play a note by name or frequency**
+**Play a tune of note names and durations in beats:**
 ```python
-# Musical note (middle C in the 4th octave)
-sp.play("C4", 0.4)     # note name, duration seconds
+from picozero import Speaker
 
-# Or play by frequency in Hz (A4 = 440 Hz)
-sp.play_tone(440, 0.4)
+speaker = Speaker(14)
+
+BEAT = 0.25 # 240 BPM
+
+liten_mus = [ ['d5', BEAT / 2], ['d#5', BEAT / 2], ['f5', BEAT], ['d6', BEAT], ['a#5', BEAT], ['d5', BEAT],  
+              ['f5', BEAT], ['d#5', BEAT], ['d#5', BEAT], ['c5', BEAT / 2],['d5', BEAT / 2], ['d#5', BEAT], 
+              ['c6', BEAT], ['a5', BEAT], ['d5', BEAT], ['g5', BEAT], ['f5', BEAT], ['f5', BEAT], ['d5', BEAT / 2],
+              ['d#5', BEAT / 2], ['f5', BEAT], ['g5', BEAT], ['a5', BEAT], ['a#5', BEAT], ['a5', BEAT], ['g5', BEAT],
+              ['g5', BEAT], ['', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT / 2], ['d6', BEAT / 2], ['c6', BEAT / 2],
+              ['a#5', BEAT / 2], ['a5', BEAT / 2], ['g5', BEAT / 2], ['a5', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT],
+              ['f5', BEAT], ['f5', BEAT], ['f5', BEAT / 2], ['d#5', BEAT / 2], ['d5', BEAT], ['f5', BEAT], ['d6', BEAT],
+              ['d6', BEAT / 2], ['c6', BEAT / 2], ['b5', BEAT], ['g5', BEAT], ['g5', BEAT], ['c6', BEAT / 2],
+              ['a#5', BEAT / 2], ['a5', BEAT], ['f5', BEAT], ['d6', BEAT], ['a5', BEAT], ['a#5', BEAT * 1.5]]
+
+try:
+    speaker.play(liten_mus)
+       
+finally: # Turn speaker off if interrupted
+    speaker.off()
 ```
-
-**Play a short tune (list of notes)**
+**Play individual notes and control the timing or perform another action:**
 ```python
+from picozero import Speaker
 from time import sleep
 
-tune = [
-    ("C4", 0.30), ("D4", 0.30), ("E4", 0.30), ("C4", 0.45),
-    ("C4", 0.30), ("D4", 0.30), ("E4", 0.30), ("C4", 0.45),
-    ("E4", 0.30), ("F4", 0.30), ("G4", 0.60),
-]
+speaker = Speaker(14)
 
-for note, dur in tune:
-    sp.play(note, dur)
-    sleep(0.05)  # tiny gap between notes
+BEAT = 0.4
+
+liten_mus = [ ['d5', BEAT / 2], ['d#5', BEAT / 2], ['f5', BEAT], ['d6', BEAT], ['a#5', BEAT], ['d5', BEAT],  
+              ['f5', BEAT], ['d#5', BEAT], ['d#5', BEAT], ['c5', BEAT / 2],['d5', BEAT / 2], ['d#5', BEAT], 
+              ['c6', BEAT], ['a5', BEAT], ['d5', BEAT], ['g5', BEAT], ['f5', BEAT], ['f5', BEAT], ['d5', BEAT / 2],
+              ['d#5', BEAT / 2], ['f5', BEAT], ['g5', BEAT], ['a5', BEAT], ['a#5', BEAT], ['a5', BEAT], ['g5', BEAT],
+              ['g5', BEAT], ['', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT / 2], ['d6', BEAT / 2], ['c6', BEAT / 2],
+              ['a#5', BEAT / 2], ['a5', BEAT / 2], ['g5', BEAT / 2], ['a5', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT],
+              ['f5', BEAT], ['f5', BEAT], ['f5', BEAT / 2], ['d#5', BEAT / 2], ['d5', BEAT], ['f5', BEAT], ['d6', BEAT],
+              ['d6', BEAT / 2], ['c6', BEAT / 2], ['b5', BEAT], ['g5', BEAT], ['g5', BEAT], ['c6', BEAT / 2],
+              ['a#5', BEAT / 2], ['a5', BEAT], ['f5', BEAT], ['d6', BEAT], ['a5', BEAT], ['a#5', BEAT * 1.5]]
+
+try:
+    for note in liten_mus:
+        speaker.play(note)
+        sleep(0.1) # leave a gap between notes
+       
+finally: # Turn speaker off if interrupted
+    speaker.off()
 ```
+
 
 **Tips & pitfalls**
 - If it sounds quiet, try a different piezo or a **shorter wire run**. Passive piezos are not loud.  
