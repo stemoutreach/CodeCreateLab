@@ -49,6 +49,7 @@ A breadboard is a grid of spring clips hidden under plastic. Certain holes are i
                                           a b c d e   gap   f g h i j
                                           ─────────   ---   ─────────
 ```
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="600" >
 
 **Key rules**
 - The long **power rails** run top‑to‑bottom (often split in the middle on some boards). Use them for **3V3** and **GND**.
@@ -108,11 +109,11 @@ while True:
 
 ### 2) Blink an external LED (with a resistor)
 **Wiring (series path)**
-- **GPIO 14** → **LED long leg (anode)**  
-- **LED short leg (cathode)** → **resistor** → **GND**
+- **GPIO 14** → **resistor** → **LED long leg (anode)**  
+- **LED short leg (cathode)**  → **GND**
 
 ```
-GPIO14 ──► ( +| LED |− ) ──► resistor ──► GND
+GPIO14 ──► resistor ──► ( +| LED |− )  ──► GND
 ```
 
 **Code**
@@ -128,6 +129,7 @@ while True:
     led.off()
     sleep(1)
 ```
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="600" >
 
 **Check yourself**
 - LED still dark? Flip it: the **long leg** should face the GPIO (through the series path).
@@ -161,6 +163,7 @@ while True:
         led.off()
     sleep(0.02)  # small delay reduces switch bounce noise
 ```
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/ReadpushbuttonON.jpeg" width="600" >
 
 **What’s “debouncing”?** Real buttons can “chatter” (rapid on/off) when pressed.  
 - A tiny delay (`sleep(0.02)`) smooths this.  
