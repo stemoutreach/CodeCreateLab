@@ -364,8 +364,8 @@ for i in range(10, -1, -1):
 **Wiring (typical HC-SR04)**
 - **VCC** → **5V** (or 3V3 if your module supports it)  
 - **GND** → **GND**  
-- **TRIG** → **GPIO 19**  
-- **ECHO** → **voltage divider → GPIO 20** (see note above)
+- **TRIG** → **GPIO 3**  
+- **ECHO** → **voltage divider → GPIO 2** (see note above)
 
 **Code (based on picozero recipe: Ultrasonic distance sensor)**
 ```python
@@ -373,7 +373,7 @@ from picozero import DistanceSensor
 from time import sleep
 
 # echo pin first, then trigger (picozero signature: DistanceSensor(echo, trigger))
-sensor = DistanceSensor(echo=02, trigger=03)
+sensor = DistanceSensor(echo=2, trigger=3)
 
 while True:
     # distance is in meters
@@ -384,23 +384,6 @@ while True:
 ```
 <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Ultrasonic.jpeg" width="400" >
 
-**Make it interactive (LED indicator)**
-```python
-from picozero import DistanceSensor, LED
-from time import sleep
-
-near_led = LED(14)  # reuse your LED circuit
-sensor = DistanceSensor(echo=02, trigger=03)
-
-THRESH_CM = 20
-
-while True:
-    if sensor.distance * 100 < THRESH_CM:
-        near_led.on()
-    else:
-        near_led.off()
-    sleep(0.05)
-```
 
 **Pitfalls & tips**
 - Point the sensor **straight** at the target; soft or angled surfaces reflect poorly.  
