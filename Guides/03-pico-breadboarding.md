@@ -237,9 +237,6 @@ led.off()
 ---
 
 
----
-
-
 ### 6) RGB LED Blink (three pins + common pin)
 
 **Goal:** Control an RGB LED by blinking colors and mixing red/green/blue.
@@ -374,7 +371,7 @@ while True:
 from picozero import Speaker
 from time import sleep
 
-sp = Speaker(12)
+sp = Speaker(14)
 
 # Three short beeps
 sp.beep(on_time=0.2, off_time=0.2, n=3)
