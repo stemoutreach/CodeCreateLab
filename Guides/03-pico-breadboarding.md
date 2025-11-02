@@ -373,7 +373,7 @@ from picozero import DistanceSensor
 from time import sleep
 
 # echo pin first, then trigger (picozero signature: DistanceSensor(echo, trigger))
-sensor = DistanceSensor(echo=20, trigger=19)
+sensor = DistanceSensor(echo=02, trigger=03)
 
 while True:
     # distance is in meters
@@ -390,7 +390,7 @@ from picozero import DistanceSensor, LED
 from time import sleep
 
 near_led = LED(14)  # reuse your LED circuit
-sensor = DistanceSensor(echo=20, trigger=19)
+sensor = DistanceSensor(echo=02, trigger=03)
 
 THRESH_CM = 20
 
