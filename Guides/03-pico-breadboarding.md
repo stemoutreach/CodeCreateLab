@@ -34,6 +34,66 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 - (Optional) RGB LED, buzzer, ultrasonic sensor (HC‑SR04)
 
 ---
+## Meet the Raspberry Pi Pico (RP2040) — What it is & how code runs
+
+**What is it?**  
+The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2040** chip.  
+- Runs **MicroPython** or **C/C++** directly on the chip (no operating system).  
+- **3.3V logic** only (never feed 5V into a GPIO pin).  
+- ~**26 usable GPIO pins** for digital input/output; 3 pins support **analog input (ADC)**.  
+- USB for **power** and **programming**.
+
+**How code is loaded (two common ways):**  
+1) **With Thonny (recommended for students)**  
+   - In Thonny: *Tools → Options → Interpreter* → choose **MicroPython (Raspberry Pi Pico)**.  
+   - Click **Save** and pick **“MicroPython device”** to place your file on the Pico.  
+   - Files named **`main.py`** (and optionally `boot.py`) will **auto‑run** when the Pico powers up.
+
+2) **USB “drag‑and‑drop” (UF2 bootloader)**  
+   - **Hold** the **BOOTSEL** button on the Pico, then **plug in** USB.  
+   - A drive called **RPI‑RP2** appears. Drag a **.uf2** firmware file to install MicroPython (done once).  
+   - After MicroPython is installed, use Thonny to save your Python code as **`main.py`** on the Pico.
+
+**What runs at power‑on?**  
+- If a file named **`main.py`** is on the Pico, it runs automatically when you plug in power.  
+- If there’s no `main.py`, connect Thonny and run your script from the editor.  
+- To stop a stuck program, reconnect with Thonny and click **Stop**, or re‑enter BOOTSEL mode to manage files.
+
+> **Pico vs Pico W:** On **Pico (non‑W)** the onboard LED is **GP25**. On **Pico W**, the LED is controlled by the Wi‑Fi chip; use `picozero.pico_led` so your code works on both.
+
+---
+
+## GPIO Map (numbering & special pins)
+
+> **Quick view (not to scale).** Use this to learn **names and roles**; always check an official pinout when wiring new parts.
+
+```
+   USB connector
+      ┌──────────────────────────────────────────────┐
+Left  │ GP0 GP1  GND  GP2  GP3  GP4  GP5  GND  GP6  │  Right │ VBUS VSYS GND 3V3_EN 3V3  ADC_REF
+side  │ GP7 GP8  GP9  GND  GP10 GP11 GP12 GP13 GP14 │  side  │ GP28 (ADC2)  GND  ADC_VREF 3V3  GP27 (ADC1)
+      │ GP15 GP16 GP17 GP18 GP19 GP20 GP21 GP22 GP26│        │ GP26 (ADC0)  GND   RUN     GP24  GP25 (LED on Pico)
+      └──────────────────────────────────────────────┘
+```
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="600" >
+ 
+**Key points**
+- **Digital GPIO:** `GP0`–`GP22` (most common for LEDs, buttons, drivers).  
+- **Analog inputs (ADC):** `GP26`, `GP27`, `GP28`.  
+- **Power & control:** multiple **GND** pins, **3V3**, **VBUS/VSYS**, **RUN**, `3V3_EN`.  
+- **Onboard LED:** **GP25** (Pico only). Use `picozero.pico_led` to be portable across Pico and Pico W.
+
+**Safety rules**
+- GPIO pins are **3.3V max**. Use level shifting if a sensor outputs **5V**.  
+- For LEDs: **series resistor** (220–330 Ω) between GPIO and GND path.  
+- Never tie a driven GPIO directly to **3V3** or **GND**.
+
+### GPIO basics (Pico)
+- **Output**: the Pico **drives** the pin high (3.3 V) or low (0 V) → good for LEDs (with resistor).
+- **Input**: the Pico **reads** the pin as pressed/not pressed, on/off, etc. → good for buttons and sensors.
+- **Safety**: Avoid short circuits (never connect a GPIO directly to GND and drive it HIGH). Keep LED current modest.
+
+---
 
 ## Breadboard & GPIO — The Big Picture
 
@@ -65,10 +125,6 @@ LEDs need limited current. Without a resistor, too much current can flow and dam
 - Target current 5–10 mA → **R ≈ V / I** → 1.3 V / 0.01 A ≈ **130 Ω**
 - Choose a common value **220–330 Ω** to be safe and bright enough.
 
-### GPIO basics (Pico)
-- **Output**: the Pico **drives** the pin high (3.3 V) or low (0 V) → good for LEDs (with resistor).
-- **Input**: the Pico **reads** the pin as pressed/not pressed, on/off, etc. → good for buttons and sensors.
-- **Safety**: Avoid short circuits (never connect a GPIO directly to GND and drive it HIGH). Keep LED current modest.
 
 ---
 
