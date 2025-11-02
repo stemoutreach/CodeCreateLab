@@ -227,6 +227,8 @@ while True:
 led.off()
 ```
 
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/ReactionGame.jpeg" width="600" >
+
 **Extensions**
 - Add a **too‑soon** penalty: if a button is pressed **before** the LED turns on, that player loses the round.
 - Keep **best‑of‑3** scores.
@@ -237,8 +239,6 @@ led.off()
 
 ---
 
-
----
 
 ### 6) RGB LED Blink (three pins + common pin)
 
