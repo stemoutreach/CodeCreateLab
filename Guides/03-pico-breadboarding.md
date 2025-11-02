@@ -65,18 +65,8 @@ The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2
 
 ## GPIO Map (numbering & special pins)
 
-> **Quick view (not to scale).** Use this to learn **names and roles**; always check an official pinout when wiring new parts.
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/picodiagram.jpg" width="600" >
 
-```
-   USB connector
-      ┌──────────────────────────────────────────────┐
-Left  │ GP0 GP1  GND  GP2  GP3  GP4  GP5  GND  GP6  │  Right │ VBUS VSYS GND 3V3_EN 3V3  ADC_REF
-side  │ GP7 GP8  GP9  GND  GP10 GP11 GP12 GP13 GP14 │  side  │ GP28 (ADC2)  GND  ADC_VREF 3V3  GP27 (ADC1)
-      │ GP15 GP16 GP17 GP18 GP19 GP20 GP21 GP22 GP26│        │ GP26 (ADC0)  GND   RUN     GP24  GP25 (LED on Pico)
-      └──────────────────────────────────────────────┘
-```
- <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="600" >
- 
 **Key points**
 - **Digital GPIO:** `GP0`–`GP22` (most common for LEDs, buttons, drivers).  
 - **Analog inputs (ADC):** `GP26`, `GP27`, `GP28`.  
@@ -316,7 +306,7 @@ from picozero import RGBLED
 from time import sleep
 
 # Common cathode: active_high=True (default)
-led = RGBLED(red=16, green=17, blue=18)
+led = RGBLED(red=15, green=14, blue=13)
 
 # Simple blink through a few colors
 while True:
@@ -330,6 +320,10 @@ while True:
     sleep(0.5)
 ```
 
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/RGBLED.jpeg" width="600" >
+
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/RGBDiagram.JPG" width="600" >
+ 
 **Mix your own colors**
 - Use **floats 0..1** for each channel: `(r, g, b)`  
 - Example: purple ≈ `(1, 0, 0.4)`, cyan ≈ `(0, 1, 1)`, yellow ≈ `(1, 1, 0)`
