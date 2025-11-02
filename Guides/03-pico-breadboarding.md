@@ -24,7 +24,7 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 - MicroPython on Pico with **Thonny** + the **picozero** library
 - Blink the onboard LED, then an external LED
 - Read a pushbutton reliably (debouncing concepts)
-- Where to find & adapt PicoZero recipes (RGB LED, ultrasonic, buzzer)
+- Find & adapt PicoZero [recipes](https://picozero.readthedocs.io/en/latest/recipes.html) (RGB LED, ultrasonic, buzzer)
 
 ## Materials
 - Raspberry Pi Pico (W or non‑W)
@@ -131,6 +131,8 @@ LEDs need limited current. Without a resistor, too much current can flow and dam
 ---
 
 ## Walkthrough — Step by Step (with explanations)
+
+
 
 ### 1) Blink the onboard LED
 **Why start here?** No wiring required—just verify code + interpreter.
@@ -547,10 +549,11 @@ finally: # Turn speaker off if interrupted
 
 ---
 
-## Explore PicoZero recipes (pick 1–2 to try next)
+## Explore PicoZero  (pick 1–2 to try next)
 - **RGB LED:** set colors with `(r, g, b)` values  
 - **Buzzer:** play simple tones for game feedback  
 - **Ultrasonic sensor (HC‑SR04):** measure distance in cm and trigger lights/sounds
+- Find & adapt additional PicoZero [recipes](https://picozero.readthedocs.io/en/latest/recipes.html) 
 
 > Tip: Start from a recipe, then adapt **pin numbers** to match your wiring and tweak delays/thresholds.
 
