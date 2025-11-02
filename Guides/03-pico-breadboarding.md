@@ -322,9 +322,9 @@ while True:
     sleep(0.5)
 ```
 
- <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/RGBLED.jpeg" width="600" >
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/RGBLED.jpeg" width="400" >
 
- <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/RGBDiagram.JPG" width="600" >
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/RGBDiagram.JPG" width="400" >
  
 **Mix your own colors**
 - Use **floats 0..1** for each channel: `(r, g, b)`  
