@@ -252,7 +252,7 @@ led.off()
 - **GPIO 18** → resistor → **B pin**  
 - **Common cathode** → **GND**
 
-> If your LED is **common anode**, connect the common pin to **3V3** and set `active_high=False` in `RGBLED(...)` (so the logic is inverted).
+> If your LED is **common anode**, connect the common pin to **3V3** and set `active_high=False` in `RGBLED(...)` (so the logic is inverted). RGBLED(red=16, green=17, blue=18, active_high=False)
 
 **Code (based on picozero recipe: Blink)**
 ```python
