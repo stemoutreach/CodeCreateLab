@@ -1,0 +1,163 @@
+# Code & Create Lab — Lab Authoring Prompt
+# Save this file as labprompt.yaml and reference it whenever generating a new lab.
+
+role: >
+  You are helping me write a NEW, student-friendly Lab for my Code & Create Lab.
+
+mission: >
+  Produce a single Markdown file that strictly follows the Lab Template. The Lab must
+  reinforce the corresponding Guide and include open-ended moments so students can reason,
+  test, and tune—not just copy/paste.
+
+audience: "6th–12th graders; curious, hands-on; short attention spans."
+tone: "Clear, encouraging, stepwise; minimal jargon unless taught in the Guide."
+
+constraints:
+  - "Keep section order exactly as in the template."
+  - "Include a short rubric with Must and a Stretch item (1–3 bullets each)."
+  - "Use Plan → Build → Code → Test → Iterate cadence."
+  - "Provide a minimal Starter snippet (or starter file list) that is helpful, not a full solution."
+  - "Add Troubleshooting with practical failure modes and fixes."
+  - "Add Reflection questions that push students to explain choices/tuning."
+  - "End with a Next up pointer to the logical next lab or guide."
+  - "Prefer small, testable functions and safe exits (Ctrl-C) for hardware."
+  - "If hardware is involved, include Safety & setup and explicit pin maps."
+  - "Never require installing software on school laptops unless stated."
+
+ties_to_guide:
+  required: true
+  guidance: >
+    Add one or two short Guide tie-ins (callouts) that tell students where to look
+    in the Guide when they get stuck (section names or topics provided), and design at
+    least one step where the Guide is needed to proceed.
+
+fields_to_fill:
+  - "Lab Title: <Lab Title>"
+  - "Level: <two-digit level>"
+  - "Estimated Time: <range, e.g., 45–75 min>"
+  - "Difficulty: <Beginner | Intermediate | Advanced>"
+  - "Prereqs: <Guides and/or Labs this one builds on>"
+  - "Target Guide: <Guide Name & number>"
+  - "Hardware (if any): <list or 'None'>"
+  - "Key Skills Practiced: <short, comma-separated list>"
+  - "Starter Files?: <None | filenames>"
+  - "Pin Map (if hardware): <table or bullets>"
+  - "Next Lab/Guide: <where to go next>"
+
+template_md: |
+  ---
+  title: <Lab Title>
+  level: <##>
+  estimated_time: <min–max>
+  difficulty: <Beginner|Intermediate|Advanced>
+  prereqs:
+    - <Guide or Lab 1>
+    - <Guide or Lab 2>
+  rubric:
+    - ✅ Must: <clear, testable requirement 1>
+    - ✅ Must: <clear, testable requirement 2>
+    - ✅ Must: <clear, testable requirement 3>
+    - ⭐ Stretch: <one compelling extension>
+  ---
+
+  # Goal
+  One concise paragraph that states the outcome in student terms (what the thing
+  will do) and how they’ll prove it works.
+
+  ## Materials
+  - <hardware/software list, keep short>
+
+  ## Safety & setup
+  - <only if hardware; power, wiring, safe stopping, shared grounds, etc.>
+
+  ## Steps
+  1) **Plan** — <students make one or two small design choices (e.g., thresholds, pin choices, map)>
+  2) **Build** — <wire/place/organize; encourage sketching or checklists>
+  3) **Code** — <starter guidance; name small functions; avoid giving the full solution>
+  4) **Test** — <what to observe; small tuning knobs; quick sanity checks>
+  5) **Iterate** — <one improvement loop (e.g., tune a constant, refactor a function)>
+
+  > 💡 **Guide tie-in:** <Callout that points to a specific topic/section in the Target Guide students should read to unlock this step.>
+
+  ## Starter snippet (or starter files)
+  ```python
+  # keep small; demonstrate structure, I/O, or a key helper function
+  ```
+
+  ## Submission / Demo checklist
+  - [ ] <outcome 1 stated in behavior terms students can demo>
+  - [ ] <outcome 2>
+  - [ ] <clean exit or safe stop>
+
+  ## Extensions (choose one)
+  - <extension idea that uses knowledge from the Guide and invites creativity>
+  - <second idea (optional)>
+
+  ## Troubleshooting
+  - **Symptom** → <likely cause> → <student-doable fix>
+  - **Symptom** → <likely cause> → <student-doable fix>
+
+  ## Reflection
+  2–3 prompts that ask *why* they chose/tuned something, or how they’d modularize further.
+
+  ## Next up
+  A single sentence that points to the next Lab/Guide and why it’s a good next step.
+
+skeleton_md: |
+  ---
+  title: <Lab Title>
+  level: <##>
+  estimated_time: <min–max>
+  difficulty: <Beginner|Intermediate|Advanced>
+  prereqs:
+    - <Guide or Lab 1>
+    - <Guide or Lab 2>
+  rubric:
+    - ✅ Must: <requirement 1>
+    - ✅ Must: <requirement 2>
+    - ✅ Must: <requirement 3>
+    - ⭐ Stretch: <extension>
+  ---
+
+  # Goal
+  <what students will build and how they’ll prove it works>
+
+  ## Materials
+  - <items>
+
+  ## Safety & setup
+  - <only if hardware>
+
+  ## Steps
+  1) **Plan** — <choice/tiny design>
+  2) **Build** — <wire/place/organize>
+  3) **Code** — <starter guidance + named helpers>
+  4) **Test** — <observations + quick checks>
+  5) **Iterate** — <tune/refactor>
+
+  > 💡 **Guide tie-in:** <point to a specific topic/section in the Guide>
+
+  ## Starter snippet
+  ```python
+  # minimal structure/example
+  ```
+
+  ## Submission / Demo checklist
+  - [ ] <behavior 1>
+  - [ ] <behavior 2>
+  - [ ] <clean exit/safe stop>
+
+  ## Extensions (choose one)
+  - <idea 1>
+  - <idea 2>
+
+  ## Troubleshooting
+  - **<symptom>** → <cause> → <fix>
+  - **<symptom>** → <cause> → <fix>
+
+  ## Reflection
+  - <question 1>
+  - <question 2>
+
+  ## Next up
+  <where to go next and why>
