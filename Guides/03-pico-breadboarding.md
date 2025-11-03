@@ -120,7 +120,9 @@ LEDs need limited current. Without a resistor, too much current can flow and dam
 
 ---
 
-## Setup (MicroPython + Thonny)
+## Setup
+
+_This setup uses MicroPython with Thonny._
 1. Connect the **Pico** to your computer via **micro‑USB**.
 2. Open **Thonny** → **Tools ▸ Options ▸ Interpreter**.
    - Interpreter: **MicroPython (Raspberry Pi Pico)**
@@ -510,6 +512,14 @@ finally: # Turn speaker off if interrupted
 - If you only get one constant tone regardless of `play()`/`play_tone()`, you probably have an **active** buzzer—use `sp.beep()` or swap for a passive piezo.  
 - Keep melodies simple and short to avoid blocking your main loop (or move playback to its own loop/function).
 
+## Vocabulary
+- MicroPython: A lightweight Python for microcontrollers like the Pico.
+- picozero: Beginner-friendly Python library for Pico GPIO (LEDs, buttons, etc.).
+- GPIO: General-Purpose Input/Output pins used to read sensors or drive outputs.
+- Pull-up / Pull-down: Resistor configuration that sets a default HIGH/LOW level.
+- Breadboard rails: Long power strips along the sides (watch for split rails).
+- Series resistor: Limits current through an LED to protect it and the Pico.
+
 ## Check your understanding
 1. On a breadboard, which holes are connected together in a row? What does the center **gap** do?  
 2. Why must an LED have a resistor, and where should it go in the circuit?  
@@ -517,6 +527,15 @@ finally: # Turn speaker off if interrupted
 4. What is **debouncing**, and why might your button appear to press multiple times?
 
 ---
+
+## Try it: Mini-exercises
+- Blink SOS (…) using `LED.on()`/`off()` and `sleep()`.
+- Turn the LED on only while the button is held (no bouncing).
+- Challenge: Add a second LED on a different pin and alternate them.
+
+**Stretch**
+- Use `Button.is_pressed` to count presses and show the count over serial.
+- Add a “hold to exit” safety (e.g., hold the button 2 sec to stop a loop).
 
 ## Troubleshooting
 - **LED never lights:**  
