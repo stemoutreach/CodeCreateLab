@@ -14,6 +14,12 @@ tone: "Clear, encouraging, stepwise; minimal jargon unless taught in the Guide."
 
 constraints:
   - "Keep section order exactly as in the template."
+
+  - "Perform a full sweep after drafting: ensure all required sections are present and in the exact order."
+  - "Step 4 (Decide What Happens): use a checklist + brief pseudocode only — NO concrete solution code."
+  - "Include exactly one 'Skeleton Starter' section (no duplicates)."
+  - "Insert a '🆘 Need a hint?' callout directly under '# Steps' linking to 'Example_Code/00-treasure-hunt-basic/STUDENT_START.md'."
+  - "Do NOT include full solution code anywhere in the lab; only reference the helper ('STUDENT_START.md')."
   - "Include a short rubric with Must and a Stretch item (1–3 bullets each)."
   - "Use Plan → Build → Code → Test → Iterate cadence."
   - "Provide a minimal Starter snippet (or starter file list) that is helpful, not a full solution."
@@ -161,3 +167,13 @@ skeleton_md: |
 
   ## Next up
   <where to go next and why>
+
+post_generation_checklist:
+  - "Structure: All required sections exist and follow the exact template order."
+  - "Discovery: Step 4 uses a checklist + brief pseudocode (no concrete solution code)."
+  - "Starters: Exactly one 'Skeleton Starter' section is present (no duplicates)."
+  - "Hints: Insert the '🆘 Need a hint?' callout directly under '# Steps' linking to 'Example_Code/00-treasure-hunt-basic/STUDENT_START.md'."
+  - "No spoilers: No full solution code anywhere in the lab; only reference the helper ('STUDENT_START.md')."
+  - "Links: Validate Guide links and helper paths are correct and relative."
+  - "Code fences & headings: Fences close correctly; no duplicate headers; consistent h2 '## 1)…' step numbering."
+  - "Student agency: Leave at least 2 clear TODOs for learners to implement."
