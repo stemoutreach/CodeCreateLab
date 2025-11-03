@@ -1,46 +1,53 @@
-# PicoBot – Motors & Ultrasonic
+# PicoBot — Motors with L298N (No Sensors Yet)
 
-> ### Quick info
-> **Level:** 04 • **Time:** 60–90 min
-> **Prereqs:** Guide: ../Guides/03-pico-breadboarding.md
-> **Hardware:** Raspberry Pi Pico (or Pico W); L298N motor driver + 2 DC gear motors + wheels + chassis; External battery pack for motors (e.g., 4xAA or 2S Li‑ion); Breadboard/jumper wires; HC‑SR04 ultrasonic sensor; (Recommended) switch and separate 5V regulator for logic
-> **You’ll practice:**
-> - Wire an L298N motor driver to the Pico and power the motors safely
-> - Write reusable motor control functions (forward, backward, stop, left, right)
-> - Read distance with an HC‑SR04 (ultrasonic) using MicroPython
-> - Combine movement + sensing for simple obstacle-avoidance behaviors
+> ### Quick Summary
+> **Level:** 04 • **Time:** 60–90 min  
+> **Prereqs:** Guides: [Pico Breadboarding](../Guides/03-pico-breadboarding.md)  
+> **Hardware:** Raspberry Pi Pico (or Pico W); L298N motor driver; 2× DC gear motors + wheels + chassis; external motor battery pack; breadboard/jumper wires; (recommended) switch  
+> **You’ll practice:** wiring L298N safely, mapping GPIO pins, writing motor movement functions (forward/back/left/right/stop), testing motion, and basic debugging
 
-# BLUF
-In this guide, you’ll **wire** your PicoBot, create **reusable motor functions**, and add an **ultrasonic distance sensor**. These foundations set you up for the matching lab, **PicoBot Maze Explorer**, where the bot navigates around obstacles.
+# Why This Matters
+Before adding sensors and autonomy, you need a **reliable drive base**. In this guide you’ll wire the Pico to an **L298N motor driver** and write **reusable movement functions**. Getting this right now makes future labs (like obstacle avoidance and maze navigation) far easier.
 
+---
 ## What you’ll learn
-- L298N wiring and safe power practices
-- MicroPython `machine.Pin` for motor direction control
-- Creating and testing movement helper functions
-- Reading distance with `time_pulse_us`
-- Combining sensor input with motion to make decisions
+- Safe power practices for Pico + L298N (separate motor supply, shared ground)
+- Mapping Pico **GPIO** pins to **L298N** inputs (IN1–IN4, ENA/ENB)
+- Using `machine.Pin` to control H‑bridge direction
+- Writing and testing helper functions: `forward`, `backward`, `left`, `right`, `stop`
+- Verifying and correcting motor direction
+
+## Setup
+_This setup uses **MicroPython** with **Thonny**._  
+- Flash MicroPython to the Pico (if needed).  
+- In Thonny: select MicroPython (Raspberry Pi Pico) as the interpreter.  
+- Create a new file `motors.py` on the Pico.  
+- Prepare a **separate** battery pack for motors (e.g., 4×AA or 2S Li‑ion). Do **not** power motors from the Pico.
 
 ## Materials
-- PicoBot chassis (motors, wheels, caster)
-- Raspberry Pi Pico + micro‑USB
-- L298N motor driver
-- HC‑SR04 ultrasonic sensor
-- External battery pack for motors (do **not** power motors from the Pico’s 5V)
-- Breadboard, jumpers, switch, resistors as needed
+- Raspberry Pi Pico (or Pico W) + micro‑USB cable  
+- L298N motor driver board  
+- 2× DC gear motors + wheels + chassis (PicoBot)  
+- External motor battery pack and power switch  
+- Breadboard and jumper wires  
+- (Optional) standoffs/zip ties for cable management
 
-## Wiring
-Use this reference mapping (adjust if your kit differs):
+---
+## Walkthrough — Step by Step (with explanations)
 
-| Component              | Pico GPIO |
-| ---------------------- | --------- |
-| Motor A IN1            | GP6       |
-| Motor A IN2            | GP7       |
-| Enable A               | GP8       |
-| Motor B IN3            | GP4       |
-| Motor B IN4            | GP3       |
-| Enable B               | GP2       |
-| Ultrasonic Trigger     | GP14      |
-| Ultrasonic Echo        | GP15      |
+### 1) Wiring the L298N to the Pico
+**Idea:** Connect Pico GPIO pins to L298N inputs, and wire the motor battery to the L298N. Share **GND** between Pico and L298N.
+
+| L298N pin            | Connects to                  |
+|----------------------|------------------------------|
+| ENA (Enable A)       | Pico **GP8** (can be PWM later) |
+| IN1 (Motor A)        | Pico **GP6**                 |
+| IN2 (Motor A)        | Pico **GP7**                 |
+| INB / ENB (Enable B) | Pico **GP2** (can be PWM later) |
+| IN3 (Motor B)        | Pico **GP4**                 |
+| IN4 (Motor B)        | Pico **GP3**                 |
+| L298N **VIN**        | Motor battery **+**          |
+| L298N **GND**        | Motor battery **–** and **Pico GND** (shared) |
 
 ### Photos (reference)
 > These show typical wiring with the Pico + L298N + Ultrasonic.
@@ -54,142 +61,114 @@ Use this reference mapping (adjust if your kit differs):
 
 > **Power tip:** Power **motors** from a separate battery pack into the L298N (VIN + GND). Share **GND** between the L298N and the Pico. Power the **Pico** via USB (for development) or a regulated 5V → VSYS.
 
-## Walkthrough
+**Notes & pitfalls**
+- **Separate supplies:** Pico via USB (VSYS) for logic; motors via battery into L298N **VIN/GND**.  
+- **Shared ground:** Always connect **Pico GND ↔ L298N GND**.  
+- If “forward” spins the **wrong way**, swap a motor’s leads **or** flip the logic in code.  
+- If present, you can remove the L298N 5V‑EN jumper and power logic separately; not required for this guide.
 
-### 1) Starter code: set up pins and basic motion
+### 2) Starter code: set up pins and basic motion
+**Idea:** Use `machine.Pin` to define direction pins and enable pins, then build simple movement helpers.
+
 ```python
 from machine import Pin
 import time
 
-# Motor A (OUT1, OUT2)
-In1 = Pin(6, Pin.OUT)
-In2 = Pin(7, Pin.OUT)
-EN_A = Pin(8, Pin.OUT)
+# Motor A (OUT1, OUT2) - left or right depending on your build
+IN1 = Pin(6, Pin.OUT)
+IN2 = Pin(7, Pin.OUT)
+ENA = Pin(8, Pin.OUT)   # set HIGH to enable A
 
 # Motor B (OUT3, OUT4)
-In3 = Pin(4, Pin.OUT)
-In4 = Pin(3, Pin.OUT)
-EN_B = Pin(2, Pin.OUT)
+IN3 = Pin(4, Pin.OUT)
+IN4 = Pin(3, Pin.OUT)
+ENB = Pin(2, Pin.OUT)   # set HIGH to enable B
 
-# Enable both motors
-EN_A.high()
-EN_B.high()
+# Enable both channels (digital HIGH; later you can switch to PWM for speed)
+ENA.high()
+ENB.high()
 
 def stop():
-    In1.low(); In2.low()
-    In3.low(); In4.low()
+    IN1.low(); IN2.low()
+    IN3.low(); IN4.low()
 
-def move_forward():
-    In1.high(); In2.low()
-    In3.high(); In4.low()
+def forward():
+    IN1.high(); IN2.low()
+    IN3.high(); IN4.low()
 
-def move_backward():
-    In1.low();  In2.high()
-    In3.low();  In4.high()
+def backward():
+    IN1.low();  IN2.high()
+    IN3.low();  IN4.high()
 
-def turn_left():
-    # Left = A backward, B forward (pivot-ish)
-    In1.low();  In2.high()
-    In3.high(); In4.low()
+def left():
+    # Pivot left: A backward, B forward (adjust for your bot)
+    IN1.low();  IN2.high()
+    IN3.high(); IN4.low()
 
-def turn_right():
-    # Right = A forward, B backward (pivot-ish)
-    In1.high(); In2.low()
-    In3.low();  In4.high()
+def right():
+    # Pivot right: A forward, B backward
+    IN1.high(); IN2.low()
+    IN3.low();  IN4.high()
 
-# Quick test
-move_forward()
-time.sleep(2)
+# Quick smoke test
+forward(); time.sleep(1.5)
+stop();    time.sleep(0.3)
+backward();time.sleep(1.0)
 stop()
 ```
 
-> If motors spin the wrong way, swap the wires on one motor **or** flip the logic in your functions.
+**Notes & pitfalls**
+- If one wheel runs backward in `forward()`, your motor leads might be reversed. Swap one motor’s leads or flip the function logic.  
+- If nothing moves: check battery **voltage**, **switch**, and that **ENA/ENB** are set **HIGH**.
 
-### 2) Add ultrasonic distance
+### 3) Create small motion routines for testing
+**Idea:** Build short scripts to validate wiring and turning behavior; tune `sleep()` durations for your chassis and battery.
+
 ```python
-from machine import Pin, time_pulse_us
-import time
+def nudge_forward(ms=300):
+    forward(); time.sleep(ms/1000); stop()
 
-TRIG = Pin(14, Pin.OUT)
-ECHO = Pin(15, Pin.IN)
+def spin_in_place(ms=500):
+    right(); time.sleep(ms/1000); stop()
 
-def read_distance_cm(timeout_us=25000):
-    # Ensure trigger is low
-    TRIG.low()
-    time.sleep_us(2)
-    # 10µs trigger pulse
-    TRIG.high()
-    time.sleep_us(10)
-    TRIG.low()
-
-    # Measure echo pulse width (HIGH duration)
-    duration = time_pulse_us(ECHO, 1, timeout_us)
-    if duration < 0:
-        return None  # timeout or invalid
-
-    # Sound speed ~343 m/s → 0.0343 cm/µs; divide by 2 (out-and-back)
-    dist_cm = (duration * 0.0343) / 2.0
-    return dist_cm
-
-# Demo read
-for _ in range(5):
-    d = read_distance_cm()
-    print("distance:", "timeout" if d is None else f"{d:.1f} cm")
-    time.sleep(0.3)
+def square_drive(side_ms=800, turn_ms=400):
+    for _ in range(4):
+        forward(); time.sleep(side_ms/1000); stop(); time.sleep(0.2)
+        right();   time.sleep(turn_ms/1000); stop(); time.sleep(0.2)
 ```
 
-### 3) Combine motion + sensing (simple avoid)
-```python
-def drive_with_avoid(threshold_cm=20):
-    try:
-        while True:
-            d = read_distance_cm()
-            if d is None:
-                stop()
-                time.sleep(0.1)
-                continue
+**Notes & pitfalls**
+- Turning timing depends on **surface**, **battery level**, and **wheelbase**. Expect to tune.  
+- Keep total runtime short while testing to avoid motors overheating on stalled turns.
 
-            if d < threshold_cm:
-                stop()
-                time.sleep(0.2)
-                move_backward()
-                time.sleep(0.5)
-                turn_right()
-                time.sleep(0.4)
-                stop()
-            else:
-                move_forward()
-            time.sleep(0.05)
-    except KeyboardInterrupt:
-        stop()
+---
+## Vocabulary
+- **H‑bridge:** Circuit that lets you drive a DC motor **forward** or **reverse** by switching polarity.  
+- **Enable (EN):** Pin that turns a motor channel **on/off**; with PWM it controls **speed**.  
+- **PWM:** Pulse‑Width Modulation—rapid on/off switching to control average power (speed).  
+- **Shared ground:** Both logic and motor circuits reference the **same 0V** node.  
+- **Pivot turn:** One wheel forward, the other backward, to rotate in place.
 
-# drive_with_avoid()
-```
-
-> Tweak `threshold_cm` and timings for your bot. Add randomness to turns to reduce getting stuck.
-
+---
 ## Check your understanding
-1. Why must the motor battery’s **GND** be connected to the Pico’s **GND**?
-2. What does `time_pulse_us(ECHO, 1, timeout)` measure?
-3. Why do we divide the ultrasonic distance by **2**?
+1) Why must the Pico **GND** be connected to the L298N **GND**?  
+2) What is the role of **ENA/ENB** on the L298N?  
+3) If calling `forward()` spins in place, what two quick fixes can you try?  
+4) Why might your 90° turn timing change over a session?
 
-## Try it: Mini‑exercise
-Create `square_drive(side_ms=800)` to drive a rough square:
-1. Forward for `side_ms`  
-2. Stop briefly  
-3. Turn right ~90° (experiment with `sleep` value)  
-4. Repeat 4 times  
-> Stretch: add a `speed` notion later with PWM (requires changing EN pins to PWM).
+---
+## Try it: Mini-exercises
+- Write `triangle_drive()` to move in an approximate triangle (three forward legs + turns).  
+- Add `spin_left(ms)` and `spin_right(ms)` helpers and compare pivot vs. spin behavior.  
+- **Stretch:** Convert `ENA` and `ENB` to **PWM** (e.g., `PWM(Pin(8))`) and add a `speed=0..65535` parameter to `forward()`.
 
+---
 ## Troubleshooting
-- **Motors don’t spin** → Check L298N enable pins are **HIGH**. Verify battery voltage and polarity. Ensure shared **GND**.
-- **Spins in place when “forward”** → One motor is reversed. Swap the leads on one motor **or** adjust the logic.
-- **Ultrasonic always `None`** → Confirm TRIG/ECHO pins; ensure nothing blocks the sensor; increase `timeout_us`.
-- **Distance seems wrong** → Keep sensor upright; avoid soft/angled targets; add a small average over multiple reads.
+- **Motors don’t spin** → Make sure **ENA/ENB** are **HIGH**; verify battery is connected to **VIN/GND** on the L298N; check the switch.  
+- **Only one side moves** → Check that IN1/IN2 vs. IN3/IN4 go to the correct Pico pins; verify solder joints and jumpers.  
+- **Moves backward when calling `forward()`** → Swap one motor’s leads or flip the logic for that side.  
+- **Random resets** → Motor noise sagging voltage; use fresh batteries and keep Pico on USB power; ensure grounds are shared.
 
+---
 ## Next up
 Do the matching lab: **[04 – PicoBot Maze Explorer](../Labs/04-picobot-maze-explorer.md)**
-
-## Attributions & License
-- Wiring and starter ideas adapted from the original “4 PicoBot Guide” and PicoBot repo images.
-- See repository LICENSE for terms.
