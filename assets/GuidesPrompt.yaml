@@ -16,19 +16,21 @@ TEMPLATE & STYLE (DO NOT ALTER ORDER)
 
 # Why This Matters
 One short paragraph that motivates the topic with concrete payoffs for the next lab or future guides.
-(Keep it learner-focused and actionable, just like the existing guides.) 
+(Keep it learner-focused and actionable.)
 
 ---
 ## What you’ll learn
-- 5–8 crisp bullets of learning outcomes (verbs + object). 
+- 5–8 crisp bullets of learning outcomes (verbs + object).
 - Prefer specific skills over vague concepts.
 
 ## Setup
+_Optional first line for environment context (e.g., “This setup uses MicroPython with Thonny.”)_
 - List software/runtime setup (or say “Any Python 3 environment”).
 - Link to starter code folder if relevant (Example_Code/<folder>/).
+- For hardware: include a short sanity-test snippet (e.g., Sense HAT “Hello!”).
 
 ## Materials  (ONLY include if hardware is involved)
-- Bullet list of parts with brief clarifications (e.g., values, safety notes).
+- Bullet list of parts with brief clarifications (values, safety notes).
 
 ---
 ## Walkthrough — Step by Step (with explanations)
@@ -57,7 +59,7 @@ Include **Common mistakes** or **Notes & pitfalls** when useful.
 1) 4–6 short questions that test the essentials they just learned.
 
 ---
-## Try it: Mini-exercise or Mini-project
+## Try it: Mini-exercises
 Describe a small task they can complete in 10–20 minutes.
 Add 1–2 **Stretch goals**.
 
@@ -76,7 +78,7 @@ TONE & MICRO-GUIDELINES
 - Keep sections concise; prioritize runnable examples and short “Idea” blurbs.
 - Use numbered steps in Walkthrough. Each step: tiny code + explanation + pitfalls.
 - Prefer small runnable code blocks (no giant monoliths).
-- Use 4 spaces for indentation; don’t mix tabs/spaces. 
+- Use 4 spaces for indentation; don’t mix tabs/spaces.
 - When reading input or hardware pins, show “why it works” and common mistakes.
 - For hardware, call out 3.3V/5V, series resistors, and safe wiring explicitly.
 - Keep vocabulary & checks tight; avoid jargon unless defined.
