@@ -19,6 +19,19 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
 
 ---
 
+## Setup
+- Use Raspberry Pi OS (Bookworm or later) with network access.
+- Update packages: `sudo apt update && sudo apt upgrade -y`
+- Install Sense HAT support: `sudo apt install -y sense-hat`
+- Reboot: `sudo reboot`
+- (Optional) Enable I2C in `raspi-config` if not already enabled.
+- Test library in Python:
+  ```python
+  from sense_hat import SenseHat
+  sense = SenseHat()
+  sense.show_message("Hello!")
+  ```
+
 ## Walkthrough — Step by Step (with explanations)
 
 ### 1) Display text on the LED matrix
@@ -253,6 +266,14 @@ sense.show_message("Aligned!")
 - Orientation depends on calibration; keep the HAT away from magnets/metal when using compass/yaw.
 
 ---
+
+## Vocabulary
+- LED matrix: 8×8 grid of colored LEDs you can set pixel-by-pixel.
+- IMU: Inertial Measurement Unit; reports acceleration, rotation, orientation.
+- Joystick: 5-way mini stick on the Sense HAT (up, down, left, right, press).
+- Humidity sensor: Measures relative humidity (%RH).
+- Pressure sensor: Measures air pressure (hPa or mbar).
+- Orientation: Pitch/roll/yaw angles derived from the IMU.
 
 ## Check your understanding
 1. Where is `(0,0)` on the LED grid, and what happens if you draw at `(8,8)`?  
