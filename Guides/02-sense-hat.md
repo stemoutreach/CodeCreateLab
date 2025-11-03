@@ -32,6 +32,13 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
   sense.show_message("Hello!")
   ```
 
+
+
+## Materials
+- Raspberry Pi (with power and microSD)
+- Sense HAT (mounted on GPIO header)
+- Optional: HDMI display, keyboard/mouse; or SSH access
+
 ## Walkthrough — Step by Step (with explanations)
 
 ### 1) Display text on the LED matrix
