@@ -1,46 +1,49 @@
+# 02 — Sense HAT Basics (Weather Warning Light)
+
+> ### Quick Summary
+> **Level:** 02 • **Time:** 35–60 min  
+> **Prereqs:** [Guide: 02 — Sense HAT](../Guides/02-sense-hat.md)  
+> **Hardware:** Sense HAT on Raspberry Pi  
+> **You’ll practice:** reading sensors, loops, decisions, LED control, basic debugging
+
+# Why This Matters
+Real systems react to their environment. Using the Sense HAT’s sensors and LED matrix, you’ll build a tiny safety indicator and practice reading data, making decisions, and giving instant visual feedback—skills you’ll reuse in later labs.
+
 ---
-title: Sense HAT Basics — Weather Warning Light
-level: 02
-estimated_time: 35–60 min
-difficulty: Beginner
-prereqs:
-  - Guide: [02 – Sense HAT](../Guides/02-sense-hat.md)
-rubric:
-  - ✅ Must: Read temperature (°C) and humidity (%) from Sense HAT
-  - ✅ Must: Print readings and update LED color each cycle
-  - ✅ Must: Thresholds come from user input; runs until Ctrl-C
-  - ⭐ Stretch: Icon pattern, CSV logging, joystick clear, or smoothing offset
+
+# What You’ll Build
+A loop that reads **temperature** (°C) and **humidity** (%) every few seconds and changes the LED matrix: **GREEN** when safe, **RED** when too hot or too dry. You’ll choose your own thresholds and print readable status lines to the console.
+
 ---
 
-# Goal
-Build a **Weather Warning Light**. Every few seconds, read **temperature** and **humidity**.  
-If it’s **too hot** OR **too dry**, flash **red**; otherwise show **green**.
+# Outcomes
+By the end you can:
+- Initialize and read `SenseHat` temperature and humidity
+- Decide based on thresholds and update LED color accordingly
+- Run a safe, stoppable loop and print labeled values with units
 
-# What you’ll practice
-- Importing and initializing `SenseHat`
-- Reading temp/humidity and labeling units (°C, %)
-- Simple decision logic → LED color feedback
-- Loops, user input, and basic debugging
+---
 
-# Materials
-- Raspberry Pi with Raspberry Pi OS
-- Sense HAT attached and seated
-- Power supply, keyboard/mouse, display
-- Terminal or Thonny
-- Internet for installing packages (if needed)
+# Setup
+- Raspberry Pi with Raspberry Pi OS, Sense HAT firmly seated
+- Install support: `sudo apt install -y sense-hat`
+- Open Terminal or Thonny
+
+---
 
 # Steps
 
-> 🆘 **Need a hint?** Read the minimal patterns in **`Example_Code/00-treasure-hunt-basic/STUDENT_START.md`** and adapt them to this lab’s tasks.
+> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](Example_Code/02-sense-hat-basics/STUDENT_START.md)**.
 
-## 1) Get ready
-- Ensure Sense HAT support is installed: `sudo apt install -y sense-hat`  
-- Open a terminal or Thonny. (See the Guide’s setup & quick test snippet.)
+## 1) Plan (2–3 min)
+Pick limits that make sense in your room (e.g., **temp high = 28°C**, **humidity low = 35%**). Decide your sampling interval (e.g., **2 seconds**).
 
-> 📝 Tip: Sense HAT temperatures can read a bit high due to CPU heat; you may apply a small offset later.
+## 2) Build / Prep (3–5 min)
+- Verify the HAT’s LED matrix works: `python3 -c "from sense_hat import SenseHat; SenseHat().clear(0,255,0)"` then `clear(0,0,0)`.
+- Create a project folder and file: `labs/02-sense-hat-basics/weather_warning_light.py`.
 
-## 2) Skeleton Starter
-Use this starter and fill in the **TODOs** (don’t paste a full solution). There is **exactly one** starter.
+## 3) Code (8–12 min)
+Start with a minimal structure and **leave TODOs** for your logic.
 
 ```python
 from sense_hat import SenseHat
@@ -51,16 +54,16 @@ sense.clear()
 
 def read_readings():
     """Return (temp_c, humidity_percent). Round for printing."""
-    # TODO: read temperature (choose get_temperature or *_from_humidity)
+    # TODO: read temperature (get_temperature or get_temperature_from_humidity)
     # TODO: read humidity with get_humidity()
-    # TODO: round both to 1 decimal and return (t, h)
+    # TODO: round to 1 decimal and return (t, h)
     return 0.0, 0.0
 
 def show_status(temp, hum, t_limit, h_limit):
     """Set LED color and print a message based on limits."""
-    # TODO: compute too_hot and too_dry using > and <
-    # TODO: if unsafe, clear RED; else clear GREEN
-    # TODO: print a readable status line including units and limits
+    # TODO: compute too_hot (temp > t_limit) and too_dry (hum < h_limit)
+    # TODO: set LED: RED if unsafe else GREEN
+    # TODO: print a readable line with units and limits
 
 print("Sense HAT — Weather Warning Light")
 # TODO: ask user for high temp limit (°C) and low humidity limit (%) as float
@@ -77,59 +80,74 @@ except KeyboardInterrupt:
     print("Stopped. Stay safe!")
 ```
 
-## 3) Read sensors (mini-guide)
-- Temperature: `sense.get_temperature()` or `sense.get_temperature_from_humidity()`  
-- Humidity: `sense.get_humidity()`  
-- LED colors: `sense.clear(r, g, b)` (e.g., green `(0,255,0)`, red `(255,0,0)`)  
-(See the Guide for examples of reading sensors and controlling LEDs.)
-
-## 4) Decide What Happens (discovery)
-Use this **checklist** and **brief pseudocode**—then implement in your starter. **No solution code here.**
-
+## 4) Discovery (checklist + pseudocode) (8–12 min)
 **Checklist**
 - [ ] Compare `temp` to `t_limit` (hot if `temp > t_limit`)
 - [ ] Compare `hum` to `h_limit` (dry if `hum < h_limit`)
 - [ ] Unsafe if **either** is true; safe otherwise
-- [ ] Print values with **units** and limits (e.g., `T=24.3°C  H=44.7%`)
+- [ ] Print values with **units** and limits (e.g., `T=24.3°C  H=44.7% (limits: 28°C/35%)`)
 - [ ] Update LED color every cycle
 
-**Pseudocode**
+**Pseudocode (guide, not code)**
 ```
 too_hot = temp > t_limit
 too_dry = hum < h_limit
 if (too_hot or too_dry):
     LED = RED
-    print "WARNING ... "
+    print "WARNING — too hot or too dry"
 else:
     LED = GREEN
-    print "OK ..."
+    print "OK — within limits"
 ```
 
-## 5) Test and tune
-- Try different thresholds (e.g., `28°C` and `35%`).
-- Make it obvious: slow the loop to ~2s; print each cycle.
-- If your temperature seems high, apply a small negative offset to your reading and note it in your printout (e.g., `CPU_OFFSET = -3.0`).
+## 5) Test (3–5 min)
+- Try multiple thresholds; slow sampling to 2–3s to observe changes.
+- Sanity-check print format and the LED reaction as values cross limits.
 
-## 6) Submission / Demo checklist
-- [ ] Loops until **Ctrl-C** without crashing on normal input  
-- [ ] Prints readings with **units** and sets LED **green** when safe, **red** when unsafe  
-- [ ] Thresholds are **entered by the user**  
+## 6) Iterate (2–3 min)
+- If temps read high (CPU heat), try a constant offset (e.g., `temp -= 3.0`) and **label it** in your output.
+- Consider switching to `get_temperature_from_humidity()` and compare readings.
 
-# Extensions (pick one)
-- **Icon alert:** Instead of solid colors, show a red “!” or green “✓” with an 8×8 pixel pattern. (Use `set_pixels`.)
-- **CSV logging:** Append `timestamp,temp_c,humidity_percent` to a file per loop.
-- **Smoothing:** Keep a small moving average window (e.g., last 5 temps) before comparing.
-- **Joystick quick-clear:** Press **middle** to clear to black for 1s, then resume. (Use `sense.stick.get_events()`).
+---
+
+# Skeleton Starter (start here)
+Use the code skeleton in **Step 3** or the starter file in **Example_Code/02-sense-hat-basics/** (no full solutions—focus on TODOs).
+
+```python
+# Tip: keep helper functions small; return values, don't print inside sensor reads.
+```
+
+---
+
+# Submission / Demo Checklist
+- [ ] Loop runs until **Ctrl-C** and exits cleanly (LED cleared)
+- [ ] Console prints labeled values with **units** and chosen **limits**
+- [ ] LED shows **GREEN** when safe, **RED** when too hot or too dry
+- [ ] Thresholds are **entered by the user** (not hard-coded)
+
+---
+
+# Extensions (choose one)
+- **Icon alert:** Render a red “!” or green “✓” (8×8) instead of solid color.
+- **CSV logging:** Append `timestamp,temp_c,humidity_percent` each cycle.
+- **Smoothing:** Use a moving average (e.g., last 5 temps) before decision.
+- **Joystick quick-clear:** Middle press clears LED to black for 1s, then resumes.
+
+---
 
 # Troubleshooting
-- **`ModuleNotFoundError: sense_hat`** → Install package on Raspberry Pi OS.  
-- **No LED output** → Ensure program keeps running and the HAT is seated; try `sense.clear()` once at start.  
-- **Odd temp values** → CPU heat can bias readings; slow your loop and/or subtract a small offset; consider `_from_humidity` vs `_from_pressure`.
-- **`ValueError` on input** → Wrap `float(input(...))` in `try/except` and re-ask.
+- **`ModuleNotFoundError: sense_hat`** → Install package; run on Raspberry Pi OS (not your laptop).  
+- **No LED output** → Ensure program loops; HAT seated; try `sense.clear()` at start.  
+- **Numbers seem high** → CPU warms sensors; slow the loop and/or subtract a small offset.  
+- **`ValueError` on input** → Wrap `float(input())` in `try/except` and re-ask.
 
-# Reflection
-- What did you choose for your thresholds and why?  
-- Where did you apply smoothing or offsets (if any), and how did it change behavior?
+---
 
-# Next up
-Level up with **[02.5 – Sense HAT Advanced: Mission Dashboard](../Labs/02-5-sense-hat-advanced.md)** for joystick interactivity and IMU-driven displays.
+# Reflection (1–2 sentences)
+- What limits did you choose and why?  
+- If you applied smoothing or an offset, how did it change behavior?
+
+---
+
+# Next Up
+Move to **Sense HAT Advanced: Mission Dashboard** to add joystick interactivity and IMU-driven displays.
