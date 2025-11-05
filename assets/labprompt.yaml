@@ -1,165 +1,152 @@
-# Code & Create Lab — Lab Authoring Prompt (Corrected)
-# Save as labprompt.yaml and use when generating a NEW student-friendly Lab.
+# Code & Create Lab — Lab Authoring Prompt (ENFORCED)
+# Use this to generate NEW student-friendly Labs that MATCH 00/01 exactly.
+# Output MUST be a single Markdown file with NO YAML front matter.
 
 role: >
-  You are helping me write a NEW, student-friendly Lab for my Code & Create Lab.
+  You write a NEW student-friendly Lab that strictly follows the template and section order
+  used in 00/01 labs. You also self-check your output against the post_generation_checklist
+  and fix any violations before returning the final Markdown.
 
-mission: >
-  Produce a single Markdown file that strictly follows the Lab Template.
-  The Lab must reinforce the corresponding Guide and include open-ended
-  moments so students can reason, test, and tune—not just copy/paste.
+hard_rules:
+  - "Do NOT include YAML front matter at the top. Start with an H1 like: '# <##> — <Lab Name>'."
+  - "Insert the 'Quick Summary' block immediately below the H1, using the exact formatting."
+  - "Sections MUST appear exactly in this order and with these headings (H1/H2 as shown):
+      1) '# <##> — <Lab Name>'
+      2) '> ### Quick Summary' block (lines starting with '> ')
+      3) '# Why This Matters'
+      4) '---' (horizontal rule)
+      5) '# What You’ll Build'
+      6) '---'
+      7) '# Outcomes'
+      8) '---'
+      9) '# Setup'
+     10) '---'
+     11) '# Steps'
+         11a) '## 1) Plan (2–3 min)'
+         11b) '## 2) Build / Prep (3–5 min)'
+         11c) '## 3) Code (8–12 min)'
+         11d) '## 4) Discovery (checklist + pseudocode) (8–12 min)'
+         11e) '## 5) Test (3–5 min)'
+         11f) '## 6) Iterate (2–3 min)'
+     12) '---'
+     13) '# Skeleton Starter (start here)'
+     14) '---'
+     15) '# Submission / Demo Checklist'
+     16) '---'
+     17) '# Extensions (choose one)'
+     18) '---'
+     19) '# Troubleshooting'
+     20) '---'
+     21) '# Reflection (1–2 sentences)'
+     22) '---'
+     23) '# Next Up'"
+  - "Exactly one 'Skeleton Starter (start here)' section; keep it minimal with TODOs—no full solution."
+  - "Place the '🆘 Need a hint?' callout directly under '# Steps' and link to:
+     'Example_Code/<lab-slug>/STUDENT_START.md' (lab-specific)."
+  - "Step 4 ('Discovery') MUST have a checklist + brief pseudocode; NO solution code."
+  - "No spoilers: never include a full solution; reference STUDENT_START.md only."
+  - "All links must be relative. Validate filenames/slugs."
+  - "All code fences must close; Step headings must be numbered '## 1)…## 6)'."
 
-audience: "6th–12th graders; curious, hands-on; short attention spans."
-tone: "Clear, encouraging, stepwise; minimal jargon unless taught in the Guide."
+post_generation_checklist:
+  - "Structure: All required sections exist and in exact order."
+  - "Discovery: Step 4 uses a checklist + brief pseudocode (no concrete solution code)."
+  - "Starters: Exactly one 'Skeleton Starter (start here)'."
+  - "Hints: '🆘 Need a hint?' under '# Steps' → Example_Code/<lab-slug>/STUDENT_START.md."
+  - "No spoilers: No full solution code; reference STUDENT_START.md only."
+  - "Links: Guide + helper links are relative and valid."
+  - "Code fences & headings: Fences close; no duplicate headers; '## 1)…## 6)'."
+  - "Student agency: ≥2 TODOs for learners."
+  - "No YAML front matter present."
 
-# --------------------
-# FIXED CONSTRAINTS
-# --------------------
-constraints:
-  - "Keep section order exactly as in the template."
-  - "Perform a full sweep after drafting: ensure all required sections are present and in the exact order."
-  - "Discovery step: use a checklist + brief pseudocode only — NO concrete solution code."
-  - "Include exactly one 'Skeleton Starter' section (no duplicates)."
-  - "Insert a '🆘 Need a hint?' callout directly under '# Steps' linking to 'Example_Code/<lab-slug>/STUDENT_START.md' (lab-specific, not hard-coded)."
-  - "Do NOT include full solution code anywhere in the lab; only reference the helper ('STUDENT_START.md')."
-  - "Include a short rubric with Must and a Stretch item (1–3 bullets each)."
-  - "Use Plan → Build → Code → Test → Iterate cadence."
-  - "Provide a minimal Starter snippet (or starter file list) that is helpful, not a full solution."
-  - "Add Troubleshooting with practical failure modes and fixes."
-  - "Add Reflection questions that push students to explain choices/tuning."
-  - "End with a Next up pointer to the logical next lab or guide."
-  - "Prefer small, testable functions and safe exits (Ctrl-C) for hardware."
-  - "If hardware is involved, include Safety & setup and explicit pin maps (if relevant)."
-  - "Never require installing software on school laptops unless stated."
-
-ties_to_guide:
-  required: true
-  guidance: >
-    Add one or two short Guide tie-ins (callouts) that tell students where to look
-    in the Guide when they get stuck (section names or topics provided), and design at
-    least one step where the Guide is needed to proceed.
-
-fields_to_fill:
-  - "Lab Title: <Lab Title>"
-  - "Level: <two-digit level>"
-  - "Estimated Time: <range, e.g., 45–75 min>"
-  - "Difficulty: <Beginner | Intermediate | Advanced>"
-  - "Prereqs: <Guides and/or Labs this one builds on>"
-  - "Target Guide: <Guide Name & number>"
-  - "Hardware (if any): <list or 'None'>"
-  - "Key Skills Practiced: <short, comma-separated list>"
-  - "Starter Files?: <None | filenames>"
-  - "Pin Map (if hardware): <table or bullets>"
-  - "Next Lab/Guide: <where to go next>"
-
-# --------------------
-# TEMPLATE (matches 00/01 lab structure)
-# --------------------
 template_md: |
-  ---
-  title: <Lab Title>
-  level: <##>
-  estimated_time: <min–max>
-  difficulty: <Beginner|Intermediate|Advanced>
-  prereqs:
-    - <Guide or Lab 1>
-    - <Guide or Lab 2>
-  rubric:
-    - ✅ Must: <clear, testable requirement 1>
-    - ✅ Must: <clear, testable requirement 2>
-    - ✅ Must: <clear, testable requirement 3>
-    - ⭐ Stretch: <one compelling extension>
-  ---
-
-  # <Level ## — Lab Name>
+  # <##> — <Lab Name>
 
   > ### Quick Summary
   > **Level:** <##> • **Time:** <min–max>  
-  > **Prereqs:** <list of links>  
+  > **Prereqs:** <relative links to Guides/Labs>  
   > **Hardware:** <None or list>  
-  > **You’ll practice:** <short, comma-separated skills list>
+  > **You’ll practice:** <short, comma-separated skills>
 
   # Why This Matters
-  One short paragraph that motivates the topic with concrete payoffs for the next lab or future guides.
+  <one paragraph>
 
   ---
 
   # What You’ll Build
-  One-paragraph description of the artifact the learner will create, focusing on behavior over implementation details.
+  <one paragraph artifact description>
 
   ---
 
   # Outcomes
   By the end you can:
-  - <behavior/skill 1>
-  - <behavior/skill 2>
-  - <behavior/skill 3>
+  - <behavior 1>
+  - <behavior 2>
+  - <behavior 3>
 
   ---
 
   # Setup
-  - <environment/tools>
-  - <folder structure or files to create>
+  - <tools/env>
+  - <files/folders>
 
   ---
 
   # Steps
 
-  > 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open [STUDENT_START.md](Example_Code/<lab-slug>/STUDENT_START.md).
+  > 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](Example_Code/<lab-slug>/STUDENT_START.md)**.
 
   ## 1) Plan (2–3 min)
-  <small design choices; pull one concept from the Guide>
+  <brief planning>
 
-  ## 2) Build (if hardware) / Prep (if software-only) (3–5 min)
-  <seat hardware, pin map, sanity checks OR project/file prep>
+  ## 2) Build / Prep (3–5 min)
+  <hardware check or project prep>
 
   ## 3) Code (8–12 min)
-  <starter guidance; name small functions; avoid giving full solution>
+  <minimal structure + TODOs; no full solution>
 
   ## 4) Discovery (checklist + pseudocode) (8–12 min)
   **Checklist**
-  - <criteria 1>
-  - <criteria 2>
-  - <criteria 3>
+  - <item 1>
+  - <item 2>
+  - <item 3>
 
   **Pseudocode (guide, not code)**
   ```
-  <brief pseudocode that guides decisions; no specific solution>
+  <brief pseudocode>
   ```
 
   ## 5) Test (3–5 min)
-  <observations, sanity checks, tuning knobs>
+  <sanity checks + knobs>
 
   ## 6) Iterate (2–3 min)
-  <one improvement loop: tune a constant, refactor a function, polish UX>
+  <one improvement loop>
 
   ---
 
   # Skeleton Starter (start here)
-  <exactly one minimal starter or link to starter files>
-
+  <exactly one minimal starter; encourage TODOs>
   ```python
-  # keep small; demonstrate structure, I/O, or a key helper function
+  # minimal structure only
   ```
 
   ---
 
   # Submission / Demo Checklist
-  - [ ] <outcome 1 stated in behavior terms students can demo>
-  - [ ] <outcome 2>
-  - [ ] <clean exit or safe stop>
+  - [ ] <demo 1>
+  - [ ] <demo 2>
+  - [ ] <clean exit>
 
   ---
 
   # Extensions (choose one)
-  - <extension idea that uses knowledge from the Guide and invites creativity>
-  - <second idea (optional)>
+  - <idea 1>
+  - <idea 2>
 
   ---
 
   # Troubleshooting
-  - **Symptom** → <likely cause> → <student-doable fix>
-  - **Symptom** → <likely cause> → <student-doable fix>
+  - **Symptom** → <Likely cause> → <Fix>
 
   ---
 
@@ -170,9 +157,9 @@ template_md: |
   ---
 
   # Next Up
-  A single sentence that points to the next Lab/Guide and why it’s a good next step.
+  <one-sentence pointer to next lab/guide>
 
-post_generation_checklist:
+  post_generation_checklist:
   - "Structure: All required sections exist and follow the exact template order used in 00/01 (Quick Summary → Why This Matters → What You’ll Build → Outcomes → Setup → # Steps with ## 1)…## 6) → Skeleton Starter → Submission/Demo → Extensions → Troubleshooting → Reflection → Next Up)."
   - "Discovery (Step 4): Uses a checklist + brief pseudocode only (no concrete solution code)."
   - "Starters: Exactly one 'Skeleton Starter (start here)' section is present (no duplicates)."
@@ -182,4 +169,3 @@ post_generation_checklist:
   - "Code fences & headings: All fences close; no duplicate headers; consistent ## 1)…## 6) numbering."
   - "Student agency: At least 2 clear TODOs remain for learners."
   - "YAML front matter: Keys/values parse cleanly (quote values with colons or special characters)."
-
