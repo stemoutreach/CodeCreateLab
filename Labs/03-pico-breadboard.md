@@ -1,206 +1,121 @@
-# Setup
-- **Classroom default:** **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**
-- Connect the **Pico** via micro‑USB
-- Thonny → **Tools ▸ Options ▸ Interpreter** → **MicroPython (Raspberry Pi Pico)**; flash MicroPython if prompted
-- Create `pico_breadboard_lab.py` in `~/Documents/CodeCreate/`, then **Run ▶** and watch the **Shell**
 
----
-
+# 03 — Pico Circuit Challenges (Breadboard Lab)
 
 > ### Quick Summary
-> **Level:** 03 • **Time:** 45–75 min  
-> **Prereqs:** [Guide: 03 — Pico Breadboarding](../Guides/03-pico-breadboarding.md)  
-> **Hardware:** Raspberry Pi 500 + **Pico** + breadboard + components  
-> **You’ll practice:** Buttons (input), LED & RGB (output), buzzer (PWM), ultrasonic distance
+> **Level:** 03 • **Time:** 40–70 min  
+> **Prereqs:** [Guide: 03 — Pico + Breadboarding](../Guides/03-pico-breadboarding.updated.md)  
+> **Hardware:** Raspberry Pi Pico, breadboard, LED + resistor, pushbutton + resistor, (optional) RGB LED or active buzzer  
+> **You’ll practice:** GPIO input/output, pull-ups/pull-downs, debouncing, simple patterns
 
 # Why This Matters
+This lab cements the basics you’ll use in every Pico project: read inputs safely and drive outputs predictably. Mastering these patterns prepares you for robot control and sensors.
 
-> **Learn → Try → Do**
-> - **Learn** in the Guide
-> - **Try** quick practice in the Guide
-> - **Do** this Lab project
-This lab turns basic I/O into an interactive gadget. You'll wire inputs and outputs and write small functions to keep your code tidy.
+---
+## What you’ll learn
+- Wire an LED and pushbutton correctly (with resistors)
+- Configure pins as **IN** with **pull-ups/downs** or external resistors
+- Debounce a button in software
+- Drive an LED (and optional RGB/buzzer) with clean functions
+- Structure a simple main loop
 
-# What You’ll Build
-A breadboarded gadget that reacts to a **button** and shows state with an **LED** or **RGB LED**, with optional **buzzer** tones and **ultrasonic** distance feedback.
+## Setup
+> **Classroom default:** Raspberry Pi 500 + **Thonny**  
+> Choose **MicroPython (Raspberry Pi Pico)** and save your file on the Pico as **`main.py`**.
 
-# Outcomes
-By the end you can:
-- Read a **button** and debounce it
-- Drive an **LED** and **RGB LED**
-- Play a **buzzer** tone with PWM (optional)
-- Measure distance with **HC‑SR04** (optional)
-- Organize logic into small **functions** and exit cleanly
-
-# Goal
-Build a small interactive circuit on a breadboard. Pressing the **button** should control an **LED**.  
-Add at least **one** extension (RGB LED or ultrasonic distance sensor) if time permits.
-
-## Materials
-- Raspberry Pi Pico (or Pico W) + micro‑USB cable
-- Breadboard, jumper wires
-- **1× LED** and **1× 220–330Ω resistor**
-- **1× pushbutton**
-- *(Optional)* RGB LED (common cathode recommended) or **HC‑SR04** ultrasonic sensor
-
-## Wiring (reference)
-| Part | Pico GPIO | Notes |
-|------|-----------|-------|
-| LED anode (long leg) | **GP14** | LED cathode → resistor → **GND** |
-| Pushbutton | **GP15** | Other side → **GND** (library will pull‑up) |
-| RGB LED (optional) | **R=GP13, G=GP12, B=GP11** | Use `picozero.RGBLED(13,12,11)`; common‑cathode to GND |
-| HC‑SR04 (optional) | **TRIG=GP10, ECHO=GP9** | ECHO must go to a **3V3‑safe** input |
-
-> If your RGB LED is **common anode**, set `active_high=False` in `RGBLED(...)` or invert values.
-
+---
 # Steps
+> 🆘 **Need a hint?** See the skeleton below and the wiring diagram in the **03 Guide**.
 
+## 1) Wire LED + button
+- LED on `GP15` (through resistor to GND) — adjust if your board labeling differs.  
+- Button on `GP14` to 3.3V with a 10kΩ pull-down to GND (or use internal pull-up and wire accordingly).
 
-> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/03-pico-breadboard-lab/STUDENT_START.md)**.
+**Discovery (pseudo-steps):**
+- Read `button.value()` repeatedly; print transitions only.  
+- Light LED only when the button is pressed.
 
-> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/03-pico-breadboard-lab/STUDENT_START.md)**.
+## 2) Debounce
+- Implement a simple debounce: ignore changes for ~30 ms after an edge.  
+- Print “pressed” and “released” once per action.
 
-1) **Plan** — Sketch your wiring and pin choices; confirm resistor on LED.  
-2) **Build** — Place parts and make connections; double‑check polarity and pins.  
-3) **Code** — Start from the starter file below; run and verify button→LED behavior.  
-4) **Test** — Try holding, tapping, and rapid presses to see debounce effects.  
-5) **Iterate** — Add one extension (RGB LED color changes or distance‑based logic).
+## 3) Patterns
+- Add `blink(times, on_ms, off_ms)` using `sleep_ms`.  
+- Optional: if you have an **active buzzer**, add `beep(ms)` in parallel with LED.
 
-## Starter snippet (see full starter file below)
+## 4) Mini challenge
+- While the button is held: **blink fast**.  
+- When released: **blink slow** three times, then turn off.
+
+---
+## Skeleton Starter
 ```python
-from picozero import Button, LED
-from time import sleep
+from machine import Pin
+from time import ticks_ms, ticks_diff, sleep_ms
 
-button = Button(15)  # internal pull-up handled by library
-led = LED(14)
+LED_PIN = 15
+BTN_PIN = 14
+DEBOUNCE_MS = 30
 
-def read_button():
-    return button.is_pressed
+led = Pin(LED_PIN, Pin.OUT)
+btn = Pin(BTN_PIN, Pin.IN, Pin.PULL_DOWN)  # or Pin.PULL_UP if you wire to GND
 
-def show_status(pressed: bool):
-    led.on() if pressed else led.off()
-
-try:
-    while True:
-        pressed = read_button()
-        show_status(pressed)
-        sleep(0.02)  # simple debounce
-except KeyboardInterrupt:
-    led.off()
-    print("\nGoodbye!")
-```
-
-## Submission / Demo checklist
-- [ ] Button **press** turns the LED **on**, release turns it **off** (or toggles—your choice, but be consistent).  
-- [ ] Code uses **functions** and includes a **small debounce** delay.  
-- [ ] Program exits cleanly on Ctrl‑C.
-
-## Extensions (choose one or more)
-- **RGB LED mode:** Use `RGBLED(13,12,11)` and set colors (e.g., green when pressed, fade when released).  
-- **Distance mode:** Add HC‑SR04 and map distance to color (red=near, blue=mid, green=far).  
-- **Buzzer:** Add a tone when pressed (use a PWM‑capable pin).  
-- **Game:** Make a reaction‑time game; print milliseconds to beat.
-
-## Troubleshooting
-- **LED stays off** → Check LED orientation (long leg to GPIO), resistor to GND, and correct pin number.  
-- **Button always “pressed”** → Make sure you’re using **opposite** legs of the switch; one side must go to **GND**.  
-- **ImportError** on `picozero` → Ensure you’re running on the **Pico** with MicroPython/Thonny, not your PC Python.  
-- **Nothing runs** → In Thonny, set Interpreter to **MicroPython (Raspberry Pi Pico)**.
-
-## Reflection
-In 2–3 sentences, describe how you’d modularize this code further (e.g., a `Device` class or config dict for pins).
-
-## Next up
-Continue to **[04 – PicoBot Maze Explorer](../Labs/04-picobot-maze-explorer.md)** if you’re building the robot.
-
-
-# Skeleton Starter
-Use this **single** starter. Fill each **TODO**. No full solutions here.
-
-```python
-from picozero import Button, LED, RGBLED, Speaker
-from time import sleep
-
-# Pins
-BTN_PIN = 15
-LED_PIN = 14
-RGB_PINS = (13, 12, 11)  # R,G,B
-
-button = Button(BTN_PIN)
-led = LED(LED_PIN)
-rgb = RGBLED(*RGB_PINS)
-# Optional buzzer (active speaker): if using a simple piezo, use PWM and set duty/frequency
-try:
-    buzzer = Speaker(10)  # optional; comment out if not present
-except Exception:
-    buzzer = None
-
-# Optional HC-SR04 support (user to implement if available)
-# TRIG=GP10, ECHO=GP9
-# TODO: implement distance_cm() using machine.Pin + time_pulse_us or a helper library
-
-def read_button() -> bool:
-    """Return True if pressed (debounced via tiny sleep in loop)."""
-    return button.is_pressed
+last_state = 0
+last_change = 0
 
 def set_led(on: bool):
-    led.on() if on else led.off()
+    led.value(1 if on else 0)
 
-def set_rgb(r: float, g: float, b: float):
-    """Set RGBLED with 0..1 floats."""
-    rgb.color = (r, g, b)
+def blink(times=3, on_ms=200, off_ms=200):
+    for _ in range(times):
+        set_led(True); sleep_ms(on_ms)
+        set_led(False); sleep_ms(off_ms)
 
-def beep(ms=100):
-    if buzzer:
-        try:
-            buzzer.on()
-            sleep(ms/1000)
-            buzzer.off()
-        except Exception:
-            pass
+def read_button_debounced():
+    global last_state, last_change
+    now = ticks_ms()
+    raw = btn.value()
+    if raw != last_state and ticks_diff(now, last_change) > DEBOUNCE_MS:
+        last_state = raw
+        last_change = now
+        return raw  # edge detected
+    return None     # no change
 
 def main():
-    print("Pico Breadboard Lab — Button/LED/RGB (buzzer/ultrasonic optional)")
-    while True:
-        try:
-            pressed = read_button()
-            # TODO: Toggle or mirror LED state based on pressed
-            # Example mirror:
-            set_led(pressed)
+    try:
+        while True:
+            edge = read_button_debounced()
+            if edge is None:
+                sleep_ms(5)
+                continue
 
-            # TODO: If pressed: show green; else blue (or any scheme)
-            set_rgb(0, 1, 0) if pressed else set_rgb(0, 0, 1)
-
-            # TODO (optional): short beep when pressed transitions from False->True
-            # Hint: track prev state
-
-            # TODO (optional): if you implemented distance_cm(), map distance to a color
-
-            sleep(0.02)  # simple debounce
-        except KeyboardInterrupt:
-            break
-    # cleanup
-    set_led(False); set_rgb(0,0,0)
-    if buzzer: buzzer.off()
-    print("Goodbye!")
+            if edge == 1:  # pressed
+                # fast blink while held
+                set_led(True)
+            else:          # released
+                set_led(False)
+                blink(times=3, on_ms=120, off_ms=120)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        set_led(False)
 
 if __name__ == "__main__":
     main()
 ```
 
+---
+## Testing & troubleshooting
+- **LED won’t light:** check polarity; long leg to Pico, short leg to GND via resistor.  
+- **Button bounces:** increase `DEBOUNCE_MS` or use hardware RC filter.  
+- **Inverted logic:** if using `PULL_UP`, pressed might read `0`—invert accordingly.
 
-# Demo / Submission Checklist
-- [ ] Saved working code as **main.py** on the Pico and verified auto‑run
-- [ ] Button → LED behavior works consistently (mirror or toggle; state explained)
-- [ ] Code uses **functions** for I/O and includes a small **debounce**
-- [ ] **RGB LED** changes color based on state (or a mode you designed)
-- [ ] *(Optional)* **Buzzer** beeps on press transition (no stuck tone)
-- [ ] *(Optional)* **Ultrasonic** reading affects color/printout
-- [ ] Clean exit on **Ctrl‑C** (LEDs off)
+## Submission checklist
+- [ ] Debounced button logic (single press/release events)  
+- [ ] LED control with `set_led()` and `blink()`  
+- [ ] Challenge behavior implemented  
+- [ ] Clean exit and LED off in `finally:`
 
-### Deploy to Pico (main.py)
-> **Make it auto‑run:** Save your final script **to the Pico** as `main.py`. Unplug/replug USB or power the Pico — it runs automatically.
-1. In **Thonny**: File → **Save as…** → **Raspberry Pi Pico**.
-2. Name it **`main.py`** (this special name auto‑runs at boot).
-3. Unplug/replug the Pico or power it from a battery/USB — your program starts by itself.
-
+## Rubric
+- **Must:** stable input reading + LED output control  
+- **Should:** clean function structure and debounce  
+- **Stretch:** optional RGB/buzzer patterns or a tiny state machine
