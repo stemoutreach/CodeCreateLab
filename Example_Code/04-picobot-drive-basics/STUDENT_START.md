@@ -1,48 +1,28 @@
-# STUDENT_START — 04 PicoBot Drive Basics (No Sensors)
 
-No-spoilers starter that mirrors the lab. Copy only what you need.
+# PicoBot — Drive Basics (Student Starter)
 
-```python
-from machine import Pin, PWM
-from time import sleep_ms
+> Goal: Drive forward, turn, and stop using an L298N motor driver with PWM trim. **No sensors** for this lab.
 
-# EDIT to match your wiring
-ENA = 2; IN1 = 3; IN2 = 4
-ENB = 5; IN3 = 6; IN4 = 7
+## Files in this folder
+- `main.py` — skeleton you will complete
+- *(Coach only)* `SOLUTION.md` — full reference solution (don’t peek!)
 
-BASE_DUTY = 0.6
-LEFT_TRIM = 0.00
-RIGHT_TRIM = 0.00
+## Steps
+1. Wire the L298N to your Pico (see Guide: `Guides/04-picobot.updated.md` for pin map).
+2. In Thonny, select **MicroPython (Raspberry Pi Pico)** as the interpreter.
+3. Open `main.py`:
+   - Set the GPIO pin numbers for `ENA/ENB/IN1/IN2/IN3/IN4`.
+   - Complete the TODOs to implement `forward(ms)`, `turn_left(ms)`, `turn_right(ms)`, and `stop()`.
+   - Use `set_trim(left, right)` to balance your motors.
+4. Save to the Pico as **`main.py`** so it runs on boot.
+5. Test the demo route (a timed square). Tweak `PWM_DUTY` and trim as needed.
 
-pwm_left = PWM(Pin(ENA)); pwm_right = PWM(Pin(ENB))
-pwm_left.freq(1000); pwm_right.freq(1000)
+## Safety
+- Keep wheels off the table when first testing.
+- Always call `stop()` before errors or exiting (`Ctrl+C`).
 
-in1 = Pin(IN1, Pin.OUT); in2 = Pin(IN2, Pin.OUT)
-in3 = Pin(IN3, Pin.OUT); in4 = Pin(IN4, Pin.OUT)
-
-def duty_to_u16(frac): return int(max(0.0, min(1.0, float(frac))) * 65535)
-
-def stop():
-    in1.value(0); in2.value(0); in3.value(0); in4.value(0)
-    pwm_left.duty_u16(0); pwm_right.duty_u16(0)
-
-def set_left(direction, duty): pass   # TODO
-def set_right(direction, duty): pass  # TODO
-def forward(duty=BASE_DUTY): pass     # TODO
-def turn_left(duty=BASE_DUTY): pass   # TODO
-def turn_right(duty=BASE_DUTY): pass  # TODO
-def drive_square(side_ms=1200, turn_ms=700, duty=BASE_DUTY): pass  # TODO
-
-def main():
-    print("PicoBot Drive Basics — wheels OFF table for first run!")
-    try:
-        stop()
-        # TODO: quick spin test (wheels up)
-        # TODO: drive_square()
-    finally:
-        stop()
-        print("Stopped.")
-
-if __name__ == "__main__":
-    main()
-```
+## Checklist
+- [ ] Robot drives forward in a straight line (trim adjusted)
+- [ ] Robot can turn left and right
+- [ ] `stop()` reliably stops both motors
+- [ ] Timed square route completes without intervention
