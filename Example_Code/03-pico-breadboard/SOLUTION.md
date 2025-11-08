@@ -1,4 +1,7 @@
-# SOLUTION — 03 Pico Breadboard Lab
 
-This file intentionally left empty in the student version to avoid spoilers.
-Instructors: place the reference solution here (kept out of the lab).
+# Coach Solution — Pico Breadboard Lab
+
+**Notes:**
+- Debounce with `ticks_ms()`; 30–50 ms is usually enough for a clean edge.
+- For PULL_UP wiring (button to GND), invert edge logic or switch to `Pin.PULL_UP` and interpret `0` as pressed.
+- Mini-challenge patterns can be implemented by checking `btn.value()` inside a tight loop while pressed.
