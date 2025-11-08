@@ -190,9 +190,17 @@ if __name__ == "__main__":
 
 
 # Demo / Submission Checklist
+- [ ] Saved working code as **main.py** on the Pico and verified auto‑run
 - [ ] Button → LED behavior works consistently (mirror or toggle; state explained)
 - [ ] Code uses **functions** for I/O and includes a small **debounce**
 - [ ] **RGB LED** changes color based on state (or a mode you designed)
 - [ ] *(Optional)* **Buzzer** beeps on press transition (no stuck tone)
 - [ ] *(Optional)* **Ultrasonic** reading affects color/printout
 - [ ] Clean exit on **Ctrl‑C** (LEDs off)
+
+### Deploy to Pico (main.py)
+> **Make it auto‑run:** Save your final script **to the Pico** as `main.py`. Unplug/replug USB or power the Pico — it runs automatically.
+1. In **Thonny**: File → **Save as…** → **Raspberry Pi Pico**.
+2. Name it **`main.py`** (this special name auto‑runs at boot).
+3. Unplug/replug the Pico or power it from a battery/USB — your program starts by itself.
+
