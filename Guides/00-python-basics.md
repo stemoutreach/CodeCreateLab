@@ -46,31 +46,7 @@ print("Hi", "there", 2025)   # prints items with spaces
 **Checkpoint**: You can explain the difference between printing a **value** vs. a **string** that looks like code.
 
 ---
-## 2) Read input (and convert when needed)
-**Idea**: `input()` pauses and returns what the user typed **as a string**.  
-**When to use**: You need the user to choose, answer, or confirm.  
-**Pattern**:
-```python
-answer_text = input("<question> ")
-# convert if you need a number:
-answer_number = int(answer_text)   # or float(...)
-```
-**Try it**
-```python
-name = input("What is your name? ")
-print("Hi", name)
-
-age_text = input("How old are you? ")
-age = int(age_text)      # or float(...) for decimals
-print("Next year you’ll be", age + 1)
-```
-**Gotchas**
-- Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
-- Forgetting to store the result of `input()`
-**Checkpoint**: You can explain why `input()` gives a string and how to convert it.
-
----
-## 3) Variables & types (names for values)
+## 2) Variables & types (names for values)
 **Idea**: Variables keep data so you can reuse or change it. Types tell Python how to treat the data.  
 **When to use**: Any time you need to remember something for later.  
 **Pattern**:
@@ -92,6 +68,30 @@ print(type(a), type(b))
 - Use snake_case: `player_name`, `total_points`
 - Don’t start with a number; be descriptive
 **Checkpoint**: You can state the type (`str`, `int`, `float`, `bool`) of a given literal.
+
+---
+## 3) Read input (and convert when needed)
+**Idea**: `input()` pauses and returns what the user typed **as a string**.  
+**When to use**: You need the user to choose, answer, or confirm.  
+**Pattern**:
+```python
+answer_text = input("<question> ")
+# convert if you need a number:
+answer_number = int(answer_text)   # or float(...)
+```
+**Try it**
+```python
+name = input("What is your name? ")
+print("Hi", name)
+
+age_text = input("How old are you? ")
+age = int(age_text)      # or float(...) for decimals
+print("Next year you’ll be", age + 1)
+```
+**Gotchas**
+- Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
+- Forgetting to store the result of `input()`
+**Checkpoint**: You can explain why `input()` gives a string and how to convert it.
 
 ---
 ## 4) Decisions: `if / elif / else`
