@@ -160,6 +160,13 @@ while True:
 
 ---
 
+
+### Deploy to Pico (main.py)
+> **Make it auto‑run:** Save your final script **to the Pico** as `main.py`. Unplug/replug USB or power the Pico — it runs automatically.
+1. In **Thonny**: File → **Save as…** → **Raspberry Pi Pico**.
+2. Name it **`main.py`** (this special name auto‑runs at boot).
+3. Unplug/replug the Pico or power it from a battery/USB — your program starts by itself.
+
 ### 2) Blink an external LED (with a resistor)
 **Wiring (series path)**
 - **GPIO 14** → **resistor** → **LED long leg (anode)**  
