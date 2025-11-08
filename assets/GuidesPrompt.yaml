@@ -91,3 +91,44 @@ example_inputs:
 template_hints:
   Setup: 'State classroom default: Raspberry Pi 500 + Thonny. Include quick steps:
     open Thonny, create file in ~/Documents/CodeCreate/, Run ▶, view Shell.'
+
+
+post_generation_checklist:
+  - "Structure: Must follow the exact section order below—no new top-level sections and none omitted."
+  - "Learning-first: Each concept should include a short 'Idea' sentence plus a runnable example and at least one 'Common mistakes/Gotchas' note."
+  - "Student practice: Include 'Check your understanding', 'Mini practice', and 'Stretch' items (no full solutions)."
+  - "Teacher clarity: Include 'Vocabulary' and 'Troubleshooting' sections."
+  - "Environment: Setup must reference Raspberry Pi 500 and Thonny (unless the guide explicitly targets another environment)."
+  - "Consistency: Use f-strings in output examples; prefer snake_case; avoid tabs (4 spaces)."
+  - "Links: Validate next/prev guide links are relative and correct."
+  - "Safety rails: Avoid spoilers; keep examples short and focused."
+  - "Style: Use second-person voice, short sentences, and concrete payoffs in 'Why This Matters'."
+  - "Accessibility: Avoid jargon where possible; define any new term in 'Vocabulary'."
+exact_section_order:
+  - "# <Guide Title>"
+  - "> Quick Summary (blockquote)"
+  - "# Why This Matters"
+  - "---"
+  - "## What you’ll learn"
+  - "## Setup"
+  - "---"
+  - "## 1) ... (teaching section)"
+  - "## 2) ..."
+  - "## 3) ..."
+  - "## Vocabulary"
+  - "## Check your understanding"
+  - "## Mini practice"
+  - "### Stretch"
+  - "## Troubleshooting"
+  - "## Next up"
+writing_guidelines:
+  - "Prefer small runnable examples over long theory."
+  - "Show patterns: Concept → Why → Pattern → Example → Mini task."
+  - "Call out common pitfalls right after the first example of a concept."
+  - "Keep each example under 6 lines unless absolutely necessary."
+  - "Use plain language; define terms before using acronyms."
+  - "Never include full solutions for labs inside guides."
+environment_defaults:
+  - "Hardware: Raspberry Pi 500"
+  - "Editor: Thonny"
+  - "OS: Raspberry Pi OS (latest)"
