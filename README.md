@@ -15,6 +15,12 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 ---
 
 ## 🧭 How to use this repo
+
+### Our learning loop: Learn → Try → Do
+- **Learn** (Guides): short, focused explanations with tiny examples.
+- **Try** (Guides): quick practice right after you learn something.
+- **Do** (Labs): build a small project that proves you can apply it.
+
 1. Start with a **Guide**, then complete the matching **Lab** with the same number.  
 2. Use the **Skeleton Starter** from `Example_Code/<NN-...>.py` when provided.  
 3. Demo your Lab using the **Submission Checklist** and try at least one **Extension**.
