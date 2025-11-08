@@ -87,6 +87,46 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 
 ---
 
+
+
+---
+
+## 🤝 Contributing
+We welcome fixes and improvements!
+
+- **Branching:** create a feature branch (e.g., `chore/links-lychee`), open a PR.
+- **Filenames & links:** use **dash form** for files (e.g., `02-5-sense-hat-advanced.md`). You may keep “02.5” as a human‑readable label **in text**, but **never** in filenames or link URLs.
+- **Drive‑only scope for #04:** keep `Labs/04-picobot-drive-basics.md` focused on **L298N drive basics (no sensors)** to avoid drift.
+- **Example code layout:** each lab should have a matching folder under `Example_Code/` with `STUDENT_START.md` and (coach‑only) `SOLUTION.md`.
+
+**Optional CI: Markdown link check (Lychee)**  
+Create `.github/workflows/markdown-link-check.yml`:
+```yaml
+name: Check links
+on:
+  push:
+  pull_request:
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lychee Link Checker
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --accept 200,204,429
+            --exclude-mail
+            --exclude-path "assets/**"
+            --include-fragments
+            .
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+
 ## 🪪 License & attribution
 Made with ❤️ by STEM Outreach volunteers & community mentors. Licensed under the **MIT License**.  
 If you reuse or remix, please include attribution (“Code & Create Lab”).
