@@ -3,7 +3,7 @@
 > ### Quick Summary
 > **Level:** 01 • **Time:** 35–60 min  
 > **Prereqs:** [Guide: 00 — Python Basics](../Guides/00-python-basics.md), [Guide: 01 — Python Functions](../Guides/01-python-functions.md)  
-> **Hardware:** Computer only  
+> **Hardware:** Raspberry Pi 500 + Thonny (Python 3)
 > **You’ll practice:** defining/calling functions, parameters, return values, local vs global scope, docstrings
 
 # Why This Matters
@@ -26,14 +26,16 @@ By the end you can:
 ---
 
 # Setup
-- Use any Python 3 environment (local install or browser).  
-- Start from a **new folder**: `Labs/01-treasure-hunt-functions/`.
+- Open **Thonny** on your **Raspberry Pi 500** (Menu → Programming → Thonny).
+- Create a new file named `treasure_functions.py` in `~/Documents/CodeCreate/`.
+- Press **Run ▶** to execute; watch the **Shell** for output.
 
 ---
 
 # Steps
 
-> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open [STUDENT_START.md](Example_Code/01-treasure-hunt-functions/STUDENT_START.md) and reveal the Full Starter to compare with your approach.
+
+> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/01-treasure-hunt-functions/STUDENT_START.md)** and reveal the Full Starter to compare with your approach.
 
 ## 1) Plan (2–3 min)
 List your functions and their jobs. For example:  
@@ -154,7 +156,7 @@ if __name__ == "__main__":
 
 ---
 
-# Submission / Demo Checklist
+# Demo / Submission Checklist
 - [ ] Uses **three+ functions** with clear names and single purposes.  
 - [ ] `check_direction()` **returns** a value that drives the loop (no hidden globals).  
 - [ ] Program handles **invalid** input and supports **quit**.  
