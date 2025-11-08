@@ -25,6 +25,17 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 
 ---
 
+## 🛠️ Setup (classroom default)
+- **Hardware:** Raspberry Pi 500 running Raspberry Pi OS  
+- **IDE:** Thonny (Menu → Programming → Thonny)  
+- **Save your work:** `~/Documents/CodeCreate/`  
+- **Interpreters:**  
+  - Raspberry Pi & Sense HAT labs → **Python 3** in Thonny  
+  - Pico & PicoBot labs → **MicroPython (Raspberry Pi Pico)** in Thonny (choose from the interpreter menu)
+- If you’re working outside the lab, you can prototype simple Python in a browser REPL and move to Thonny later.
+
+---
+
 ## 🧠 Core Concepts
 - **Python Fundamentals** — variables, conditionals, loops, functions  
 - **Sensor I/O** — temperature, humidity, pressure, IMU  
