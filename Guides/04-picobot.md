@@ -6,6 +6,8 @@
 > **Hardware:** Pico + L298N driver, 2 DC motors with wheels, battery pack, chassis, jumpers  
 > **You’ll practice:** motor driver wiring, safe power & common ground, direction control, basic turning, optional PWM speed control
 
+> **Learn → Try**: Learn concepts here with tiny examples, then Try a quick practice before you Do the matching Lab.
+
 # Why This Matters
 Driving a robot is the foundation for navigation challenges. You’ll wire a Pico to an L298N and write helpers for forward/back/turn/stop—skills you’ll reuse when we add sensors later.
 
@@ -19,7 +21,11 @@ Driving a robot is the foundation for navigation challenges. You’ll wire a Pic
 - Add optional speed control with PWM
 
 ## Setup
-This setup uses MicroPython on Pico with Thonny. Create `drive.py`. Keep wheels off the table for first tests.
+- **Classroom default:** **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**
+- Connect the **Pico** via micro‑USB
+- Thonny → **Tools ▸ Options ▸ Interpreter** → **MicroPython (Raspberry Pi Pico)**; flash MicroPython (UF2) if prompted
+- Create `drive.py` in `~/Documents/CodeCreate/`, then **Run ▶** and watch the **Shell**
+- Keep the robot **wheels off the table** for first tests
 
 ## Materials  (ONLY include if hardware is involved)
 - Raspberry Pi Pico / Pico W
@@ -137,4 +143,4 @@ Program a **“drive square”** routine using your helpers and tuned timings.
 
 ---
 ## Next up
-**[04 – PicoBot: Drive & Turns](../Labs/04-picobot-drive.md)**
+**[04 — PicoBot Maze Explorer (Drive Basics)](../Labs/04-picobot-maze-explorer.md)**
