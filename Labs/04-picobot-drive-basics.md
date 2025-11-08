@@ -1,200 +1,159 @@
-# 04 — PicoBot Drive Basics (No Sensors)
+
+# 04 — PicoBot — Drive Basics
 
 > ### Quick Summary
-> **Level:** 04 • **Time:** 60–90 min  
-> **Prereqs:** [Guide: 04 — PicoBot: Drive with L298N (No Sensors)](../Guides/04-picobot.md)  
-> **Hardware:** Raspberry Pi 500 + Pico + **L298N** + 2× DC motors + chassis + battery  
-> **You’ll practice:** Motor polarity, forward/turn/stop helpers, **PWM** speed control, **trim**, timed square
+> **Level:** 04 • **Time:** 40–60 min  
+> **Prereqs:** [Guide: 03 — Pico + Breadboarding](../Guides/03-pico-breadboarding.updated.md), [Guide: 04 — PicoBot](../Guides/04-picobot.updated.md)  
+> **Hardware:** Raspberry Pi Pico, L298N motor driver, 2× DC gear motors, battery pack, chassis/wheels  
+> **You’ll practice:** motor wiring check, L298N enable/direction, PWM speed control, trim/balance, safe stop
 
 # Why This Matters
-Before sensors and autonomy, your robot needs **predictable motion**. In this lab you’ll verify wiring, create simple drive helpers, add PWM speed control with trim, and prove it by tracing a timed **square**.
-
-> **Learn → Try → Do**  
-> - **Learn** the patterns in the Guide  
-> - **Try** tiny tests in the Guide  
-> - **Do** the full drive routine here in the Lab
+Driving is the foundation for every mobile robot behavior you’ll write later (maze, line following, pickup tasks). Solid motor control, correct pin setup, and safe-stops now will make later sensor labs much easier.
 
 ---
-# What You’ll Build
-A drive program with small, reusable functions that:
-- Start/stop safely
-- Drive forward with **PWM** (plus **LEFT/RIGHT trim** to correct drift)
-- Turn left/right in place
-- Trace a **square** using timing
+## What you’ll learn
+- Map Pico GPIO pins to L298N inputs and enables
+- Generate PWM on `ENA/ENB` for speed control
+- Implement `forward()`, `turn_left()`, `turn_right()`, `stop()`
+- Calibrate left/right **trim** so the robot drives straight
+- Drive a timed **square route** as a functional test
+- Apply safe-stop patterns to avoid runaway motors
 
-# Outcomes
-By the end you can:
-- Map Pico pins to L298N **ENA/IN1/IN2** and **ENB/IN3/IN4**
-- Implement **forward**, **turn_left**, **turn_right**, and **stop**
-- Apply **PWM trim** and tune duty cycles
-- Build a **timed square** routine and adjust timing for your bot
+## Setup
+> **Classroom default:** Raspberry Pi 500 + **Thonny**  
+> In Thonny choose **MicroPython (Raspberry Pi Pico)** and save code on the Pico as **`main.py`** so it runs on boot.
 
-# Setup
-- **Classroom default:** **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**  
-- Connect the **Pico** via micro-USB (wheels **off the table** for first tests)  
-- Thonny → **Tools ▸ Options ▸ Interpreter** → **MicroPython (Raspberry Pi Pico)**; flash UF2 if prompted  
-- Create `picobot_drive.py` in `~/Documents/CodeCreate/`, then **Run ▶** and watch the **Shell**
-
-**Power & safety**  
-- Keep motor power **off** during wiring.  
-- Share **GND** between Pico and the L298N/motor battery.  
-- Start with **low duty** (e.g., 40–60%) and lift wheels for first runs.
+1. Review [Guide: 04 — PicoBot](../Guides/04-picobot.updated.md) for the pin map and wiring diagram.  
+2. Mount the Pico + L298N + motors and double‑check polarity on the motor terminals.  
+3. Keep wheels **off the table** for first power‑on tests.
 
 ---
 # Steps
+> 🆘 **Need a hint?** See the scaffold and tips in:  
+> `../Example_Code/04-picobot-drive-basics/STUDENT_START.md`
 
-> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/04-picobot-drive-basics/STUDENT_START.md)**.
+## 1) Verify wiring & create your project
+- Confirm your pin choices (example from the guide): `ENA=GP2`, `ENB=GP3`, `IN1=GP4`, `IN2=GP5`, `IN3=GP6`, `IN4=GP7`.  
+- In Thonny, create a new file named **`main.py`** on the Pico.
 
-## 1) Wire & name your pins (5–8 min)
-Confirm your L298N mapping and put it into named constants. Example (adjust to match your wiring):
-- **Left motor**: ENA=GP2 (PWM), IN1=GP3, IN2=GP4  
-- **Right motor**: ENB=GP5 (PWM), IN3=GP6, IN4=GP7
+**Discovery (pseudo-steps):**
+- Set all IN pins **LOW**; set PWM on EN pins to **0** duty → wheels do **not** move.
+- Nudge duty to a low value → confirm wheels start turning smoothly.
 
-## 2) Low-level wheel helpers (8–12 min)
-Write **single-purpose** helpers:
-- `set_left(direction, duty)` and `set_right(direction, duty)` where `direction` is `1` (forward) or `-1` (reverse).  
-- Stop = both IN pins low + duty 0.
+## 2) Implement basic motion helpers
+You will create:
+- `stop()` — cut power to both motors (all IN pins low; EN duty 0).  
+- `forward(ms)` — both sides forward for `ms` milliseconds, then `stop()`.  
+- `turn_left(ms)` — left reverse, right forward; pivot left, then `stop()`.  
+- `turn_right(ms)` — mirror of `turn_left`.
 
-## 3) Drive primitives (6–10 min)
-- `forward(duty)` → both wheels forward (with trim).  
-- `turn_left(duty)` / `turn_right(duty)` → in-place turns using opposite wheel directions.
+> Keep **PWM_FREQ ~ 1 kHz** and start **duty ~ 55–70%** of 65535 (MicroPython).
 
-## 4) Speed trim (5–10 min)
-Add `LEFT_TRIM` and `RIGHT_TRIM` (e.g., `-0.10..+0.10`) and apply them in `forward`. Tune until the robot tracks straight.
+## 3) Add trim & make it drive straight
+- Create `set_trim(left, right)` to scale PWM on each side (e.g., 1.00 vs 0.95).  
+- Test a 1‑meter forward drive; tweak trim until it’s straight.
 
-## 5) Timed square (10–15 min)
-Implement `drive_square(side_ms=1200, turn_ms=700, duty=0.6)`:
-1) `forward(duty)`; `sleep_ms(side_ms)` → **stop** → short pause  
-2) `turn_right(duty)`; `sleep_ms(turn_ms)` → **stop** → short pause  
-3) Repeat 1–2 four times; then **stop**.
+## 4) Demo route — the timed square
+- Write `demo_square(side_ms=1000, turn_ms=500)` that calls `forward()` then `turn_right()` **four** times.  
+- Tune `side_ms`/`turn_ms` until you get clean 90° corners.
 
-## 6) Demo & iterate (5–8 min)
-- Start with wheels up; then move to a safe test area.  
-- Adjust `duty`, `side_ms`, and `turn_ms` to tighten the square.
+## 5) Safety & cleanup
+- Wrap your `main()` loop with `try/except KeyboardInterrupt` and call `stop()` in `finally:` so motors always stop.
 
 ---
-# Skeleton Starter
-Use this **single** starter. Fill each **TODO**. No full solutions here.
-
+## Skeleton Starter (paste into `main.py` and complete the TODOs)
 ```python
-# 04 — PicoBot Drive Basics (No Sensors)
-
 from machine import Pin, PWM
 from time import sleep_ms
 
-# === Pin map (EDIT to match your wiring) ===
-ENA = 2   # PWM (left enable)
-IN1 = 3   # left dir 1
-IN2 = 4   # left dir 2
+# === PINS: update to match your wiring ===
+ENA_PIN = 2   # PWM enable (left)
+ENB_PIN = 3   # PWM enable (right)
+IN1_PIN = 4   # Left IN1
+IN2_PIN = 5   # Left IN2
+IN3_PIN = 6   # Right IN3
+IN4_PIN = 7   # Right IN4
 
-ENB = 5   # PWM (right enable)
-IN3 = 6   # right dir 1
-IN4 = 7   # right dir 2
+PWM_FREQ = 1000
+PWM_DUTY = 65000     # ~70% of 65535 is a good start
+TRIM_LEFT = 1.00
+TRIM_RIGHT = 1.00
 
-# === Tuning ===
-BASE_DUTY = 0.6      # 0.0..1.0
-LEFT_TRIM = 0.00     # + makes left faster; - slower
-RIGHT_TRIM = 0.00    # + makes right faster; - slower
+ena = PWM(Pin(ENA_PIN)); enb = PWM(Pin(ENB_PIN))
+ena.freq(PWM_FREQ); enb.freq(PWM_FREQ)
+in1 = Pin(IN1_PIN, Pin.OUT); in2 = Pin(IN2_PIN, Pin.OUT)
+in3 = Pin(IN3_PIN, Pin.OUT); in4 = Pin(IN4_PIN, Pin.OUT)
 
-# === Hardware ===
-pwm_left = PWM(Pin(ENA)); pwm_left.freq(1000)
-pwm_right = PWM(Pin(ENB)); pwm_right.freq(1000)
-in1 = Pin(IN1, Pin.OUT); in2 = Pin(IN2, Pin.OUT)
-in3 = Pin(IN3, Pin.OUT); in4 = Pin(IN4, Pin.OUT)
+def set_trim(left: float, right: float):
+    """TODO: store trim multipliers to balance left/right speed."""
+    # TODO: assign to TRIM_LEFT/TRIM_RIGHT, clamped to a reasonable range (0.0..1.2)
+    pass
 
-def duty_to_u16(frac: float) -> int:
-    """Convert 0.0..1.0 to 0..65535."""
-    frac = max(0.0, min(1.0, float(frac)))
-    return int(frac * 65535)
+def _drive_raw(left_duty: int, right_duty: int):
+    """Low-level direction & PWM. +forward, -reverse, 0 stop."""
+    # TODO: set (in1,in2) and (in3,in4) based on sign of each duty
+    # TODO: apply trim to absolute duty and write via duty_u16()
+    pass
 
 def stop():
-    """Coast/stop both motors."""
-    in1.value(0); in2.value(0)
-    in3.value(0); in4.value(0)
-    pwm_left.duty_u16(0); pwm_right.duty_u16(0)
-
-def set_left(direction: int, duty: float):
-    """direction: 1 forward, -1 reverse"""
-    # TODO: set IN1/IN2 for direction and apply PWM duty
+    """TODO: immediately stop both sides."""
     pass
 
-def set_right(direction: int, duty: float):
-    """direction: 1 forward, -1 reverse"""
-    # TODO: set IN3/IN4 for direction and apply PWM duty
+def forward(ms: int):
+    """TODO: drive forward for ms milliseconds, then stop."""
     pass
 
-def forward(duty=BASE_DUTY):
-    """Forward with trim applied."""
-    # TODO: compute left = duty + LEFT_TRIM, right = duty + RIGHT_TRIM
-    # set_left(1, left); set_right(1, right)
+def turn_left(ms: int):
+    """TODO: pivot left for ms milliseconds (left backward, right forward)."""
     pass
 
-def turn_left(duty=BASE_DUTY):
-    """In-place left turn."""
-    # TODO: left reverse, right forward
+def turn_right(ms: int):
+    """TODO: pivot right for ms milliseconds (left forward, right backward)."""
     pass
 
-def turn_right(duty=BASE_DUTY):
-    """In-place right turn."""
-    # TODO: left forward, right reverse
-    pass
-
-def drive_square(side_ms=1200, turn_ms=700, duty=BASE_DUTY):
-    """Drive a timed square and stop."""
-    # TODO: loop 4 times: forward->sleep->stop->pause->turn_right->sleep->stop
-    pass
+def demo_square(side_ms=1000, turn_ms=500):
+    for _ in range(4):
+        forward(side_ms)
+        sleep_ms(250)
+        turn_right(turn_ms)
+        sleep_ms(250)
 
 def main():
-    print("PicoBot Drive Basics — wheels OFF table for first run!")
     try:
-        stop()
-        # Quick spin test (wheels up)
-        # TODO: call forward(0.5); sleep_ms(400); stop(); then turn_right(0.5); sleep_ms(400); stop()
-        
-        # Place robot down, then try the square:
-        # TODO: drive_square()
+        # Example: slight trim if your bot veers right
+        # set_trim(1.00, 0.95)
+        demo_square()
+    except KeyboardInterrupt:
+        pass
     finally:
         stop()
-        print("Stopped.")
 
 if __name__ == "__main__":
     main()
 ```
 
 ---
-# Demo / Submission Checklist
-- [ ] Saved working code as **main.py** on the Pico and verified auto‑run
-- [ ] Correct **pin map** matches your wiring (comment updated)  
-- [ ] **forward/turn/stop** helpers work and are used (no copy-paste everywhere)  
-- [ ] **Speed trim** applied in `forward` (values documented)  
-- [ ] Robot traces a **square** on the floor (timings tuned for your bot)  
-- [ ] Safe run: wheels up for first tests; clean **stop()** in `finally`
+## Testing & troubleshooting
+- **Wheels don’t move:** check ENA/ENB PWM duty. Many motors need a minimum duty to overcome stiction.  
+- **Drifts right/left:** adjust `set_trim()` (e.g., 1.00 vs 0.95).  
+- **Jerky motion:** lower PWM duty or check battery voltage.  
+- **Keeps running after error:** confirm `stop()` is called in `finally:` block.
+
+## Submission checklist
+- [ ] Implemented `stop`, `forward`, `turn_left`, `turn_right`, and `set_trim`  
+- [ ] Robot drives a reasonably straight line with trim applied  
+- [ ] Timed square completes with ~90° turns  
+- [ ] Code formatted and commented (pin map at top)  
+- [ ] Safety: `try/except/finally` pattern with `stop()`
+
+## Rubric
+- **Must (Pass):** forward/turn/stop work; safe stop; square route completes  
+- **Should (Good):** trim applied for straight driving; clean 90° corners  
+- **Stretch (Great):** parameterized speeds; add `turn_angle()` that estimates ms per degree
+
+## Extensions (optional)
+- Add a `drive(distance_cm, speed)` and `turn(angle_deg)` using your timing calibration.  
+- Experiment with smoother turns by using differential PWM instead of full pivots.
 
 ---
-# Extensions (pick one)
-- **Gentle start/stop:** ramp duty up/down to reduce jerk.  
-- **Differential turn:** try arc turns (one wheel slow, one fast) and compare to in-place turns.  
-- **Calibration log:** print measured side/turn timings you found; save as comments.  
-- **Reverse escape:** add a `back_up(ms)` and try a square in reverse.
-
----
-# Troubleshooting
-- **Both wheels spin same way but robot turns** → Apply **LEFT/RIGHT_TRIM** until it tracks straight.  
-- **One wheel backward** → Swap that motor’s **IN1/IN2** or change your direction bits.  
-- **No movement** → Check **GND common**, motor battery, and that **ENA/ENB** are PWM pins.  
-- **Launches too fast** → Lower `BASE_DUTY` to ~0.4 for first tests.
-
----
-# Reflection
-What trim values worked for your floor and batteries? How would your square routine change with sensor feedback?
-
----
-# Next Up
-When your drivetrain is solid, you’re ready for sensing (e.g., ultrasonic) or navigation aids. For now, commit your tuned timings.
-
-### Deploy to Pico (main.py)
-> **Make it auto‑run:** Save your final script **to the Pico** as `main.py`. Unplug/replug USB or power the Pico — it runs automatically.
-1. In **Thonny**: File → **Save as…** → **Raspberry Pi Pico**.
-2. Name it **`main.py`** (this special name auto‑runs at boot).
-3. Unplug/replug the Pico or power it from a battery/USB — your program starts by itself.
-
+**No spoilers:** Full reference code is available for coaches in `../Example_Code/04-picobot-drive-basics/SOLUTION.md`. Students should use the `STUDENT_START.md` and TODOs above.
