@@ -12,6 +12,8 @@
 > - debouncing
 > - and adapting recipes
 
+> **Learn → Try**: Learn concepts here with tiny examples, then Try a quick practice before you Do the matching Lab.
+
 # Why This Matters
 Breadboards let you prototype **electronics without soldering**. Pairing the **Raspberry Pi Pico** with MicroPython gives you instant results: blink LEDs, read buttons, and build mini‑games. Mastering these basics prepares you for sensors, buzzers, motors, and bigger projects.
 
@@ -122,17 +124,16 @@ LEDs need limited current. Without a resistor, too much current can flow and dam
 
 ## Setup
 
-_This setup uses MicroPython with Thonny._
-1. Connect the **Pico** to your computer via **micro‑USB**.
+_Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**._
+
+1. Connect the **Pico** via **micro‑USB**.
 2. Open **Thonny** → **Tools ▸ Options ▸ Interpreter**.
    - Interpreter: **MicroPython (Raspberry Pi Pico)**
    - Port: **Automatic**
-3. The Thonny **Shell** should show `>>>` (MicroPython REPL).  
-   If not, re‑select the interpreter or reconnect the cable.
+   - If prompted, let Thonny **install/flash MicroPython (UF2)** to the Pico.
+3. **Save** your script on the Pico (or in `~/Documents/CodeCreate/`) and press **Run ▶**.
 
-> Tip: Save your scripts on the **Pico** (not your computer) so they can run without Thonny later.
-
----
+> Tip: Files named **`main.py`** on the Pico auto‑run on power‑up.
 
 ## Walkthrough — Step by Step (with explanations)
 
