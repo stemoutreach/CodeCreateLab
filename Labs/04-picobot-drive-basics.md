@@ -163,6 +163,7 @@ if __name__ == "__main__":
 
 ---
 # Demo / Submission Checklist
+- [ ] Saved working code as **main.py** on the Pico and verified auto‑run
 - [ ] Correct **pin map** matches your wiring (comment updated)  
 - [ ] **forward/turn/stop** helpers work and are used (no copy-paste everywhere)  
 - [ ] **Speed trim** applied in `forward` (values documented)  
@@ -190,3 +191,10 @@ What trim values worked for your floor and batteries? How would your square rout
 ---
 # Next Up
 When your drivetrain is solid, you’re ready for sensing (e.g., ultrasonic) or navigation aids. For now, commit your tuned timings.
+
+### Deploy to Pico (main.py)
+> **Make it auto‑run:** Save your final script **to the Pico** as `main.py`. Unplug/replug USB or power the Pico — it runs automatically.
+1. In **Thonny**: File → **Save as…** → **Raspberry Pi Pico**.
+2. Name it **`main.py`** (this special name auto‑runs at boot).
+3. Unplug/replug the Pico or power it from a battery/USB — your program starts by itself.
+
