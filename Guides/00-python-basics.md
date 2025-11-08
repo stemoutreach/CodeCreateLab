@@ -88,133 +88,134 @@ age_text = input("How old are you? ")
 age = int(age_text)      # or float(...) for decimals
 print("Next year you’ll be", age + 1)
 ```
+
+**About `int()` (quick reference)**
+
+**About `float()` (quick reference)**
+- `float("3.14") → 3.14`, `float(5) → 5.0`.
+- Handles scientific notation: `float("1e3") → 1000.0`.
+- Ignores surrounding spaces/newlines: `float("  2.5\n") → 2.5`.
+- Errors for non-number text raise `ValueError`.
+
+**Rounding & truncation (quick reference)**
+- `round(x)` rounds to nearest integer (banker’s rounding for .5 cases).  
+  `round(2.5) → 2`, `round(3.5) → 4`  
+- `round(x, n)` rounds to `n` decimal places: `round(3.14159, 2) → 3.14`.
+- `int(x)` **truncates** toward zero: `int(3.9) → 3`, `int(-3.9) → -3`.
+
+- `int(x)` converts a number-like **string** or **float** to an integer. Examples: `int("42") → 42`, `int(3.9) → 3` (truncates).
+- `int(x, base)` lets you parse other number bases: `int("101", 2) → 5`, `int("1A", 16) → 26`.
+- Whitespace is okay: `int("  7
+") → 7`.
+- **Decimals**: if the text has a decimal point (e.g., `"3.14"`), use `float("3.14")` first, or read as `float` directly.
+- **Errors**: if text isn’t number-like (`"five"`), Python raises `ValueError`.
+  
+**Safe conversion pattern**
+```python
+raw = input("Enter a whole number: ").strip()
+try:
+    n = int(raw)          # or: n = int(raw, 10) for explicit base
+    print("You typed:", n)
+except ValueError:
+    print("Oops — please type digits only (0–9).")
+```
+
 **Gotchas**
 - Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
 - Forgetting to store the result of `input()`
 **Checkpoint**: You can explain why `input()` gives a string and how to convert it.
 
----
-## 4) Decisions: `if / elif / else`
-**Idea**: Run code only if a condition is true. `elif` = extra check; `else` = everything else.  
-**When to use**: You need branching behavior.  
+**Idea**: `input()` pauses and returns what the user typed **as a string**.  
+**When to use**: You need the user to choose, answer, or confirm.  
 **Pattern**:
 ```python
-if condition_a:
-    ...
-elif condition_b:
-    ...
-else:
-    ...
+answer_text = input("<question> ")
+# convert if you need a number:
+answer_number = int(answer_text)   # or float(...)
 ```
 **Try it**
 ```python
-direction = input("Which way? ").lower()
+name = input("What is your name? ")
+print("Hi", name)
 
-if direction == "north":
-    print("You hit a wall.")
-elif direction == "east":
-    print("You found a hallway.")
-else:
-    print("Try another direction.")
+age_text = input("How old are you? ")
+age = int(age_text)      # or float(...) for decimals
+print("Next year you’ll be", age + 1)
 ```
-**Comparisons & logic**
-```python
-temperature = 72
-if temperature > 80:
-    print("Hot")
-elif 60 <= temperature <= 80:
-    print("Nice")
-else:
-    print("Chilly")
-```
-**Common mistakes**
-- Missing colon `:` after `if/elif/else`
+**Gotchas**
+- Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
+- Forgetting to store the result of `input()`
+**Checkpoint**: You can explain why `input()` gives a string and how to convert it.
+ after `if/elif/else`
 - Using `=` (assignment) instead of `==` (comparison)
 **Checkpoint**: You can explain what path runs for a given input and why.
 
----
-## 5) Loops two ways: **for** vs. **while**
-**Idea**: Repeat actions. **for** repeats a known count; **while** repeats *until* a condition changes.  
-**When to use**: Lists/counts → **for**. Waiting for a condition/user action → **while**.  
-**Patterns**
-```python
-# for: counted repeats
-for i in range(start, stop_inclusive_plus_one):
-    ...
-
-# while: repeat while condition is True
-while condition:
-    ...
-```
-**Try it**
-```python
-for i in range(1, 6):   # 1,2,3,4,5
-    print(i)
-
-count = 1
-while count <= 5:
-    print(count)
-    count += 1
-
-# Input loop (quit to stop)
-while True:
-    cmd = input("Command (quit to stop): ").lower()
-    if cmd == "quit":
-        print("Bye!")
-        break
-    print("You typed:", cmd)
-```
-**Common mistakes**
-- Forgetting to change something inside a `while` → infinite loop
-- Printing outside the loop (indent wrong) → prints once instead of many times
-**Checkpoint**: You can choose **for** or **while** and justify your choice.
-
----
-## 6) Clean printing with **f-strings**
-**Idea**: Build readable strings without clumsy `+` or commas.  
-**When to use**: Any time you combine text with values.  
+**Idea**: `input()` pauses and returns what the user typed **as a string**.  
+**When to use**: You need the user to choose, answer, or confirm.  
 **Pattern**:
 ```python
-print(f"{name} scored {score}")
+answer_text = input("<question> ")
+# convert if you need a number:
+answer_number = int(answer_text)   # or float(...)
 ```
 **Try it**
 ```python
-name = "Kai"
-score = 87
-print(f"{name} scored {score}")
-```
-**Common mistakes**
-- Forgetting the `f` before the opening quote
-- Using quotes inside braces `{}` → keep expressions simple
-**Checkpoint**: Convert a `print("X", val)` line to an f-string.
+name = input("What is your name? ")
+print("Hi", name)
 
----
-## 7) Booleans & logic combos (True/False thinking)
-**Idea**: A **boolean** is either `True` or `False`. You combine conditions with **and**, **or**, **not** to make smarter decisions.  
-**When to use**: Permissions, safety checks, multi-rule decisions.
-**Truth table (mental model)**
-- `A and B` is `True` only if **both** are True.  
-- `A or B` is `True` if **either** is True.  
-- `not A` flips True ↔ False.
+age_text = input("How old are you? ")
+age = int(age_text)      # or float(...) for decimals
+print("Next year you’ll be", age + 1)
+```
+
+**About `int()` (quick reference)**
+- `int(x)` converts a number-like **string** or **float** to an integer. Examples: `int("42") → 42`, `int(3.9) → 3` (truncates).
+- `int(x, base)` lets you parse other number bases: `int("101", 2) → 5`, `int("1A", 16) → 26`.
+- Whitespace is okay: `int("  7
+") → 7`.
+- **Decimals**: if the text has a decimal point (e.g., `"3.14"`), use `float("3.14")` first, or read as `float` directly.
+- **Errors**: if text isn’t number-like (`"five"`), Python raises `ValueError`.
+  
+**Safe conversion pattern**
+```python
+raw = input("Enter a whole number: ").strip()
+try:
+    n = int(raw)          # or: n = int(raw, 10) for explicit base
+    print("You typed:", n)
+except ValueError:
+    print("Oops — please type digits only (0–9).")
+```
+
+**Gotchas**
+- Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
+- Forgetting to store the result of `input()`
+**Checkpoint**: You can explain why `input()` gives a string and how to convert it.
+
+**Idea**: `input()` pauses and returns what the user typed **as a string**.  
+**When to use**: You need the user to choose, answer, or confirm.  
 **Pattern**:
 ```python
-if (age >= 13 and age <= 18) or with_adult:
-    print("Allowed")
+answer_text = input("<question> ")
+# convert if you need a number:
+answer_number = int(answer_text)   # or float(...)
 ```
 **Try it**
 ```python
-age_text = input("Age: ")
-age = int(age_text)
-with_adult = input("With adult? (y/n) ").lower() == "y"
+name = input("What is your name? ")
+print("Hi", name)
 
-if (13 <= age <= 18) or with_adult:
-    print("Allowed")
-else:
-    print("Not allowed")
+age_text = input("How old are you? ")
+age = int(age_text)      # or float(...) for decimals
+print("Next year you’ll be", age + 1)
 ```
-**Common mistakes**
-- Writing `13 <= age <= 18 or with_adult == True` then misunderstanding precedence.  
-  Tip: add parentheses to make intent obvious.  
+**Gotchas**
+- Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
+- Forgetting to store the result of `input()`
+**Checkpoint**: You can explain why `input()` gives a string and how to convert it.
+ after `if/elif/else`
+- Using `=` (assignment) instead of `==` (comparison)
+**Checkpoint**: You can explain what path runs for a given input and why.
+to make intent obvious.  
 - Using strings `"True"/"False"` instead of real booleans `True/False`.
 **Checkpoint**: Explain why an 11‑year‑old with an adult passes, but an 11‑year‑old alone does not.
 
