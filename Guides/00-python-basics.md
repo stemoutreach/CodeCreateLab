@@ -1,59 +1,50 @@
 # 00 — Python Basics
 
 > ### Quick Summary
-> **Level:** 00 • **Time:** 45–60 min  
+> **Level:** 00 • **Time:** 30–45 min  
 > **Prereqs:** None  
-> **Hardware:** None  
-> **You’ll practice:** print/input, variables & types, expressions, conditionals, while loops, debugging basics
+> **Hardware:** Computer only  
+> **You’ll practice:** print/input, variables & types, conditionals, **for loops**, **f-strings**, boolean logic, indentation
 
 # Why This Matters
-Python is the language we’ll use across the Code & Create Lab—from text adventures to blinking LEDs and driving robots. Mastering the basics now makes every future guide (and lab) faster and more fun.
+These are your day‑one Python moves. You’ll use them in every lab—from Sense HAT pixels to driving a robot. Keep it simple, get quick wins, and build confidence.
 
 ---
 ## What you’ll learn
-- Print a message and read user input safely
-- Store values in variables and convert types (`str`, `int`, `float`)
-- Use arithmetic and comparison operators
+- Print and read input
+- Store data in variables and check types
 - Make decisions with `if / elif / else`
-- Repeat actions with `while` loops (and avoid infinite loops)
-- Read and fix simple error messages
+- Repeat actions with a **for loop** and `range()`
+- Format output with **f‑strings**
+- Combine conditions with **and / or / not**
+- Keep code readable with **comments** and **indentation**
 
 ## Setup
-Any Python 3 environment works (IDLE, VS Code, terminal). In locked-down school labs, you can also use a browser IDE (e.g., Python in Replit). Save files with a `.py` extension and run them with Python.
-
-## Materials  (ONLY include if hardware is involved)
-- *(None for this guide)*
+- We use **Raspberry Pi 500** computers running Raspberry Pi OS.
+- Open **Thonny** (Menu → Programming → Thonny).
+- Create a new file named `basics.py`, then **Save** it in a folder you can find later (e.g., `Documents/CodeCreate/`).
+- Click **Run ▶** to execute your program and check the **Shell** for output.
 
 ---
-## Walkthrough — Step by Step (with explanations)
-
-### 1) Say hello
-**Idea:** Learn `print()` and run a script.
+## 1) Say hello & read input
 ```python
-print("Hello, Code & Create!")
+name = input("What is your name? ")
+print("Hello,", name)
 ```
-**Anatomy:**
-- `print(...)` sends text to the console.
-- Quotes create a string.
-**Common mistakes:**
-- Missing quotes or parentheses.
 
-### 2) Read input and convert
-**Idea:** Get a string from the keyboard; convert to a number.
+---
+## 2) Variables & types
 ```python
-name = input("Your name: ")
-age_text = input("How old are you? ")
-age = int(age_text)  # convert text to number
-print("Hi", name, "- next year you’ll be", age + 1)
+age = 12            # integer
+height = 1.55       # float (meters)
+is_student = True   # boolean
+print(type(age), type(height), type(is_student))
 ```
-**Notes & pitfalls:**
-- `input()` returns **text**. Use `int()` or `float()` for math.
-- If the user types non-numeric text, `int()` will error—catch later with validation.
 
-### 3) Decisions with if
-**Idea:** Choose different paths.
+---
+## 3) Decisions: `if / elif / else`
 ```python
-score = int(input("Score (0–100): "))
+score = 87
 if score >= 90:
     print("A")
 elif score >= 80:
@@ -61,63 +52,60 @@ elif score >= 80:
 else:
     print("Keep going!")
 ```
-**Notes & pitfalls:**
-- Use `>=` for ranges; check higher thresholds first.
 
-### 4) Looping with while
-**Idea:** Repeat until done.
+---
+## 4) **for** loop (just one pattern)
+Use `for` when you know how many times to repeat.
 ```python
-count = 3
-while count > 0:
-    print("Countdown:", count)
-    count = count - 1
-print("Liftoff!")
+for i in range(5):   # 0,1,2,3,4
+    print(i)
 ```
-**Notes & pitfalls:**
-- Update the loop variable inside the loop.
-- To stop a runaway program: **Ctrl+C** in terminal.
+Try: print numbers **1–5** instead.
 
-### 5) Validate input (bonus)
-**Idea:** Guard against bad input.
+---
+## 5) Clean printing with **f‑strings**
 ```python
-text = input("Enter a whole number: ")
-if text.isdigit():
-    n = int(text)
-    print("Squared:", n*n)
-else:
-    print("That was not a whole number.")
+name = "Kai"
+score = 87
+print(f"{name} scored {score}")
 ```
+No `+` needed—just write what you want to see.
 
 ---
-## Vocabulary
-- **String**: Text value like `"hello"`.
-- **Integer / Float**: Whole number / decimal number.
-- **Variable**: A named box that stores a value.
-- **Expression**: Code that produces a value.
-- **Condition**: A true/false check in an `if` statement.
-- **Loop**: Repeats code while a condition is true.
+## 6) Boolean logic (names only, one example)
+```python
+age = 12
+with_adult = True
+if age >= 13 or with_adult:
+    print("Allowed")
+```
+Use **and**, **or**, **not** to combine conditions.
 
 ---
-## Check your understanding
-1) What does `input()` return and why is `int()` sometimes needed?  
-2) Which operator checks “greater than or equal to”?  
-3) How do you stop a script stuck in an infinite loop?  
-4) Where should you update the loop variable in a `while`?  
-5) What happens if you call `int("six")`?
+## 7) Comments & indentation
+```python
+# This is a comment
+if True:
+    print("Indented lines belong together")
+```
+Same indentation = same block.
 
 ---
-## Try it: Mini-exercises
-Build a small “Greeter+” program: ask for a name and favorite number, print a custom message, and show the number doubled.  
-**Stretch goals:**
-- Ask for a second number and print the larger one.
-- Add input validation: keep asking until the user types a valid number.
+## Mini practice (pick 1)
+- **Loop count:** print numbers 1–5.  
+- **Name letters:** ask for a name, then print each letter with a `for` loop.  
+- **Score card:** ask for a name + score, print `"<name> scored <score>"` using an **f‑string**.
+
+### Stretch (optional)
+- Print the **squares** from 1–10 on one line.  
+- Change the logic so *only* ages **13–18** are allowed (no adult override).
 
 ---
 ## Troubleshooting
-- **`SyntaxError: EOL while scanning string literal`** → You forgot a closing quote.  
-- **`NameError: name 'age' is not defined`** → Spelling mismatch or using a variable before assigning.  
-- **Program never stops** → Your `while` condition never becomes false; update the variable or add a break.
+- **IndentationError** → lines in a block don’t line up.  
+- **`TypeError: can only concatenate str (not "int") to str`** → use an **f‑string** or `str(number)`.  
+- **Nothing prints in a loop** → check your range and print is inside the loop.
 
 ---
 ## Next up
-**[01 – Treasure Hunt (Functions)](../Labs/01-treasure-hunt-functions.md)**
+Continue to **[01 — Python Functions](01-python-functions.md)**, then try the matching lab **Treasure Hunt (Functions)**.
