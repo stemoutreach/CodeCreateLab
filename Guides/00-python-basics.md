@@ -299,4 +299,4 @@ print("This line is outside the if.")
 
 ---
 ## Next up
-Move on to **[01 — Python Functions](01-python-functions.md)**, then try the lab **Treasure Hunt (Functions)**.
+Jump into the lab: **[01 — Treasure Hunt (Functions)](../Labs/01-treasure-hunt-functions.md)**.
