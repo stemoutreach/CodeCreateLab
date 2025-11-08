@@ -1,139 +1,93 @@
-# GuidesPrompt.yaml (with explicit checklist)
-# Use this to generate NEW student-friendly Guides for Code & Create Lab.
-# It contains an explicit checklist the model must self-verify before returning the final guide.
-
-prompt: |
-  You are helping me write a NEW student-friendly technical Guide for my Code & Create Lab.
-  Follow this EXACT structure and voice. Keep explanations clear and practical.
-  Use the same section order and formatting shown below. Use Python for examples unless otherwise stated.
-  
-  =====================================
-  TEMPLATE & STYLE (DO NOT ALTER ORDER)
-  =====================================
-  
-  # <Guide Title>
-  
-  > ### Quick Summary
-  > **Level:** <two-digit level> • **Time:** <range>  
-  > **Prereqs:** <None OR links to earlier Guides>  
-  > **Hardware:** <if any>  
-  > **You’ll practice:** <short, comma-separated skills list>
-  
-  # Why This Matters
-  One short paragraph that motivates the topic with concrete payoffs for the next lab or future guides.
-  (Keep it learner-focused and actionable.)
-  
-  ---
-  ## What you’ll learn
-  - 5–8 crisp bullets of learning outcomes (verbs + object).
-  - Prefer specific skills over vague concepts.
-  
-  ## Setup
-  _Optional first line for environment context (e.g., “This setup uses MicroPython with Thonny.”)_
-  - List software/runtime setup (or say “Any Python 3 environment”).
-  - Link to starter code folder if relevant (Example_Code/<folder>/).
-  - For hardware: include a short sanity-test snippet (e.g., Sense HAT “Hello!”).
-  
-  ## Materials  (ONLY include if hardware is involved)
-  - Bullet list of parts with brief clarifications (values, safety notes).
-  
-  ---
-  ## Walkthrough — Step by Step (with explanations)
-  
-  ### 1) <Step title>
-  **Idea:** One-sentence “what & why”.
-  Provide small code snippets and a short “Anatomy/Breaking it down” bullet list.
-  Include **Common mistakes** or **Notes & pitfalls** when useful.
-  
-  ### 2) <Step title>
-  **Idea:** …
-  (code)
-  **Notes & pitfalls:** short bullets of gotchas or safety rules.
-  
-  ### 3) <Step title>
-  …continue until the learner can complete the Try-it project.
-  
-  (When relevant for hardware: include brief diagrams/ASCII, pin maps, safety/voltage notes.)
-  
-  ---
-  ## Vocabulary
-  - Term: short, student-friendly definition (5–10 items max)
-  
-  ---
-  ## Check your understanding
-  1) 4–6 short questions that test the essentials they just learned.
-  
-  ---
-  ## Try it: Mini-exercises
-  Describe a small task they can complete in 10–20 minutes.
-  Add 1–2 **Stretch goals**.
-  
-  ---
-  ## Troubleshooting
-  - Bullet common errors and their fixes (error message → remedy).
-  
-  ---
-  ## Next up
-  Point to the matching **Lab** file using this format:
-  **[<level> – <Lab name>](../Labs/<level>-<lab-file>.md)**
-  
-  ========================
-  TONE & MICRO-GUIDELINES
-  ========================
-  - Keep sections concise; prioritize runnable examples and short “Idea” blurbs.
-  - Use numbered steps in Walkthrough. Each step: tiny code + explanation + pitfalls.
-  - Prefer small runnable code blocks (no giant monoliths).
-  - Use 4 spaces for indentation; don’t mix tabs/spaces.
-  - When reading input or hardware pins, show “why it works” and common mistakes.
-  - For hardware, call out 3.3V/5V, series resistors, and safe wiring explicitly.
-  - Keep vocabulary & checks tight; avoid jargon unless defined.
-  - Add alt text to images. Keep pin labels consistent with code (same GPIO numbers).
-  - For MicroPython vs CPython differences, call them out inline where relevant.
-  
-  ===========================
-  SELF-CHECK (DO NOT PRINT IT)
-  ===========================
-  Before returning the final guide, silently verify ALL items in `post_generation_checklist`.
-  If any item fails, revise the guide and re-check until all pass. Do NOT print the checklist
-  or the self-check results in the output—return only the final guide.
-  
+prompt: "You are helping me write a NEW student-friendly technical Guide for my Code\
+  \ & Create Lab.\nFollow this EXACT structure and voice. Keep explanations clear\
+  \ and practical.\nUse the same section order and formatting shown below. Use Python\
+  \ for examples unless otherwise stated.\n\n=====================================\n\
+  TEMPLATE & STYLE (DO NOT ALTER ORDER)\n=====================================\n\n\
+  # <Guide Title>\n\n> ### Quick Summary\n> **Level:** <two-digit level> • **Time:**\
+  \ <range>  \n> **Prereqs:** <None OR links to earlier Guides>  \n> **Hardware:**\
+  \ <if any>  \n> **You’ll practice:** <short, comma-separated skills list>\n\n# Why\
+  \ This Matters\nOne short paragraph that motivates the topic with concrete payoffs\
+  \ for the next lab or future guides.\n(Keep it learner-focused and actionable.)\n\
+  \n---\n## What you’ll learn\n- 5–8 crisp bullets of learning outcomes (verbs + object).\n\
+  - Prefer specific skills over vague concepts.\n\n## Setup\n_Optional first line\
+  \ for environment context (e.g., “This setup uses MicroPython with Thonny.”)_\n\
+  - List software/runtime setup (or say “Any Python 3 environment”).\n- Link to starter\
+  \ code folder if relevant (Example_Code/<folder>/).\n- For hardware: include a short\
+  \ sanity-test snippet (e.g., Sense HAT “Hello!”).\n\n## Materials  (ONLY include\
+  \ if hardware is involved)\n- Bullet list of parts with brief clarifications (values,\
+  \ safety notes).\n\n---\n## Walkthrough — Step by Step (with explanations)\n\n###\
+  \ 1) <Step title>\n**Idea:** One-sentence “what & why”.\nProvide small code snippets\
+  \ and a short “Anatomy/Breaking it down” bullet list.\nInclude **Common mistakes**\
+  \ or **Notes & pitfalls** when useful.\n\n### 2) <Step title>\n**Idea:** …\n(code)\n\
+  **Notes & pitfalls:** short bullets of gotchas or safety rules.\n\n### 3) <Step\
+  \ title>\n…continue until the learner can complete the Try-it project.\n\n(When\
+  \ relevant for hardware: include brief diagrams/ASCII, pin maps, safety/voltage\
+  \ notes.)\n\n---\n## Vocabulary\n- Term: short, student-friendly definition (5–10\
+  \ items max)\n\n---\n## Check your understanding\n1) 4–6 short questions that test\
+  \ the essentials they just learned.\n\n---\n## Try it: Mini-exercises\nDescribe\
+  \ a small task they can complete in 10–20 minutes.\nAdd 1–2 **Stretch goals**.\n\
+  \n---\n## Troubleshooting\n- Bullet common errors and their fixes (error message\
+  \ → remedy).\n\n---\n## Next up\nPoint to the matching **Lab** file using this format:\n\
+  **[<level> – <Lab name>](../Labs/<level>-<lab-file>.md)**\n\n========================\n\
+  TONE & MICRO-GUIDELINES\n========================\n- Keep sections concise; prioritize\
+  \ runnable examples and short “Idea” blurbs.\n- Use numbered steps in Walkthrough.\
+  \ Each step: tiny code + explanation + pitfalls.\n- Prefer small runnable code blocks\
+  \ (no giant monoliths).\n- Use 4 spaces for indentation; don’t mix tabs/spaces.\n\
+  - When reading input or hardware pins, show “why it works” and common mistakes.\n\
+  - For hardware, call out 3.3V/5V, series resistors, and safe wiring explicitly.\n\
+  - Keep vocabulary & checks tight; avoid jargon unless defined.\n- Add alt text to\
+  \ images. Keep pin labels consistent with code (same GPIO numbers).\n- For MicroPython\
+  \ vs CPython differences, call them out inline where relevant.\n\n===========================\n\
+  SELF-CHECK (DO NOT PRINT IT)\n===========================\nBefore returning the\
+  \ final guide, silently verify ALL items in `post_generation_checklist`.\nIf any\
+  \ item fails, revise the guide and re-check until all pass. Do NOT print the checklist\n\
+  or the self-check results in the output—return only the final guide.\n"
 defaults:
   code_language: python
   indentation: 4_spaces
   max_skills_in_summary: 8
   vocab_max_items: 10
-
+  environment_note: 'Classroom default: Raspberry Pi 500 (Raspberry Pi OS) + Thonny
+    IDE.'
 post_generation_checklist:
-  - "Structure: All required sections exist and follow the exact template order."
-  - "Summary: 'You’ll practice' has ≤ 8 concise skills (verbs first)."
-  - "Walkthrough: 3–6 numbered steps; each includes code + Notes/Pitfalls."
-  - "Hardware safety: Explicit 3.3V/5V warnings, series resistors, and common GND where applicable."
-  - "Vocabulary: ≤ 10 items; definitions are student-friendly and short."
-  - "Checks: 4–6 questions covering the essentials (not trivia)."
-  - "Try it: 1 mini-project + 1–2 stretch goals; runnable in 10–20 minutes."
-  - "Troubleshooting: Error message → remedy formatting is consistent."
-  - "Links: 'Next up' uses the exact format and correct relative path."
-  - "Code fences: Properly closed; language specified (```python)."
-  - "Indentation: 4 spaces; no tabs."
-  - "Images: Include alt text if any images are referenced."
-  
+- 'Structure: All required sections exist and follow the exact template order.'
+- 'Summary: ''You’ll practice'' has ≤ 8 concise skills (verbs first).'
+- 'Walkthrough: 3–6 numbered steps; each includes code + Notes/Pitfalls.'
+- 'Hardware safety: Explicit 3.3V/5V warnings, series resistors, and common GND where
+  applicable.'
+- 'Vocabulary: ≤ 10 items; definitions are student-friendly and short.'
+- 'Checks: 4–6 questions covering the essentials (not trivia).'
+- 'Try it: 1 mini-project + 1–2 stretch goals; runnable in 10–20 minutes.'
+- 'Troubleshooting: Error message → remedy formatting is consistent.'
+- 'Links: ''Next up'' uses the exact format and correct relative path.'
+- 'Code fences: Properly closed; language specified (```python).'
+- 'Indentation: 4 spaces; no tabs.'
+- 'Images: Include alt text if any images are referenced.'
+- 'Setup: Mention Raspberry Pi 500 (hardware) and Thonny IDE explicitly.'
 example_inputs:
-  topic: "Pico: Analog Sensors (Potentiometer & LDR)"
-  level: "04"
-  estimated_time: "60–90 min"
-  prereqs: "00 Python Basics, 01 Functions, 03 Pico Breadboarding"
-  hardware: ["Raspberry Pi Pico", "10kΩ potentiometer", "LDR + 10kΩ resistor", "Breadboard & jumpers"]
+  topic: 'Pico: Analog Sensors (Potentiometer & LDR)'
+  level: '04'
+  estimated_time: 60–90 min
+  prereqs: 00 Python Basics, 01 Functions, 03 Pico Breadboarding
+  hardware:
+  - Raspberry Pi Pico
+  - 10kΩ potentiometer
+  - LDR + 10kΩ resistor
+  - Breadboard & jumpers
   key_skills_to_practice:
-    - ADC reads and scaling
-    - simple mapping function
-    - smoothing with moving average
-    - plotting/printing values
-    - threshold actions
+  - ADC reads and scaling
+  - simple mapping function
+  - smoothing with moving average
+  - plotting/printing values
+  - threshold actions
   key_steps_for_walkthrough:
-    - "Wire the potentiometer and read ADC"
-    - "Map analog range to 0–100"
-    - "Smooth noisy values (moving average)"
-    - "Read LDR as a light sensor"
-    - "Act on thresholds (e.g., LED/PWM)"
-  target_lab_link_text: "04 – Pico Analog Basics"
-  target_lab_file_name: "04-pico-analog-basics.md"
+  - Wire the potentiometer and read ADC
+  - Map analog range to 0–100
+  - Smooth noisy values (moving average)
+  - Read LDR as a light sensor
+  - Act on thresholds (e.g., LED/PWM)
+  target_lab_link_text: 04 – Pico Analog Basics
+  target_lab_file_name: 04-pico-analog-basics.md
+template_hints:
+  Setup: 'State classroom default: Raspberry Pi 500 + Thonny. Include quick steps:
+    open Thonny, create file in ~/Documents/CodeCreate/, Run ▶, view Shell.'
