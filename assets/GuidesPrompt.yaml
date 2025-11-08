@@ -93,17 +93,17 @@ template_hints:
     open Thonny, create file in ~/Documents/CodeCreate/, Run ▶, view Shell.'
 
 
+# === Code & Create Labs — Learning Guide Reinforcements ===
 post_generation_checklist:
-  - "Structure: Must follow the exact section order below—no new top-level sections and none omitted."
-  - "Learning-first: Each concept should include a short 'Idea' sentence plus a runnable example and at least one 'Common mistakes/Gotchas' note."
-  - "Student practice: Include 'Check your understanding', 'Mini practice', and 'Stretch' items (no full solutions)."
+  - "Structure: Must follow the exact section order—no missing or extra top-level sections."
+  - "Learning-first: Each concept includes an 'Idea' (what/why), a 'When to use', a short 'Pattern', a 'Try it' runnable example, 'Common mistakes/Gotchas', and a 'Checkpoint' reflection."
+  - "Student practice: Include 'Check your understanding', 'Mini practice', and 'Stretch' sections (no full solutions)."
   - "Teacher clarity: Include 'Vocabulary' and 'Troubleshooting' sections."
-  - "Environment: Setup must reference Raspberry Pi 500 and Thonny (unless the guide explicitly targets another environment)."
-  - "Consistency: Use f-strings in output examples; prefer snake_case; avoid tabs (4 spaces)."
-  - "Links: Validate next/prev guide links are relative and correct."
-  - "Safety rails: Avoid spoilers; keep examples short and focused."
-  - "Style: Use second-person voice, short sentences, and concrete payoffs in 'Why This Matters'."
-  - "Accessibility: Avoid jargon where possible; define any new term in 'Vocabulary'."
+  - "Environment: Setup must reference Raspberry Pi 500 and Thonny unless the guide explicitly targets another environment."
+  - "Consistency: Prefer f-strings; use snake_case; 4 spaces (no tabs)."
+  - "Links: Validate relative links to adjacent guides/labs."
+  - "Safety rails: Avoid spoilers; keep examples small and focused."
+
 exact_section_order:
   - "# <Guide Title>"
   - "> Quick Summary (blockquote)"
@@ -121,14 +121,46 @@ exact_section_order:
   - "### Stretch"
   - "## Troubleshooting"
   - "## Next up"
+
 writing_guidelines:
   - "Prefer small runnable examples over long theory."
-  - "Show patterns: Concept → Why → Pattern → Example → Mini task."
+  - "Pattern-first teaching: Concept → Why → Pattern → Example → Mini task."
   - "Call out common pitfalls right after the first example of a concept."
-  - "Keep each example under 6 lines unless absolutely necessary."
-  - "Use plain language; define terms before using acronyms."
-  - "Never include full solutions for labs inside guides."
+  - "Keep examples to ≤6 lines when possible."
+  - "Use plain language; define terms before acronyms."
+  - "Never include full lab solutions inside guides."
+
 environment_defaults:
   - "Hardware: Raspberry Pi 500"
   - "Editor: Thonny"
-  - "OS: Raspberry Pi OS (latest)"
+  - "OS: Raspberry Pi OS (current)"
+
+vocabulary_minimum_list:
+  - "String"
+  - "Integer"
+  - "Float"
+  - "Variable"
+  - "Boolean"
+  - "Expression"
+  - "Operator"
+  - "Comparison operator (== != < <= > >=)"
+  - "Logical operator (and, or, not)"
+  - "Condition"
+  - "Block (indentation)"
+  - "Cast / Type conversion"
+  - "Input / Output (input, print)"
+  - "f-string"
+
+check_your_understanding_requirements:
+  - "At least 6 items mixing recall, code reading, prediction, and debugging."
+  - "Include one short 'predict the output' snippet."
+  - "Include one bug-fix item (identify and correct)."
+  - "Avoid multi-step projects; keep items answerable in ≤2 minutes each."
+
+mini_practice_requirements:
+  - "Provide 4–8 bite-size tasks that can be completed in 3–8 minutes each."
+  - "Cover loops, conditionals, input/print, and a tiny menu or sentinel loop when relevant."
+  - "Include at least one 'until quit' loop pattern."
+  - "Provide 2–4 Stretch ideas that extend core skills without introducing new libraries."
+
+# === End Learning Guide Reinforcements ===
