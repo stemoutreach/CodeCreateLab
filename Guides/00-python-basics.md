@@ -47,33 +47,85 @@ print("Hi", "there", 2025)   # prints items with spaces
 
 ---
 ## 2) Variables & types (names for values)
-**Idea**: Variables keep data so you can reuse or change it. Types tell Python how to treat the data.  
-**When to use**: Any time you need to remember something for later.  
-**Pattern**:
+**Idea**: A **variable** stores a value so you can reuse or change it. The **type** (`str`, `int`, `float`, `bool`) tells Python how to treat that value (text vs. number, etc.).  
+**When to use**: Any time you need to keep a value for later or update it during the program.
+
+**Pattern**
 ```python
-name = "Kai"     # str
-score = 10       # int
-pi = 3.14        # float
-truth = True     # bool
+name = "Kai"     # str (text)
+score = 10       # int (whole number)
+pi = 3.14        # float (decimal)
+truth = True     # bool (True/False)
 ```
-**Try it**
+
+**Inspecting types (know what you’re holding)**
+```python
+a = "5"
+b = 5
+print(type(a))   # <class 'str'>
+print(type(b))   # <class 'int'>
+```
+
+**Try it (see values change and print results)**
 ```python
 score = 10
+print("Start score:", score)
+
 score = score + 5
-score += 5                 # shortcut
-a = "5"; b = 5
-print(type(a), type(b))
+print("After +5:", score)
+
+score += 5                   # shortcut for score = score + 5
+print("After another +5:", score)
+
+# Doing math with input text? Convert first:
+age_text = "12"              # imagine this came from input()
+age = int(age_text)          # now it's an int
+print("Next year age:", age + 1)
+
+# Turn numbers back into text if you need to join with strings:
+msg = "Player " + str(score) # or use an f-string:
+print(f"Score message: {msg} / f-string: Player score is {score}")
 ```
+
 **Naming tips**
 - Use snake_case: `player_name`, `total_points`
-- Don’t start with a number; be descriptive  
-**Common mistakes**
-- Changing a variable’s *type* by accident (e.g., `score = '5'` then later doing math).
-- Using an illegal name (starts with a number or contains spaces), or reusing Python keywords (`for`, `if`).
-- Case sensitivity: `Score` and `score` are different.
-- Writing `a =+ 1` instead of `a += 1`.
+- Don’t start with a number; avoid spaces; be descriptive
 
-**Checkpoint**: State the type (`str`, `int`, `float`, `bool`) of a given literal.
+**What is `snake_case`?**
+`snake_case` means all lowercase words separated by underscores. It’s the Python style for variable and function names (PEP 8).
+
+**Why use it?** Consistent, readable, and it matches community standards.
+
+**Do**
+```python
+player_name = "Kai"
+total_points = 15
+max_speed = 3.2
+is_ready = True
+```
+
+**Don’t**
+```python
+playerName = "Kai"     # camelCase (common in JavaScript, not Python)
+TotalPoints = 15       # PascalCase (used for Classes in Python)
+max-speed = 3.2        # hyphen is illegal in identifiers
+2players = 2           # cannot start with a digit
+```
+
+**Rules of thumb**
+- Use letters, digits, and underscores only; start with a **letter** or underscore.
+- Keep it descriptive but short: `laps_completed`, not `l`.
+- Reserve `PascalCase` for **Class** names, e.g., `class GameController:`.
+
+**Common mistakes**
+- Mixing types by accident (e.g., `score = '5'` and later `score + 1`)  
+- Illegal names (start with a number, have spaces) or using keywords (`for`, `if`)  
+- Case sensitivity: `Score` and `score` are different  
+- Typo: `a =+ 1` (this sets `a` to `+1`) instead of `a += 1`
+
+**Checkpoint**
+- Explain the difference between `str`, `int`, `float`, and `bool`.  
+- Given `x = "7"` and `y = 3`, write one line that prints `10` (hint: convert `x`).
 
 ---
 ## 3) Read input (and convert when needed)
