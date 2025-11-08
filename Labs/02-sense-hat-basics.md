@@ -3,10 +3,15 @@
 > ### Quick Summary
 > **Level:** 02 • **Time:** 35–60 min  
 > **Prereqs:** [Guide: 02 — Sense HAT](../Guides/02-sense-hat.md)  
-> **Hardware:** Sense HAT on Raspberry Pi  
+> **Hardware:** Raspberry Pi 500 + Sense HAT
 > **You’ll practice:** reading sensors, loops, decisions, LED control, basic debugging
 
 # Why This Matters
+
+> **Learn → Try → Do**
+> - **Learn** in the Guide
+> - **Try** quick practice in the Guide
+> - **Do** this Lab project
 Real systems react to their environment. Using the Sense HAT’s sensors and LED matrix, you’ll build a tiny safety indicator and practice reading data, making decisions, and giving instant visual feedback—skills you’ll reuse in later labs.
 
 ---
@@ -25,15 +30,31 @@ By the end you can:
 ---
 
 # Setup
-- Raspberry Pi with Raspberry Pi OS, Sense HAT firmly seated
-- Install support: `sudo apt install -y sense-hat`
-- Open Terminal or Thonny
+- **Classroom default:** **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**
+- Open **Thonny** (Menu → Programming → Thonny)
+- Create `weather_warning_light.py` in `~/Documents/CodeCreate/`, then **Run ▶** and view the **Shell**
+
+**If Sense HAT support isn’t installed on your Pi:**
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y sense-hat
+sudo reboot
+```
+Optional: enable I2C in `raspi-config` if needed.
+
+Quick test in Python:
+```python
+from sense_hat import SenseHat
+sense = SenseHat()
+sense.show_message("Hello!")
+```
 
 ---
 
 # Steps
 
-> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](Example_Code/02-sense-hat-basics/STUDENT_START.md)**.
+
+> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/02-sense-hat-basics/STUDENT_START.md)**.
 
 ## 1) Plan (2–3 min)
 Pick limits that make sense in your room (e.g., **temp high = 28°C**, **humidity low = 35%**). Decide your sampling interval (e.g., **2 seconds**).
@@ -119,7 +140,7 @@ Use the code skeleton in **Step 3** or the starter file in **Example_Code/02-sen
 
 ---
 
-# Submission / Demo Checklist
+# Demo / Submission Checklist
 - [ ] Loop runs until **Ctrl-C** and exits cleanly (LED cleared)
 - [ ] Console prints labeled values with **units** and chosen **limits**
 - [ ] LED shows **GREEN** when safe, **RED** when too hot or too dry
