@@ -89,36 +89,7 @@ age = int(age_text)      # or float(...) for decimals
 print("Next year you’ll be", age + 1)
 ```
 
-**About `int()` (quick reference)**
 
-**About `float()` (quick reference)**
-- `float("3.14") → 3.14`, `float(5) → 5.0`.
-- Handles scientific notation: `float("1e3") → 1000.0`.
-- Ignores surrounding spaces/newlines: `float("  2.5\n") → 2.5`.
-- Errors for non-number text raise `ValueError`.
-
-**Rounding & truncation (quick reference)**
-- `round(x)` rounds to nearest integer (banker’s rounding for .5 cases).  
-  `round(2.5) → 2`, `round(3.5) → 4`  
-- `round(x, n)` rounds to `n` decimal places: `round(3.14159, 2) → 3.14`.
-- `int(x)` **truncates** toward zero: `int(3.9) → 3`, `int(-3.9) → -3`.
-
-- `int(x)` converts a number-like **string** or **float** to an integer. Examples: `int("42") → 42`, `int(3.9) → 3` (truncates).
-- `int(x, base)` lets you parse other number bases: `int("101", 2) → 5`, `int("1A", 16) → 26`.
-- Whitespace is okay: `int("  7
-") → 7`.
-- **Decimals**: if the text has a decimal point (e.g., `"3.14"`), use `float("3.14")` first, or read as `float` directly.
-- **Errors**: if text isn’t number-like (`"five"`), Python raises `ValueError`.
-  
-**Safe conversion pattern**
-```python
-raw = input("Enter a whole number: ").strip()
-try:
-    n = int(raw)          # or: n = int(raw, 10) for explicit base
-    print("You typed:", n)
-except ValueError:
-    print("Oops — please type digits only (0–9).")
-```
 
 **Gotchas**
 - Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
@@ -156,7 +127,36 @@ print("Next year you’ll be", age + 1)
 ```python
 answer_text = input("<question> ")
 # convert if you need a number:
-answer_number = int(answer_text)   # or float(...)
+answer_number = int(a
+**About `int()` (quick reference)**
+- `int(x)` converts a number-like **string** or **float** to an integer. Examples: `int("42") → 42`, `int(3.9) → 3` (truncates).
+- `int(x, base)` lets you parse other number bases: `int("101", 2) → 5`, `int("1A", 16) → 26`.
+- Whitespace is okay: `int("  7\n") → 7`.
+- **Decimals**: if the text has a decimal point (e.g., `"3.14"`), use `float("3.14")` first, or read as `float` directly.
+- **Errors**: if text isn’t number-like (`"five"`), Python raises `ValueError`.
+
+**Safe conversion pattern**
+```python
+raw = input("Enter a whole number: ").strip()
+try:
+    n = int(raw)          # or: n = int(raw, 10) for explicit base
+    print("You typed:", n)
+except ValueError:
+    print("Oops — please type digits only (0–9).")
+```
+
+**About `float()` (quick reference)**
+- `float("3.14") → 3.14`, `float(5) → 5.0`.
+- Handles scientific notation: `float("1e3") → 1000.0`.
+- Ignores surrounding spaces/newlines: `float("  2.5\n") → 2.5`.
+- Errors for non-number text raise `ValueError`.
+
+**Rounding & truncation (quick reference)**
+- `round(x)` rounds to nearest integer (banker’s rounding for .5 cases).  
+  `round(2.5) → 2`, `round(3.5) → 4`
+- `round(x, n)` rounds to `n` decimal places: `round(3.14159, 2) → 3.14`.
+- `int(x)` **truncates** toward zero: `int(3.9) → 3`, `int(-3.9) → -3`.
+nswer_text)   # or float(...)
 ```
 **Try it**
 ```python
@@ -168,23 +168,6 @@ age = int(age_text)      # or float(...) for decimals
 print("Next year you’ll be", age + 1)
 ```
 
-**About `int()` (quick reference)**
-- `int(x)` converts a number-like **string** or **float** to an integer. Examples: `int("42") → 42`, `int(3.9) → 3` (truncates).
-- `int(x, base)` lets you parse other number bases: `int("101", 2) → 5`, `int("1A", 16) → 26`.
-- Whitespace is okay: `int("  7
-") → 7`.
-- **Decimals**: if the text has a decimal point (e.g., `"3.14"`), use `float("3.14")` first, or read as `float` directly.
-- **Errors**: if text isn’t number-like (`"five"`), Python raises `ValueError`.
-  
-**Safe conversion pattern**
-```python
-raw = input("Enter a whole number: ").strip()
-try:
-    n = int(raw)          # or: n = int(raw, 10) for explicit base
-    print("You typed:", n)
-except ValueError:
-    print("Oops — please type digits only (0–9).")
-```
 
 **Gotchas**
 - Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
