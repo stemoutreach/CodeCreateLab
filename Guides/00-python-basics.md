@@ -314,6 +314,7 @@ else:
 if True:
     print("Indented lines belong together")
 print("This line is outside the if.")
+
 ```
 **Rules of thumb**
 - Use **4 spaces** per level (don’t mix tabs and spaces).  
