@@ -1,171 +1,99 @@
-# Code & Create Lab — Lab Authoring Prompt (ENFORCED)
-# Use this to generate NEW student-friendly Labs that MATCH 00/01 exactly.
-# Output MUST be a single Markdown file with NO YAML front matter.
-
-role: >
-  You write a NEW student-friendly Lab that strictly follows the template and section order
-  used in 00/01 labs. You also self-check your output against the post_generation_checklist
+role: 'You write a NEW student-friendly Lab that strictly follows the template and
+  section order used in 00/01 labs. You also self-check your output against the post_generation_checklist
   and fix any violations before returning the final Markdown.
 
+  '
 hard_rules:
-  - "Do NOT include YAML front matter at the top. Start with an H1 like: '# <##> — <Lab Name>'."
-  - "Insert the 'Quick Summary' block immediately below the H1, using the exact formatting."
-  - "Sections MUST appear exactly in this order and with these headings (H1/H2 as shown):
-      1) '# <##> — <Lab Name>'
-      2) '> ### Quick Summary' block (lines starting with '> ')
-      3) '# Why This Matters'
-      4) '---' (horizontal rule)
-      5) '# What You’ll Build'
-      6) '---'
-      7) '# Outcomes'
-      8) '---'
-      9) '# Setup'
-     10) '---'
-     11) '# Steps'
-         11a) '## 1) Plan (2–3 min)'
-         11b) '## 2) Build / Prep (3–5 min)'
-         11c) '## 3) Code (8–12 min)'
-         11d) '## 4) Discovery (checklist + pseudocode) (8–12 min)'
-         11e) '## 5) Test (3–5 min)'
-         11f) '## 6) Iterate (2–3 min)'
-     12) '---'
-     13) '# Skeleton Starter (start here)'
-     14) '---'
-     15) '# Submission / Demo Checklist'
-     16) '---'
-     17) '# Extensions (choose one)'
-     18) '---'
-     19) '# Troubleshooting'
-     20) '---'
-     21) '# Reflection (1–2 sentences)'
-     22) '---'
-     23) '# Next Up'"
-  - "Exactly one 'Skeleton Starter (start here)' section; keep it minimal with TODOs—no full solution."
-  - "Place the '🆘 Need a hint?' callout directly under '# Steps' and link to:
-     'Example_Code/<lab-slug>/STUDENT_START.md' (lab-specific)."
-  - "Step 4 ('Discovery') MUST have a checklist + brief pseudocode; NO solution code."
-  - "No spoilers: never include a full solution; reference STUDENT_START.md only."
-  - "All links must be relative. Validate filenames/slugs."
-  - "All code fences must close; Step headings must be numbered '## 1)…## 6)'."
-
+- 'Do NOT include YAML front matter at the top. Start with an H1 like: ''# <##> —
+  <Lab Name>''.'
+- Insert the 'Quick Summary' block immediately below the H1, using the exact formatting.
+- 'Sections MUST appear exactly in this order and with these headings (H1/H2 as shown):
+  1) ''# <##> — <Lab Name>'' 2) ''> ### Quick Summary'' block (lines starting with
+  ''> '') 3) ''# Why This Matters'' 4) ''---'' (horizontal rule) 5) ''# What You’ll
+  Build'' 6) ''---'' 7) ''# Outcomes'' 8) ''---'' 9) ''# Setup'' 10) ''---'' 11) ''#
+  Steps'' 11a) ''## 1) Plan (2–3 min)'' 11b) ''## 2) Build / Prep (3–5 min)'' 11c)
+  ''## 3) Code (8–12 min)'' 11d) ''## 4) Discovery (checklist + pseudocode) (8–12
+  min)'' 11e) ''## 5) Test (3–5 min)'' 11f) ''## 6) Iterate (2–3 min)'' 12) ''---''
+  13) ''# Skeleton Starter (start here)'' 14) ''---'' 15) ''# Submission / Demo Checklist''
+  16) ''---'' 17) ''# Extensions (choose one)'' 18) ''---'' 19) ''# Troubleshooting''
+  20) ''---'' 21) ''# Reflection (1–2 sentences)'' 22) ''---'' 23) ''# Next Up'''
+- Exactly one 'Skeleton Starter (start here)' section; keep it minimal with TODOs—no
+  full solution.
+- 'Place the ''🆘 Need a hint?'' callout directly under ''# Steps'' and link to: ''Example_Code/<lab-slug>/STUDENT_START.md''
+  (lab-specific).'
+- Step 4 ('Discovery') MUST have a checklist + brief pseudocode; NO solution code.
+- 'No spoilers: never include a full solution; reference STUDENT_START.md only.'
+- All links must be relative. Validate filenames/slugs.
+- All code fences must close; Step headings must be numbered '## 1)…## 6)'.
 post_generation_checklist:
-  - "Structure: All required sections exist and in exact order."
-  - "Discovery: Step 4 uses a checklist + brief pseudocode (no concrete solution code)."
-  - "Starters: Exactly one 'Skeleton Starter (start here)'."
-  - "Hints: '🆘 Need a hint?' under '# Steps' → Example_Code/<lab-slug>/STUDENT_START.md."
-  - "No spoilers: No full solution code; reference STUDENT_START.md only."
-  - "Links: Guide + helper links are relative and valid."
-  - "Code fences & headings: Fences close; no duplicate headers; '## 1)…## 6)'."
-  - "Student agency: ≥2 TODOs for learners."
-  - "No YAML front matter present."
-
-template_md: |
-  # <##> — <Lab Name>
-
-  > ### Quick Summary
-  > **Level:** <##> • **Time:** <min–max>  
-  > **Prereqs:** <relative links to Guides/Labs>  
-  > **Hardware:** <None or list>  
-  > **You’ll practice:** <short, comma-separated skills>
-
-  # Why This Matters
-  <one paragraph>
-
-  ---
-
-  # What You’ll Build
-  <one paragraph artifact description>
-
-  ---
-
-  # Outcomes
-  By the end you can:
-  - <behavior 1>
-  - <behavior 2>
-  - <behavior 3>
-
-  ---
-
-  # Setup
-  - <tools/env>
-  - <files/folders>
-
-  ---
-
-  # Steps
-
-  > 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](Example_Code/<lab-slug>/STUDENT_START.md)**.
-
-  ## 1) Plan (2–3 min)
-  <brief planning>
-
-  ## 2) Build / Prep (3–5 min)
-  <hardware check or project prep>
-
-  ## 3) Code (8–12 min)
-  <minimal structure + TODOs; no full solution>
-
-  ## 4) Discovery (checklist + pseudocode) (8–12 min)
-  **Checklist**
-  - <item 1>
-  - <item 2>
-  - <item 3>
-
-  **Pseudocode (guide, not code)**
-  ```
-  <brief pseudocode>
-  ```
-
-  ## 5) Test (3–5 min)
-  <sanity checks + knobs>
-
-  ## 6) Iterate (2–3 min)
-  <one improvement loop>
-
-  ---
-
-  # Skeleton Starter (start here)
-  <exactly one minimal starter; encourage TODOs>
-  ```python
-  # minimal structure only
-  ```
-
-  ---
-
-  # Submission / Demo Checklist
-  - [ ] <demo 1>
-  - [ ] <demo 2>
-  - [ ] <clean exit>
-
-  ---
-
-  # Extensions (choose one)
-  - <idea 1>
-  - <idea 2>
-
-  ---
-
-  # Troubleshooting
-  - **Symptom** → <Likely cause> → <Fix>
-
-  ---
-
-  # Reflection (1–2 sentences)
-  - <prompt 1>
-  - <prompt 2>
-
-  ---
-
-  # Next Up
-  <one-sentence pointer to next lab/guide>
-
-  post_generation_checklist:
-  - "Structure: All required sections exist and follow the exact template order used in 00/01 (Quick Summary → Why This Matters → What You’ll Build → Outcomes → Setup → # Steps with ## 1)…## 6) → Skeleton Starter → Submission/Demo → Extensions → Troubleshooting → Reflection → Next Up)."
-  - "Discovery (Step 4): Uses a checklist + brief pseudocode only (no concrete solution code)."
-  - "Starters: Exactly one 'Skeleton Starter (start here)' section is present (no duplicates)."
-  - "Hints: The '🆘 Need a hint?' callout appears directly under '# Steps' and links to the lab-specific helper: Example_Code/<lab-slug>/STUDENT_START.md (not hard-coded to Lab 00)."
-  - "No spoilers: No full solution code anywhere; only reference STUDENT_START.md."
-  - "Links: All Guide and helper links are relative and valid; filenames/slugs match the lab."
-  - "Code fences & headings: All fences close; no duplicate headers; consistent ## 1)…## 6) numbering."
-  - "Student agency: At least 2 clear TODOs remain for learners."
-  - "YAML front matter: Keys/values parse cleanly (quote values with colons or special characters)."
+- 'Structure: All required sections exist and in exact order.'
+- 'Discovery: Step 4 uses a checklist + brief pseudocode (no concrete solution code).'
+- 'Starters: Exactly one ''Skeleton Starter (start here)''.'
+- 'Hints: ''🆘 Need a hint?'' under ''# Steps'' → Example_Code/<lab-slug>/STUDENT_START.md.'
+- 'No spoilers: No full solution code; reference STUDENT_START.md only.'
+- 'Links: Guide + helper links are relative and valid.'
+- 'Code fences & headings: Fences close; no duplicate headers; ''## 1)…## 6)''.'
+- 'Student agency: ≥2 TODOs for learners.'
+- No YAML front matter present.
+- 'Structure: All required sections exist and follow the exact template order.'
+- 'Learn→Try→Do: Mention the loop (Learn & Try in Guide, Do in this Lab) in or near
+  the intro.'
+- 'Setup: Mention Raspberry Pi 500 (hardware) and Thonny IDE explicitly with quick
+  run steps.'
+- 'Hint: Place the ''🆘 Need a hint?'' callout directly under ''# Steps'' and link
+  to ''../Example_Code/<NN-lab-name>/STUDENT_START.md''.'
+- 'Skeleton Starter: Exactly one ''Skeleton Starter'' section is present (no duplicates).'
+- 'No spoilers: No full solution code in the Lab; solution references live only in
+  Example_Code/SOLUTION.md.'
+- 'Links: Validate helper paths are correct and relative.'
+- 'Code fences & headings: Fences close correctly; use ''## 1) ...'' step numbering
+  with no duplicates.'
+- 'Student agency: Leave at least 2 clear TODOs for learners to implement.'
+template_md: "# <##> — <Lab Name>\n\n> ### Quick Summary\n> **Level:** <##> • **Time:**\
+  \ <min–max>  \n> **Prereqs:** <relative links to Guides/Labs>  \n> **Hardware:**\
+  \ <None or list>  \n> **You’ll practice:** <short, comma-separated skills>\n\n#\
+  \ Why This Matters\n<one paragraph>\n\n---\n\n# What You’ll Build\n<one paragraph\
+  \ artifact description>\n\n---\n\n# Outcomes\nBy the end you can:\n- <behavior 1>\n\
+  - <behavior 2>\n- <behavior 3>\n\n---\n\n# Setup\n- <tools/env>\n- <files/folders>\n\
+  \n---\n\n# Steps\n\n> \U0001F198 **Need a hint?** If you’re stuck for 5–7 minutes,\
+  \ open **[STUDENT_START.md](Example_Code/<lab-slug>/STUDENT_START.md)**.\n\n## 1)\
+  \ Plan (2–3 min)\n<brief planning>\n\n## 2) Build / Prep (3–5 min)\n<hardware check\
+  \ or project prep>\n\n## 3) Code (8–12 min)\n<minimal structure + TODOs; no full\
+  \ solution>\n\n## 4) Discovery (checklist + pseudocode) (8–12 min)\n**Checklist**\n\
+  - <item 1>\n- <item 2>\n- <item 3>\n\n**Pseudocode (guide, not code)**\n```\n<brief\
+  \ pseudocode>\n```\n\n## 5) Test (3–5 min)\n<sanity checks + knobs>\n\n## 6) Iterate\
+  \ (2–3 min)\n<one improvement loop>\n\n---\n\n# Skeleton Starter (start here)\n\
+  <exactly one minimal starter; encourage TODOs>\n```python\n# minimal structure only\n\
+  ```\n\n---\n\n# Submission / Demo Checklist\n- [ ] <demo 1>\n- [ ] <demo 2>\n- [\
+  \ ] <clean exit>\n\n---\n\n# Extensions (choose one)\n- <idea 1>\n- <idea 2>\n\n\
+  ---\n\n# Troubleshooting\n- **Symptom** → <Likely cause> → <Fix>\n\n---\n\n# Reflection\
+  \ (1–2 sentences)\n- <prompt 1>\n- <prompt 2>\n\n---\n\n# Next Up\n<one-sentence\
+  \ pointer to next lab/guide>\n\npost_generation_checklist:\n- \"Structure: All required\
+  \ sections exist and follow the exact template order used in 00/01 (Quick Summary\
+  \ → Why This Matters → What You’ll Build → Outcomes → Setup → # Steps with ## 1)…##\
+  \ 6) → Skeleton Starter → Submission/Demo → Extensions → Troubleshooting → Reflection\
+  \ → Next Up).\"\n- \"Discovery (Step 4): Uses a checklist + brief pseudocode only\
+  \ (no concrete solution code).\"\n- \"Starters: Exactly one 'Skeleton Starter (start\
+  \ here)' section is present (no duplicates).\"\n- \"Hints: The '\U0001F198 Need\
+  \ a hint?' callout appears directly under '# Steps' and links to the lab-specific\
+  \ helper: Example_Code/<lab-slug>/STUDENT_START.md (not hard-coded to Lab 00).\"\
+  \n- \"No spoilers: No full solution code anywhere; only reference STUDENT_START.md.\"\
+  \n- \"Links: All Guide and helper links are relative and valid; filenames/slugs\
+  \ match the lab.\"\n- \"Code fences & headings: All fences close; no duplicate headers;\
+  \ consistent ## 1)…## 6) numbering.\"\n- \"Student agency: At least 2 clear TODOs\
+  \ remain for learners.\"\n- \"YAML front matter: Keys/values parse cleanly (quote\
+  \ values with colons or special characters).\"\n"
+defaults:
+  environment_note: 'Classroom default: Raspberry Pi 500 (Raspberry Pi OS) + Thonny
+    IDE.'
+template_hints:
+  Intro: 'Briefly remind students of Learn→Try→Do: Learn & Try in the Guide; Do in
+    this Lab.'
+  Setup: 'State Raspberry Pi 500 + Thonny. Include steps: open Thonny, create file
+    in ~/Documents/CodeCreate/, Run ▶, view Shell.'
+  Steps: Immediately under '# Steps', include the '🆘 Need a hint?' callout linking
+    to ../Example_Code/<NN-lab-name>/STUDENT_START.md.
+  Skeleton Starter: Provide a single starter block with TODOs; no full solutions here.
+  Demo / Submission Checklist: Bulleted list students can self-check before demo.
+  Troubleshooting: Common errors (IndentationError, unbalanced fences, infinite loop)
+    and quick fixes.
