@@ -1,17 +1,36 @@
+# Setup
+- **Classroom default:** **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**
+- Connect the **Pico** via micro‑USB
+- Thonny → **Tools ▸ Options ▸ Interpreter** → **MicroPython (Raspberry Pi Pico)**; flash MicroPython if prompted
+- Create `pico_breadboard_lab.py` in `~/Documents/CodeCreate/`, then **Run ▶** and watch the **Shell**
 
 ---
-title: Pico Breadboard Lab — Button, LED, and (Optional) RGB/Ultrasonic
-level: 03
-estimated_time: 45–75 min
-difficulty: Beginner
-prereqs:
-  - Guide: [03 – Raspberry Pi Pico Breadboarding](../Guides/03-pico-breadboarding.md)
-rubric:
-  - ✅ Must: Wire a **pushbutton** (input) and a **single LED** (output) and control the LED with the button
-  - ✅ Must: Use **functions** (e.g., `normalize_input()`, `read_button()`, `show_status()`)
-  - ✅ Must: Include basic **debounce** and clean exit on Ctrl‑C
-  - ⭐ Stretch: Add an **RGB LED** (picozero.RGBLED), or read **HC‑SR04** distance and change color/behavior
----
+
+
+> ### Quick Summary
+> **Level:** 03 • **Time:** 45–75 min  
+> **Prereqs:** [Guide: 03 — Pico Breadboarding](../Guides/03-pico-breadboarding.md)  
+> **Hardware:** Raspberry Pi 500 + **Pico** + breadboard + components  
+> **You’ll practice:** Buttons (input), LED & RGB (output), buzzer (PWM), ultrasonic distance
+
+# Why This Matters
+
+> **Learn → Try → Do**
+> - **Learn** in the Guide
+> - **Try** quick practice in the Guide
+> - **Do** this Lab project
+This lab turns basic I/O into an interactive gadget. You'll wire inputs and outputs and write small functions to keep your code tidy.
+
+# What You’ll Build
+A breadboarded gadget that reacts to a **button** and shows state with an **LED** or **RGB LED**, with optional **buzzer** tones and **ultrasonic** distance feedback.
+
+# Outcomes
+By the end you can:
+- Read a **button** and debounce it
+- Drive an **LED** and **RGB LED**
+- Play a **buzzer** tone with PWM (optional)
+- Measure distance with **HC‑SR04** (optional)
+- Organize logic into small **functions** and exit cleanly
 
 # Goal
 Build a small interactive circuit on a breadboard. Pressing the **button** should control an **LED**.  
@@ -34,7 +53,13 @@ Add at least **one** extension (RGB LED or ultrasonic distance sensor) if time p
 
 > If your RGB LED is **common anode**, set `active_high=False` in `RGBLED(...)` or invert values.
 
-## Steps
+# Steps
+
+
+> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/03-pico-breadboard-lab/STUDENT_START.md)**.
+
+> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/03-pico-breadboard-lab/STUDENT_START.md)**.
+
 1) **Plan** — Sketch your wiring and pin choices; confirm resistor on LED.  
 2) **Build** — Place parts and make connections; double‑check polarity and pins.  
 3) **Code** — Start from the starter file below; run and verify button→LED behavior.  
@@ -87,3 +112,87 @@ In 2–3 sentences, describe how you’d modularize this code further (e.g., a `
 
 ## Next up
 Continue to **[04 – PicoBot Maze Explorer](../Labs/04-picobot-maze-explorer.md)** if you’re building the robot.
+
+
+# Skeleton Starter
+Use this **single** starter. Fill each **TODO**. No full solutions here.
+
+```python
+from picozero import Button, LED, RGBLED, Speaker
+from time import sleep
+
+# Pins
+BTN_PIN = 15
+LED_PIN = 14
+RGB_PINS = (13, 12, 11)  # R,G,B
+
+button = Button(BTN_PIN)
+led = LED(LED_PIN)
+rgb = RGBLED(*RGB_PINS)
+# Optional buzzer (active speaker): if using a simple piezo, use PWM and set duty/frequency
+try:
+    buzzer = Speaker(10)  # optional; comment out if not present
+except Exception:
+    buzzer = None
+
+# Optional HC-SR04 support (user to implement if available)
+# TRIG=GP10, ECHO=GP9
+# TODO: implement distance_cm() using machine.Pin + time_pulse_us or a helper library
+
+def read_button() -> bool:
+    """Return True if pressed (debounced via tiny sleep in loop)."""
+    return button.is_pressed
+
+def set_led(on: bool):
+    led.on() if on else led.off()
+
+def set_rgb(r: float, g: float, b: float):
+    """Set RGBLED with 0..1 floats."""
+    rgb.color = (r, g, b)
+
+def beep(ms=100):
+    if buzzer:
+        try:
+            buzzer.on()
+            sleep(ms/1000)
+            buzzer.off()
+        except Exception:
+            pass
+
+def main():
+    print("Pico Breadboard Lab — Button/LED/RGB (buzzer/ultrasonic optional)")
+    while True:
+        try:
+            pressed = read_button()
+            # TODO: Toggle or mirror LED state based on pressed
+            # Example mirror:
+            set_led(pressed)
+
+            # TODO: If pressed: show green; else blue (or any scheme)
+            set_rgb(0, 1, 0) if pressed else set_rgb(0, 0, 1)
+
+            # TODO (optional): short beep when pressed transitions from False->True
+            # Hint: track prev state
+
+            # TODO (optional): if you implemented distance_cm(), map distance to a color
+
+            sleep(0.02)  # simple debounce
+        except KeyboardInterrupt:
+            break
+    # cleanup
+    set_led(False); set_rgb(0,0,0)
+    if buzzer: buzzer.off()
+    print("Goodbye!")
+
+if __name__ == "__main__":
+    main()
+```
+
+
+# Demo / Submission Checklist
+- [ ] Button → LED behavior works consistently (mirror or toggle; state explained)
+- [ ] Code uses **functions** for I/O and includes a small **debounce**
+- [ ] **RGB LED** changes color based on state (or a mode you designed)
+- [ ] *(Optional)* **Buzzer** beeps on press transition (no stuck tone)
+- [ ] *(Optional)* **Ultrasonic** reading affects color/printout
+- [ ] Clean exit on **Ctrl‑C** (LEDs off)
