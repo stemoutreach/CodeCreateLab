@@ -13,7 +13,7 @@ These are your day-one Python moves. You’ll reuse them in every guide and lab�
 ## What you’ll learn
 - Print messages and read keyboard input
 - Store/update values in variables; tell strings vs. numbers
-- Convert input text to numbers for math
+- Convert input text to numbers for math (safely)
 - Make decisions with `if / elif / else` and comparisons
 - Repeat with **for** (counted repeats) and **while** (repeat while true)
 - Combine conditions with booleans (`and`, `or`, `not`)
@@ -43,7 +43,7 @@ print("Hi", "there", 2025)   # prints items with spaces
 **Common mistakes**
 - Missing quotes around text → `NameError`
 - Unmatched quotes/parentheses → `SyntaxError`
-**Checkpoint**: You can explain the difference between printing a **value** vs. a **string** that looks like code.
+**Checkpoint**: Explain the difference between printing a **value** vs. a **string** that looks like code.
 
 ---
 ## 2) Variables & types (names for values)
@@ -66,8 +66,14 @@ print(type(a), type(b))
 ```
 **Naming tips**
 - Use snake_case: `player_name`, `total_points`
-- Don’t start with a number; be descriptive
-**Checkpoint**: You can state the type (`str`, `int`, `float`, `bool`) of a given literal.
+- Don’t start with a number; be descriptive  
+**Common mistakes**
+- Changing a variable’s *type* by accident (e.g., `score = '5'` then later doing math).
+- Using an illegal name (starts with a number or contains spaces), or reusing Python keywords (`for`, `if`).
+- Case sensitivity: `Score` and `score` are different.
+- Writing `a =+ 1` instead of `a += 1`.
+
+**Checkpoint**: State the type (`str`, `int`, `float`, `bool`) of a given literal.
 
 ---
 ## 3) Read input (and convert when needed)
@@ -89,45 +95,6 @@ age = int(age_text)      # or float(...) for decimals
 print("Next year you’ll be", age + 1)
 ```
 
-
-
-**Gotchas**
-- Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
-- Forgetting to store the result of `input()`
-**Checkpoint**: You can explain why `input()` gives a string and how to convert it.
-
-**Idea**: `input()` pauses and returns what the user typed **as a string**.  
-**When to use**: You need the user to choose, answer, or confirm.  
-**Pattern**:
-```python
-answer_text = input("<question> ")
-# convert if you need a number:
-answer_number = int(answer_text)   # or float(...)
-```
-**Try it**
-```python
-name = input("What is your name? ")
-print("Hi", name)
-
-age_text = input("How old are you? ")
-age = int(age_text)      # or float(...) for decimals
-print("Next year you’ll be", age + 1)
-```
-**Gotchas**
-- Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
-- Forgetting to store the result of `input()`
-**Checkpoint**: You can explain why `input()` gives a string and how to convert it.
- after `if/elif/else`
-- Using `=` (assignment) instead of `==` (comparison)
-**Checkpoint**: You can explain what path runs for a given input and why.
-
-**Idea**: `input()` pauses and returns what the user typed **as a string**.  
-**When to use**: You need the user to choose, answer, or confirm.  
-**Pattern**:
-```python
-answer_text = input("<question> ")
-# convert if you need a number:
-answer_number = int(a
 **About `int()` (quick reference)**
 - `int(x)` converts a number-like **string** or **float** to an integer. Examples: `int("42") → 42`, `int(3.9) → 3` (truncates).
 - `int(x, base)` lets you parse other number bases: `int("101", 2) → 5`, `int("1A", 16) → 26`.
@@ -156,51 +123,134 @@ except ValueError:
   `round(2.5) → 2`, `round(3.5) → 4`
 - `round(x, n)` rounds to `n` decimal places: `round(3.14159, 2) → 3.14`.
 - `int(x)` **truncates** toward zero: `int(3.9) → 3`, `int(-3.9) → -3`.
-nswer_text)   # or float(...)
-```
-**Try it**
-```python
-name = input("What is your name? ")
-print("Hi", name)
-
-age_text = input("How old are you? ")
-age = int(age_text)      # or float(...) for decimals
-print("Next year you’ll be", age + 1)
-```
-
 
 **Gotchas**
 - Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
-- Forgetting to store the result of `input()`
-**Checkpoint**: You can explain why `input()` gives a string and how to convert it.
+- Forgetting to store the result of `input()`  
+**Checkpoint**: Explain why `input()` gives a string and how to convert it.
 
-**Idea**: `input()` pauses and returns what the user typed **as a string**.  
-**When to use**: You need the user to choose, answer, or confirm.  
+---
+## 4) Decisions: `if / elif / else`
+**Idea**: Run code only if a condition is true. `elif` = extra check; `else` = everything else.  
+**When to use**: You need branching behavior.  
 **Pattern**:
 ```python
-answer_text = input("<question> ")
-# convert if you need a number:
-answer_number = int(answer_text)   # or float(...)
+if condition_a:
+    ...
+elif condition_b:
+    ...
+else:
+    ...
 ```
 **Try it**
 ```python
-name = input("What is your name? ")
-print("Hi", name)
+direction = input("Which way? ").lower()
 
-age_text = input("How old are you? ")
-age = int(age_text)      # or float(...) for decimals
-print("Next year you’ll be", age + 1)
+if direction == "north":
+    print("You hit a wall.")
+elif direction == "east":
+    print("You found a hallway.")
+else:
+    print("Try another direction.")
 ```
-**Gotchas**
-- Doing math with a string → `"5" + 1` ❌; use `int("5") + 1` ✅
-- Forgetting to store the result of `input()`
-**Checkpoint**: You can explain why `input()` gives a string and how to convert it.
- after `if/elif/else`
-- Using `=` (assignment) instead of `==` (comparison)
-**Checkpoint**: You can explain what path runs for a given input and why.
-to make intent obvious.  
-- Using strings `"True"/"False"` instead of real booleans `True/False`.
-**Checkpoint**: Explain why an 11‑year‑old with an adult passes, but an 11‑year‑old alone does not.
+**Comparisons & logic**
+```python
+temperature = 72
+if temperature > 80:
+    print("Hot")
+elif 60 <= temperature <= 80:
+    print("Nice")
+else:
+    print("Chilly")
+```
+**Common mistakes**
+- Missing colon `:` after `if/elif/else`
+- Using `=` (assignment) instead of `==` (comparison)  
+**Checkpoint**: Describe which path runs for a given input and why.
+
+---
+## 5) Loops two ways: **for** vs. **while**
+**Idea**: Repeat actions. **for** repeats a known count; **while** repeats *until* a condition changes.  
+**When to use**: Lists/counts → **for**. Waiting for a condition/user action → **while**.  
+**Patterns**
+```python
+# for: counted repeats
+for i in range(start, stop_inclusive_plus_one):
+    ...
+
+# while: repeat while condition is True
+while condition:
+    ...
+```
+**Try it**
+```python
+for i in range(1, 6):   # 1,2,3,4,5
+    print(i)
+
+count = 1
+while count <= 5:
+    print(count)
+    count += 1
+
+# Input loop (quit to stop)
+while True:
+    cmd = input("Command (quit to stop): ").lower()
+    if cmd == "quit":
+        print("Bye!")
+        break
+    print("You typed:", cmd)
+```
+**Common mistakes**
+- Forgetting to change something inside a `while` → infinite loop
+- Printing outside the loop (indent wrong) → prints once instead of many times  
+**Checkpoint**: Choose **for** or **while** for a task and justify your choice.
+
+---
+## 6) Clean printing with **f-strings**
+**Idea**: Build readable strings without clumsy `+` or commas.  
+**When to use**: Any time you combine text with values.  
+**Pattern**:
+```python
+print(f"{name} scored {score}")
+```
+**Try it**
+```python
+name = "Kai"
+score = 87
+print(f"{name} scored {score}")
+```
+**Common mistakes**
+- Forgetting the `f` before the opening quote
+- Putting quotes inside braces `{}` — keep expressions simple  
+**Checkpoint**: Convert a `print("X", val)` line to an f-string.
+
+---
+## 7) Booleans & logic combos (True/False thinking)
+**Idea**: A **boolean** is either `True` or `False`. Combine conditions with **and**, **or**, **not** to make smarter decisions.  
+**When to use**: Permissions, safety checks, multi-rule decisions.  
+**Truth table (mental model)**
+- `A and B` is `True` only if **both** are True.  
+- `A or B` is `True` if **either** is True.  
+- `not A` flips True ↔ False.
+**Pattern**:
+```python
+if (age >= 13 and age <= 18) or with_adult:
+    print("Allowed")
+```
+**Try it**
+```python
+age = int(input("Age: "))
+with_adult = input("With adult? (y/n) ").lower() == "y"
+
+if (13 <= age <= 18) or with_adult:
+    print("Allowed")
+else:
+    print("Not allowed")
+```
+**Common mistakes**
+- Misreading precedence in `A or B and C` — add parentheses to show intent.
+- Using strings `"True"/"False"` instead of real booleans `True/False`.  
+**Checkpoint**: Explain why an 11-year-old with an adult passes, but an 11-year-old alone does not.
 
 ---
 ## 8) Comments & indentation (syntax that saves you)
@@ -219,6 +269,11 @@ print("This line is outside the if.")
 **Checkpoint**: Move `print("Hello")` inside and outside an `if` to see the effect.
 
 ---
+
+**Common mistakes**
+- Mixing **tabs** and **spaces** → causes `IndentationError`.
+- Misaligned blocks: one line off breaks the block.
+- Commenting out code but leaving a dangling `:` above a block.
 ## Vocabulary
 - **String**: text in quotes, e.g., `"hello"`  
 - **Integer / Float**: whole number / decimal, e.g., `3`, `3.14`  
@@ -232,7 +287,7 @@ print("This line is outside the if.")
 - **Block**: a group of indented lines that run together (after `if`, `elif`, `else`, `for`, `while`)  
 - **Cast / Type conversion**: turning a string into a number (or vice versa), e.g., `int("5")`  
 - **Input / Output**: `input()` reads from the keyboard; `print()` shows results  
-- **f-string**: formatted string literal like `f\"{name} scored {score}\"`
+- **f-string**: formatted string literal like `f"{name} scored {score}"`
 
 ---
 ## Check your understanding
@@ -274,6 +329,7 @@ print("This line is outside the if.")
 - **Simple calculator:** read `a`, operator, `b` and print the result for `+ - * /` (skip error handling for now).  
 - **Refactor to f-strings:** take any `print` that uses commas or `+` and rewrite with one f-string.
 
+---
 ## Troubleshooting
 - **IndentationError** → lines in a block don’t line up (use 4 spaces).  
 - **`TypeError: can only concatenate str (not "int") to str`** → use `int(...)` or an **f-string**.  
