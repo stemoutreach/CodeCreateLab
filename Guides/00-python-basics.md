@@ -193,7 +193,7 @@ print(score + 1)  # 6
 
 Lists hold an ordered set of values—perfect for keeping valid options together.
 
-**Try it (see values change and print results)**
+**Try it**
 
 ```python
 valid = ["north", "south", "east", "west"]
