@@ -433,4 +433,4 @@ print("This line is outside the if.")
 
 ---
 ## Next up
-Jump into the lab: **[01 — Treasure Hunt (Functions)](../Labs/01-treasure-hunt-functions.md)**.
+Jump into the lab: **[00 — Treasure Hunt (Basic)](../Labs/00-treasure-hunt-basic.md)**.
