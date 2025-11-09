@@ -75,4 +75,3 @@ while not found:
 - [ ] Menu prints **each** loop (the `for` is **inside** the `while`)  
 - [ ] Input like `"  EAST  "` works because you normalized it  
 - [ ] You used an **f-string** for the final win message with the try count
-```
