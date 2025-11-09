@@ -53,17 +53,8 @@ say_hello()            # call
 - Wrong indentation (use **4 spaces**, not tabs)
 
 
-
-### End-of-guide helpers (updated)
-
 ### Vocabulary
 - **function** — named, reusable block of code
-- **parameter** — variable name in a function definition (placeholder)
-- **argument** — actual value you pass when calling
-- **return value** — data given back with `return`
-- **scope** — where a variable can be used (local vs global)
-- **docstring** — triple‑quoted text that documents a function
-- **predicate** — `is_*` style helper that returns `True`/`False`
 
 ### Check your understanding- What is the difference between **defining** a function and **calling** it?
 - Fix: `def hello() print("Hi")`
@@ -382,6 +373,7 @@ Build a tiny quiz game using functions:
 - **return value** — data a function gives back with `return`  
 - **scope** — where a variable can be used (local vs global)  
 - **docstring** — triple‑quoted text that documents a function
+- **predicate** — `is_*` style helper that returns `True`/`False`
 
 ---
 
