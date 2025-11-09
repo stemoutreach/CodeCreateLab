@@ -193,15 +193,15 @@ print(score + 1)  # 6
 
 Lists hold an ordered set of values—perfect for keeping valid options together.
 
+**Try it (see values change and print results)**
+
 ```python
 valid = ["north", "south", "east", "west"]
 print(len(valid))    # 4
 print(valid[0])      # "north"
-```
 
-Use `in` to check if a value appears in the list:
+#Use `in` to check if a value appears in the list:
 
-```python
 choice = input("Pick a direction: ").lower()
 if choice in valid:
     print("OK, you picked a real direction.")
