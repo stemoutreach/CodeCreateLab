@@ -47,6 +47,22 @@ print("Hi", "there", 2025)   # prints items with spaces
 **Checkpoint**: Explain the difference between printing a **value** vs. a **string** that looks like code.
 
 ---
+
+### Vocabulary
+- **print()** — sends text to the console  
+- **comment** — notes for humans; Python ignores lines that start with `#`
+
+### Mini practice
+1) Print `Hello, adventurer!`  
+2) Add a comment above it explaining what your program does.  
+3) Print your name on a second line.
+
+### Check your understanding
+- Q: What happens if you forget the quotes around text?  
+- Q: Will `#` inside a string start a comment?
+
+> **Progress stamp:** I can print a message and write a comment.
+
 ## 2) Variables & types (names for values)
 **Idea**: A **variable** stores a value so you can reuse or change it. The **type** (`str`, `int`, `float`, `bool`) tells Python how to treat that value (text vs. number, etc.).  
 **When to use**: Any time you need to keep a value for later or update it during the program.
@@ -234,6 +250,22 @@ except ValueError:
 ```python
 cmd = input("Choice? ").strip().lower()  # trims spaces, makes lowercase
 ```
+
+### Vocabulary
+- **input()** — reads a line of text from the user  
+- **casting** — convert text to a number: `int("42")`, `float("2.5")`
+
+### Mini practice
+1) Ask for the user’s name; greet them.  
+2) Ask for age; convert to `int`; print age + 1.  
+3) Ask for a decimal speed; convert to `float`; print it.
+
+### Check your understanding
+- Q: Why does `int("two")` crash?  
+- Q: How can `.lower()` help with input?
+
+> **Progress stamp:** I can read text and convert when I need a number.
+
 ## 5) Decisions: `if / elif / else`
 **Idea**: Run code only if a condition is true. `elif` = extra check; `else` = everything else.  
 **When to use**: You need branching behavior.  
@@ -273,6 +305,28 @@ else:
 **Checkpoint**: Describe which path runs for a given input and why.
 
 ---
+
+### Vocabulary
+- **condition** — an expression that becomes `True` or `False`  
+- **branch** — the code block chosen by the condition
+
+### Mini practice
+1) Ask for a password; if `"gold"`, print “open”; else “nope.”  
+2) Ask for temperature (int). If `< 10` → “cold”, `10–24` → “ok”, `>= 25` → “hot”.
+
+### Check your understanding
+- Q: Why does only one branch run in an `if` → `elif` → `else` chain?  
+- Q: What’s wrong with:
+  ```python
+  if x > 10:
+      ...
+  if x > 5:
+      ...
+  ```
+  (When would you want `elif` instead?)
+
+> **Progress stamp:** I can route logic with `if/elif/else`.
+
 ## 6) Loops two ways: **for** vs. **while**
 **Idea**: Repeat actions. **for** repeats a known count; **while** repeats *until* a condition changes.  
 **When to use**: Lists/counts → **for**. Waiting for a condition/user action → **while**.  
@@ -322,6 +376,26 @@ while True:
 **Checkpoint**: Choose **for** or **while** for a task and justify your choice.
 
 ---
+
+### Vocabulary
+- **comparison** — `==`, `!=`, `<`, `<=`, `>`, `>=`  
+- **logical operators** — `and`, `or`, `not` combine conditions  
+- **truth table** — shows how `and/or` behave
+
+### Mini practice
+1) Ask for age (`int`) and `has_id` (`y/n` → convert to `True/False`).  
+2) Allow entry if `(age >= 18) and has_id`.  
+3) If under 18 **or** no ID, print a specific message telling which part failed.
+
+### Check your understanding
+- Q: Explain the difference between `and` vs `or` in one sentence.  
+- Q: Evaluate:
+  - `True and False` → ?  
+  - `not (3 < 2)` → ?  
+  - `(5 == 5) or ("a" in "cat")` → ?
+
+> **Progress stamp:** I can combine comparisons with `and/or/not` correctly.
+
 ## 7) Clean printing with **f-strings**
 **Idea**: Build readable strings without clumsy `+` or commas.  
 **When to use**: Any time you combine text with values.  
@@ -346,6 +420,21 @@ Inside `{ }` you write Python expressions, not extra quotes:
 **Checkpoint**: Convert a `print("X", val)` line to an f-string.
 
 ---
+
+### Vocabulary
+- **string method** — a function “owned” by a string: `"Hi".lower()`  
+- **concatenate** — join strings with `+`
+
+### Mini practice
+1) Ask for a name; print a greeting in lowercase, then uppercase.  
+2) Ask for a word; print whether it contains `"a"` using `"a" in word`.
+
+### Check your understanding
+- Q: What’s the difference between `word.lower` and `word.lower()`?  
+- Q: Why might you normalize with `.strip()` or `.lower()` before comparing?
+
+> **Progress stamp:** I can transform and compare strings reliably.
+
 ## 8) Booleans & logic combos (True/False thinking)
 **Idea**: A **boolean** is either `True` or `False`. Combine conditions with **and**, **or**, **not** to make smarter decisions.  
 **When to use**: Permissions, safety checks, multi-rule decisions.  
@@ -378,6 +467,23 @@ else:
 **Checkpoint**: Explain why an 11-year-old with an adult passes, but an 11-year-old alone does not.
 
 ---
+
+### Vocabulary
+- **sentinel loop** — repeat until a certain input (e.g., `"quit"`)  
+- **guard** — a quick check that prevents bad states (e.g., invalid direction)
+
+### Mini practice
+Build a 6–10 line mini-program:
+1) Prompt for a direction until the user types a valid one from your `valid` list.  
+2) Print a short message for each wrong guess.  
+3) Exit when the right direction is chosen.
+
+### Check your understanding
+- Q: Where did you use `lists`, `input`, and `conditionals` together?  
+- Q: What’s one guard you added to avoid errors?
+
+> **Progress stamp:** I’m ready for the Treasure Hunt lab.
+
 ## 9) Comments & indentation (syntax that saves you)
 **Idea**: Comments explain your thinking; indentation defines **blocks** of code.  
 **When to use**: Always—comments for clarity; indentation because Python requires it.  
@@ -470,3 +576,20 @@ print("This line is outside the if.")
 ---
 ## Next up
 Jump into the lab: **[00 — Treasure Hunt (Basic)](../Labs/00-treasure-hunt-basic.md)**.
+
+### Vocabulary
+- **variable** — a named box for a value (e.g., `health = 10`)  
+- **type** — the kind of value: `int`, `float`, `str`, `bool`  
+- **assignment** — `name = value` stores the value
+
+### Mini practice
+1) Create `player = "Riley"`, `lives = 3`, `speed = 2.5`, `ready = True`.  
+2) Print one line that uses them all.  
+3) Change `lives` by −1 and print the new value.
+
+### Check your understanding
+- Q: What’s the difference between `3` and `"3"`?  
+- Q: Why does `lives = lives + "1"` error?
+
+> **Progress stamp:** I can create and update variables of different types.
+
