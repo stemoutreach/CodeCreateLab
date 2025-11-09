@@ -68,6 +68,9 @@ while not found:
 ```
 > From the Guide: a loop keeps running **while** its condition is true. Same indentation = same block.
 
+> **Quick test:** Run now—should print the intro and then loop (currently with `pass`). No errors yet.
+
+
 ## 3) Read & Normalize Input (4 min)
 Replace the `pass` with an input line and standardize it.
 ```python
@@ -83,7 +86,7 @@ Use `if/elif/else` to respond to each direction. **Write your own** code using t
 - Compare the cleaned input to your `WIN` value.  
 - On win: print a celebration with an **f-string** and set `found = True`.  
 - On other valid directions: print your own messages.  
-- On anything else: print a nudge to use north/south/east/west.  
+- On anything else: print a nudge to use north/south/east/west.   and **continue the loop**.
 - **Bonus Boolean:** Accept **shortcuts** like `n/s/e/w` using `or`. Example pattern:
   ```python
   if direction == "east" or direction == "e":
@@ -195,3 +198,4 @@ while not found:
 
 # Next Up
 Level up to **[01 — Python Functions](../Guides/01-python-functions.md)** to learn how to break your game into reusable pieces.
+tries += 1  # increase tries immediately after reading input
