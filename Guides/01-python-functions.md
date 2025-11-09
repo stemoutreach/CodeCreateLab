@@ -12,18 +12,17 @@ Functions let you name a chunk of code and reuse it. They make programs shorter,
 ## Table of contents
 - [What you’ll learn](#what-youll-learn)  
 - [Setup](#setup)  
-- [1) What is a function? (define & call)](#1-what-is-a-function-define--call)  
-- [2) Parameters & arguments](#2-parameters--arguments)  
+- [1) What is a function? (define & call)](#1-what-is-a-function-define-call)  
+- [2) Parameters & arguments](#2-parameters-arguments)  
 - [3) Return values vs `print`](#3-return-values-vs-print)  
-- [4) Default parameters & keyword args](#4-default-parameters--keyword-args)  
+- [4) Default parameters & keyword args](#4-default-parameters-keyword-args)  
 - [5) Scope: local vs global](#5-scope-local-vs-global)  
 - [6) Docstrings (explain your function)](#6-docstrings-explain-your-function)  
-- [7) Predicate helpers (`is_*`) & tiny utilities](#7-predicate-helpers-is_---tiny-utilities)  
+- [7) Predicate helpers (`is_*`) & tiny utilities](#7-predicate-helpers-is_-tiny-utilities)  
 - [Vocabulary](#vocabulary)  
 - [Check your understanding](#check-your-understanding)  
-- [Troubleshooting](#troubleshooting)  
+- [Troubleshooting](#troubleshooting-troubleshooting)  
 - [Next up](#next-up)
-
 ---
 
 ## What you’ll learn
@@ -308,7 +307,7 @@ def is_even(n):
 - Create `safe_divide(a, b)` that returns `None` if `b == 0`, else `a / b`; test it.
 - Build `format_name(first, last, *, upper=False)` that returns a full name; if `upper` is `True`, uppercase it.
 
-## Troubleshooting Troubleshooting
+## Troubleshooting
 - **Missing argument / `TypeError`** → You defined a parameter but didn’t pass an argument.  
 - **Function returns `None`** → You printed inside the function but forgot to `return`.  
 - **`UnboundLocalError`** → You assigned to a name inside the function that also exists globally (without `global`).  
