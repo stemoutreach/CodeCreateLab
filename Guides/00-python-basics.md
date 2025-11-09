@@ -139,6 +139,62 @@ score = "5"
 score = int(score)
 print(score + 1)  # 6
 ```
+## Mini: Lists & membership (`in`)
+
+Lists hold an ordered set of values—perfect for keeping a few valid options together.
+
+```python
+# A small list of strings
+valid = ["north", "south", "east", "west"]
+
+print(len(valid))    # 4
+print(valid[0])      # "north" (first item)
+```
+
+You’ll often check whether a user’s input is one of the allowed values. Use the `in` operator for a simple membership test:
+
+```python
+choice = input("Pick a direction: ").lower()
+
+if choice in valid:
+    print("OK, you picked a real direction.")
+else:
+    print("Try north/south/east/west.")
+```
+
+### Why this now?
+Your Treasure Hunt lab uses a small collection of directions to validate input. You only need:
+- list literal: `[...]`
+- membership test: `x in my_list`
+- length and indexing: `len(my_list)`, `my_list[0]`
+
+> **Setup tip:** On the Raspberry Pi 500, open **Thonny**, paste the code into a new file, and press **Run** to try it quickly.
+
+### Quick practice
+1) Create a list of two or three favorite snacks.  
+2) Ask the user to type a snack.  
+3) If it’s in your list, print a happy message; otherwise, suggest one from your list (e.g., `print("Try", snacks[0])`).
+
+<details>
+  <summary>Need a tiny nudge?</summary>
+
+  Start with:
+  ```python
+  snacks = ["apple", "granola", "yogurt"]
+  pick = input("Snack? ").lower()
+  if pick in snacks:
+      print("Nice choice!")
+  else:
+      print("Try", snacks[0])
+  ```
+</details>
+
+### Common mistakes to avoid
+- **Case mismatch:** Normalize input with `.lower()` before checking membership.  
+- **Typos in list items:** `"North"` ≠ `"north"`. Keep your list items consistent.  
+- **Index out of range:** Only use indexes that exist (`0` to `len(list)-1`).
+
+
 ## 3) Read input (and convert when needed)
 **Idea**: `input()` pauses and returns what the user typed **as a string**.  
 **When to use**: You need the user to choose, answer, or confirm.  
