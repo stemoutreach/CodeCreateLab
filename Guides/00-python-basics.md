@@ -1,5 +1,6 @@
 # 00 — Python Basics
 
+
 > ### Quick Summary
 > **Level:** 00 • **Time:** 35–60 min  
 > **Prereqs:** None  
@@ -9,17 +10,31 @@
 # Why This Matters
 These are your day-one Python moves. You’ll reuse them in every guide and lab—from Sense HAT pixels to driving a robot. Learn the patterns now to move faster later.
 
+
+## Table of contents
+- [1) Print & comments](#1-print--comments)
+- [2) Variables & types](#2-variables--types)
+- [3) Lists & membership (`in`)](#3-lists--membership-in)
+- [4) Read input](#4-read-input)
+- [5) Conditionals (if / elif / else)](#5-conditionals-if--elif--else)
+- [6) Booleans & logic combos](#6-booleans--logic-combos)
+- [7) Strings: methods you’ll use soon](#7-strings-methods-youll-use-soon)
+- [8) Putting it together (pre-lab warmup)](#8-putting-it-together-pre-lab-warmup)
+- [End-of-guide helpers](#end-of-guide-helpers-updated)
+
 ---
+
 ## What you’ll learn
-- Print messages and read keyboard input
-- Store/update values in variables; tell strings vs. numbers
+- Print messages and read keyboard input (normalize with `.lower()` / `.strip()`)
+- Store/update values in variables; tell strings vs. numbers; do safe type conversion
 - Convert input text to numbers for math (safely)
-- Make decisions with `if / elif / else` and comparisons
-- Repeat with **for** (counted repeats) and **while** (repeat while true)
+- Use lists and membership: create `[...]`, check with `in`, and use `len()` / indexing
+- Make decisions with `if / elif / else` and comparisons; combine with `and` / `or` / `not`
+- Repeat with **for** (counted repeats) and **while** (repeat while true / sentinel)
 - Combine conditions with booleans (`and`, `or`, `not`)
 - Format output cleanly with **f-strings**
-- Avoid common mistakes with indentation and types
-
+- Avoid common mistakes (indentation, mixed types, index out of range) and troubleshoot basic errors
+  
 ## Setup
 - On a **Raspberry Pi 500**, open **Thonny** (Menu → Programming → Thonny).
 - Create a new file named `basics.py` in a folder you can find (e.g., `Documents/CodeCreate/`).
@@ -625,4 +640,19 @@ print("This line is outside the if.")
 ## Next up
 Jump into the lab: **[00 — Treasure Hunt (Basic)](../Labs/00-treasure-hunt-basic.md)**.
 
+### Vocabulary
+- **variable** — a named box for a value (e.g., `health = 10`)  
+- **type** — the kind of value: `int`, `float`, `str`, `bool`  
+- **assignment** — `name = value` stores the value
+
+### Mini practice
+1) Create `player = "Riley"`, `lives = 3`, `speed = 2.5`, `ready = True`.  
+2) Print one line that uses them all.  
+3) Change `lives` by −1 and print the new value.
+
+### Check your understanding
+- Q: What’s the difference between `3` and `"3"`?  
+- Q: Why does `lives = lives + "1"` error?
+
+> **Progress stamp:** I can create and update variables of different types.
 
