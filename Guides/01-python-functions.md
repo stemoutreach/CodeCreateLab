@@ -16,7 +16,7 @@ Functions let you name a chunk of code and reuse it. They make programs shorter,
 - [4) Default parameters & keyword args](#4-default-parameters-keyword-args)  
 - [5) Scope: local vs global](#5-scope-local-vs-global)  
 - [6) Docstrings (explain your function)](#6-docstrings-explain-your-function)  
-- [7) Predicate helpers (`is_*`) & tiny utilities](#7-predicate-helpers-is_-tiny-utilities)  
+- [7) Predicate helpers (`is_*`) & tiny utilities](#7-predicate-helpers-is-tiny-utilities)  
 - [Vocabulary](#vocabulary)  
 
 ---
