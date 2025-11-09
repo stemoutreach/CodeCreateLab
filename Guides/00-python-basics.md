@@ -139,63 +139,43 @@ score = "5"
 score = int(score)
 print(score + 1)  # 6
 ```
-## Mini: Lists & membership (`in`)
 
-Lists hold an ordered set of values—perfect for keeping a few valid options together.
+## 4) Lists & membership (`in`)
+
+Lists hold an ordered set of values—perfect for keeping valid options together.
 
 ```python
-# A small list of strings
 valid = ["north", "south", "east", "west"]
-
 print(len(valid))    # 4
-print(valid[0])      # "north" (first item)
+print(valid[0])      # "north"
 ```
 
-You’ll often check whether a user’s input is one of the allowed values. Use the `in` operator for a simple membership test:
+Use `in` to check if a value appears in the list:
 
 ```python
 choice = input("Pick a direction: ").lower()
-
 if choice in valid:
     print("OK, you picked a real direction.")
 else:
     print("Try north/south/east/west.")
 ```
 
-### Why this now?
-Your Treasure Hunt lab uses a small collection of directions to validate input. You only need:
-- list literal: `[...]`
-- membership test: `x in my_list`
-- length and indexing: `len(my_list)`, `my_list[0]`
+**You’ll need:** list literal `[...]`, membership `x in my_list`, `len(my_list)`, indexing `my_list[0]`.
 
-> **Setup tip:** On the Raspberry Pi 500, open **Thonny**, paste the code into a new file, and press **Run** to try it quickly.
+> **Tip (Raspberry Pi 500 + Thonny):** Paste each snippet into a new Thonny script and press **Run**.
 
-### Quick practice
-1) Create a list of two or three favorite snacks.  
-2) Ask the user to type a snack.  
-3) If it’s in your list, print a happy message; otherwise, suggest one from your list (e.g., `print("Try", snacks[0])`).
+**Quick practice**
+1. Make a list of 3 snacks.  
+2. Ask the user for a snack.  
+3. If it’s in your list, print “Nice choice!”; otherwise, suggest `snacks[0]`.
 
-<details>
-  <summary>Need a tiny nudge?</summary>
-
-  Start with:
-  ```python
-  snacks = ["apple", "granola", "yogurt"]
-  pick = input("Snack? ").lower()
-  if pick in snacks:
-      print("Nice choice!")
-  else:
-      print("Try", snacks[0])
-  ```
-</details>
-
-### Common mistakes to avoid
-- **Case mismatch:** Normalize input with `.lower()` before checking membership.  
-- **Typos in list items:** `"North"` ≠ `"north"`. Keep your list items consistent.  
-- **Index out of range:** Only use indexes that exist (`0` to `len(list)-1`).
+**Common gotchas**
+- Normalize input: `input().lower()`  
+- Keep list items consistent: `"north"` vs `"North"`  
+- Index safely: valid indexes are `0..len(list)-1`
 
 
-## 3) Read input (and convert when needed)
+## 4) Read input (and convert when needed)
 **Idea**: `input()` pauses and returns what the user typed **as a string**.  
 **When to use**: You need the user to choose, answer, or confirm.  
 **Pattern**:
@@ -254,7 +234,7 @@ except ValueError:
 ```python
 cmd = input("Choice? ").strip().lower()  # trims spaces, makes lowercase
 ```
-## 4) Decisions: `if / elif / else`
+## 5) Decisions: `if / elif / else`
 **Idea**: Run code only if a condition is true. `elif` = extra check; `else` = everything else.  
 **When to use**: You need branching behavior.  
 **Pattern**:
@@ -293,7 +273,7 @@ else:
 **Checkpoint**: Describe which path runs for a given input and why.
 
 ---
-## 5) Loops two ways: **for** vs. **while**
+## 6) Loops two ways: **for** vs. **while**
 **Idea**: Repeat actions. **for** repeats a known count; **while** repeats *until* a condition changes.  
 **When to use**: Lists/counts → **for**. Waiting for a condition/user action → **while**.  
 **Patterns**
@@ -342,7 +322,7 @@ while True:
 **Checkpoint**: Choose **for** or **while** for a task and justify your choice.
 
 ---
-## 6) Clean printing with **f-strings**
+## 7) Clean printing with **f-strings**
 **Idea**: Build readable strings without clumsy `+` or commas.  
 **When to use**: Any time you combine text with values.  
 **Pattern**:
@@ -366,7 +346,7 @@ Inside `{ }` you write Python expressions, not extra quotes:
 **Checkpoint**: Convert a `print("X", val)` line to an f-string.
 
 ---
-## 7) Booleans & logic combos (True/False thinking)
+## 8) Booleans & logic combos (True/False thinking)
 **Idea**: A **boolean** is either `True` or `False`. Combine conditions with **and**, **or**, **not** to make smarter decisions.  
 **When to use**: Permissions, safety checks, multi-rule decisions.  
 **Truth table (mental model)**
@@ -398,7 +378,7 @@ else:
 **Checkpoint**: Explain why an 11-year-old with an adult passes, but an 11-year-old alone does not.
 
 ---
-## 8) Comments & indentation (syntax that saves you)
+## 9) Comments & indentation (syntax that saves you)
 **Idea**: Comments explain your thinking; indentation defines **blocks** of code.  
 **When to use**: Always—comments for clarity; indentation because Python requires it.  
 **Pattern**:
