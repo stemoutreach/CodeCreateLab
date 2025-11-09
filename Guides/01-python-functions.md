@@ -255,7 +255,7 @@ def distance(a, b):
 ---
 
 ## 7) Predicate helpers and tiny utilities
-**Learn**: A **predicate** returns `True`/`False`. Great for clean `if` checks.
+**Learn**: A **predicate** returns `True`/`False`. Use them to keep `if` checks clean.
 
 ```python
 def is_even(n):
@@ -263,20 +263,117 @@ def is_even(n):
     return n % 2 == 0
 ```
 
+#### More number predicates
+```python
+def is_odd(n):
+    """True if n is odd."""
+    return n % 2 == 1
 
+def is_positive(x):
+    """True if x > 0."""
+    return x > 0
 
-### Vocabulary
-- **predicate**: function that returns `True`/`False`
-- **boolean**: a `True` or `False` value
+def is_between(x, low, high, inclusive=True):
+    """True if low <= x <= high (or low < x < high if inclusive=False)."""
+    return (low <= x <= high) if inclusive else (low < x < high)
+
+def is_prime(n):
+    """Simple prime test for n >= 2."""
+    if n < 2:
+        return False
+    i = 2
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 1
+    return True
+```
+
+#### String predicates
+```python
+def is_vowel(ch):
+    """True if ch is a vowel (A/E/I/O/U)."""
+    return ch.lower() in "aeiou"
+
+def is_consonant(ch):
+    """True if ch is a letter and not a vowel."""
+    return ch.isalpha() and not is_vowel(ch)
+
+def starts_with_vowel(s):
+    """True if s starts with a vowel."""
+    return len(s) > 0 and is_vowel(s[0])
+
+def is_blank(s):
+    """True if s is empty or only spaces."""
+    return s.strip() == ""
+
+def is_palindrome(text):
+    """True if text reads the same forward/backward (ignore spaces/punctuation/case)."""
+    cleaned = "".join(c.lower() for c in text if c.isalnum())
+    return cleaned == cleaned[::-1]
+```
+
+#### Collection predicates (lists/tuples/strings)
+```python
+def all_unique(seq):
+    """True if no duplicates."""
+    return len(set(seq)) == len(seq)
+
+def has_duplicates(seq):
+    """True if any value appears more than once."""
+    return len(set(seq)) != len(seq)
+
+def is_sorted(seq, *, reverse=False):
+    """True if seq is in nondecreasing order (or nonincreasing if reverse=True)."""
+    return list(seq) == sorted(seq, reverse=reverse)
+```
+
+#### Tiny utilities (helpers you’ll reuse)
+```python
+def normalize(text, *, casefold=True, strip=True):
+    """Return cleaned text for comparisons."""
+    if strip:
+        text = text.strip()
+    return text.casefold() if casefold else text
+
+def clamp(x, low, high):
+    """Keep x within [low, high]."""
+    return max(low, min(x, high))
+
+def approximately_equal(a, b, tol=1e-6):
+    """True if a and b are within tol."""
+    return abs(a - b) <= tol
+```
+
 
 ### Mini practice
 - Print the even numbers from 1–10 using `is_even`.
 
 ### Check your understanding
-- Why do small helpers like `is_even` make other code clearer?
+- Why do tiny helpers like `is_even` make other code clearer?
 - What will `is_even(13)` return? Why?
+## Check your understanding
+1. What’s the difference between a **parameter** and an **argument**?
+2. What happens if a function has no `return` statement—what value is returned?
+3. Why are default parameters useful? Give an example.
+4. Where is a local variable accessible?
+5. Fix this: `def area(width=10, height): return width * height` (what’s wrong with the parameter order?)
 
 ---
+
+## Try it: Mini‑exercise
+Build a tiny quiz game using functions:
+- `ask(question, answer)` → returns `True` if the user’s input matches.
+- `play_round()` → asks 2–3 questions and returns the score.
+- In `main()`, call `play_round()` in a loop until the user types `quit`.
+
+> **Stretch ideas**
+> - Add `normalize(s, casefold=True)` that trims spaces and optionally ignores case.  
+> - Track high score.  
+> - Use a constant `MAX_TRIES = 2` and let players retry missed questions.
+
+---
+
 
 ## Vocabulary
 - **function** — named, reusable block of code  
