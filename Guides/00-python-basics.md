@@ -325,12 +325,16 @@ if (age >= 13 and age <= 18) or with_adult:
 **Try it**
 ```python
 age = int(input("Age: "))
-with_adult = input("With adult? (y/n) ").lower() == "y"
+with_adult = input("With adult? (y/n) ").strip().lower() == "y"
 
-if (13 <= age <= 18) or with_adult:
+# Policy:
+# - 13 or older → allowed (no adult needed)
+# - Under 13 → allowed only with an adult
+if age >= 13 or with_adult:
     print("Allowed")
 else:
     print("Not allowed")
+
 ```
 **Common mistakes**
 - Misreading precedence in `A or B and C` — add parentheses to show intent.
