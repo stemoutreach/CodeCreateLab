@@ -156,7 +156,7 @@ score = int(score)
 print(score + 1)  # 6
 ```
 
-## 4) Lists & membership (`in`)
+## 3) Lists & membership (`in`)
 
 Lists hold an ordered set of values—perfect for keeping valid options together.
 
@@ -189,6 +189,22 @@ else:
 - Normalize input: `input().lower()`  
 - Keep list items consistent: `"north"` vs `"North"`  
 - Index safely: valid indexes are `0..len(list)-1`
+
+### Vocabulary
+- **list** — ordered collection in square brackets: `["north","south"]`  
+- **index** — position number (starts at 0): `valid[0]`  
+- **membership** — `x in my_list` checks if `x` is present
+
+### Mini practice
+1) Make `valid = ["north","south","east","west"]`.  
+2) Ask the user for a direction, `.lower()` it.  
+3) If it’s in `valid`, print “OK”; else print “Try north/south/east/west.”
+
+> **Progress stamp:** I can store options in a list and check membership safely.
+
+### Check your understanding
+- Q: Why does `valid[4]` fail?  
+- Q: What does `len(valid)` return?
 
 
 ## 4) Read input (and convert when needed)
