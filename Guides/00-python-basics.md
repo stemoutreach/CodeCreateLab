@@ -641,19 +641,4 @@ print("This line is outside the if.")
 ## Next up
 Jump into the lab: **[00 — Treasure Hunt (Basic)](../Labs/00-treasure-hunt-basic.md)**.
 
-### Vocabulary
-- **variable** — a named box for a value (e.g., `health = 10`)  
-- **type** — the kind of value: `int`, `float`, `str`, `bool`  
-- **assignment** — `name = value` stores the value
-
-### Mini practice
-1) Create `player = "Riley"`, `lives = 3`, `speed = 2.5`, `ready = True`.  
-2) Print one line that uses them all.  
-3) Change `lives` by −1 and print the new value.
-
-### Check your understanding
-- Q: What’s the difference between `3` and `"3"`?  
-- Q: Why does `lives = lives + "1"` error?
-
-> **Progress stamp:** I can create and update variables of different types.
 
