@@ -10,6 +10,12 @@ COACH NOTE:
 from typing import Literal
 
 VALID: tuple[str, str, str, str] = ("north", "south", "east", "west")
+# Learn: A tuple is like a list, but it cannot change (it’s immutable). Use it for fixed choices you don’t want modified.
+# When to use:
+#   Fixed menus/options: VALID = ("north", "south", "east", "west")
+#   Tiny records you won’t mutate: point = (3, 5)
+#   Safe constants shared across functions
+
 WIN: Literal["north", "south", "east", "west"] = "east"
 
 # Optional extension knobs
