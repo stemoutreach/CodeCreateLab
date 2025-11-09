@@ -12,15 +12,16 @@ These are your day-one Python moves. You’ll reuse them in every guide and lab�
 
 
 ## Table of contents
-- [1) Print & comments](#1-print--comments)
-- [2) Variables & types](#2-variables--types)
+
+- [1) Print a message (your program “talks”)](#1-print-a-message-your-program-talks)
+- [2) Variables & types (names for values)](#2-variables--types-names-for-values)
 - [3) Lists & membership (`in`)](#3-lists--membership-in)
-- [4) Read input](#4-read-input)
-- [5) Conditionals (if / elif / else)](#5-conditionals-if--elif--else)
-- [6) Booleans & logic combos](#6-booleans--logic-combos)
-- [7) Strings: methods you’ll use soon](#7-strings-methods-youll-use-soon)
-- [8) Putting it together (pre-lab warmup)](#8-putting-it-together-pre-lab-warmup)
-- [End-of-guide helpers](#end-of-guide-helpers-updated)
+- [4) Read input (and convert when needed)](#4-read-input-and-convert-when-needed)
+- [5) Decisions: if / elif / else](#5-decisions-if--elif--else)
+- [6) Loops two ways: for vs. while](#6-loops-two-ways-for-vs-while)
+- [7) Clean printing with f-strings](#7-clean-printing-with-f-strings)
+- [8) Booleans & logic combos (True/False thinking)](#8-booleans--logic-combos-truefalse-thinking)
+- [9) Comments & indentation (syntax that saves you)](#9-comments--indentation-syntax-that-saves-you)
 
 ---
 
