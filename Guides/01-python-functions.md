@@ -10,8 +10,6 @@
 Functions let you name a chunk of code and reuse it. They make programs shorter, clearer, and easier to test—skills you’ll use right away in the **Treasure Hunt (Functions)** lab when you organize logic into well‑named helpers.
 
 ## Table of contents
-- [What you’ll learn](#what-youll-learn)  
-- [Setup](#setup)  
 - [1) What is a function? (define & call)](#1-what-is-a-function-define-call)  
 - [2) Parameters & arguments](#2-parameters-arguments)  
 - [3) Return values vs `print`](#3-return-values-vs-print)  
@@ -20,9 +18,7 @@ Functions let you name a chunk of code and reuse it. They make programs shorter,
 - [6) Docstrings (explain your function)](#6-docstrings-explain-your-function)  
 - [7) Predicate helpers (`is_*`) & tiny utilities](#7-predicate-helpers-is_-tiny-utilities)  
 - [Vocabulary](#vocabulary)  
-- [Check your understanding](#check-your-understanding)  
-- [Troubleshooting](#troubleshooting-troubleshooting)  
-- [Next up](#next-up)
+
 ---
 
 ## What you’ll learn
