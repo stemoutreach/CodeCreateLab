@@ -3,187 +3,197 @@
 > ### Quick Summary
 > **Level:** 01 • **Time:** 35–60 min  
 > **Prereqs:** [Guide: 00 — Python Basics](../Guides/00-python-basics.md), [Guide: 01 — Python Functions](../Guides/01-python-functions.md)  
-> **Hardware:** Raspberry Pi 500 + Thonny (Python 3)
-> **You’ll practice:** defining/calling functions, parameters, return values, local vs global scope, docstrings
+> **Hardware:** Raspberry Pi 500 + Thonny (Python 3)  
+> **You’ll practice:** defining/calling functions, parameters & return values, **pure helpers vs I/O**, short `main()`, simple predicates
+
+> **Learn → Try → Do**  
+> - **Learn** + **Try** in the Functions guide.  
+> - **Do** here in the Lab by refactoring the Basic Treasure Hunt into clean helpers.
+
+---
 
 # Why This Matters
-Functions let you **name** and **reuse** logic. Refactoring the basic Treasure Hunt into functions makes it easier to test, extend, and reason about—exactly what you’ll do in later labs.
+Functions let you name a chunk of logic and reuse it. Refactoring your basic Treasure Hunt into **small helpers that return values** makes the game easier to read, test, and extend (like adding hints or a mini‑map).
 
 ---
 
 # What You’ll Build
-A function‑organized text‑adventure. You’ll separate I/O (printing/reading) from **decision logic** and use **return values** to drive the loop.
+A function‑organized **text adventure** where:
+- Input/printing (I/O) is kept in tiny wrappers  
+- Game **decisions** happen inside helpers that **return** status strings  
+- `main()` becomes short and readable
 
 ---
 
 # Outcomes
 By the end you can:
-- Define **3–4 small functions** with clear, single purposes.
-- Use **parameters** and **return values** to pass information.
-- Keep `main()` short and readable.
-- Avoid hidden global state—prefer passing values in and returning results out.
+- Write **3–5 small functions** with single, clear jobs.  
+- Pass information with **parameters** and **return values** (not globals).  
+- Keep **I/O separate** from decision logic.  
+- Explain why a short `main()` is easier to maintain.
 
 ---
 
 # Setup
-- Open **Thonny** on your **Raspberry Pi 500** (Menu → Programming → Thonny).
-- Create a new file named `treasure_functions.py` in `~/Documents/CodeCreate/`.
-- Press **Run ▶** to execute; watch the **Shell** for output.
+- Open **Thonny** on your **Raspberry Pi 500** (Menu → Programming → Thonny).  
+- Create a new file `treasure_functions.py` in `~/Documents/CodeCreate/`.  
+- Press **Run ▶** to execute; watch the **Shell** for I/O.
 
 ---
 
 # Steps
 
-
 > 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/01-treasure-hunt-functions/STUDENT_START.md)** and reveal the Full Starter to compare with your approach.
 
-## 1) Plan (2–3 min)
-List your functions and their jobs. For example:  
-- `welcome()` — prints the intro  
-- `normalize(text, casefold=True)` — trims and optionally lowercases input  
-- `get_direction(prompt="Which way? ")` — reads and normalizes input  
-- `check_direction(direction)` — **returns** `"win"`, `"continue"`, or `"invalid"`  
-- `main()` — loop that calls helpers until win/quit
+## 1) Plan your helpers (2–3 min)
+List small functions and their job (one job each):
+- `normalize(text, *, casefold=True)` → return trimmed (and optionally case‑folded) text  
+- `is_valid_direction(choice)` → `True/False` for allowed words/shortcuts  
+- `expand_shortcut(choice)` → `'n' → 'north'`, etc.  
+- `check_direction(choice, *, win)` → return `"win"`, `"continue"`, or `"invalid"`  
+- `prompt_direction(prompt="Which way? ")` → read input and **return** normalized text  
+- `main()` → drive the loop and print messages
 
-> From the Guide: prefer **return values** over print for decisions.
+> From the Guide: prefer **return values** from helpers; print in `main()`.
 
-## 2) Write Function Stubs (5 min)
-Create empty functions with docstrings and `pass`. Fill them in later.
+## 2) Create function stubs (3–4 min)
+Write each function with a docstring and `pass` so the file runs. You’ll fill them soon.
+
+## 3) Normalize & validate (6–8 min)
+Implement `normalize`, `is_valid_direction`, and `expand_shortcut`. Use a constant list of valid words:
 ```python
-def welcome():
-    """Print game intro."""
-    pass
-
-def normalize(text, casefold=True):
-    """Return text trimmed; case‑folded if requested."""
-    pass
-
-def get_direction(prompt="Which way? "):
-    """Read input and return a normalized direction."""
-    pass
-
-def check_direction(direction):
-    """Return one of: 'win', 'continue', 'invalid'."""
-    pass
-
-def main():
-    """Run the game loop until win or quit."""
-    pass
+VALID = ("north", "south", "east", "west")
 ```
 
-## 3) Normalize Input (5 min)
-Implement `normalize(text, casefold=True)` using the Guide’s **string methods**.
-- Trim spaces with `.strip()`  
-- If `casefold` is `True`, return `text.casefold()` (more robust than `lower()`).
-
-## 4) Decide What Happens (10–12 min)
-Use `if/elif/else` **inside** `check_direction()` and **return** a value that the loop can use. **Do not copy code—write your own** using the checklist.
+## 4) Decide with returns (8–10 min)
+Implement `check_direction(choice, *, win)` so it **returns** a status string (no long prints). Keep it pure if you can.
 
 **Checklist**
-- Compare the cleaned direction to your `WIN` value.
-- On win: **return** `"win"` (don’t print everything here; keep prints short).
-- On other valid directions: print a short message and **return** `"continue"`.
-- Otherwise: **return** `"invalid"`.
+- If not valid → return `"invalid"`  
+- Map shortcuts to full words (e.g., `'e' → 'east'`)  
+- Compare to `win` → return `"win"` or `"continue"`
 
-**Pseudocode (guide, not code)**
-```
-if direction matches WIN:
-    maybe print; return "win"
-elif direction is valid but not WIN:
-    print hint; return "continue"
-else:
-    return "invalid"
-```
+## 5) Short, readable `main()` (6–8 min)
+- Print a welcome once (separate tiny function optional).  
+- Loop: show a simple menu (`for d in VALID: print("-", d)`), then call `prompt_direction`.  
+- If `"quit"` → say goodbye and `break`.  
+- Else call `check_direction` and handle the **returned** status.  
+- Track `tries` and only increment for actual attempts.
 
-## 5) Main Loop & Quit Flow (6–8 min)
-In `main()`:
-- Print a short intro with `welcome()`.
-- Loop: read input with `get_direction()`.
-- If the user types `"quit"`, print goodbye and break.
-- Otherwise call `check_direction()` and handle the **returned** result.
-
-## 6) Celebrate & Report (1–2 min)
-Track attempts in `main()` and report with an f‑string when they win.
+## 6) Celebrate & report (1–2 min)
+When status is `"win"`, congratulate the player with an f‑string including `tries` and end the loop.
 
 ---
 
-# Skeleton Starter (start here)
-Use this starter and the **Functions** guide to fill each TODO.  
-If you get stuck for 5–7 minutes, open the **Student Start** helper: `Example_Code/01-treasure-hunt-functions/STUDENT_START.md`.
+# Skeleton Starter (copy/paste, then fill TODOs)
+Use the Functions guide + your Basic lab as reference.
 
 ```python
-WIN = "???"   # TODO: pick one: "north", "south", "east", or "west"
+# 01 — Treasure Hunt (Functions)
 
-def welcome():
-    """Print game intro."""
-    print("Welcome to the Treasure Hunt (Functions)!")
-    print("Type a direction (north/south/east/west) or 'quit' to exit.")
+VALID = ("north", "south", "east", "west")
+WIN = "???"  # TODO: pick one: "north", "south", "east", or "west"
 
-def normalize(text, casefold=True):
-    """Return text trimmed; case‑folded if requested."""
-    # TODO: implement using .strip() and optionally .casefold()
+def normalize(text, *, casefold=True):
+    """Return trimmed text; case-folded if requested."""
+    # TODO: use .strip() and optionally .casefold()
     return text  # placeholder
 
-def get_direction(prompt="Which way? "):
-    """Read input and return a normalized direction."""
-    # TODO: read input(), then normalize and return it
-    return ""  # placeholder
+def is_valid_direction(choice):
+    """True if choice is a valid word or shortcut (n/s/e/w)."""
+    # TODO: check full words in VALID or shortcuts in ("n","s","e","w")
+    return False  # placeholder
 
-def check_direction(direction):
-    """Return one of: 'win', 'continue', 'invalid'."""
-    # TODO: compare to WIN, decide, and return a status string
-    # Keep prints short; let main() decide what to do.
+def expand_shortcut(choice):
+    """Map n/s/e/w to full words; otherwise return choice unchanged."""
+    # TODO: use a dict mapping
+    return choice  # placeholder
+
+def check_direction(choice, *, win):
+    """Return 'win', 'continue', or 'invalid' without doing I/O."""
+    # TODO:
+    # 1) validate
+    # 2) expand shortcut
+    # 3) compare to win and return a status string
     return "invalid"  # placeholder
+
+def prompt_direction(prompt="Which way? "):
+    """Read, normalize, and return a direction or 'quit'."""
+    # TODO: read input(), normalize, and return
+    return ""  # placeholder
 
 def main():
     """Run the game loop until win or quit."""
-    # TODO:
-    # - call welcome()
-    # - track tries
-    # - read direction with get_direction()
-    # - support 'quit'
-    # - call check_direction() and handle its return value
-    pass
+    print("Welcome to the Treasure Hunt (Functions)!")
+    print("Type north/south/east/west (or n/s/e/w). Type 'quit' to leave.")
+    tries = 0
+
+    while True:
+        # show menu each loop
+        for d in VALID:
+            print(f"- {d}")
+
+        choice = prompt_direction("Which way? ")
+        if choice == "quit":
+            print("Thanks for playing. Goodbye!")
+            break
+
+        # count real attempts
+        tries += 1
+        result = check_direction(choice, win=WIN)
+
+        if result == "win":
+            print(f"You found the treasure in {tries} moves!")
+            break
+        elif result == "continue":
+            print("Not here—keep exploring...")
+        else:  # 'invalid'
+            print("Try north, south, east, or west (n/s/e/w).")
 
 if __name__ == "__main__":
     main()
 
 # Quick self-checks:
-# 1) Typing "  EAST  " should still win after normalization (if WIN is "east").
-# 2) main() stays short: helpers do the work; logic flows via return values.
-# 3) 'tries' increments only when a valid attempt is made.
+# - check_direction("  E  ", win="east") should be 'win' after your normalize/expand.
+# - main() remains short; helpers do the work.
+# - You don't need 'global'—pass values and return results.
 ```
 
 ---
 
 # Demo / Submission Checklist
-- [ ] Uses **three+ functions** with clear names and single purposes.  
-- [ ] `check_direction()` **returns** a value that drives the loop (no hidden globals).  
-- [ ] Program handles **invalid** input and supports **quit**.  
-- [ ] Code is organized (docstrings/comments where helpful).
+- [ ] Uses **three or more functions** with single, clear jobs.  
+- [ ] `check_direction()` **returns** a status string; `main()` makes the decisions.  
+- [ ] Input is cleaned; shortcuts work; **quit** supported.  
+- [ ] `main()` is short (helpers handle logic).  
+- [ ] Docstrings or short comments clarify each helper.
 
 ---
 
-# Extensions (choose one)
-- **Stateful map:** Track a 2×2 grid and the player’s position; win at specific coordinates.  
-- **Lives/score:** Subtract lives for bad choices; track and print best score.  
-- **Hints:** Add `get_hint()` that returns a clue based on the last direction.
+# Make It Yours — Extensions (choose one)
+- **MAX_TRIES:** Add a `MAX_TRIES` constant (e.g., 6). End with “Game over” if exceeded.  
+- **Hints:** Write `get_hint(last_move, win)` that **returns** a clue string; print it after 3 misses.  
+- **Map:** Track a 2×2 grid (`(x, y)`); only the winning cell succeeds. Show position each loop.  
+- **Scoring:** Subtract points for bad moves; bonus for winning quickly.
+
+> Tip: Keep helpers **pure** when you can (no print/input). Pure functions are easy to test in the Shell.
 
 ---
 
 # Troubleshooting
-- **Function returns `None`** → Ensure you `return` a value instead of only `print`ing.  
-- **Global state bugs** → Pass values into functions and **return** results rather than mutating globals.  
-- **Unclear flow** → Keep `main()` short—delegate logic to helpers.  
-- **TypeError: missing required positional argument** → You defined a parameter but didn’t pass an argument when calling.
+- **Nothing happens** → Did you call `main()` at the bottom?  
+- **Function returns `None`** → You printed but forgot to `return`.  
+- **Missing argument** → Your call didn’t match the function’s parameters.  
+- **Globals confusion** → Avoid `global`; pass in what you need and return results.  
+- **Shortcuts fail** → Double‑check `expand_shortcut` and `is_valid_direction`.
 
 ---
 
 # Reflection (1–2 sentences)
-- Which function helped the most with readability?  
-- What would you add next if you had one more hour?
+- Which helper made your code the most readable?  
+- If you had one more hour, what feature would you add next and why?
 
 ---
 
 # Next Up
-Advance to hardware with **[02 — Sense HAT Basics](../Labs/02-sense-hat-basics.md)** when you’re ready.
+Ready for sensors? Move on to **[02 — Sense HAT Basics](../Labs/02-sense-hat-basics.md)**.
