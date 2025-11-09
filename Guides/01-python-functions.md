@@ -369,6 +369,9 @@ Build a tiny quiz game using functions:
 
 
 ## 9) Run your program safely: the main-guard
+> **Quick note — what’s this line?** When you run a file directly, `__name__` is `"__main__"`, so we call `main()`. When this file is imported from another file, the line **doesn’t** run—so your game won’t auto‑start. You’ll use this more in a later guide.
+
+
 **Learn**: When Python runs a file directly (press **Run ▶** in Thonny), it sets a special variable `__name__` to `"__main__"`.  
 When a file is **imported** (used as a module), `__name__` becomes the module’s name (like `"functions_playground"`).
 
