@@ -24,6 +24,7 @@ These are your day-one Python moves. You’ll reuse them in every guide and lab�
 - On a **Raspberry Pi 500**, open **Thonny** (Menu → Programming → Thonny).
 - Create a new file named `basics.py` in a folder you can find (e.g., `Documents/CodeCreate/`).
 - Click **Run ▶**. Results appear in the **Shell** (bottom pane).
+- **Program looks frozen** → it’s probably waiting at `input(...)`. Type something in the Shell and press Enter.
 
 ---
 ## 1) Print a message (your program “talks”)
@@ -128,6 +129,16 @@ max-speed = 3.2        # hyphen is illegal in identifiers
 - Given `x = "7"` and `y = 3`, write one line that prints `10` (hint: convert `x`).
 
 ---
+
+```python
+# Bad (TypeError): "5" is text, not a number
+score = "5"
+# print(score + 1)  # TypeError
+
+# Fix
+score = int(score)
+print(score + 1)  # 6
+```
 ## 3) Read input (and convert when needed)
 **Idea**: `input()` pauses and returns what the user typed **as a string**.  
 **When to use**: You need the user to choose, answer, or confirm.  
@@ -182,6 +193,11 @@ except ValueError:
 **Checkpoint**: Explain why `input()` gives a string and how to convert it.
 
 ---
+
+**Input normalization**
+```python
+cmd = input("Choice? ").strip().lower()  # trims spaces, makes lowercase
+```
 ## 4) Decisions: `if / elif / else`
 **Idea**: Run code only if a condition is true. `elif` = extra check; `else` = everything else.  
 **When to use**: You need branching behavior.  
@@ -225,6 +241,18 @@ else:
 **Idea**: Repeat actions. **for** repeats a known count; **while** repeats *until* a condition changes.  
 **When to use**: Lists/counts → **for**. Waiting for a condition/user action → **while**.  
 **Patterns**
+```
+
+**Note on `range`**  
+`range(start, stop)` stops **before** `stop`. To include it, use `range(start, stop + 1)`.
+python
+# for: counted repeats
+for i in range(start, stop + 1):  # includes 'stop'
+    ...
+
+# while: repeat while condition is True
+while condition:
+    ...
 ```python
 # for: counted repeats
 for i in range(start, stop_inclusive_plus_one):
@@ -272,6 +300,11 @@ score = 87
 print(f"{name} scored {score}")
 ```
 **Common mistakes**
+**f-string tip**  
+Inside `{ }` you write Python expressions, not extra quotes:
+- `print(f"{score + 1}")` ✅
+- `print(f{"score"})` ❌
+
 - Forgetting the `f` before the opening quote
 - Putting quotes inside braces `{}` — keep expressions simple  
 **Checkpoint**: Convert a `print("X", val)` line to an f-string.
@@ -341,6 +374,8 @@ print("This line is outside the if.")
 - **Cast / Type conversion**: turning a string into a number (or vice versa), e.g., `int("5")`  
 - **Input / Output**: `input()` reads from the keyboard; `print()` shows results  
 - **f-string**: formatted string literal like `f"{name} scored {score}"`
+- **Modulo `%`**: remainder after division, e.g., `7 % 2 → 1`
+- **Integer division `//`**: drop the decimal, e.g., `7 // 2 → 3`
 
 ---
 ## Check your understanding
@@ -375,6 +410,8 @@ print("This line is outside the if.")
 - **Even or odd:** read a number and print `even` or `odd`. Repeat until blank input.  
 - **Menu loop:** show a tiny menu (`1) greet  2) add  3) quit`) and perform the choice.  
 - **Times table:** ask for `n` and print the `n` times table from 1–10 using a loop.
+- **Remainders:** ask for a number `n` and print `n % 5`.  
+- **Fair share:** ask for candies and kids; print how many each kid gets (`//`) and leftovers (`%`).  
 
 ### Stretch
 - **Sum until blank:** keep asking for integers and print the running total; stop on blank input.  
