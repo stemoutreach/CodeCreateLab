@@ -16,7 +16,8 @@ Functions let you name a chunk of code and reuse it. They make programs shorter,
 - [4) Default parameters & keyword args](#4-default-parameters-keyword-args)  
 - [5) Scope: local vs global](#5-scope-local-vs-global)  
 - [6) Docstrings (explain your function)](#6-docstrings-explain-your-function)  
-- [7) Predicate helpers and tiny utilities](#7-predicate-helpers-and-tiny-utilities) 
+- [7) Predicate helpers and tiny utilities](#7-predicate-helpers-and-tiny-utilities)
+- [9) Run your program safely: the main-guard](#9-run-your-program-safely-the-main-guard)
 - [Vocabulary](#vocabulary)  
 
 ---
@@ -365,6 +366,43 @@ Build a tiny quiz game using functions:
 
 ---
 
+
+
+## 9) Run your program safely: the main-guard
+**Learn**: When Python runs a file directly (press **Run ▶** in Thonny), it sets a special variable `__name__` to `"__main__"`.  
+When a file is **imported** (used as a module), `__name__` becomes the module’s name (like `"functions_playground"`).
+
+Use the **main‑guard** to run demo code only when the file is executed directly—**not** when it’s imported from somewhere else:
+
+```python
+def main():
+    print("This only runs when the file is executed directly.")
+
+if __name__ == "__main__":
+    main()
+```
+
+Why it matters for our Treasure Hunt:
+- You can import your helper functions into other files without accidentally starting the game.
+- Keeps files reusable and testable.
+
+### Try
+1) Create a file `demo_guard.py` with the main‑guard and a `print("hi")` inside `main()`. Run it.  
+2) In a second file, `import demo_guard`. Notice that it **does not** print “hi”.  
+3) Add a small helper (e.g., `normalize(text)`) to `demo_guard.py` and import/use it from the second file.
+
+### Common mistakes
+- Forgetting the `()` → writing `if __name__ == "__main__": main` (does nothing).  
+- Putting **all code** under the guard—keep **functions above**, guard at **bottom**.
+
+> In this guide’s examples and the lab skeleton, we include:
+>
+> ```python
+> if __name__ == "__main__":
+>     main()
+> ```
+>
+> so your helpers can be imported and tested without auto‑running the game.
 
 ## Vocabulary
 - **function** — named, reusable block of code  
