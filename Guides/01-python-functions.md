@@ -1,236 +1,173 @@
-# Python Functions
+# 01 — Python Functions
 
-> ### Quick Summary
-> **Level:** 01 • **Time:** 35–60 min    
-> **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md)    
-> **Hardware:** Computer only     
-> **You’ll practice:** 
-> - Define and call functions with and without parameters
-> - Return values from functions and capture results
-> - Use default parameters and keyword arguments
-> - Understand variable scope (local vs. global)
-> - Write simple, reusable utilities with docstrings
+> ### Quick Summary  
+> **Level:** 01 • **Time:** 35–60 min  
+> **Prereqs:** [Guide: 00 — Python Basics](../Guides/00-python-basics.md)  
+> **Hardware:** Raspberry Pi 500 (Raspberry Pi OS)  
+> **You’ll practice:** define/call functions, parameters & arguments, return values, defaults & keywords, scope (local vs global), docstrings, small utilities
 
-# Why This Matters 
-Functions let you name a chunk of code and reuse it. They make programs shorter, clearer, and easier to test—skills you’ll need in the matching lab, **Treasure Hunt (Functions)**, where you’ll organize logic into well‑named functions.
+# Why This Matters
+Functions let you name a chunk of code and reuse it. They make programs shorter, clearer, and easier to test—skills you’ll use right away in the **Treasure Hunt (Functions)** lab when you organize logic into well‑named helpers.
+
+## Table of contents
+- [What you’ll learn](#what-youll-learn)  
+- [Setup](#setup)  
+- [1) What is a function? (define & call)](#1-what-is-a-function-define--call)  
+- [2) Parameters & arguments](#2-parameters--arguments)  
+- [3) Return values vs `print`](#3-return-values-vs-print)  
+- [4) Default parameters & keyword args](#4-default-parameters--keyword-args)  
+- [5) Scope: local vs global](#5-scope-local-vs-global)  
+- [6) Docstrings (explain your function)](#6-docstrings-explain-your-function)  
+- [7) Predicate helpers (`is_*`) & tiny utilities](#7-predicate-helpers-is_---tiny-utilities)  
+- [Vocabulary](#vocabulary)  
+- [Check your understanding](#check-your-understanding)  
+- [Troubleshooting](#troubleshooting)  
+- [Next up](#next-up)
 
 ---
 
 ## What you’ll learn
-- Defining a function with `def`
-- Parameters vs. arguments
-- Returning values with `return`
-- Default parameters & keyword arguments
-- Local vs. global scope
-- Basic docstrings for readability
+- Define a function with `def` and call it
+- Use **parameters** (in the definition) and **arguments** (in the call)
+- Return values with `return` and capture results in variables
+- Use **default parameters** and **keyword arguments**
+- Understand **scope** (local vs global) and good habits
+- Write short, clear **docstrings** and name functions well
 
 ## Setup
-- **Raspberry Pi 500** running Raspberry Pi OS
-- Open **Thonny** (Menu → Programming → Thonny)
-- Create `functions_playground.py` in `~/Documents/CodeCreate/`
-- Press **Run ▶** and view results in the **Shell**
+- On a **Raspberry Pi 500**, open **Thonny** (Menu → Programming → Thonny).  
+- Create `functions_playground.py` in `~/Documents/CodeCreate/`.  
+- Click **Run ▶**. Results appear in the **Shell** (bottom pane).
 
 ---
-## Essentials for this step (keep it light)
 
-### Return vs. print
-Functions should **return data**; your main code usually **prints**.
+## 1) What is a function? (define & call)
+**Learn**: A function is a named block of code. You define it once and call it whenever you need it.
+
+**Pattern**
+```python
+def say_hello():       # definition
+    print("Hello!")
+
+say_hello()            # call
+```
+
+**Common mistakes**
+- Missing `()` when calling → `say_hello` (no call) vs `say_hello()` (calls it)
+- Missing `:` after the `def` line
+- Wrong indentation (use **4 spaces**, not tabs)
+
+
+
+### End-of-guide helpers (updated)
+
+### Vocabulary
+- **function** — named, reusable block of code
+- **parameter** — variable name in a function definition (placeholder)
+- **argument** — actual value you pass when calling
+- **return value** — data given back with `return`
+- **scope** — where a variable can be used (local vs global)
+- **docstring** — triple‑quoted text that documents a function
+- **predicate** — `is_*` style helper that returns `True`/`False`
+
+### Check your understanding- What is the difference between **defining** a function and **calling** it?
+- Fix: `def hello() print("Hi")`
+
+---
+
+## 2) Parameters & arguments
+**Learn**: **Parameters** are placeholders in the function definition. **Arguments** are the real values you pass in the call.
+
+```python
+def greet(name):              # parameter
+    print("Hello,", name)
+
+greet("Alex")                 # positional argument
+greet(name="Ava")             # keyword argument
+```
+
+Multiple parameters:
+```python
+def introduce(name, grade):
+    print(f"This is {name}, in grade {grade}.")
+```
+
+
+
+### Vocabulary
+- **parameter**: placeholder name in the definition
+- **argument**: actual value passed in a call
+- **positional argument**: matched by position
+- **keyword argument**: `name=value` in a call
+
+### Mini practice
+- Call `introduce("Zoe", 7)` and then `introduce(grade=11, name="Carter")`.
+
+### Check your understanding
+- Parameter vs argument—say it in your own words.
+- In `def f(a, b=10): ...`, which parameter has a default?
+
+---
+
+## 3) Return values vs `print`
+**Learn**: `print()` shows a message for humans. `return` hands data back to your program so you can store or reuse it.
+
 ```python
 def add(a, b):
     return a + b
 
-total = add(3, 4)     # use the result
-print(total)
+total = add(3, 4)     # capture the result
+print(total)          # 7
 ```
 
-### Parameters & arguments (positional and keyword)
-```python
-def area(width, height):
-    return width * height
-
-area(3, 4)                 # positional
-area(width=3, height=4)    # keyword
-```
-
-### Default parameters
-```python
-def greet(name, punctuation="!"):
-    return f"Hi, {name}{punctuation}"
-
-print(greet("Ava"))
-print(greet("Ava", punctuation="!!!"))
-```
-
-### Names, purpose, and tiny docstring
-- Use **verb** names: `compute_`, `get_`, `is_`.
-- Each function does **one job**.
-```python
-def is_even(n):
-    """Return True if n is even, else False."""
-    return n % 2 == 0
-```
-
-> Optional (older/faster students):  
-> - **Pure vs side-effect:** pure returns a value; side-effect prints/does I/O.  
-> - **Scope (light):** variables inside a function aren’t visible outside.
-
----
-## Try (tiny practice, pick one)
-
-1) **Return vs print:** change a function that prints a sum to one that **returns** a sum; print it in `main`.
-2) **Defaults:** call `greet("Ava")` and `greet("Ava", punctuation="!!")`.
-3) **Predicate:** write `is_even(n)` and print even numbers 1–10 using it.
-
----
-## Bridge to the Lab (01 — Treasure Hunt / Functions)
-
-Split the game into small functions:
-
-- `show_menu(options)` → prints choices *(side-effect)*  
-- `get_direction()` → reads input and **returns** cleaned text  
-- `is_win(direction, target)` → **returns bool**  
-- `respond(direction, target)` → prints hint/win message *(side-effect)*
-
-### Checklist for this step
-- [ ] At least one function with **parameters** and a **return**  
-- [ ] One function with a **default parameter**  
-- [ ] A **predicate** `is_*` that returns `True/False`  
-- [ ] A 1‑line **docstring** in at least one function  
-- [ ] Main script prints; functions mostly **return**
-
-### Common pitfalls
-- Printing inside every function → then nothing to combine. Prefer **return**.  
-- Forgetting to **use** return values (`result = f(...)`).  
-- Over-long functions → split into smaller pieces.
-
----
-
-## Walkthrough — Step by Step (with explanations)
-
-### 1) Define and call a function
-**Idea:** A function is a named block of code you can run (call) whenever you need it.
-
-**Anatomy of a function definition**
-- `def` — tells Python you’re defining a function
-- `say_hello` — the function’s *name* (use letters, numbers, and `_`, do not start with a number)
-- `()` — parentheses (will hold inputs later; empty means “no inputs”)
-- `:` — starts the function body
-- **indented block** — the code that runs when the function is called
-
-```python
-def say_hello():
-    print("Hello!")
-
-say_hello()  # call
-```
-
-**Why indentation matters:** Everything indented under `def ...:` belongs *inside* the function. Use 4 spaces.
-
-**Common mistakes**
-- Forgetting the parentheses when calling: write `say_hello()` not `say_hello`.
-- Missing the colon `:` after the parentheses in the definition.
-
-**Try this variant**
-```python
-def cheer():
-    print("Go team!")
-    print("You’ve got this!")
-
-cheer()
-```
-
----
-
-### 2) Add parameters (inputs)
-**Idea:** Parameters are placeholders inside the function definition. Arguments are the actual values you pass when you call the function.
-
-```python
-def greet(name):
-    print("Hello,", name)
-
-greet("Alex")          # positional argument
-greet(name="Ava")      # keyword argument
-```
-
-**How it works**
-- **Parameter**: `name` in the definition `def greet(name):`
-- **Argument**: `"Alex"` when calling `greet("Alex")`
-
-**Positional vs. keyword**
-- *Positional* uses order: `greet("Alex")`
-- *Keyword* names the slot: `greet(name="Ava")` (order can change when you name them)
-
-**Multiple parameters**
-```python
-def introduce(name, grade):
-    print(f"This is {name}, in grade {grade}.")
-
-introduce("Zoe", 7)
-introduce(grade=11, name="Carter")  # keyword order can flip
-```
-
-**Pitfall:** If your function has required parameters, you must pass all of them when calling, or you’ll get a `TypeError`.
-
----
-
-### 3) Return a value
-**Idea:** `return` hands a result back to the caller. Printing shows a message on‑screen, but does **not** give a value back.
-
-```python
-def add(x, y):
-    return x + y
-
-result = add(2, 3)
-print(result)  # 5
-```
-
-**Print vs. return**
-- `print()` → displays text for a human
-- `return` → gives data back to the program so it can be saved, used, or tested
-
-**Only one path continues after `return`**
+One path after `return`:
 ```python
 def max_of_two(a, b):
     if a >= b:
         return a
-    return b  # this line only runs if the first return didn't happen
+    return b
 ```
 
-**Multiple values?** You can return a tuple.
-```python
-def min_and_max(a, b, c):
-    return min(a, b, c), max(a, b, c)
 
-low, high = min_and_max(10, 3, 7)  # low=3, high=10
-```
 
-**No `return`?** Then the function returns `None` (Python’s “nothing” value).
+### Vocabulary
+- **return value**: the data a function hands back
+- **side effect**: something like `print()` that shows output
+- **`None`**: value returned if there’s no `return`
+
+### Mini practice
+- Change a function that *prints* a sum into one that **returns** it; then print the result in `main`.
+
+### Check your understanding
+- What does a function return if there is no `return` statement?
+- Why is returning a value more useful than only printing it?
 
 ---
 
-### 4) Default parameters
-**Idea:** Give a parameter a default so callers can skip it.
+## 4) Default parameters & keyword args
+**Learn**: Give parameters defaults so callers can skip them.
 
 ```python
 def power(base, exponent=2):
     return base ** exponent
 
-print(power(5))      # 25 (uses default exponent=2)
-print(power(2, 10))  # 1024
+print(power(5))            # 25 (uses default)
+print(power(2, 10))        # 1024
+print(power(base=3, exponent=3))
 ```
 
 **Rules of thumb**
-- Put parameters with defaults **after** required ones: `def f(a, b=10): ...`
-- You can always override a default: `power(3, exponent=3)`
+- Put defaults **after** required params: `def f(a, b=10): ...`
+- You can always override defaults with keywords
 
-**Important pitfall: avoid mutable defaults**
+**Important pitfall — avoid mutable defaults**
 ```python
-# ❌ Don't do this
+# ❌ Don't
 def append_once(item, bucket=[]):
     bucket.append(item)
     return bucket
 
-# ✅ Do this instead
+# ✅ Do
 def append_once(item, bucket=None):
     if bucket is None:
         bucket = []
@@ -238,48 +175,61 @@ def append_once(item, bucket=None):
     return bucket
 ```
 
+
+
+### Vocabulary
+- **default parameter**: value used when caller omits it
+- **keyword argument**: `name=value` to be explicit
+- **mutable default**: a changeable object like `[]`—avoid as a default
+
+### Mini practice
+- Make `greet(name, punctuation="!")` and test `greet("Ava")` and `greet("Ava", punctuation="!!")`.
+
+### Check your understanding
+- Why are default parameters helpful in beginner programs?
+- Explain the bug that happens with a mutable default like `[]`.
+
 ---
 
-### 5) Scope: local vs. global
-**Idea:** Variables created *inside* a function are **local** (only exist there). Variables created *outside* are **global** (the whole file can read them).
+## 5) Scope: local vs global
+**Learn**: Variables created **inside** a function are **local**. Outside ones are **global**. Prefer passing values in and returning results out.
 
 ```python
-bonus = 10  # global variable
+BONUS = 10       # constant global
 
 def score_with_bonus(score):
-    # 'score' is local to this function
-    return score + bonus  # reading a global is OK
+    return score + BONUS
 
-print(score_with_bonus(90))  # 100
+print(score_with_bonus(90))   # 100
 ```
 
-**Modifying a global?** It’s possible but discouraged in beginner code.
-
+Modifying a global is possible but discouraged in beginner code:
 ```python
 counter = 0
 
-def bad_increment():
-    # ❌ This will error without 'global' because Python thinks 'counter' is local
-    # counter = counter + 1  # UnboundLocalError
-
 def better_increment():
-    global counter   # tells Python to use the global 'counter'
+    global counter
     counter = counter + 1
-
-better_increment()
 ```
 
-**Best practice:** Prefer passing values **in** and returning results **out**. Globals make code harder to test.
 
-**Tip:** Treat constants as globals you don’t change, and name them in ALL_CAPS:
-```python
-MAX_LIVES = 3
-```
+
+### Vocabulary
+- **local variable**: defined inside a function; used there
+- **global variable**: defined at module top; used anywhere
+- **constant**: a global that you don’t change (UPPER_SNAKE_CASE)
+
+### Mini practice
+- Write `add_bonus(score, bonus=5)` that **returns** the new score (don’t use `global`).
+
+### Check your understanding
+- Why does avoiding `global` make testing easier?
+- What’s the difference between a constant global and a changing global?
 
 ---
 
-### 6) Document with a docstring
-**Idea:** A docstring is a short description at the top of a function that explains what it does, its parameters, and what it returns.
+## 6) Docstrings (explain your function)
+**Learn**: A **docstring** (triple quotes) says what the function does, its inputs, and what it returns.
 
 ```python
 def distance(a, b):
@@ -292,57 +242,80 @@ def distance(a, b):
         int | float: the absolute difference |a - b|
     """
     return abs(a - b)
-
-print(distance(10, 6))      # 4
-print(distance.__doc__)     # view the docstring text
-# Or in a REPL: help(distance)
 ```
 
-**Make it clear and short**
-- First line: one‑sentence summary (“Return …” / “Compute …”)
-- Optional lines: parameters and return value
+
+
+### Vocabulary
+- **docstring**: triple‑quoted string that documents a function
+- **signature**: the function’s name and parameter list
+
+### Mini practice
+- Add a 1‑line docstring to one of your functions and print it with `your_func.__doc__`.
+
+### Check your understanding
+- What goes into a helpful beginner docstring?
+- How do you read a function’s docstring at runtime?
+
+---
+
+## 7) Predicate helpers (`is_*`) & tiny utilities
+**Learn**: A **predicate** returns `True`/`False`. Great for clean `if` checks.
+
+```python
+def is_even(n):
+    """Return True if n is even."""
+    return n % 2 == 0
+```
+
+
+
+### Vocabulary
+- **predicate**: function that returns `True`/`False`
+- **boolean**: a `True` or `False` value
+
+### Mini practice
+- Print the even numbers from 1–10 using `is_even`.
+
+### Check your understanding
+- Why do small helpers like `is_even` make other code clearer?
+- What will `is_even(13)` return? Why?
 
 ---
 
 ## Vocabulary
-- **Function**: a named, reusable block of code
-- **Parameter**: a variable name in the function definition (placeholder)
-- **Argument**: the actual value you pass when calling the function
-- **Return value**: the data a function gives back using `return`
-- **Scope**: where a variable can be used (local vs. global)
-- **Docstring**: text inside triple quotes that documents a function
+- **function** — named, reusable block of code  
+- **parameter** — variable name in a function definition (placeholder)  
+- **argument** — actual value you pass when calling  
+- **return value** — data a function gives back with `return`  
+- **scope** — where a variable can be used (local vs global)  
+- **docstring** — triple‑quoted text that documents a function
 
 ---
 
 ## Check your understanding
-1. What’s the difference between a **parameter** and an **argument**?
-2. What happens if a function has no `return` statement—what value is returned?
-3. Why are default parameters useful? Give an example.
-4. Where is a local variable accessible?
-5. Fix this: `def area(width=10, height): return width * height` (what’s wrong with the parameter order?)
+1) Parameter vs argument—what’s the difference?  
+2) What value is returned if a function has no `return`?  
+3) Fix the parameter order: `def area(width=10, height): ...`  
+4) Why are default parameters useful? Give an example.  
+5) Why avoid mutable default values?  
+6) How do docstrings help you (and your teammates)?
 
 ---
 
-## Try it: Mini‑exercise
-Build a tiny quiz game using functions:
-- `ask(question, answer)` → returns `True` if the user’s input matches.
-- `play_round()` → asks 2–3 questions and returns the score.
-- In `main()`, call `play_round()` in a loop until the user types `quit`.
+### Mini practice (choose 2–3)
+- Write `square(n)` and `cube(n)` that **return** results; print a small table for 1–5.
+- Create `safe_divide(a, b)` that returns `None` if `b == 0`, else `a / b`; test it.
+- Build `format_name(first, last, *, upper=False)` that returns a full name; if `upper` is `True`, uppercase it.
 
-> **Stretch ideas**
-> - Add `normalize(s, casefold=True)` that trims spaces and optionally ignores case.  
-> - Track high score.  
-> - Use a constant `MAX_TRIES = 2` and let players retry missed questions.
-
----
-
-## Troubleshooting
-- **TypeError: missing required positional argument** → You defined a parameter but didn’t pass an argument when calling.
-- **Function returns `None`** → You printed inside the function but forgot to `return` the value.
-- **Unexpected value changes** → Avoid mutating shared/global state; pass values as parameters and return results.
-- **UnboundLocalError** → You tried to assign to a variable inside a function that also exists globally, without using `global`.
+## Troubleshooting Troubleshooting
+- **Missing argument / `TypeError`** → You defined a parameter but didn’t pass an argument.  
+- **Function returns `None`** → You printed inside the function but forgot to `return`.  
+- **`UnboundLocalError`** → You assigned to a name inside the function that also exists globally (without `global`).  
+- **Unexpected value changes** → Don’t mutate shared globals; pass in values and return results.  
+- **Nothing happens** → Did you call the function with `()`?
 
 ---
 
 ## Next up
-Do the matching lab: **[01 – Treasure Hunt (Functions)](../Labs/01-treasure-hunt-functions.md)**
+Do the lab: **[01 — Treasure Hunt (Functions)](../Labs/01-treasure-hunt-functions.md)**.
