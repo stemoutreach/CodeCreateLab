@@ -539,90 +539,90 @@ print("This line is outside the if.")
 - Mixing **tabs** and **spaces** → causes `IndentationError`.
 - Misaligned blocks: one line off breaks the block.
 - Commenting out code but leaving a dangling `:` above a block.
-## Vocabulary
-- **String**: text in quotes, e.g., `"hello"`  
-- **Integer / Float**: whole number / decimal, e.g., `3`, `3.14`  
-- **Variable**: named storage for a value, e.g., `score = 0`  
-- **Boolean**: `True` or `False`  
-- **Expression**: a combination of values/variables/operators that evaluates to a single result, e.g., `3 + x`  
-- **Operator**: a symbol that performs an action, e.g., `+ - * /`  
-- **Comparison operator**: checks relationships, e.g., `== != < <= > >=`  
-- **Logical operator**: combines conditions: `and`, `or`, `not`  
-- **Condition**: an expression that’s `True` or `False`  
-- **Block**: a group of indented lines that run together (after `if`, `elif`, `else`, `for`, `while`)  
-- **Cast / Type conversion**: turning a string into a number (or vice versa), e.g., `int("5")`  
-- **Input / Output**: `input()` reads from the keyboard; `print()` shows results  
-- **f-string**: formatted string literal like `f"{name} scored {score}"`
-- **Modulo `%`**: remainder after division, e.g., `7 % 2 → 1`
-- **Integer division `//`**: drop the decimal, e.g., `7 // 2 → 3`
 
----
-## Check your understanding
-1. What does `input()` return by default? Give an example where you must convert the result.  
-2. Why does `"5" + 1` cause an error, and how do you fix it (two different ways)?  
-3. What’s the difference between `=` and `==`? Show a one-line example of each.  
-4. How do you compare `"NORTH"` and `"north"` equally? Write a single `if` line.  
-5. When would you pick a **for** loop vs. a **while** loop? Give one example for each.  
-6. In your own words, explain `and`, `or`, and `not` with a tiny example.  
-7. Predict the output:  
-   ```python
-   a = 3
-   b = 5
-   print(a + b * 2)
-   print((a + b) * 2)
-   print(not (a < b and b < 10))
-   ```  
-8. Identify the bug and fix it:
-   ```python
-   age = input("Age? ")
-   if age >= 13:
-       print("Teen")
-   ```
+## End-of-guide helpers (updated)
 
----
-## Mini practice (choose 2–3)
-- **Loop count:** print numbers 1–5 with **for** and with **while**.  
-- **Name letters:** ask for a name, then print each letter on a new line.  
-- **Score card:** ask for a name + score, print `"<name> scored <score>"` using an **f-string**.  
-- **Echo loop:** repeatedly ask for a word and echo it back until the user types `quit`.  
-- **Temperature converter:** ask for °C and print °F using `F = C * 9/5 + 32` (use `float`).  
-- **Even or odd:** read a number and print `even` or `odd`. Repeat until blank input.  
-- **Menu loop:** show a tiny menu (`1) greet  2) add  3) quit`) and perform the choice.  
+### Vocabulary
+- String: text in quotes, e.g., `"hello"`
+- Integer / Float: whole number / decimal, e.g., `3`, `3.14`
+- Variable: named storage for a value, e.g., `score = 0`
+- Boolean: `True` or `False`
+- Expression: a combination of values/variables/operators that evaluates to a single result, e.g., `3 + x`
+- Operator: a symbol that performs an action, e.g., `+ - * /`
+- Comparison operator: checks relationships, e.g., `== != < <= > >=`
+- Logical operator: combines conditions: `and`, `or`, `not`
+- Condition: an expression that’s `True` or `False`
+- Block: a group of indented lines that run together (after `if`, `elif`, `else`, `for`, `while`)
+- Cast / Type conversion: turning a string into a number (or vice versa), e.g., `int("5")`
+- Input / Output: `input()` reads from the keyboard; `print()` shows results
+- f-string: formatted string literal like `f"{name} scored {score}"`
+- Modulo `%`: remainder after division, e.g., `7 % 2 → 1`
+- Integer division `//`: drop the decimal, e.g., `7 // 2 → 3`
+- **List:** ordered collection in square brackets, e.g., `["north", "south"]`
+- **Membership test:** `x in my_list` checks if `x` is present
+- **Index:** the position in a list (starts at 0), e.g., `my_list[0]`
+- **Length:** number of items, `len(my_list)`
+- *(optional)* **Set:** collection of unique items in braces, supports membership, e.g., `{"north","south"}`
+
+### Check your understanding
+- What does `input()` return by default? Give an example where you must convert the result.
+- Why does `"5" + 1` cause an error, and how do you fix it (two different ways)?
+- What’s the difference between `=` and `==`? Show a one-line example of each.
+- How do you compare `"NORTH"` and `"north"` equally? Write a single `if` line.
+- When would you pick a `for` loop vs. a `while` loop? Give one example for each.
+- In your own words, explain `and`, `or`, and `not` with a tiny example.
+- Predict the output:
+  ```python
+  a = 3
+  b = 5
+  print(a + b * 2)
+  print((a + b) * 2)
+  print(not (a < b and b < 10))
+  ```
+- Identify the bug and fix it:
+  ```python
+  age = input("Age? ")
+  if age >= 13:
+      print("Teen")
+  ```
+- What does `len(["a","b","c"])` return?
+- Why does `["n","s","e","w"][4]` raise an error?
+- Write a one-liner that is `True` only if `choice` is one of `"north","south","east","west"` (case-insensitive).
+
+### Mini practice (choose 2–3)
+- **Loop count:** print numbers 1–5 with **for** and with **while**.
+- **Name letters:** ask for a name, then print each letter on a new line.
+- **Score card:** ask for a name + score, print `"<name> scored <score>"` using an **f-string**.
+- **Echo loop:** repeatedly ask for a word and echo it back until the user types `quit`.
+- **Temperature converter:** ask for °C and print °F using `F = C * 9/5 + 32` (use `float`).
+- **Even or odd:** read a number and print `even` or `odd`. Repeat until blank input.
+- **Menu loop:** show a tiny menu (`1) greet  2) add  3) quit`) and perform the choice.
 - **Times table:** ask for `n` and print the `n` times table from 1–10 using a loop.
-- **Remainders:** ask for a number `n` and print `n % 5`.  
-- **Fair share:** ask for candies and kids; print how many each kid gets (`//`) and leftovers (`%`).  
+- **Remainders:** ask for a number `n` and print `n % 5`.
+- **Fair share:** ask for candies and kids; print how many each kid gets (`//`) and leftovers (`%`).
+- **Directions validator:** make `valid = ["north","south","east","west"]`; ask for a direction; if it’s in `valid`, print “OK”, else suggest one from the list.
+- **Normalize & check:** read a color, `.strip().lower()` it, and check membership in `["red","green","blue"]`.
+- **Collect choices:** ask for three favorite snacks and store them in a list; then ask the user for a snack and validate with `in`.
 
 ### Stretch
-- **Sum until blank:** keep asking for integers and print the running total; stop on blank input.  
-- **Guessing game:** pick a secret number 1–10 and let the user guess until correct; give hints `higher/lower`.  
-- **Simple calculator:** read `a`, operator, `b` and print the result for `+ - * /` (skip error handling for now).  
+- **Sum until blank:** keep asking for integers and print the running total; stop on blank input.
+- **Guessing game:** pick a secret number 1–10 and let the user guess until correct; give hints `higher/lower`.
+- **Simple calculator:** read `a`, operator, `b` and print the result for `+ - * /` (skip error handling for now).
 - **Refactor to f-strings:** take any `print` that uses commas or `+` and rewrite with one f-string.
+- **Allowed-commands loop:** keep asking for a command until it’s one of the allowed items in a list; print a custom message per wrong attempt.
+- **Unique set (optional):** read words until blank and store them in a **set** to avoid duplicates; print how many unique words were entered.
 
----
-## Troubleshooting
-- **IndentationError** → lines in a block don’t line up (use 4 spaces).  
-- **`TypeError: can only concatenate str (not "int") to str`** → use `int(...)` or an **f-string**.  
-- **`NameError`** → variable used before assignment or spelled differently.  
-- **Stuck in a loop** → change something each time or use `break`.  
+### Troubleshooting
+- **IndentationError** → lines in a block don’t line up (use 4 spaces).
+- **`TypeError: can only concatenate str (not "int") to str`** → use `int(...)` or an **f-string**.
+- **`NameError`** → variable used before assignment or spelled differently.
+- **Stuck in a loop** → change something each time or use `break`.
 - **No output** → is `print` inside the loop/block? Is your code saved and run?
+- **`IndexError: list index out of range`** → valid indexes are `0..len(list)-1` (the last item is `len(list)-1`).
+- Membership “fails” unexpectedly → normalize input and list items (e.g., `.lower()`).
+- **`ValueError`** on `int(input(...))` → input wasn’t a valid number (validate before converting).
 
----
 ## Next up
 Jump into the lab: **[00 — Treasure Hunt (Basic)](../Labs/00-treasure-hunt-basic.md)**.
 
-### Vocabulary
-- **variable** — a named box for a value (e.g., `health = 10`)  
-- **type** — the kind of value: `int`, `float`, `str`, `bool`  
-- **assignment** — `name = value` stores the value
-
-### Mini practice
-1) Create `player = "Riley"`, `lives = 3`, `speed = 2.5`, `ready = True`.  
-2) Print one line that uses them all.  
-3) Change `lives` by −1 and print the new value.
-
-### Check your understanding
-- Q: What’s the difference between `3` and `"3"`?  
-- Q: Why does `lives = lives + "1"` error?
-
-> **Progress stamp:** I can create and update variables of different types.
 
