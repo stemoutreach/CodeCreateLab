@@ -156,6 +156,23 @@ score = int(score)
 print(score + 1)  # 6
 ```
 
+### Vocabulary
+- **variable** — a named box for a value (e.g., `health = 10`)  
+- **type** — the kind of value: `int`, `float`, `str`, `bool`  
+- **assignment** — `name = value` stores the value
+
+### Mini practice
+1) Create `player = "Riley"`, `lives = 3`, `speed = 2.5`, `ready = True`.  
+2) Print one line that uses them all.  
+3) Change `lives` by −1 and print the new value.
+
+> **Progress stamp:** I can create and update variables of different types.
+
+### Check your understanding
+- Q: What’s the difference between `3` and `"3"`?  
+- Q: Why does `lives = lives + "1"` error?
+
+
 ## 3) Lists & membership (`in`)
 
 Lists hold an ordered set of values—perfect for keeping valid options together.
