@@ -47,6 +47,7 @@ sudo reboot
 ```
 _If sensors don’t respond, enable I2C in `raspi-config` and reboot._
 
+[Sense Hat Documentation](https://www.raspberrypi.com/documentation/accessories/sense-hat.html)
 ---
 
 ## 1) Import & first message (install + main‑guard)
