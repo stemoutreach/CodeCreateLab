@@ -123,6 +123,9 @@ draw_corners()
 
 **Sprite with `set_pixels` (64 tuples, row‑major)**
 ```python
+from sense_hat import SenseHat
+sense = SenseHat()
+
 X = (255,0,0)   # red
 _ = (0,0,0)     # off
 
