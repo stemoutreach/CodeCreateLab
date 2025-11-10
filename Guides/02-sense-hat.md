@@ -250,7 +250,7 @@ from sense_hat import SenseHat
 from time import sleep
 
 sense = SenseHat()
-sense.set_imu_config(compass=True, gyroscope=True, accelerometer=True)
+sense.set_imu_config(compass_enabled=True, gyro_enabled=True, accel_enabled=True)
 
 while True:
     accel = sense.get_accelerometer_raw()
