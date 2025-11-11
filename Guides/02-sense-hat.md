@@ -14,9 +14,6 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
 ---
 
 ## Table of contents
-- [What you’ll learn](#what-youll-learn)
-- [Setup](#setup)
-- [1) Import & first message (install + main-guard)](#1-import--first-message-install--main-guard)
 - [2) LED text (scrolling options)](#2-led-text-scrolling-options)
 - [3) Pixels & colors (coordinates 0..7)](#3-pixels--colors-coordinates-07)
 - [4) Environment sensors (°C, %RH, hPa)](#4-environment-sensors-c-%rh-hpa)
@@ -24,12 +21,8 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
 - [6) Display tweaks: brightness, rotation & flips](#6-display-tweaks-brightness-rotation--flips)
 - [7) Letters & quick icons](#7-letters--quick-icons)
 - [8) Sensor bar graph (tiny dashboard)](#8-sensor-bar-graph-tiny-dashboard)
-- [9) Optional: CSV logger](#9-optional-csv-logger)
 - [Vocabulary](#vocabulary)
-- [Check your understanding](#check-your-understanding)
-- [Mini-projects](#mini-projects)
-- [Troubleshooting](#troubleshooting)
-- [Next up](#next-up)
+
 
 ---
 
@@ -40,10 +33,8 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
 - Address individual pixels with `(x,y)` and draw simple sprites
 - Read **temperature**, **humidity**, **pressure** (with units + smoothing)
 - Handle joystick events and build a **tiny menu**
-- **Tweak the display**: dim (low_light), rotate, flip
 - Use `show_letter()` for quick **status icons**
 - Build a simple **bar graph** for live sensor data
-- (Optional) **Log** readings to a CSV file with timestamps
 - Clean up properly with `sense.clear()` even on errors
 
 ---
@@ -372,41 +363,6 @@ finally:
 **Try it**
 - Change the mapping ranges for your classroom values.
 - Add a 4th column that lights green if `t < 28°C`, red otherwise.
-
----
-
-## 9) Optional: CSV logger
-**Learn:** Save a reading every few seconds to a file so you can graph it later.
-
-```python
-from sense_hat import SenseHat
-from time import sleep, strftime
-import csv, os
-
-sense = SenseHat()
-path = os.path.expanduser("~/Documents/CodeCreate/sense_log.csv")
-
-with open(path, "a", newline="") as f:
-    writer = csv.writer(f)
-    if f.tell() == 0:
-        writer.writerow(["timestamp","temp_c","humidity","pressure_hpa"])
-    try:
-        while True:
-            row = [strftime("%Y-%m-%d %H:%M:%S"),
-                   round(sense.get_temperature_from_humidity(), 2),
-                   round(sense.get_humidity(), 2),
-                   round(sense.get_pressure(), 2)]
-            writer.writerow(row)
-            print("Logged:", row)
-            f.flush()
-            sleep(3)
-    finally:
-        print("Saved to:", path)
-```
-
-**Try it**
-- Open the CSV in a spreadsheet and make a quick line chart.
-- Change the interval to every 1 second (don’t forget CPU heat bias).
 
 ---
 
