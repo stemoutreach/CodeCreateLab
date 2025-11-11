@@ -1,4 +1,4 @@
-# 02 — Sense HAT Reaction Timer (Standalone Lab)
+# 02 — Sense HAT Reaction Timer Lab
 
 > ### Quick Summary
 > **Level:** 02 • **Time:** 45–70 min  
