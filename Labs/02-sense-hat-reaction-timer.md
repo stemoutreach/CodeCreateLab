@@ -157,8 +157,6 @@ loop forever:
 
 # Optional Part B — Sensor Intermission (Temp • Humidity • Pressure)
 
-If this is your **only** Sense HAT lab and you want to use the **environment sensors** from the Guide, add this intermission after each round.
-
 ## Goal
 After showing a player's reaction time, display live readings for **temperature (°C)**, **humidity (%RH)**, and **pressure (hPa)** for ~5 seconds.
 
