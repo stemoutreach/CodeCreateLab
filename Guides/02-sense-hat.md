@@ -257,21 +257,49 @@ finally:
 
 ```python
 from sense_hat import SenseHat
+from time import sleep
+
 sense = SenseHat()
+sense.clear()
+sense.low_light = True
 
-sense.low_light = True        # softer brightness for eyes & photos
-sense.set_rotation(90)        # 0, 90, 180, 270 degrees
-sense.show_message("Hi!", scroll_speed=0.07)
+WHITE = (255,255,255)
 
-sense.flip_h()                # mirror horizontally
-sense.show_letter("R")        # quick check
-sense.flip_v()                # mirror vertically
-sense.show_letter("D")
+def draw_L():
+    sense.clear()
+    # An asymmetric "L" shape so flips are easy to see
+    for y in range(8):        # vertical bar (left edge)
+        sense.set_pixel(0, y, WHITE)
+    for x in range(8):        # bottom bar
+        sense.set_pixel(x, 7, WHITE)
+
+# 1) Show the shape
+draw_L()
+sleep(1.0)
+
+# 2) Flip horizontally (mirrors left↔right)
+sense.flip_h()
+sleep(1.0)
+
+# 3) Flip vertically (mirrors top↔bottom)
+sense.flip_v()
+sleep(1.0)
+
+# 4) Rotate the drawing by 90°, then 180°, then back to 0°
+for angle in (90, 180, 0):
+    sense.set_rotation(angle)
+    # Use a letter so you can see rotation without redrawing pixels
+    sense.show_letter("R")
+    sleep(1.0)
+
+sense.clear()
+
 ```
-
-**Try it**
-- Toggle `low_light` on/off and decide which you prefer in class.
-- Show "OK" at 0°, 90°, 180°, 270° and notice the difference.
+**What each call does**
+- sense.low_light = True dims the whole matrix (no sensors involved).
+- sense.flip_h() mirrors the current 8×8 image left↔right.
+- sense.flip_v() mirrors the current 8×8 image top↔bottom.
+- sense.set_rotation(0|90|180|270) rotates how things are drawn. Anything you draw afterward follows that orientation (letters included).
 
 ---
 
