@@ -33,7 +33,7 @@ By the end you can:
 
 # Steps
 
-> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/02-sense-hat-reaction-timer/STUDENT_START.mdmd)** and reveal the Full Starter to compare with your approach.
+> 🆘 **Need a hint?** If you’re stuck for 5–7 minutes, open **[STUDENT_START.md](../Example_Code/02-sense-hat-reaction-timer/STUDENT_START.md)** and reveal the Full Starter to compare with your approach.
 
 ## 1) Plan (2–3 min)
 Sketch the game loop:
