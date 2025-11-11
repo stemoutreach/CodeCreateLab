@@ -94,8 +94,7 @@ sense.clear()
 **Tips**
 - Lower `scroll_speed` = faster scroll.
 - Prefer dimmer colors (e.g., `(120,0,0)`) to avoid glare.
-- `
-` won’t wrap — text scrolls horizontally.
+- `\n` won’t wrap — text scrolls horizontally.
 
 **Try it**
 - Show your name in your favorite color on a dark background.
@@ -195,8 +194,6 @@ finally:
 ```python
 from sense_hat import SenseHat
 from time import sleep
-from random import choice
-
 sense = SenseHat()
 menu = ["T", "H", "P"]   # Temperature, Humidity, Pressure
 idx = 0
@@ -209,13 +206,13 @@ def show_menu():
 def show_value(ch):
     if ch == "T":
         val = round(sense.get_temperature_from_humidity(), 1)
-        msg = f"T {val}C"
+        msg = f"T {val}°C"
     elif ch == "H":
         val = round(sense.get_humidity(), 1)
         msg = f"H {val}%"
     else:
         val = round(sense.get_pressure(), 1)
-        msg = f"P {val}h"
+        msg = f"P {val} hPa"
     sense.show_message(msg, scroll_speed=0.07, text_colour=(200,200,255))
 
 show_menu()
