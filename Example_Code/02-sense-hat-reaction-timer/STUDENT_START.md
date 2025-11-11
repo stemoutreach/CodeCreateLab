@@ -1,46 +1,50 @@
-# STUDENT_START — 02 Sense HAT Basics (Weather Warning Light)
+# 02 — Sense HAT Reaction Timer — STUDENT_START
 
-**Use this only if you're stuck for 5–7 minutes.**
-This gives you a minimal skeleton with TODOs — no full solution.
+These hints nudge you forward without giving away the full code. Try them in order.
+
+## Part A — Reaction Timer (Core)
+
+### 1) Timer accuracy
+Your `start = time()` should happen **immediately after** you flip the screen to GO (green). If you start earlier, you’ll accidentally include drawing/scrolling time in the score.
+
+### 2) Debounce the joystick
+Only count the **first** middle press in your loop. Ignore `"held"` and `"released"` actions. A tiny sleep (≈10–20 ms) in your polling loop helps avoid busy‑waiting.
+
+### 3) High score
+Initialize `best_ms` to `None`. When you finish a round:
+- If `best_ms` is `None` or the new value is smaller, update it.
+- When showing the score, show the number first (e.g., `235 ms`), then a small celebration (✓ flash) if it’s a new best.
+
+### 4) Loop structure
+Use a **main guard** and a `try/finally` to ensure `sense.clear()` always runs, even if you press Stop in Thonny. Keep your round logic in a `while True:` loop.
 
 ---
 
-## Starter Skeleton
-```python
-from sense_hat import SenseHat
-import time
+## Optional Part B — Sensor Intermission (Temp • Humidity • Pressure)
 
-sense = SenseHat()
-sense.clear()
+After you display a player’s time, briefly show the environment readings. Do this **without** blocking your game forever.
 
-def read_readings():
-    """Return (temp_c, humidity_percent). Round for printing."""
-    # TODO: read temperature and humidity, round, and return
-    return 0.0, 0.0
+### What to design (no code here—write your own!)
+- **Duration:** Choose how long the intermission runs (e.g., 5 s).  
+- **Update rate:** Decide how often you refresh readings (e.g., 3–5 times per second).  
+- **Precision:** Pick a consistent number of decimals to display (often 1).  
+- **Format:** Decide on a compact, readable label order like `T:…  H:…  P:…`.  
+- **Exit:** Make sure the intermission ends on time and returns to the main loop.  
 
-def show_status(temp, hum, t_limit, h_limit):
-    """Set LED color and print a message based on limits."""
-    # TODO: compute too_hot and too_dry
-    # TODO: set LED: RED if unsafe else GREEN
-    # TODO: print a readable line with units and limits
+### Smoothing (optional)
+Average a **few** back‑to‑back readings before displaying to reduce jitter. Keep it light so values still feel “live.”
 
-print("Sense HAT — Weather Warning Light")
-# TODO: ask user for high temp limit (°C) and low humidity limit (%) as float
-t_limit = 0.0
-h_limit = 0.0
+### Tiny bar‑graph (optional)
+Convert one metric into a quick LED bar: map the metric’s range to **0–8** LEDs high or wide. Choose readable colors and clear the display when done.
 
-try:
-    while True:
-        temp, hum = read_readings()
-        show_status(temp, hum, t_limit, h_limit)
-        time.sleep(2)   # adjust sample rate
-except KeyboardInterrupt:
-    sense.clear()
-    print("Stopped. Stay safe!")
-```
+### Where to call it
+Right after you show the round’s score and before you clear/reset for the next round.
+
 ---
 
-## Self-check
-- Loop stops on **Ctrl‑C** and clears LED
-- Printed lines show **units** and **limits**
-- LED color switches correctly around your thresholds
+## Quick self‑check
+- Does the timer start exactly when the GO screen appears?  
+- Do you get only **one** press per round?  
+- Does your score show in **milliseconds** as an integer?  
+- Does your code always **clear** the LEDs on exit?  
+- If you built Part B, does it return to the game cleanly without leftover pixels?
