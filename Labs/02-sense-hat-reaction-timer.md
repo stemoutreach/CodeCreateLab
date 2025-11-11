@@ -157,46 +157,53 @@ loop forever:
 
 # Optional Part B — Sensor Intermission (Temp • Humidity • Pressure)
 
-## Goal
-After showing a player's reaction time, display live readings for **temperature (°C)**, **humidity (%RH)**, and **pressure (hPa)** for ~5 seconds.
+**Goal**  
+After each reaction round, briefly show live readings for temperature (°C), humidity (%RH), and pressure (hPa) for ~5 seconds, then return to the next round.
 
-## Starter Snippet
-```python
-def show_env_intermission(sense, seconds=5):
-    import time
-    end = time.time() + seconds
-    while time.time() < end:
-        t = round(sense.get_temperature(), 1)
-        h = round(sense.get_humidity(), 1)
-        p = round(sense.get_pressure(), 1)
-        sense.show_message(f"T:{t}C H:{h}% P:{p}h", scroll_speed=0.05, text_colour=(200,200,200))
-```
+**Inputs & Outputs**  
+- Inputs: the Sense HAT environment sensors.  
+- Output: scrolling text and/or a simple mini‑graph on the LED matrix that is readable and not too bright.
 
-**Where to call it:** right after `show_score(...)` in your main loop:
-```python
-show_score(sense, elapsed_ms, best_ms)
-show_env_intermission(sense, seconds=5)  # <- add this
-```
+**Design Constraints**  
+- Keep the display legible: low_light on; contrasting text/background.  
+- Keep the loop responsive: don’t block forever; return control to the main game.  
+- Keep it tidy: clear or restore the screen when done.
 
-## (Optional) Smoothing
-Sensor readings can jump around. Average a few samples:
-```python
-def avg3(a, b, c): return round((a+b+c)/3, 1)
+**Where this fits**  
+Call your intermission right after you display the player’s time and before you clear for the next round.
 
-def read_env_avg(sense):
-    t = avg3(sense.get_temperature(), sense.get_temperature(), sense.get_temperature())
-    h = avg3(sense.get_humidity(),    sense.get_humidity(),    sense.get_humidity())
-    p = avg3(sense.get_pressure(),    sense.get_pressure(),    sense.get_pressure())
-    return t, h, p
-```
+**Starter Tasks (no code yet)**  
+1) Time window: choose an intermission duration (e.g., 5 seconds).  
+2) Reading cadence: decide how often you’ll sample sensors (e.g., 3–5 updates/sec).  
+3) Rounding: choose a readable precision (e.g., 1 decimal).  
+4) Order/format: decide on a short, consistent label order like “T:…  H:…  P:…”.  
+5) Return path: when time is up, exit the intermission cleanly back to the game loop.
 
-Then in your intermission loop, call `read_env_avg(sense)` and display those values.
+**(Optional) Smoothing**  
+Sensors can jitter. Average a small number of back‑to‑back readings before you display. Keep it simple (e.g., average of 3) so updates still feel live.
 
-## (Optional) Tiny Bar Graph
-Turn readings into a quick bar graph (see Guide §8):
-- Map **humidity** 0–100% to 0–8 LEDs high.
-- Use **blue** bars for humidity, **green** rows for pressure, etc.
-- Keep a dark background and clear on exit.
+**(Optional) Tiny Bar Graph**  
+Turn one metric into a quick visualization: map a value range to 0–8 LEDs and fill a column/row. Pick a color per metric (e.g., blue for humidity). Remember to clear when finished.
+
+**Pseudocode (outline only)**  
+- mark when the intermission should end (now + duration)  
+- until time is up:  
+  - read temperature, humidity, pressure  
+  - optionally smooth (average a few)  
+  - build a short text string (T, H, P) and show it OR update a tiny bar graph  
+  - pause briefly so the display is readable  
+- tidy up (clear or restore) and hand control back to the main loop
+
+**Test Checklist**  
+- Values update several times during the intermission window.  
+- Numbers are readable and use consistent units (°C, %RH, hPa).  
+- Display returns to the game without leftover pixels or glare.  
+- Intermission works even after many rounds (no slowdown or crash).
+
+**Stretch Ideas**  
+- Add a one‑line note when a value is unusually high/low (e.g., “Dry!”).  
+- Let the player skip the intermission early with a joystick press.  
+- Replace text with mini‑graphs for two metrics at once (columns vs rows).
 
 
 ---
