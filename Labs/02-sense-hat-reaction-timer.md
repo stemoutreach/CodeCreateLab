@@ -12,46 +12,6 @@ Fast feedback loops make you a better engineer. This lab turns your Sense HAT in
 
 ---
 
-# Standalone Setup & Checks
-If this is your **only Sense HAT lab**, complete these quick checks first.
-
-## Install & Import Check (2–3 min)
-Create and run this tiny script in Thonny to confirm your Sense HAT works:
-```python
-from sense_hat import SenseHat
-s = SenseHat()
-s.low_light = True
-s.clear(0, 20, 0)   # soft green
-s.show_letter("✓")
-```
-If you see a green screen and a ✓, you’re good. Press **Stop** in Thonny, then add:
-```python
-s.clear()
-```
-
-## Mini Warm‑Ups (5–8 min)
-1) **Color fill**: show **navy** background for 1 sec, then **clear**.  
-2) **Letters**: cycle `["R","G","B"]` with different `text_colour`.  
-3) **Joystick read**: print a line when **middle** is pressed.
-
-```python
-from sense_hat import SenseHat
-from time import sleep
-s = SenseHat(); s.low_light = True
-s.clear(0,0,30); sleep(1); s.clear()
-s.show_letter("R", text_colour=(255,0,0)); sleep(0.6)
-s.show_letter("G", text_colour=(0,255,0)); sleep(0.6)
-s.show_letter("B", text_colour=(0,0,255)); sleep(0.6); s.clear()
-print("Press middle to continue…")
-while True:
-    for e in s.stick.get_events():
-        if e.action == "pressed" and e.direction == "middle":
-            print("Pressed!"); s.clear(); raise SystemExit
-    sleep(0.01)
-```
-
----
-
 # What You’ll Build
 A one‑button reaction game:
 - Screen shows **“Ready”** → waits a **random** 1–3 seconds
