@@ -27,7 +27,6 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
 ---
 
 ## What you’ll learn
-- Install the Sense HAT library and import it in Python
 - Safely create a `SenseHat()` object and use a main-guard
 - Scroll text on the LED matrix with speed and color options
 - Address individual pixels with `(x,y)` and draw simple sprites
