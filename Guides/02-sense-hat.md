@@ -41,14 +41,6 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
 
 ## Setup
 - Classroom default: **Raspberry Pi 500** running Raspberry Pi OS, editor **Thonny**.  
-- In Thonny: File → New, save as `sense_playground.py` in `~/Documents/CodeCreate/`.
-
-**Install (if needed)**
-```bash
-sudo apt update && sudo apt install -y sense-hat
-sudo reboot
-```
-If sensors don’t respond, enable I2C in `raspi-config` and reboot.
 
 ---
 
@@ -414,3 +406,15 @@ finally:
 
 ## Next up
 Do the lab: **[02 — Sense HAT Basics](../Labs/02-sense-hat-basics.md)**.
+
+---
+---
+
+**Install (if needed)**
+```bash
+sudo apt update && sudo apt install -y sense-hat
+sudo reboot
+```
+If sensors don’t respond, enable I2C in `raspi-config` and reboot.
+
+---
