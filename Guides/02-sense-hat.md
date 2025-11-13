@@ -5,11 +5,22 @@
 > **Prereqs:** [00 — Python Basics](../Guides/00-python-basics.md), [01 — Python Functions](../Guides/01-python-functions.md)  
 > **Hardware:** Raspberry Pi 500 + Sense HAT (Raspberry Pi OS)  
 > **You’ll practice:** install/import, LED text & pixels, color tuples, temp/humidity/pressure, joystick menu, brightness/rotation/flip, letters/icons, bar graphs, optional CSV logging, safe loops & cleanup
-
+>
 > **Learn → Try**: Each section first explains the concept, then gives a tiny Try it task before moving on.
 
 # Why This Matters
-The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output, real‑world sensors (temperature, humidity, pressure), and a mini‑joystick for input — all **without breadboards**. You’ll use these skills in the Sense HAT Basics lab to build status badges, mini‑dashboards, and simple games.
+The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output, real-world sensors (temperature, humidity, pressure), and a mini-joystick for input — all **without breadboards**. You’ll use these skills in the Sense HAT Basics lab to build status badges, mini-dashboards, and simple games.
+
+---
+
+## About the Sense HAT
+The **Sense HAT** is an official add-on board that plugs on top of the Raspberry Pi’s GPIO pins. It gives you:
+
+- An **8×8 RGB LED matrix** for messages, icons, and simple graphs.  
+- **Environment sensors** for temperature, humidity, and air pressure.  
+- A tiny **5-way joystick** (up/down/left/right/middle) for simple menus and games.
+
+In this **guide**, you’ll learn how to talk to the Sense HAT from Python: turning pixels on and off, reading sensor values, and using the joystick. In the matching **lab**, you’ll combine those skills into a small project (like a weather-warning light or mini dashboard) that runs on your own Pi.
 
 ---
 
@@ -22,7 +33,6 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
 - [7) Letters & quick icons](#7-letters--quick-icons)
 - [8) Sensor bar graph (tiny dashboard)](#8-sensor-bar-graph-tiny-dashboard)
 - [Vocabulary](#vocabulary)
-
 
 ---
 
@@ -44,7 +54,24 @@ The Sense HAT turns your Pi into a tiny lab: an 8×8 color LED matrix for output
 ---
 
 ## 1) Import & first message (install + main-guard)
-**Learn:** Import the library and create a `SenseHat` object. Use a main-guard so this file can be safely imported later without auto-running.
+
+**Learn:** This is your first guide that uses a **Python library** you didn’t write yourself.
+
+A **library** (or **module**) is a bundle of pre-written code you can reuse so you don’t have to reinvent everything. The Sense HAT library knows how to:
+
+- Talk to the LEDs, sensors, and joystick through the GPIO pins.  
+- Turn your Python commands into the low-level signals the hardware needs.
+
+We use an **import** line to ask Python for that code:
+
+- `sense_hat` → the **module** (the file/package on disk).  
+- `SenseHat` → a **class** inside that module that represents the board.  
+- `from sense_hat import SenseHat` means:  
+  “Find the `sense_hat` module and make the `SenseHat` class available in this file.”
+
+You **install** the library once on the Pi (with `apt install`), but you **import** it at the top of every Python file that uses it.
+
+We’ll also use a **main-guard** so this file can be imported later without auto-running.
 
 ```python
 # sense_playground.py
@@ -60,9 +87,27 @@ if __name__ == "__main__":
     main()
 ```
 
+**Breaking it down**
+- `from sense_hat import SenseHat`  
+  - Must be at the **top of the file** (imports go first).  
+  - Uses an underscore: `sense_hat` (not `sensehat`).  
+- `sense = SenseHat()`  
+  - Creates a **SenseHat object** you can send commands to.  
+  - You’ll keep using this `sense` variable in the rest of your code.  
+- `if __name__ == "__main__":`  
+  - When you **Run ▶** this file directly in Thonny, `__name__` is `"__main__"`, so `main()` runs.  
+  - If another file does `import sense_playground`, the `if` is **false**, so `main()` does **not** run automatically. This keeps your code reusable later.
+
+**Common import mistakes**
+- Typo in the module name: `from sensehat import SenseHat` → `ModuleNotFoundError`.  
+- Wrong capitalization: `Sensehat()` instead of `SenseHat()` → `NameError`.  
+- Putting the import *inside* `main()` or another function: it usually works, but it’s confusing; keep imports at the **top** for clarity.  
+- Forgetting to install the library on the Pi: the import will fail until `sense-hat` is installed.
+
 **Try it**
-- Run the script. Change `scroll_speed` to make it slower/faster.
-- Change the message text. Make sure the LEDs clear at the end.
+- Run the script. Change `scroll_speed` to make it slower/faster.  
+- Change the message text. Make sure the LEDs clear at the end.  
+
 
 ---
 
@@ -85,16 +130,17 @@ sense.clear()
 **Tips**
 - Lower `scroll_speed` = faster scroll.
 - Prefer dimmer colors (e.g., `(120,0,0)`) to avoid glare.
-- `\n` won’t wrap — text scrolls horizontally.
+- `
+` won’t wrap — text scrolls horizontally.
 
 **Try it**
 - Show your name in your favorite color on a dark background.
-- Make a 2‑word message by calling `show_message` twice with different colors.
+- Make a 2-word message by calling `show_message` twice with different colors.
 
 ---
 
 ## 3) Pixels & colors (coordinates 0..7)
-**Learn:** The matrix is 8×8. `(0,0)` is top‑left, `x` grows → right, `y` grows → down. Use `set_pixel(x, y, (r,g,b))` and `set_pixels(list_of_64_colors)`.
+**Learn:** The matrix is 8×8. `(0,0)` is top-left, `x` grows → right, `y` grows → down. Use `set_pixel(x, y, (r,g,b))` and `set_pixels(list_of_64_colors)`.
 
 ```python
 from sense_hat import SenseHat
@@ -113,7 +159,7 @@ def draw_corners():
 draw_corners()
 ```
 
-**Sprite with `set_pixels` (64 tuples, row‑major)**
+**Sprite with `set_pixels` (64 tuples, row-major)**
 ```python
 from sense_hat import SenseHat
 sense = SenseHat()
@@ -170,17 +216,17 @@ finally:
 ```
 
 **Try it**
-- Print raw temp vs. averaged temp side‑by‑side.
+- Print raw temp vs. averaged temp side-by-side.
 - Change the window size (3→7) and see how smooth it feels.
 
 **Tips**
 - Always include units in your printouts.
-- Read every 1–3 seconds to reduce self‑heating.
+- Read every 1–3 seconds to reduce self-heating.
 
 ---
 
 ## 5) Joystick: tiny menu (left/right/select)
-**Learn:** Build a simple menu controlled by the mini‑joystick. Left/right cycles items, middle selects. Then we display the chosen reading.
+**Learn:** Build a simple menu controlled by the mini-joystick. Left/right cycles items, middle selects. Then we display the chosen reading.
 
 ```python
 from sense_hat import SenseHat
@@ -272,13 +318,13 @@ for angle in (90, 180, 0):
     sleep(1.0)
 
 sense.clear()
-
 ```
+
 **What each call does**
-- sense.low_light = True dims the whole matrix (no sensors involved).
-- sense.flip_h() mirrors the current 8×8 image left↔right.
-- sense.flip_v() mirrors the current 8×8 image top↔bottom.
-- sense.set_rotation(0|90|180|270) rotates how things are drawn. Anything you draw afterward follows that orientation (letters included).
+- `sense.low_light = True` dims the whole matrix (no sensors involved).
+- `sense.flip_h()` mirrors the current 8×8 image left↔right.
+- `sense.flip_v()` mirrors the current 8×8 image top↔bottom.
+- `sense.set_rotation(0|90|180|270)` rotates how things are drawn. Anything you draw afterward follows that orientation (letters included).
 
 ---
 
