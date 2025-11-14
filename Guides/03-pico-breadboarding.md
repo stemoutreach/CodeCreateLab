@@ -103,7 +103,7 @@ f–j are connected together per row
 a b c d e   gap   f g h i j
 ─────────   ---   ─────────
 ```
- <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="400" >
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread1.jpg" width="400" >  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="400" >
 
 **Key rules**
 - The long **power rails** run top‑to‑bottom (often split in the middle on some boards). Use them for **3V3** and **GND**.
