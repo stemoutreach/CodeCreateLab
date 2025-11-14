@@ -196,4 +196,4 @@ if __name__ == "__main__":
 ---
 
 # Next Up
-Ready for sensors? Move on to **[02 — Sense HAT Basics](../Labs/02-sense-hat-basics.md)**.
+Ready for sensors? Move on to **[02 — Sense HAT](../Labs/02-sense-hat.md)**.
