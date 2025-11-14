@@ -48,8 +48,8 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 | 00 | [Python Basics](Guides/00-python-basics.md) | [Treasure Hunt (Basic)](Labs/00-treasure-hunt-basic.md) — text adventure with loops & logic | Raspberry Pi only | 30–45 min |
 | 01 | [Python Functions](Guides/01-python-functions.md) | [Treasure Hunt (Functions)](Labs/01-treasure-hunt-functions.md) — refactor with functions | Raspberry Pi only | 35–60 min |
 | 02 | [Sense HAT](Guides/02-sense-hat.md) | [Sense HAT — Reaction Timer](Labs/02-sense-hat-reaction-timer.md) — LEDs, joystick, timing, optional sensor intermission | Raspberry Pi + Sense HAT | 45–70 min |
-| 03 | [Pico Breadboarding](Guides/03-pico-breadboarding.md) | [Pico Breadboard Lab](Labs/03-pico-breadboard-lab.md) — button + LED (+ RGB/buzzer/HC‑SR04 optional) | Raspberry Pi + Pico + breadboard | 45–75 min |
-| 04 | [PicoBot — Drive with L298N (No Sensors)](Guides/04-picobot.md) | **[PicoBot Drive Basics](Labs/04-picobot-drive-basics.md)** — forward/turn/stop, PWM trim, timed square | Raspberry Pi+ PicoBot (Pico + L298N) | 60–90 min |
+| 03 | [Pico Breadboarding](Guides/03-pico-breadboarding.md) | [Pico Breadboard Lab](Labs/03-pico-breadboard-lab.md) — button + LED (+ RGB/buzzer/HC‑SR04 optional) | Raspberry Pi + Pico + breadboard + LEDs and Sensors | 45–75 min |
+| 04 | [PicoBot — Drive with L298N (No Sensors)](Guides/04-picobot.md) | **[PicoBot Drive Basics](Labs/04-picobot-drive-basics.md)** — forward/turn/stop, PWM trim, timed square | Raspberry Pi + PicoBot (Pico + L298N + motors) | 60–90 min |
 
 > **Note:** We intentionally split the 04 lab into **Drive Basics (no sensors)** first. Obstacle sensing (e.g., HC‑SR04) comes later, after reliable motion.
 
