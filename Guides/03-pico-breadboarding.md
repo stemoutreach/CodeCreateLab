@@ -103,7 +103,7 @@ f–j are connected together per row
 a b c d e   gap   f g h i j
 ─────────   ---   ─────────
 ```
-  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="380" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread1.jpg" width="400" > 
+  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="280" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread1.jpg" width="300" > 
 
 **Key rules**
 - The long **power rails** run top‑to‑bottom (often split in the middle on some boards). Use them for **3V3** and **GND**.
@@ -155,7 +155,7 @@ while True:
 - `sleep(0.5)` pauses for half a second.
 - Press **Stop** in Thonny to end the loop.
 
-  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="380" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED2.jpeg width="400" > 
+  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="380" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED2.jpeg" width="400" > 
 
 **Try this:** Replace `0.5` with `0.1` (faster) or `1.0` (slower).
 
