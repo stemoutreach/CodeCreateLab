@@ -340,7 +340,7 @@ RED   = (200, 0, 0)
 NAVY  = (0, 0, 30)
 
 sense.clear(NAVY)
-sense.show_letter("✓", text_colour=GREEN, back_colour=NAVY)  # success
+sense.show_letter("?", text_colour=GREEN, back_colour=NAVY)  # success
 ```
 
 **Try it**
@@ -450,7 +450,7 @@ finally:
 ---
 
 ## Next up
-Do the lab: **[02 — Sense HAT Basics](../Labs/02-sense-hat-basics.md)**.
+Do the lab: **[02 — Sense HAT Reaction Timer](../Labs/02-sense-hat-reaction-timer.md)**.
 
 ---
 ---
