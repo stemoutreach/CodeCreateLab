@@ -573,4 +573,4 @@ finally: # Turn speaker off if interrupted
 ---
 
 ## Next up
-Do the matching lab: **[03 – Pico Breadboard Lab](../Labs/03-pico-breadboard-lab.md)**
+Do the matching lab: **[03 – Pico Breadboard](../Labs/03-pico-breadboard.md)**
