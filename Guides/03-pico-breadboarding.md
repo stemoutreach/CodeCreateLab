@@ -77,6 +77,7 @@ The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2
 - **Power & control:** multiple **GND** pins, **3V3**, **VBUS/VSYS**, **RUN**, `3V3_EN`.  
 - **Onboard LED:** **GP25** (Pico only). Use `picozero.pico_led` to be portable across Pico and Pico W.
 
+
 **Safety rules**
 - GPIO pins are **3.3V max**. Use level shifting if a sensor outputs **5V**.  
 - For LEDs: **series resistor** (220–330 Ω) between GPIO and GND path.  
@@ -92,18 +93,10 @@ The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2
 ## Breadboard & GPIO — The Big Picture
 
 ### Inside the breadboard
-A breadboard is a grid of spring clips hidden under plastic. Certain holes are internally connected:
 
-```
- Main area (rows)
-Columns a b c d e  |  f g h i j
-Rows connect like this:
-a–e are connected together per row
-f–j are connected together per row
-a b c d e   gap   f g h i j
-─────────   ---   ─────────
-```
-  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="280" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread1.jpg" width="300" > 
+A breadboard is a grid of spring clips hidden under plastic. Certain holes are internally connected:  
+
+  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="284" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread1.jpg" width="300" > 
 
 **Key rules**
 - The long **power rails** run top‑to‑bottom (often split in the middle on some boards). Use them for **3V3** and **GND**.
@@ -135,7 +128,9 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**._
 > Tip: Files named **`main.py`** on the Pico auto‑run on power‑up.
 
 ## Walkthrough — Step by Step (with explanations)
-
+- `pico_led` is a ready‑made object for the tiny LED on the Pico board.  
+- `sleep(0.5)` pauses for half a second.
+- Press **Stop** in Thonny to end the loop.
 
 
 ### 1) Blink the onboard LED
@@ -151,11 +146,6 @@ while True:
     pico_led.off()
     sleep(0.5)
 ```
-- `pico_led` is a ready‑made object for the tiny LED on the Pico board.  
-- `sleep(0.5)` pauses for half a second.
-- Press **Stop** in Thonny to end the loop.
-
-  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="380" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED2.jpeg" width="400" > 
 
 **Try this:** Replace `0.5` with `0.1` (faster) or `1.0` (slower).
 
@@ -190,7 +180,8 @@ while True:
     led.off()
     sleep(1)
 ```
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="400" >
+  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="380" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED2.jpeg" width="400" > 
+
 
 **Check yourself**
 - LED still dark? Flip it: the **long leg** should face the GPIO (through the series path).
