@@ -222,3 +222,8 @@ Turn one metric into a quick visualization: map a value range to 0–8 LEDs and 
 - **Strong (Exceeds)** — Extensions implemented cleanly; thoughtful UI (colors, pacing), comments, and small refactors (e.g., state enum).  
 - **Developing (Partially Meets)** — Core loop works but timing off, or missing best‑time tracking/cleanup.  
 - **Not Yet** — Does not run or missing major checklist items.
+
+---
+
+# Next Up
+Ready for breadboarding? Move on to **[03 - Pico Breadboarding](../Guides/03-pico-breadboarding.md)**.
