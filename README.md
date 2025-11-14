@@ -31,7 +31,7 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 
 ## 🧠 Core Concepts
 - **Python Fundamentals** — variables, conditionals, loops, functions  
-- **Sensor I/O** — temperature, humidity, pressure, IMU  
+- **Sensor I/O** — temperature, humidity, pressure 
 - **Actuators & Signaling** — LEDs, RGB mixing, DC motors  
 - **Microcontrollers** — Raspberry Pi Pico (MicroPython) & Raspberry Pi (Python)  
 - **Robotics Motion** — safe wiring, PWM speed control, turn timing & trim  
@@ -41,12 +41,13 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 
 ## 🚀 Learning Path (Guides → Labs)
 
+> **Update:** Sense HAT now has a single lab focused on a Reaction Timer with an optional sensor intermission.
+
 | # | Guide | Lab (goal) | Hardware | Time |
 |---|---|---|---|---|
 | 00 | [Python Basics](Guides/00-python-basics.md) | [Treasure Hunt (Basic)](Labs/00-treasure-hunt-basic.md) — text adventure with loops & logic | Computer only | 30–45 min |
 | 01 | [Python Functions](Guides/01-python-functions.md) | [Treasure Hunt (Functions)](Labs/01-treasure-hunt-functions.md) — refactor with functions | Computer only | 35–60 min |
-| 02 | [Sense HAT](Guides/02-sense-hat.md) | [Sense HAT Basics — Weather Warning Light](Labs/02-sense-hat-basics.md) | Raspberry Pi + Sense HAT | 30–45 min |
-| 02.5 | *(Advanced)* Sense HAT | [Mission Dashboard](Labs/02-5-sense-hat-advanced.md) — multi‑mode display + joystick | Raspberry Pi + Sense HAT | 45–75 min |
+| 02 | [Sense HAT](Guides/02-sense-hat.md) | [Sense HAT — Reaction Timer](Labs/02-sense-hat-reaction-timer.md) — LEDs, joystick, timing, optional sensor intermission | Raspberry Pi + Sense HAT | 45–70 min |
 | 03 | [Pico Breadboarding](Guides/03-pico-breadboarding.md) | [Pico Breadboard Lab](Labs/03-pico-breadboard-lab.md) — button + LED (+ RGB/buzzer/HC‑SR04 optional) | Pico + breadboard | 45–75 min |
 | 04 | [PicoBot — Drive with L298N (No Sensors)](Guides/04-picobot.md) | **[PicoBot Drive Basics](Labs/04-picobot-drive-basics.md)** — forward/turn/stop, PWM trim, timed square | PicoBot (Pico + L298N) | 60–90 min |
 
@@ -69,15 +70,14 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 ├─ Guides/
 │  ├─ 00-python-basics.md
 │  ├─ 01-python-functions.updated.md
-│  ├─ 02-sense-hat.updated.md
+│  ├─ 02-sense-hat.md
 │  ├─ 03-pico-breadboarding.updated.md
 │  └─ 04-picobot.updated.md
 ├─ Labs/
+│  ├─ 02-sense-hat-reaction-timer.md
 │  ├─ 00-treasure-hunt-basic.md
 │  ├─ 01-treasure-hunt-functions.md
-│  ├─ 02-sense-hat-basics.md
-│  ├─ 02-5-sense-hat-advanced.md
-│  ├─ 03-pico-breadboard-lab.md
+│  │  │  ├─ 03-pico-breadboard-lab.md
 │  └─ 04-picobot-drive-basics.md
 ├─ Example_Code/   (per-lab folders with STUDENT_START.md + SOLUTION.md)
 └─ assets/         (images, wiring diagrams)
