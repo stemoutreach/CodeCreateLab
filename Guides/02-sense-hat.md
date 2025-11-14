@@ -20,6 +20,8 @@ The **Sense HAT** is an official add-on board that plugs on top of the Raspberry
 - **Environment sensors** for temperature, humidity, and air pressure.  
 - A tiny **5-way joystick** (up/down/left/right/middle) for simple menus and games.
 
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/SenseHat.jpeg" width="400" >
+
 In this **guide**, you’ll learn how to talk to the Sense HAT from Python: turning pixels on and off, reading sensor values, and using the joystick. In the matching **lab**, you’ll combine those skills into a small project (like a weather-warning light or mini dashboard) that runs on your own Pi.
 
 ---
