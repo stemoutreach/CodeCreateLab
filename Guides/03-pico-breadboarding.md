@@ -119,7 +119,6 @@ LEDs need limited current. Without a resistor, too much current can flow and dam
 - Target current 5–10 mA → **R ≈ V / I** → 1.3 V / 0.01 A ≈ **130 Ω**
 - Choose a common value **220–330 Ω** to be safe and bright enough.
 
-
 ---
 
 ## Setup
@@ -155,6 +154,8 @@ while True:
 - `pico_led` is a ready‑made object for the tiny LED on the Pico board.  
 - `sleep(0.5)` pauses for half a second.
 - Press **Stop** in Thonny to end the loop.
+
+  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="380" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED2.jpeg width="400" > 
 
 **Try this:** Replace `0.5` with `0.1` (faster) or `1.0` (slower).
 
