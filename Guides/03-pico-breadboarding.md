@@ -384,6 +384,7 @@ for i in range(10, -1, -1):
 - **ECHO** → **voltage divider → GPIO 2** (see note above)
 
  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/picousdiagram.jpg" width="200" >
+ 
 [Ultrasonic distance sensor](https://picozero.readthedocs.io/en/latest/recipes.html#ultrasonic-distance-sensor)
 
 **Code (based on picozero recipe: Ultrasonic distance sensor)**
