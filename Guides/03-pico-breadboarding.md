@@ -133,7 +133,7 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**._
 - [1) Blink the onboard LED](#1-blink-the-onboard-led)
 - [2) Blink an external LED (with a resistor)](#2-blink-an-external-led-with-a-resistor)
 - [3) Read a pushbutton (and avoid false presses)](#3-read-a-pushbutton-and-avoid-false-presses)
-- [4) Mini-exercise — Reaction Game (two players)](#4-mini-exercise--reaction-game-two-players)
+- [4) Mini-exercise Reaction Game (two players)](#4-mini-exercise-reaction-game-two-players)
 - [4) Mini-exercise — Reaction Game (two players)](#4-mini-exercise--reaction-game-two-players)
 - [5) RGB LED Blink (three pins + common pin)](#5-rgb-led-blink-three-pins--common-pin)
 - [6) Ultrasonic Distance Sensor (HC-SR04) with picozero](#6-ultrasonic-distance-sensor-hc-sr04-with-picozero)
@@ -261,7 +261,7 @@ while True:
 
 ---
 
-### 4) Mini‑exercise — Reaction Game (two players)
+### 4) Mini‑exercise Reaction Game (two players)
 **Rules:** After a random wait, the LED turns on. First player to press wins.
 
 **Wiring**
