@@ -11,9 +11,9 @@
 > **Hardware:**  
 > - Raspberry Pi Pico + micro-USB cable  
 > - Breadboard + jumper wires  
-> - 1 × single-color LED + resistor (220–330 Ω)  
+> - 1 × single-color LED  
 > - 1 × pushbutton  
-> - 1 × RGB LED + 3 resistors (220–330 Ω)  
+> - 1 × RGB LED  
 > - 1 × Ultrasonic sensor (HC-SR04 or 3.3V-safe variant)  
 > - 1 × passive piezo speaker/buzzer  
 > **You’ll practice:** GPIO input/output, distance sensing, mapping sensor values to colors/sounds, simple state machine loops  
@@ -96,7 +96,7 @@ Write your ranges and button behavior as a short list in comments or on paper.
 Use the pin choices below (change only if your teacher says so):
 
 - **Status LED (single color)**  
-  - Long leg (anode) → **GPIO 14** through a resistor (220–330 Ω).  
+  - Long leg (anode) → **GPIO 14**.  
   - Short leg (cathode) → **GND**.
 
 - **Pushbutton**  
@@ -105,9 +105,9 @@ Use the pin choices below (change only if your teacher says so):
 
 - **RGB LED** (common cathode recommended)  
   - Common cathode leg → **GND**.  
-  - Red leg → resistor → **GPIO 16**.  
-  - Green leg → resistor → **GPIO 17**.  
-  - Blue leg → resistor → **GPIO 18**.
+  - Red leg → **GPIO 16**.  
+  - Green leg → **GPIO 17**.  
+  - Blue leg → **GPIO 18**.
 
 - **Ultrasonic sensor (HC-SR04 or similar)**  
   - VCC → **5V** (or 3.3V *only* if your module supports it).  
@@ -126,7 +126,6 @@ Double-check:
 
 - All grounds (Pico GND, sensor GND, LED GND, speaker GND) are connected.  
 - Only **one wire per hole** on the breadboard.  
-- Resistors are **in series** with each LED leg, not across a row.
 
 ## 3) Code (8–12 min)
 
@@ -393,7 +392,6 @@ if __name__ == "__main__":
 
 - **RGB LED never lights:**  
   - Check the **common pin**: is it really on GND (common cathode) or 3V3 (common anode)?  
-  - Make sure each color leg has its own resistor and goes to the correct GPIO pin.  
   - Try a simple test in the Shell: `rgb.color = (1, 0, 0)`.
 
 - **Distance readings are random or zero:**  
