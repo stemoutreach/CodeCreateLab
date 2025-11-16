@@ -97,7 +97,7 @@ The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2
 
 A breadboard is a grid of spring clips hidden under plastic. Certain holes are internally connected:  
 
-  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="284" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="300" > 
+  <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="184" >    |    <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="195" > 
 
 **Key rules**
 - The long **power rails** run top‑to‑bottom (often split in the middle on some boards). Use them for **3V3** and **GND**.
