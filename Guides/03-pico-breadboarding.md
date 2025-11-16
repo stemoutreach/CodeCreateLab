@@ -46,6 +46,7 @@ The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2
 - **3.3V logic** only (never feed 5V into a GPIO pin).  
 - ~**26 usable GPIO pins** for digital input/output; 3 pins support **analog input (ADC)**.  
 - USB for **power** and **programming**.
+- [Getting started with Raspberry Pi Pico](https://projects.raspberrypi.org/en/projects/getting-started-with-the-pico)
 
 **How code is loaded (two common ways):**  
 1) **With Thonny (recommended for students)**  
