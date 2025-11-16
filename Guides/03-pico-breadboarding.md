@@ -8,7 +8,6 @@
 > - setting up MicroPython/Thonny
 > - understanding breadboard internals
 > - using `picozero` for LEDs & buttons
-> - safe wiring with resistors
 > - debouncing
 > - and adapting recipes
 
@@ -21,7 +20,6 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 
 ## What you’ll learn
 - Breadboard anatomy (power rails, rows, the “gap”)
-- Resistors: why you need them for LEDs + a quick Ohm’s Law check
 - GPIO basics: inputs vs outputs, pin numbering, and safety
 - MicroPython on Pico with **Thonny** + the **picozero** library
 - Blink the onboard LED, then an external LED
@@ -31,7 +29,6 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 ## Materials
 - Raspberry Pi Pico (W or non‑W)
 - Breadboard, jumper wires
-- **LED(s)** and **220–330Ω** resistors (one resistor **in series** with each LED)
 - One **pushbutton** (tact switch)
 - (Optional) RGB LED, buzzer, ultrasonic sensor (HC‑SR04)
 
@@ -81,11 +78,10 @@ The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2
 
 **Safety rules**
 - GPIO pins are **3.3V max**. Use level shifting if a sensor outputs **5V**.  
-- For LEDs: **series resistor** (220–330 Ω) between GPIO and GND path.  
 - Never tie a driven GPIO directly to **3V3** or **GND**.
 
 ### GPIO basics (Pico)
-- **Output**: the Pico **drives** the pin high (3.3 V) or low (0 V) → good for LEDs (with resistor).
+- **Output**: the Pico **drives** the pin high (3.3 V) or low (0 V) → good for LEDs.
 - **Input**: the Pico **reads** the pin as pressed/not pressed, on/off, etc. → good for buttons and sensors.
 - **Safety**: Avoid short circuits (never connect a GPIO directly to GND and drive it HIGH). Keep LED current modest.
 
@@ -102,16 +98,7 @@ A breadboard is a grid of spring clips hidden under plastic. Certain holes are i
 **Key rules**
 - The long **power rails** run top‑to‑bottom (often split in the middle on some boards). Use them for **3V3** and **GND**.
 - The **main rows** connect **horizontally** (five holes on each side of the **center gap**). The gap separates the left/right sides.
-- Always double‑check that your LED & resistor are in **series** (in one continuous path from GPIO → LED → resistor → GND).
 
-### Why a resistor for an LED?
-LEDs need limited current. Without a resistor, too much current can flow and damage the LED or the Pico’s pin.
-
-**Quick check (Ohm’s Law):**
-- Pico GPIO is ~3.3 V
-- Typical LED forward voltage ≈ 2.0 V (red) → Voltage across resistor ≈ 1.3 V
-- Target current 5–10 mA → **R ≈ V / I** → 1.3 V / 0.01 A ≈ **130 Ω**
-- Choose a common value **220–330 Ω** to be safe and bright enough.
 
 ---
 
@@ -131,7 +118,7 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**._
 ## Table of Contents (Walkthrough 1–8)
 
 - [1) Blink the onboard LED](#1-blink-the-onboard-led)
-- [2) Blink an external LED (with a resistor)](#2-blink-an-external-led-with-a-resistor)
+- [2) Blink an external LED](#2-blink-an-external-led)
 - [3) Read a pushbutton (and avoid false presses)](#3-read-a-pushbutton-and-avoid-false-presses)
 - [4) Mini exercise (two player reaction game)](#4-mini-exercise-two-player-reaction-game)
 - [5) RGB LED Blink (three pins + common pin)](#5-rgb-led-blink-three-pins--common-pin)
@@ -172,13 +159,13 @@ while True:
 2. Name it **`main.py`** (this special name auto‑runs at boot).
 3. Unplug/replug the Pico or power it from a battery/USB — your program starts by itself.
 
-### 2) Blink an external LED (with a resistor)
+### 2) Blink an external LED
 **Wiring (series path)**
-- **GPIO 14** → **resistor** → **LED long leg (anode)**  
+- **GPIO 14** → **LED long leg (anode)**  
 - **LED short leg (cathode)**  → **GND**
 
 ```
-GPIO14 ──► resistor ──► ( +| LED |− )  ──► GND
+GPIO14 ──► ( +| LED |− )  ──► GND
 ```
 
 **Code**
@@ -199,7 +186,6 @@ while True:
 
 **Check yourself**
 - LED still dark? Flip it: the **long leg** should face the GPIO (through the series path).
-- Confirm the resistor is **in series**, not in a different row by accident.
 - Try `led.blink()` for a quick test (built‑in helper).
 
 **Why GPIO 14?** Any digital GPIO works; 14 is just an example. If you change the wiring, update the number in code.
@@ -264,7 +250,7 @@ while True:
 **Rules:** After a random wait, the LED turns on. First player to press wins.
 
 **Wiring**
-- **LED** on GPIO **14** (with resistor to GND)
+- **LED** on GPIO **14** 
 - **Button 1** on GPIO **15** to GND
 - **Button 2** on GPIO **17** to GND
 
@@ -309,13 +295,13 @@ led.off()
 
 **Parts & wiring**
 - Use a **common cathode RGB LED** (recommended for beginners).  
-- **Common cathode** → **GND** through a **single shared resistor** *or* one resistor **per color** (best practice).  
-- Connect the three color pins to **three GPIOs** via resistors (e.g., 220–330 Ω each).
+- **Common cathode** → **GND**.  
+- Connect the three color pins to **three GPIOs**.
 
-**Example wiring (per-color resistors)**
-- **GPIO 16** → resistor → **R pin**  
-- **GPIO 17** → resistor → **G pin**  
-- **GPIO 18** → resistor → **B pin**  
+**Example wiring**
+- **GPIO 16** → **R pin**  
+- **GPIO 17** → **G pin**  
+- **GPIO 18** → **B pin**  
 - **Common cathode** → **GND**
 
 > If your LED is **common anode**, connect the common pin to **3V3** and set `active_high=False` in `RGBLED(...)` (so the logic is inverted). RGBLED(red=16, green=17, blue=18, active_high=False)
@@ -359,8 +345,7 @@ for i in range(10, -1, -1):
 ```
 
 **Pitfalls & tips**
-- RGB LEDs have **four legs**; the **longest** is usually the **common**. Check the datasheet or trial-and-error.  
-- Use **one resistor per color** so brightness is consistent.  
+- RGB LEDs have **four legs**; the **longest** is usually the **common**. Check the datasheet or trial-and-error.   
 - If colors look “inverted,” you likely have a **common anode** LED—set `active_high=False`.  
 - Brightness varies by color (green/blue often look brighter); you can lower those channels slightly, e.g. `(1, 0.7, 0.6)`.
 
@@ -534,13 +519,10 @@ finally: # Turn speaker off if interrupted
 - MicroPython: A lightweight Python for microcontrollers like the Pico.
 - picozero: Beginner-friendly Python library for Pico GPIO (LEDs, buttons, etc.).
 - GPIO: General-Purpose Input/Output pins used to read sensors or drive outputs.
-- Pull-up / Pull-down: Resistor configuration that sets a default HIGH/LOW level.
 - Breadboard rails: Long power strips along the sides (watch for split rails).
-- Series resistor: Limits current through an LED to protect it and the Pico.
 
 ## Check your understanding
 1. On a breadboard, which holes are connected together in a row? What does the center **gap** do?  
-2. Why must an LED have a resistor, and where should it go in the circuit?  
 3. What’s the difference between **GPIO input** and **output**? Give one example of each.  
 4. What is **debouncing**, and why might your button appear to press multiple times?
 
@@ -558,7 +540,6 @@ finally: # Turn speaker off if interrupted
 ## Troubleshooting
 - **LED never lights:**  
   - Flip the LED (long leg toward the GPIO path).  
-  - Ensure the resistor is **in series** and not placed across the same row.  
   - Confirm pin number in code matches the GPIO you used.
 - **Button always “pressed” or never pressed:**  
   - Make sure the button connects across the **gap** and one side goes to **GND**.  
@@ -568,7 +549,6 @@ finally: # Turn speaker off if interrupted
   - Save/run the file on the Pico.
 - **Random resets / hot components:**  
   - Check for accidental **shorts** (e.g., GPIO driven HIGH directly to GND).  
-  - Use one LED + resistor per GPIO; don’t draw too much current from a single pin.
 
 ---
 
