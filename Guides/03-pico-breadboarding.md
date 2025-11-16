@@ -133,11 +133,10 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**._
 - [1) Blink the onboard LED](#1-blink-the-onboard-led)
 - [2) Blink an external LED (with a resistor)](#2-blink-an-external-led-with-a-resistor)
 - [3) Read a pushbutton (and avoid false presses)](#3-read-a-pushbutton-and-avoid-false-presses)
-- [4) Optional: Compare with low-level `machine.Pin`](#4-optional-compare-with-low-level-machinepin)
-- [5) Mini-exercise — Reaction Game (two players)](#5-mini-exercise--reaction-game-two-players)
-- [6) RGB LED Blink (three pins + common pin)](#6-rgb-led-blink-three-pins--common-pin)
-- [7) Ultrasonic Distance Sensor (HC-SR04) with picozero](#7-ultrasonic-distance-sensor-hc-sr04-with-picozero)
-- [8) Speaker (buzzer) & Play a Tune](#8-speaker-buzzer--play-a-tune)
+- [4) Mini-exercise — Reaction Game (two players)](#4-mini-exercise--reaction-game-two-players)
+- [5) RGB LED Blink (three pins + common pin)](#5-rgb-led-blink-three-pins--common-pin)
+- [6) Ultrasonic Distance Sensor (HC-SR04) with picozero](#6-ultrasonic-distance-sensor-hc-sr04-with-picozero)
+- [7) Speaker (buzzer) & Play a Tune](#7-speaker-buzzer--play-a-tune)
 
 
 
@@ -242,7 +241,7 @@ while True:
 
 ---
 
-### 4) Optional: Compare with low-level `machine.Pin`
+## Optional: Compare with low-level `machine.Pin`
 `picozero` is beginner‑friendly. For advanced control, MicroPython’s `machine` gives you the raw pins.
 
 ```python
@@ -261,7 +260,7 @@ while True:
 
 ---
 
-### 5) Mini‑exercise — Reaction Game (two players)
+### 4) Mini‑exercise — Reaction Game (two players)
 **Rules:** After a random wait, the LED turns on. First player to press wins.
 
 **Wiring**
@@ -304,7 +303,7 @@ led.off()
 ---
 
 
-### 6) RGB LED Blink (three pins + common pin)
+### 5) RGB LED Blink (three pins + common pin)
 
 **Goal:** Control an RGB LED by blinking colors and mixing red/green/blue.
 
@@ -367,7 +366,7 @@ for i in range(10, -1, -1):
 
 ---
 
-### 7) Ultrasonic Distance Sensor (HC-SR04) with picozero
+### 6) Ultrasonic Distance Sensor (HC-SR04) with picozero
 
 **Goal:** Measure distance to an object using sound. The sensor sends a ping and measures the echo time.
 
@@ -408,7 +407,7 @@ while True:
 - Avoid very fast polling; ~5–10 readings/second is plenty.  
 - If readings seem random, check **ground common** between Pico and sensor, and verify the **ECHO** line is **3.3V-safe**.
 
-### 8) Speaker (buzzer) & Play a Tune
+### 7) Speaker (buzzer) & Play a Tune
 
 **Goal:** Make sound for alerts and simple melodies.
 
