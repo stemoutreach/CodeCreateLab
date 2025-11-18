@@ -1,5 +1,7 @@
 # 04 — PicoBot: Drive with L298N (No Sensors)
 
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/picobot1.jpeg" width="400" >
+
 > ### Quick Summary  
 > **Level:** 04 • **Time:** 60–90 min
 > **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md) & [Python Functions](../Guides/01-python-functions.md) & [03 — Pico Breadboarding](./03-pico-breadboarding.md)  
@@ -56,7 +58,7 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny IDE**._
 **Idea:** The motors and battery are already wired. You only add the **control wires** from the Pico to the L298N plus a **shared ground** so they can “speak the same voltage language.”
 
 #### Wiring plan
-
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/picobot2.jpeg" width="400" >
 Your teacher may give you a specific pin map. Here is a **suggested** map:
 
 | Pico GPIO | L298N Pin | Role      |
@@ -70,7 +72,11 @@ Your teacher may give you a specific pin map. Here is a **suggested** map:
 | any GND   | GND       | Common ground      |
 
 > If your kit uses **different GPIOs**, that’s okay—just update the pin numbers in code.
-<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/Pico-L298N.jpg" width="600" > 
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/Pico-L298N.jpg" width="600" >
+
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/PicoBot17.jpg" width="100" > <img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/PicoBot19.jpg" width="100" > 
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/PicoBot18.jpg" width="100" > <img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/PicoBot20.jpg" width="100" > 
+
 #### Code: set up pin objects
 
 In `picobot_drive.py`:
