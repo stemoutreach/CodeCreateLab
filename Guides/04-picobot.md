@@ -1,8 +1,8 @@
 # 04 — PicoBot: Drive with L298N (No Sensors)
 
 > ### Quick Summary  
-> **Level:** 04 • **Time:** 60–90 min  
-> **Prereqs:** [03 — Pico Breadboarding](./03-pico-breadboarding.md)  
+> **Level:** 04 • **Time:** 60–90 min
+> **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md) & [Python Functions](../Guides/01-python-functions.md) & [03 — Pico Breadboarding](./03-pico-breadboarding.md)  
 > **Hardware:** Raspberry Pi Pico, L298N motor driver, 2 DC motors + chassis, motor battery pack (pre-wired), jumper wires  
 > **You’ll practice:** wiring driver inputs, sharing common ground, mapping GPIO pins, writing drive helpers, timed turns, optional PWM speed control  
 
@@ -39,6 +39,7 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny IDE**._
    - You will only connect:
      - 6 signal pins: `ENA`, `IN1`, `IN2`, `IN3`, `IN4`, `ENB`  
      - 1 **GND** between Pico and L298N  
+     - 1 **POWER** between Pico and L298N  
 
 ⚠️ **Safety notes**
 
@@ -69,7 +70,7 @@ Your teacher may give you a specific pin map. Here is a **suggested** map:
 | any GND   | GND       | Common ground      |
 
 > If your kit uses **different GPIOs**, that’s okay—just update the pin numbers in code.
-
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/Pico-L298N.jpg" width="600" > 
 #### Code: set up pin objects
 
 In `picobot_drive.py`:
