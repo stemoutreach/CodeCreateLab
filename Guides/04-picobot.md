@@ -6,7 +6,7 @@
 > **Level:** 04 • **Time:** 60–90 min
 > **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md) & [Python Functions](../Guides/01-python-functions.md) & [03 — Pico Breadboarding](./03-pico-breadboarding.md)  
 > **Hardware:** Raspberry Pi Pico, L298N motor driver, 2 DC motors + chassis, motor battery pack (pre-wired), jumper wires  
-> **You’ll practice:** wiring driver inputs, sharing common ground, mapping GPIO pins, writing drive helpers, timed turns, optional PWM speed control  
+> **You’ll practice:** wiring driver inputs, sharing common ground, mapping GPIO pins, writing drive helpers, timed turns, and PWM speed control  
 
 > **Learn → Try → Do:** Learn the patterns here, practice with mini-exercises, then **Do** the matching PicoBot Lab.
 
@@ -23,7 +23,7 @@ If you can make your robot drive on purpose, you can make it do… almost anythi
 - Map Pico GPIO numbers to motor driver pins in code  
 - Write and reuse drive helpers (`forward`, `back`, `left`, `right`, `stop`)  
 - Use timing to move a set distance or turn about 90°  
-- (Optional) Use ENA/ENB with PWM to control speed  
+- Use ENA/ENB with PWM to control speed  
 
 ## Setup
 
@@ -229,52 +229,225 @@ print("Square pattern complete.")
 
 ---
 
-### 4) (Optional) Add speed control with PWM
 
-**Idea:** `ENA` and `ENB` are “enable” pins. With **PWM** (Pulse-Width Modulation), you can run the motors slower while still giving them short bursts of full power.
+### 4) Add speed control with PWM
 
-> This step assumes the small jumpers on ENA/ENB have been **removed** and that ENA/ENB are wired to Pico GPIO pins.
+**Idea:** So far the motors are either **fully on** or **off**. The L298N has two special pins, `ENA` and `ENB`, that act like **volume knobs for power**.  
+With **PWM (Pulse-Width Modulation)** we can send *bursts* of full power, but only for part of the time, which makes the motor behave like it’s running slower.
 
-Replace the `ENA` and `ENB` setup with PWM:
+> Think of PWM like blinking the motor power **on/off very fast**.  
+> - On most of the time → **fast**  
+> - Half the time → **medium**  
+> - A little of the time → **slow**
+
+#### Hardware reminder
+
+- `ENA` controls the **left motor channel**.  
+- `ENB` controls the **right motor channel**.  
+- Many L298N boards ship with **small jumpers** on ENA/ENB:
+  - Jumper **installed** → always “fully on” (no speed control).  
+  - Jumper **removed** → Pico can control speed using PWM.
+
+For this step, make sure the **ENA and ENB jumpers are removed** and `ENA`/`ENB` are wired to the Pico pins (GP14/GP15 in this guide).
+
+#### Code: switch ENA/ENB to PWM
+
+At the top of your file, update your imports:
 
 ```python
-from machine import PWM
+from machine import Pin, PWM
+import time
+```
 
-# Replace previous ENA/ENB definitions with PWM versions
-ENA = PWM(Pin(14))
-ENB = PWM(Pin(15))
+Then **replace** your old `ENA`/`ENB` lines with PWM versions:
 
-ENA.freq(1000)  # 1 kHz is a common motor PWM frequency
+```python
+# === L298N pin mapping (EDIT if your wiring is different) ===
+IN1 = Pin(10, Pin.OUT)   # Left motor input 1
+IN2 = Pin(11, Pin.OUT)   # Left motor input 2
+IN3 = Pin(12, Pin.OUT)   # Right motor input 1
+IN4 = Pin(13, Pin.OUT)   # Right motor input 2
+
+# ENA / ENB now use PWM for speed control
+ENA = PWM(Pin(14))       # Left enable (speed)
+ENB = PWM(Pin(15))       # Right enable (speed)
+
+# Set a PWM frequency (how fast we blink power on/off)
+ENA.freq(1000)           # 1 kHz is common for motors
 ENB.freq(1000)
+```
 
+Now add a helper function to set the speed as a **percent**:
 
+```python
 def set_speed(percent):
-    """Set speed for both motors: 0-100%."""
+    # Set speed for both motors using PWM.
+    # percent: 0 to 100 (anything below 0 becomes 0, above 100 becomes 100).
+
+    # Keep value in the 0–100 range
     if percent < 0:
         percent = 0
     if percent > 100:
         percent = 100
 
+    # MicroPython PWM uses a 16-bit duty cycle: 0–65535
     duty = int(percent / 100 * 65535)
 
     ENA.duty_u16(duty)
     ENB.duty_u16(duty)
-
-
-# Example: slow forward
-set_speed(60)
-forward()
-time.sleep(1.5)
-stop()
 ```
 
-You can call `set_speed(60)`, `set_speed(80)`, or `set_speed(100)` before moving.
+You can call `set_speed()` **before** moving:
 
-**Notes & pitfalls**
+```python
+print("Speed test...")
 
-- Some L298N boards ship with ENA/ENB jumpers installed; if they are still in place, your PWM won’t change the speed. The board is forcing “always on.”  
-- If your robot **won’t start moving** at a low speed, increase to 60–80%. Motors need enough power to overcome friction (“stall torque”).  
-- If you see a **huge slowdown** or stuttering when lowering speed, your battery might be weak.
+stop()
+time.sleep(1)
+
+set_speed(50)   # about half speed
+forward()
+time.sleep(1.5)
+
+stop()
+time.sleep(1)
+
+set_speed(100)  # full speed
+forward()
+time.sleep(1.5)
+
+stop()
+print("Speed test done.")
+```
+
+#### What’s really happening?
+
+- `freq(1000)` means: turn the output **on/off 1000 times per second**.  
+- `duty_u16(65535)` → “on” almost all the time (100%).  
+- `duty_u16(0)` → always off (0%).  
+- A middle value (like 50%) means the motor is **on half the time** and **off half the time**, giving a lower *average* power.
+
+#### Notes & common pitfalls
+
+- If changing `set_speed()` does **nothing**, check:
+  - Are the ENA/ENB jumpers still on the L298N? (Remove them.)  
+  - Are ENA/ENB really wired to GP14/GP15 (or whatever pins you used)?  
+
+- If the motors **don’t start** at low speeds:
+  - DC motors need enough torque to overcome friction and start spinning.  
+  - Try starting at **60–80%**, then experiment going lower.  
+
+- If the robot is **jerky** or slows down a lot at lower speed:
+  - Your battery might be weak.  
+  - Replace or recharge batteries and test again.
+
+---
+
+### 5) Add drive functions that take speed as a parameter
+
+**Idea:** Right now your drive helpers (`forward()`, `back()`, `left()`, `right()`) always run at **whatever speed was last set**.  
+Let’s make **new helpers** that let you say:
+
+> “Go forward at 60% speed” or “turn right at 80% speed.”
+
+We’ll keep timing simple by reusing the constants from Step 3.
+
+#### 5.1 Define some timing constants (if you don’t already have them)
+
+If you don’t already have these near the top or in Step 3, add them:
+
+```python
+# --- timing constants (adjust for your robot) ---
+FORWARD_TIME = 1.2   # seconds to drive "one unit" forward
+TURN_TIME = 0.45     # seconds for about a 90-degree turn
+```
+
+You can tweak these later when you calibrate your robot.
+
+#### 5.2 Speed-aware drive helpers
+
+Now add **new** functions that **take speed as a parameter** and use the timing constants above:
+
+```python
+def drive_forward(speed_percent):
+    # Drive forward at the given speed for FORWARD_TIME, then stop.
+    set_speed(speed_percent)
+    forward()
+    time.sleep(FORWARD_TIME)
+    stop()
+
+
+def drive_back(speed_percent):
+    # Drive backward at the given speed for FORWARD_TIME, then stop.
+    set_speed(speed_percent)
+    back()
+    time.sleep(FORWARD_TIME)
+    stop()
+
+
+def drive_right(speed_percent):
+    # Turn right in place at the given speed for TURN_TIME, then stop.
+    set_speed(speed_percent)
+    right()
+    time.sleep(TURN_TIME)
+    stop()
+
+
+def drive_left(speed_percent):
+    # Turn left in place at the given speed for TURN_TIME, then stop.
+    set_speed(speed_percent)
+    left()
+    time.sleep(TURN_TIME)
+    stop()
+```
+
+> These functions do **three** things:
+> 1. Call `set_speed(speed_percent)`  
+> 2. Call the basic direction helper (`forward`, `back`, `left`, `right`)  
+> 3. Sleep for a fixed time and then `stop()`  
+
+Students no longer have to remember to call `set_speed()` separately — they just choose a speed.
+
+#### 5.3 Example: two-speed square pattern
+
+Here’s a new pattern test that uses your speed-aware helpers:
+
+```python
+print("Two-speed square test...")
+
+# Slow square
+for _ in range(4):
+    drive_forward(50)   # 50% speed
+    drive_right(50)
+
+time.sleep(1)
+
+# Fast square
+for _ in range(4):
+    drive_forward(100)  # 100% speed
+    drive_right(100)
+
+stop()
+print("Two-speed square complete.")
+```
+
+#### 5.4 Things to explore / questions to ask
+
+- Does your robot **track straighter** at slower or faster speeds? Why might that be?  
+- How does changing `TURN_TIME` affect the shape of your square at different speeds?  
+- Can you design a pattern where the robot **starts slow** and gets **faster each side** of the square?
+
+> **Stretch idea:**  
+> Make a `drive_pattern(pattern)` function that accepts a list like:
+> ```python
+> pattern = [
+>     ("forward", 60),
+>     ("right",   60),
+>     ("forward", 80),
+>     ("right",   80),
+> ]
+> ```
+> and calls `drive_forward()` or `drive_right()` with the given speed for each step.
 
 ---
 
