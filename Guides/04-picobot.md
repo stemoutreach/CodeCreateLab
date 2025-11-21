@@ -414,4 +414,4 @@ Try these small tasks in your `picobot_drive.py` file (or a copy). Each can be d
 
 ## Next up
 
-**[04 – PicoBot Maze Explorer (Drive Basics)](../Labs/04-picobot-maze-explorer.md)**
+**[04 – PicoBot Drive Basics](../Labs/04-picobot-drive-basics.md)**
