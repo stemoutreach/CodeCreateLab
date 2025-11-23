@@ -67,7 +67,7 @@ The **Raspberry Pi Pico** is a tiny microcontroller board built around the **RP2
 
 ## GPIO Map (numbering & special pins)
 
-<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/picodiagram.jpg" width="400" >
+<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/picodiagram.jpg" width="200" >
 
 **Key points**
 - **Digital GPIO:** `GP0`–`GP22` (most common for LEDs, buttons, drivers).  
