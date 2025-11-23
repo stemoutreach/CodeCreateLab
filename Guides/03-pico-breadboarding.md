@@ -405,7 +405,7 @@ while True:
 - An **active buzzer** has a built‑in oscillator—it only makes one fixed tone when powered. Use it for simple beeps.
 
 **Basic wiring (passive piezo)**
-- **GPIO 12** → **+** buzzer pin  
+- **GPIO 14** → **+** buzzer pin  
 - **GND** → **–** buzzer pin  
 > Passive piezos draw very little current and can be driven directly from a GPIO. For bigger speakers, use a driver (transistor).
 
