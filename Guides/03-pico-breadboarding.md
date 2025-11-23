@@ -351,33 +351,54 @@ for i in range(10, -1, -1):
 
 ---
 
-### 6) Ultrasonic Distance Sensor (HC-SR04) with picozero
+### 6) Ultrasonic Distance Sensor (HC-SR04P) with picozero
 
-**Goal:** Measure distance to an object using sound. The sensor sends a ping and measures the echo time.
+**Goal:** Measure distance to an object using sound. The sensor sends out an ultrasonic “ping” and measures the time it takes for the echo to return.
 
-**Safety & voltage note (important)**
-- Many **HC-SR04** modules run on **5V** and return a **5V echo** signal, which can **damage** the Pico (3.3V max on inputs).  
-- Solutions:
-  1) Use a **voltage divider** on the **ECHO** line (e.g., **1 kΩ** to Pico + **2 kΩ** to GND, from the sensor’s echo output).  
-  2) Use a **3.3V-safe module** (e.g., HC-SR04P) or a proper **level shifter**.  
-  3) Some modules *may* work on 3.3V Vcc but are unreliable—prefer 5V with a **stepped-down echo**.
+In this guide we’ll use the **HC-SR04P** ultrasonic sensor.
 
-**Wiring (typical HC-SR04)**
-- **VCC** → **5V** (or 3V3 if your module supports it)  
-- **GND** → **GND**  
-- **TRIG** → **GPIO 3**  
-- **ECHO** → **voltage divider → GPIO 2** (see note above)
+- The **“P” version is 3.3 V–friendly**, so you can power it directly from the Pico’s **3V3(OUT)** pin.
+- The **ECHO** pin will also be 3.3 V, so it is safe to connect directly to a Pico GPIO (no level shifting needed).
 
- <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/picousdiagram.jpg" width="200" >
- 
-[Ultrasonic distance sensor](https://picozero.readthedocs.io/en/latest/recipes.html#ultrasonic-distance-sensor)
+> ✅ **Rule of thumb for this guide:**  
+> Always power the ultrasonic sensor from the **Pico 3V3(OUT)** pin, **not** from 5 V.
 
-**Code (based on picozero recipe: Ultrasonic distance sensor)**
+---
+
+#### Wiring (HC-SR04P + Pico)
+
+Use these pins:
+
+- **HC-SR04P VCC** → **Pico 3V3(OUT)**  
+- **HC-SR04P GND** → **Pico GND** (same ground as everything else)  
+- **HC-SR04P TRIG** → **Pico GPIO 3 (GP3)**  
+- **HC-SR04P ECHO** → **Pico GPIO 2 (GP2)**  
+
+Text view:
+
+```text
+Pico 3V3(OUT)  ----->  VCC   HC-SR04P
+Pico GND       ----->  GND
+Pico GP3       ----->  TRIG
+Pico GP2       ----->  ECHO
+```
+
+Make sure:
+
+- Your sensor is clearly labeled **HC-SR04P** or “3.3–5 V” compatible.
+- All grounds (Pico, sensor, and any other parts) are connected together.
+
+---
+
+#### Code (picozero: Ultrasonic distance sensor)
+
+This example uses the `DistanceSensor` class from **picozero**.
+
 ```python
 from picozero import DistanceSensor
 from time import sleep
 
-# echo pin first, then trigger (picozero signature: DistanceSensor(echo, trigger))
+# picozero uses: DistanceSensor(echo, trigger)
 sensor = DistanceSensor(echo=2, trigger=3)
 
 while True:
@@ -387,14 +408,19 @@ while True:
     print(f"{d_cm:.1f} cm")
     sleep(0.2)
 ```
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Ultrasonic.jpeg" width="400" >
 
+---
 
-**Pitfalls & tips**
-- Point the sensor **straight** at the target; soft or angled surfaces reflect poorly.  
-- Minimum range is ~2–3 cm; maximum ~3–4 m for typical modules.  
-- Avoid very fast polling; ~5–10 readings/second is plenty.  
-- If readings seem random, check **ground common** between Pico and sensor, and verify the **ECHO** line is **3.3V-safe**.
+#### Pitfalls & tips
+
+- If readings seem wrong or random, check:
+  - **VCC is on 3V3(OUT)** (not 5 V),
+  - **GND** is shared with the Pico,
+  - Pins in code match your wiring: `echo=2`, `trigger=3`.
+- Point the sensor straight at the target. Soft or angled surfaces may not reflect well.
+- Minimum range is typically around **2–3 cm**; maximum range is about **3–4 m** for most modules.
+- Polling around **5–10 times per second** (`sleep(0.1–0.2)`) is plenty for most projects.
+
 
 ### 7) Speaker (buzzer) & Play a Tune
 
