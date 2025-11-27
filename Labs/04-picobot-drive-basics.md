@@ -151,9 +151,3 @@ if __name__ == "__main__":
 - **Should (Good):** trim applied for straight driving; clean 90° corners  
 - **Stretch (Great):** parameterized speeds; add `turn_angle()` that estimates ms per degree
 
-## Extensions (optional)
-- Add a `drive(distance_cm, speed)` and `turn(angle_deg)` using your timing calibration.  
-- Experiment with smoother turns by using differential PWM instead of full pivots.
-
----
-**No spoilers:** Full reference code is available for coaches in `../Example_Code/04-picobot-drive-basics/SOLUTION.md`. Students should use the `STUDENT_START.md` and TODOs above.
