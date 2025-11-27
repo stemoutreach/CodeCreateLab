@@ -3,7 +3,7 @@
 
 > ### Quick Summary
 > **Level:** 04 • **Time:** 40–60 min  
-> **Prereqs:** [Guide: 03 — Pico + Breadboarding](../Guides/03-pico-breadboarding.updated.md), [Guide: 04 — PicoBot](../Guides/04-picobot.md)  
+> **Prereqs:** [Guide: 03 — Pico + Breadboarding](../Guides/03-pico-breadboarding.md), [Guide: 04 — PicoBot](../Guides/04-picobot.md)  
 > **Hardware:** Raspberry Pi Pico, L298N motor driver, 2× DC gear motors, battery pack, chassis/wheels  
 > **You’ll practice:** motor wiring check, L298N enable/direction, PWM speed control, trim/balance, safe stop
 
