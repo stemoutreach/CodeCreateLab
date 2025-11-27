@@ -421,5 +421,5 @@ if __name__ == "__main__":
 
 # Next Up
 
-Ready for motion? Move from a stationary smart station to a **rolling robot** in **[04 — PicoBot Drive Basics](../Labs/04-picobot-drive-basics.md)**.
+Ready for motion? Move from a stationary smart station to a **rolling robot** in **[04 — PicoBot Drive Basics](../Guides/04-picobot.md)**.
 
