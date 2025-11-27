@@ -151,3 +151,8 @@ if __name__ == "__main__":
 - **Should (Good):** trim applied for straight driving; clean 90° corners  
 - **Stretch (Great):** parameterized speeds; add `turn_angle()` that estimates ms per degree
 
+---
+
+# Next Up
+
+Do the next Guide  **[05 — PicoBot Sensors: Start Button, Distance, Lights & Sound](../Guides/05-picobot-sensors-guide.md)**.
