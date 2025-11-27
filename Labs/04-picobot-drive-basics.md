@@ -23,7 +23,7 @@ Driving is the foundation for every mobile robot behavior you’ll write later (
 > **Classroom default:** Raspberry Pi 500 + **Thonny**  
 > In Thonny choose **MicroPython (Raspberry Pi Pico)** and save code on the Pico as **`main.py`** so it runs on boot.
 
-1. Review [Guide: 04 — PicoBot](../Guides/04-picobot.updated.md) for the pin map and wiring diagram.  
+1. Review [Guide: 04 — PicoBot](../Guides/04-picobot.md) for the pin map and wiring diagram.  
 2. Mount the Pico + L298N + motors and double‑check polarity on the motor terminals.  
 3. Keep wheels **off the table** for first power‑on tests.
 
