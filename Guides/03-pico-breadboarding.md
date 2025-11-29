@@ -371,16 +371,16 @@ Use these pins:
 
 - **HC-SR04P VCC** → **Pico 3V3(OUT)**  
 - **HC-SR04P GND** → **Pico GND** (same ground as everything else)  
-- **HC-SR04P TRIG** → **Pico GPIO 3 (GP3)**  
-- **HC-SR04P ECHO** → **Pico GPIO 2 (GP2)**  
+- **HC-SR04P TRIG** → **Pico GPIO 3 (GP10)**  
+- **HC-SR04P ECHO** → **Pico GPIO 2 (GP11)**  
 
 Text view:
 
 ```text
 Pico 3V3(OUT)  ----->  VCC   HC-SR04P
 Pico GND       ----->  GND
-Pico GP3       ----->  TRIG
-Pico GP2       ----->  ECHO
+Pico GP10      ----->  TRIG
+Pico GP11      ----->  ECHO
 ```
 
 Make sure:
@@ -399,7 +399,7 @@ from picozero import DistanceSensor
 from time import sleep
 
 # picozero uses: DistanceSensor(echo, trigger)
-sensor = DistanceSensor(echo=2, trigger=3)
+sensor = DistanceSensor(echo=11, trigger=10)
 
 while True:
     # distance is in meters
