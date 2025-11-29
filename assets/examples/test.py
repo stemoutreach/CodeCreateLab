@@ -115,7 +115,7 @@ rgb_r = Pin(RGB_R_PIN, Pin.OUT)
 rgb_g = Pin(RGB_G_PIN, Pin.OUT)
 rgb_b = Pin(RGB_B_PIN, Pin.OUT)
 
-button = Pin(BUTTON_PIN, Pin.IN, Pin.PULL_DOWN)
+button = Pin(BUTTON_PIN, Pin.IN, Pin.PULL_UP)
 
 # === Ultrasonic & speaker (using picozero if available) ===
 if HAVE_PICOZERO:
