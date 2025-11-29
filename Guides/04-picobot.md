@@ -63,12 +63,12 @@ Your teacher may give you a specific pin map. Here is a **suggested** map:
 
 | Pico GPIO | L298N Pin | Role      |
 |----------:|-----------|-----------|
-| GP10      | IN1       | Left motor input 1 |
-| GP11      | IN2       | Left motor input 2 |
-| GP12      | IN3       | Right motor input 1 |
-| GP13      | IN4       | Right motor input 2 |
-| GP14      | ENA       | Left enable / speed |
-| GP15      | ENB       | Right enable / speed |
+| GP6       | IN1       | Left motor (Motor A) IN1 / OUT1 |
+| GP7       | IN2       | Left motor (Motor A) IN2 / OUT2 |
+| GP4       | IN3       | Right motor (Motor B) IN3 / OUT3 |
+| GP3       | IN4       | Right motor (Motor B) IN4 / OUT4 |
+| GP8       | ENA       | Left enable / speed (Motor A) |
+| GP2       | ENB       | Right enable / speed (Motor B) |
 | any GND   | GND       | Common ground      |
 
 > If your kit uses **different GPIOs**, that’s okay—just update the pin numbers in code.
@@ -86,13 +86,13 @@ from machine import Pin
 import time
 
 # === L298N pin mapping (EDIT if your wiring is different) ===
-IN1 = Pin(10, Pin.OUT)   # Left motor input 1
-IN2 = Pin(11, Pin.OUT)   # Left motor input 2
-IN3 = Pin(12, Pin.OUT)   # Right motor input 1
-IN4 = Pin(13, Pin.OUT)   # Right motor input 2
+IN1 = Pin(6, Pin.OUT)   # Left motor (Motor A) IN1 / OUT1
+IN2 = Pin(7, Pin.OUT)   # Left motor (Motor A) IN2 / OUT2
+IN3 = Pin(4, Pin.OUT)   # Right motor (Motor B) IN3 / OUT3
+IN4 = Pin(3, Pin.OUT)   # Right motor (Motor B) IN4 / OUT4
 
-ENA = Pin(14, Pin.OUT)   # Left enable (on/off or PWM later)
-ENB = Pin(15, Pin.OUT)   # Right enable (on/off or PWM later)
+ENA = Pin(8, Pin.OUT)   # Left enable (on/off or PWM later)
+ENB = Pin(2, Pin.OUT)   # Right enable (on/off or PWM later)
 
 # Turn both sides on (full speed for now)
 ENA.value(1)
@@ -263,14 +263,14 @@ Then **replace** your old `ENA`/`ENB` lines with PWM versions:
 
 ```python
 # === L298N pin mapping (EDIT if your wiring is different) ===
-IN1 = Pin(10, Pin.OUT)   # Left motor input 1
-IN2 = Pin(11, Pin.OUT)   # Left motor input 2
-IN3 = Pin(12, Pin.OUT)   # Right motor input 1
-IN4 = Pin(13, Pin.OUT)   # Right motor input 2
+IN1 = Pin(6, Pin.OUT)   # Left motor (Motor A) IN1 / OUT1
+IN2 = Pin(7, Pin.OUT)   # Left motor (Motor A) IN2 / OUT2
+IN3 = Pin(4, Pin.OUT)   # Right motor (Motor B) IN3 / OUT3
+IN4 = Pin(3, Pin.OUT)   # Right motor (Motor B) IN4 / OUT4
 
 # ENA / ENB now use PWM for speed control
-ENA = PWM(Pin(14))       # Left enable (speed)
-ENB = PWM(Pin(15))       # Right enable (speed)
+ENA = PWM(Pin(8))       # Left enable (speed)
+ENB = PWM(Pin(2))       # Right enable (speed)
 
 # Set a PWM frequency (how fast we blink power on/off)
 ENA.freq(1000)           # 1 kHz is common for motors
