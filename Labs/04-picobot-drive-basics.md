@@ -67,12 +67,13 @@ from machine import Pin, PWM
 from time import sleep_ms
 
 # === PINS: update to match your wiring ===
-ENA_PIN = 2   # PWM enable (left)
-ENB_PIN = 3   # PWM enable (right)
-IN1_PIN = 4   # Left IN1
-IN2_PIN = 5   # Left IN2
-IN3_PIN = 6   # Right IN3
-IN4_PIN = 7   # Right IN4
+# Motor A = Left, Motor B = Right
+ENB_PIN = 2   # PWM enable (right, Motor B)
+IN4_PIN = 3   # Right IN4 (Motor B OUT4)
+IN3_PIN = 4   # Right IN3 (Motor B OUT3)
+IN1_PIN = 6   # Left IN1  (Motor A OUT1)
+IN2_PIN = 7   # Left IN2  (Motor A OUT2)
+ENA_PIN = 8   # PWM enable (left, Motor A)
 
 PWM_FREQ = 1000
 PWM_DUTY = 65000     # ~70% of 65535 is a good start
