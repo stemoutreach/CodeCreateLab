@@ -133,7 +133,7 @@ from picobot_drive import forward, back, stop, set_speed
 # --- devices ---
 button = Button(16)
 rgb = RGBLED(red=17, green=18, blue=19)
-sensor = DistanceSensor(echo=2, trigger=3)
+sensor = DistanceSensor(echo=11, trigger=10)
 speaker = Speaker(20)
 
 # --- tuning constants (adjust in testing) ---
@@ -314,7 +314,7 @@ from picobot_drive import forward, back, stop, set_speed
 
 button = Button(16)
 rgb = RGBLED(red=17, green=18, blue=19)
-sensor = DistanceSensor(echo=2, trigger=3)
+sensor = DistanceSensor(echo=11, trigger=10)
 speaker = Speaker(20)
 
 SAFE_DISTANCE = 40       # TODO: tune after testing
