@@ -94,13 +94,13 @@ We’ll use three **states**:
 
 We’ll leave your L298N pins exactly as they were in the drive guide and add new pins around them.  
 
-- **Already used by L298N (from 04 guide, do not change):**  
-  - GP10 → IN1 (Left)  
-  - GP11 → IN2 (Left)  
-  - GP12 → IN3 (Right)  
-  - GP13 → IN4 (Right)  
-  - GP14 → ENA (PWM)  
-  - GP15 → ENB (PWM)
+- **Already used by L298N (from 04 guide, do not change):**
+  - GP6  → IN1 (Left motor, Motor A OUT1)
+  - GP7  → IN2 (Left motor, Motor A OUT2)
+  - GP4  → IN3 (Right motor, Motor B OUT3)
+  - GP3  → IN4 (Right motor, Motor B OUT4)
+  - GP8  → ENA (PWM, left / Motor A)
+  - GP2  → ENB (PWM, right / Motor B)
 
 - **New for this guide (sensors + feedback):**
   - **Button** → GP16  
@@ -110,10 +110,10 @@ We’ll leave your L298N pins exactly as they were in the drive guide and add ne
     - Blue → GP19  
     - Common cathode → GND  
   - **Ultrasonic (HC-SR04P)**  
-    - VCC → Pico **3V3(OUT)**  
-    - GND → Pico **GND**  
-    - TRIG → GP3  
-    - ECHO → GP2  
+    - VCC  → Pico **3V3(OUT)**  
+    - GND  → Pico **GND**  
+    - TRIG → GP10  
+    - ECHO → GP11  
   - **Speaker** → GP20 (+) and GND (–)
 
 > 💡 If you must use different pins, it’s fine—just update the numbers in your code and keep the *patterns*.
@@ -210,7 +210,7 @@ We’ll reuse the HC-SR04P pattern from the breadboarding guide and Smart Distan
 from picozero import DistanceSensor, Speaker
 from time import sleep
 
-sensor = DistanceSensor(echo=2, trigger=3)  # meters
+sensor = DistanceSensor(echo=11, trigger=10)  # meters
 speaker = Speaker(20)
 
 CLOSE_CM = 15
@@ -276,7 +276,7 @@ from picobot_drive import forward, back, stop, set_speed
 
 button = Button(16)
 rgb = RGBLED(red=17, green=18, blue=19)
-sensor = DistanceSensor(echo=2, trigger=3)
+sensor = DistanceSensor(echo=11, trigger=10)
 speaker = Speaker(20)
 
 mode = "idle"
