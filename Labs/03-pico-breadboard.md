@@ -112,8 +112,8 @@ Use the pin choices below (change only if your teacher says so):
 - **Ultrasonic sensor (HC-SR04 or similar)**  
   - VCC → **5V** (or 3.3V *only* if your module supports it).  
   - GND → **GND**.  
-  - TRIG → **GPIO 3**.  
-  - ECHO → **GPIO 2** through a **3.3V-safe connection**  
+  - TRIG → **GPIO 10**.  
+  - ECHO → **GPIO 11** through a **3.3V-safe connection**  
     - Your kit may provide a safe board.  
     - If not, use a **voltage divider** or level shifter as shown in the Guide.  
   - Ask your coach if you’re unsure—protect the Pico’s 3.3 V pins.
@@ -247,8 +247,8 @@ BUTTON_PIN = 15
 RGB_RED_PIN = 16
 RGB_GREEN_PIN = 17
 RGB_BLUE_PIN = 18
-ULTRASONIC_ECHO_PIN = 2
-ULTRASONIC_TRIG_PIN = 3
+ULTRASONIC_ECHO_PIN = 10
+ULTRASONIC_TRIG_PIN = 11
 SPEAKER_PIN = 12
 
 # --- Objects ---
