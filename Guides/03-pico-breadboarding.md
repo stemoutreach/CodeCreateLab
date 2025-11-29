@@ -371,8 +371,8 @@ Use these pins:
 
 - **HC-SR04P VCC** → **Pico 3V3(OUT)**  
 - **HC-SR04P GND** → **Pico GND** (same ground as everything else)  
-- **HC-SR04P TRIG** → **Pico GPIO 3 (GP10)**  
-- **HC-SR04P ECHO** → **Pico GPIO 2 (GP11)**  
+- **HC-SR04P TRIG** → **Pico GPIO 10 (GP10)**  
+- **HC-SR04P ECHO** → **Pico GPIO 11 (GP11)**  
 
 Text view:
 
