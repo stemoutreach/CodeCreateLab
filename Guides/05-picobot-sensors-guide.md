@@ -483,7 +483,7 @@ Pick a few of these to practice:
   → Make sure `picobot_drive.py` is saved on the Pico or in the same folder on your Pi, and that you spelled the filename exactly the same.
 
 - **Symptom: robot never reacts to obstacles (always “safe”).**  
-  → Check that `echo=2` and `trigger=3` match your wiring. Confirm the sensor is labeled **HC-SR04P** and powered from **3V3(OUT)**. Print raw distance values and lower `CLOSE_CM`/`WARN_CM` to test.
+  → Check that `echo=11` and `trigger=10` match your wiring. Confirm the sensor is labeled **HC-SR04P** and powered from **3V3(OUT)**. Print raw distance values and lower `CLOSE_CM`/`WARN_CM` to test.
 
 - **Symptom: robot constantly backs up even in open space.**  
   → The sensor might be reading noise (e.g., reflections from the floor). Tilt it slightly, slow down the robot, or ignore obviously impossible values (like `d_cm < 2`).
