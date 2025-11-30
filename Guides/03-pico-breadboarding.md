@@ -25,14 +25,12 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 
 ## Table of Contents (Walkthrough 1–8)
 
-- [1) Blink the onboard LED](#1-blink-the-onboard-led)
-- [2) Blink an external LED](#2-blink-an-external-led)
-- [3) Read a pushbutton (and avoid false presses)](#3-read-a-pushbutton-and-avoid-false-presses)
-- [4) Mini exercise (two player reaction game)](#4-mini-exercise-two-player-reaction-game)
-- [5) RGB LED Blink (three pins + common pin)](#5-rgb-led-blink-three-pins--common-pin)
-- [6) Ultrasonic Distance Sensor (HC-SR04) with picozero](#6-ultrasonic-distance-sensor-hc-sr04-with-picozero)
-- [7) Speaker (buzzer) & Play a Tune](#7-speaker-buzzer--play-a-tune)
-
+- [1) Blink LEDs (onboard and external)](#1-blink-led-onboard-and-external)
+- [3) Read pushbuttons](#2-read-pushbuttons)
+- [3) RGB LED color mixing](#3-rgb-led-color-mixing)
+- [4) Ultrasonic Distance Sensor](#4-ultrasonic-distance-sensor)
+- [5) Speaker](#5-speaker)
+- [6) OLED Display](#5-oled-display)
 
 
 
@@ -101,7 +99,7 @@ You can copy this at the top of your program and use the names instead of raw pi
 
 ---
 
-### 1) Meet the Pico, GPIO, and breadboard
+### Meet the Pico, GPIO, and breadboard
 
 **Idea:** Before wiring anything, understand what the Pico is, what GPIO pins do, and how the breadboard’s hidden connections work.
 
@@ -141,8 +139,7 @@ Key facts:
 
 #### Inside the breadboard
 
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="184" alt="Raspberry Pi Pico plugged into a breadboard" >  
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="195" alt="Diagram showing how breadboard rows and columns connect internally" >
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="184" alt="Raspberry Pi Pico plugged into a breadboard" > <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="195" alt="Diagram showing how breadboard rows and columns connect internally" >
 
 - Long **power rails** run along the edges (often marked **+** and **–**).  
 - **Rows of 5 holes** are connected **horizontally** on each side of the **center gap**.  
@@ -155,7 +152,7 @@ Key facts:
 
 ---
 
-### 2) Blink LEDs (onboard and external)
+### 1) Blink LEDs (onboard and external)
 
 **Idea:** First, prove your setup works with the **onboard LED**. Then move that idea to an **external LED** on the breadboard.
 
@@ -214,7 +211,7 @@ while True:
 
 ---
 
-### 3) Read pushbuttons (and avoid false presses)
+### 2) Read pushbuttons
 
 **Idea:** Use a pushbutton as **input** to control an LED. Learn how to avoid “noisy” reads (debouncing).
 
@@ -310,7 +307,7 @@ led.off()
 - If a button “does nothing”, it might be wired **on the same side** of the switch instead of across the gap.  
 - `picozero.Button` enables an internal **pull-up** for you; the input reads **HIGH** when not pressed and **LOW** when pressed (connected to GND).
 
-### 4) RGB LED color mixing
+### 3) RGB LED color mixing
 
 **Idea:** Use three GPIO pins to control the red, green, and blue channels of an **RGB LED**, then mix your own colors.
 
@@ -373,7 +370,7 @@ Examples: purple ≈ `(1, 0, 0.4)`, cyan ≈ `(0, 1, 1)`, yellow ≈ `(1, 1, 0)`
 
 ---
 
-### 7) Ultrasonic Distance Sensor (HC-SR04) with picozero
+### 4) Ultrasonic Distance Sensor
 
 **Goal:** Measure distance to an object using sound. The sensor sends a ping and measures the echo time.
 
@@ -414,7 +411,7 @@ while True:
 - Avoid very fast polling; ~5–10 readings/second is plenty.  
 - If readings seem random, check **ground common** between Pico and sensor, and verify the **ECHO** line is **3.3V-safe**.
 
-### 8) Speaker (buzzer) & Play a Tune
+### 5) Speaker
 
 **Goal:** Make sound for alerts and simple melodies.
 
@@ -535,7 +532,7 @@ finally: # Turn speaker off if interrupted
 
 ---
 
-### 6) 0.96" OLED I2C 128×64 — “Hello, world!”
+### 6) OLED Display
 
 **Idea:** Connect a small **I2C OLED display** and show a message. This is a great way to see sensor readings without a computer.
 
