@@ -100,14 +100,14 @@ Use the pin choices below (change only if your teacher says so):
   - Short leg (cathode) → **GND**.
 
 - **Pushbutton**  
-  - One leg → **GPIO 15**.  
+  - One leg → **GPIO 16**.  
   - Opposite leg → **GND** (picozero/Button will use an internal pull-up).
 
 - **RGB LED** (common cathode recommended)  
   - Common cathode leg → **GND**.  
-  - Red leg → **GPIO 16**.  
-  - Green leg → **GPIO 17**.  
-  - Blue leg → **GPIO 18**.
+  - Red leg → **GPIO 17**.  
+  - Green leg → **GPIO 18**.  
+  - Blue leg → **GPIO 19**.
 
 - **Ultrasonic sensor (HC-SR04 or similar)**  
   - VCC → **5V** (or 3.3V *only* if your module supports it).  
@@ -119,7 +119,7 @@ Use the pin choices below (change only if your teacher says so):
   - Ask your coach if you’re unsure—protect the Pico’s 3.3 V pins.
 
 - **Speaker (passive piezo)**  
-  - `+` or long leg → **GPIO 12**.  
+  - `+` or long leg → **GPIO 20**.  
   - `-` or short leg → **GND**.
 
 Double-check:
@@ -243,19 +243,19 @@ from time import sleep
 
 # --- Pin setup (matches the lab instructions) ---
 STATUS_LED_PIN = 14
-BUTTON_PIN = 15
-RGB_RED_PIN = 16
-RGB_GREEN_PIN = 17
-RGB_BLUE_PIN = 18
-ULTRASONIC_ECHO_PIN = 10
-ULTRASONIC_TRIG_PIN = 11
-SPEAKER_PIN = 12
+BUTTON_PIN = 16
+RGB_RED_PIN = 17
+RGB_GREEN_PIN = 18
+RGB_BLUE_PIN = 19
+ULTRA_TRIG_PIN = 10
+ULTRA_ECHO_PIN = 11
+SPEAKER_PIN = 20
 
 # --- Objects ---
 status_led = LED(STATUS_LED_PIN)
 button = Button(BUTTON_PIN)
 rgb = RGBLED(red=RGB_RED_PIN, green=RGB_GREEN_PIN, blue=RGB_BLUE_PIN)
-sensor = DistanceSensor(echo=ULTRASONIC_ECHO_PIN, trigger=ULTRASONIC_TRIG_PIN)
+sensor = DistanceSensor(echo=ULTRA_ECHO_PIN, trigger=ULTRA_TRIG_PIN)
 speaker = Speaker(SPEAKER_PIN)
 
 # Simple mode variable: "idle" or "active"
