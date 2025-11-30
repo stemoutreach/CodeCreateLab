@@ -131,6 +131,10 @@ RGB_R_PIN = 17
 RGB_G_PIN = 18
 RGB_B_PIN = 19
 SPEAKER_PIN = 20       # passive buzzer / speaker
+
+# OLED Display (0.96" I2C 128x64, SSD1306)
+OLED_SDA_PIN = 0      # I2C0 SDA
+OLED_SCL_PIN = 1      # I2C0 SCL
 ```
 
 - [1) Blink the onboard LED](#1-blink-the-onboard-led)
@@ -140,6 +144,7 @@ SPEAKER_PIN = 20       # passive buzzer / speaker
 - [5) RGB LED Blink (three pins + common pin)](#5-rgb-led-blink-three-pins--common-pin)
 - [6) Ultrasonic Distance Sensor (HC-SR04) with picozero](#6-ultrasonic-distance-sensor-hc-sr04-with-picozero)
 - [7) Speaker (buzzer) & Play a Tune](#7-speaker-buzzer--play-a-tune)
+- [8) 0.96" OLED I2C 128x64 — Hello World](#8-096-oled-i2c-128x64--hello-world)
 
 
 
@@ -557,6 +562,182 @@ finally: # Turn speaker off if interrupted
 - If you only get one constant tone regardless of `play()`/`play_tone()`, you probably have an **active** buzzer—use `sp.beep()` or swap for a passive piezo.  
 - Keep melodies simple and short to avoid blocking your main loop (or move playback to its own loop/function).
 
+### 8) 0.96" OLED I2C 128x64 — Hello World
+
+**Goal:** Connect a small **0.96" OLED display** (128×64 pixels) over **I2C** and show a simple **“Hello, world!”** message.
+
+Most 0.96" OLED modules use the **SSD1306** controller and talk over **I2C** using only **two data wires**:
+
+- **SDA** (data)
+- **SCL** (clock)
+
+On the Pico, we’ll use the **I2C0 bus** on these pins (chosen so they don’t collide with your other parts):
+
+- **GP0** → SDA  
+- **GP1** → SCL  
+
+This keeps LEDs, buttons, ultrasonic sensor, and speaker on their own pins.
+
+---
+
+#### Parts you need
+
+- Raspberry Pi Pico (with MicroPython)
+- 0.96" OLED display (SSD1306, I2C, 128×64)
+- Breadboard + jumper wires
+
+Your OLED will usually have **4 pins** labeled:
+
+- **VCC**
+- **GND**
+- **SCL** (or SCK)
+- **SDA**
+
+> ✅ **Check voltage:** Many SSD1306 boards support **3.3–5 V** on VCC, which is perfect with the Pico’s **3V3(OUT)**.
+
+---
+
+#### Wiring (OLED + Pico)
+
+Use the same power rails you already set up for other parts: one rail for **3V3**, one for **GND**.
+
+Connect:
+
+- **OLED VCC** → **Pico 3V3(OUT)**
+- **OLED GND** → **Pico GND**
+- **OLED SCL** → **Pico GP1**
+- **OLED SDA** → **Pico GP0**
+
+Text view:
+
+```text
+Pico 3V3(OUT)  ----->  VCC   (OLED)
+Pico GND       ----->  GND   (OLED)
+Pico GP1       ----->  SCL
+Pico GP0       ----->  SDA
+```
+
+Make sure:
+
+- The Pico and OLED **share ground**.
+- You haven’t accidentally swapped **SDA** and **SCL**.
+
+---
+
+#### A quick note about I2C (what’s going on?)
+
+So far you’ve used pins that act like **simple wires**: HIGH/LOW for LEDs, pressed/not-pressed for buttons.
+
+**I2C** is different:
+
+- It’s a **bus**: multiple smart devices can share the same two wires.
+- Each device has an **address** (the OLED is usually at `0x3C`).
+- The Pico sends commands and data using those two shared lines.
+
+The good news: MicroPython’s `I2C` class and the `ssd1306` driver handle the low-level details for you—your code just says “draw text here” and “show the screen.”
+
+---
+
+#### Step 1: Make sure you have the `ssd1306` driver
+
+This example expects a file named **`ssd1306.py`** to be available on the Pico.
+
+In class, you can either:
+
+1. Ask your mentor to help you copy `ssd1306.py` onto the Pico, **or**
+2. Follow the class instructions to download the file and then in Thonny:
+   - **File → Open…** the `ssd1306.py` file.
+   - **File → Save as… → Raspberry Pi Pico** and name it `ssd1306.py`.
+
+You only need to do this once per Pico.
+
+---
+
+#### Step 2: Hello World code
+
+Create a new file in Thonny, paste this code, and run it:
+
+```python
+from machine import Pin, I2C
+import ssd1306
+from time import sleep
+
+# Match the standard map
+OLED_SDA_PIN = 0
+OLED_SCL_PIN = 1
+
+# I2C0 on GP0 (SDA) and GP1 (SCL)
+i2c = I2C(0, scl=Pin(OLED_SCL_PIN), sda=Pin(OLED_SDA_PIN))
+
+# Most 0.96" OLEDs use 128x64 pixels and address 0x3C
+oled = ssd1306.SSD1306_I2C(128, 64, i2c, addr=0x3C)
+
+# Clear the screen (fill with 0 = black)
+oled.fill(0)
+
+# Draw some text at (x=0, y=0)
+oled.text("Hello, world!", 0, 0)
+
+# You must call show() to update the display
+oled.show()
+
+# Keep program alive so display stays on
+while True:
+    sleep(1)
+```
+
+**What the code does:**
+
+- `I2C(0, scl=Pin(1), sda=Pin(0))`  
+  Creates an I2C bus using **I2C0**, with **GP1** as the clock (`SCL`) and **GP0** as the data (`SDA`).
+
+- `SSD1306_I2C(128, 64, i2c, addr=0x3C)`  
+  Tells the driver:
+  - the display size (**128×64** pixels),
+  - which I2C bus to use,
+  - and the device address (`0x3C` is the most common for SSD1306).
+
+- `oled.fill(0)`  
+  Clears the screen (0 = off pixels / black).
+
+- `oled.text("Hello, world!", 0, 0)`  
+  Draws 8×8-pixel characters starting at the top-left corner of the screen.
+
+- `oled.show()`  
+  Sends the buffer to the physical display. Nothing appears until you call this.
+
+---
+
+#### Try these tweaks
+
+- Change the message and position:
+
+  ```python
+  oled.fill(0)
+  oled.text("Pico + OLED", 0, 0)
+  oled.text("Breadboard", 0, 16)
+  oled.text("Hello!", 0, 32)
+  oled.show()
+  ```
+
+- Move text to the center-ish by changing the `x, y` coordinates.
+- Draw a simple border:
+
+  ```python
+  oled.fill(0)
+  for x in range(128):
+      oled.pixel(x, 0, 1)
+      oled.pixel(x, 63, 1)
+  for y in range(64):
+      oled.pixel(0, y, 1)
+      oled.pixel(127, y, 1)
+  oled.text("Hello, OLED!", 8, 24)
+  oled.show()
+  ```
+
+---
+
+
 ## Vocabulary
 - MicroPython: A lightweight Python for microcontrollers like the Pico.
 - picozero: Beginner-friendly Python library for Pico GPIO (LEDs, buttons, etc.).
@@ -612,3 +793,18 @@ finally: # Turn speaker off if interrupted
 ## Next up
 Do the matching lab: **[03 – Pico Breadboard](../Labs/03-pico-breadboard.md)**
 
+
+#### Troubleshooting (OLED)
+
+- **Nothing shows at all**
+  - Double-check VCC and GND (is VCC really on **3V3**, not GND?).
+  - Make sure **SDA** is on GP0 and **SCL** is on GP1.
+  - Confirm `ssd1306.py` is actually saved on the Pico (and not just your computer).
+
+- **Garbled pixels or random noise**
+  - Wrong display size? Make sure you used `SSD1306_I2C(128, 64, ...)`.
+  - Some modules use a different address (0x3D). Try `addr=0x3D` if `0x3C` fails.
+
+- **Thonny says `ImportError: no module named 'ssd1306'`**
+  - The driver file isn’t on the Pico.
+  - Re-save `ssd1306.py` directly to the **Raspberry Pi Pico** in Thonny.
