@@ -37,12 +37,13 @@ ULTRA_ECHO_PIN = 11
 
 # Inputs / Outputs
 BUTTON_PIN = 16
+BUTTON2_PIN = 20
 
 RGB_R_PIN = 17
 RGB_G_PIN = 18
 RGB_B_PIN = 19
 
-SPEAKER_PIN = 20
+SPEAKER_PIN = 15
 
 # === Motor setup ===
 IN1 = Pin(IN1_PIN, Pin.OUT)
@@ -116,6 +117,7 @@ rgb_g = Pin(RGB_G_PIN, Pin.OUT)
 rgb_b = Pin(RGB_B_PIN, Pin.OUT)
 
 button = Pin(BUTTON_PIN, Pin.IN, Pin.PULL_UP)
+button2 = Pin(BUTTON2_PIN, Pin.IN, Pin.PULL_UP)
 
 # === Ultrasonic & speaker (using picozero if available) ===
 if HAVE_PICOZERO:
@@ -190,8 +192,33 @@ def test_button(duration_sec=8):
         if state != last_state:
             if state:
                 print("Button PRESSED")
+                speaker_beep()
             else:
                 print("Button released")
+            last_state = state
+        sleep(0.1)
+
+    print("Button test done.\n")
+
+def test_button2(duration_sec=8):
+    print("\n=== BUTTON TEST ===")
+    print("Press and release the button several times (GP16).")
+    print(f"Watching for about {duration_sec} seconds...")
+
+    last_state = button2.value()
+    print("Initial state:", "PRESSED" if last_state else "released")
+
+    start = 0
+    # crude timing loop (we'll just iterate ~duration_sec * 10 times with sleep(0.1))
+    loops = int(duration_sec * 10)
+    for _ in range(loops):
+        state = button2.value()
+        if state != last_state:
+            if state:
+                print("Button 2 PRESSED")
+                speaker_beep()
+            else:
+                print("Button 2 released")
             last_state = state
         sleep(0.1)
 
@@ -208,6 +235,14 @@ def test_speaker():
     speaker.beep(on_time=0.15, off_time=0.15, n=3)
     sleep(1)
     print("Speaker test done.\n")
+
+def speaker_beep():
+    if not HAVE_PICOZERO:
+        print("\n=== SPEAKER TEST SKIPPED (picozero not installed) ===")
+        return
+
+    speaker.beep(on_time=0.15, off_time=0.15, n=1)
+
 
 
 def test_ultrasonic():
@@ -245,6 +280,7 @@ try:
     test_rgb()
     test_speaker()
     test_button()
+    test_button2()
     test_ultrasonic()
 finally:
     # Safety: make sure everything is off at the end
