@@ -72,7 +72,7 @@ ULTRA_TRIG_PIN = 10
 ULTRA_ECHO_PIN = 11
 
 # Inputs / Outputs
-BUTTON_PIN = 16        # main pushbutton
+BUTTON_PIN = 13        # main pushbutton
 BUTTON2_PIN = 15       # second button for reaction game
 RGB_R_PIN = 17
 RGB_G_PIN = 18
@@ -207,7 +207,7 @@ while True:
 
 **Wiring**
 
-- One button leg → **GPIO 16** (`BUTTON_PIN`)  
+- One button leg → **GPIO 16** 
 - Opposite leg → **GND**  
 
 Make sure the two legs you use are on **opposite sides of the switch**, across the breadboard gap.
@@ -218,7 +218,7 @@ Make sure the two legs you use are on **opposite sides of the switch**, across t
 from picozero import Button, LED
 from time import sleep
 
-button = Button(16)   # or Button(BUTTON_PIN)
+button = Button(13)  
 led = LED(14)
 
 while True:
@@ -238,14 +238,33 @@ When you press a real button, the contacts **“chatter”** for a few milliseco
 - A short delay like `sleep(0.02)` smooths this out.  
 - For more advanced control you can use `button.when_pressed = handler` or track timestamps.
 
+#### Optional: compare with low-level `machine.Pin`
+
+```python
+from machine import Pin
+from time import sleep
+
+led = Pin(14, Pin.OUT)
+button = Pin(13, Pin.IN, Pin.PULL_UP)
+
+while True:
+    # button.value() is 0 when pressed, 1 when released
+    led.value(0 if button.value() else 1)
+    sleep(0.02)
+```
+
+`picozero` hides some of this complexity for you, but later you might want the full power of `machine.Pin`.
+
+---
+
 #### Mini reaction game (two players)
 
 **Goal:** After a random wait, the LED turns on. The **first** player to press their button wins.
 
 **Extra wiring**
 
-- **Button 1** on GPIO **16** (`BUTTON_PIN`) to GND.  
-- **Button 2** on GPIO **15** (`BUTTON2_PIN`) to GND.
+- **Button 1** on GPIO **13** to GND.  
+- **Button 2** on GPIO **15** to GND.
 
 **Code**
 
@@ -255,7 +274,7 @@ from time import sleep
 import random
 
 led = LED(14)
-p1 = Button(16)   # player 1
+p1 = Button(13)   # player 1
 p2 = Button(15)   # player 2
 
 print("Get ready...")
@@ -278,25 +297,6 @@ led.off()
 - If a button “does nothing”, it might be wired **on the same side** of the switch instead of across the gap.  
 - `picozero.Button` enables an internal **pull-up** for you; the input reads **HIGH** when not pressed and **LOW** when pressed (connected to GND).
 
-#### Optional: compare with low-level `machine.Pin`
-
-```python
-from machine import Pin
-from time import sleep
-
-led = Pin(14, Pin.OUT)
-button = Pin(16, Pin.IN, Pin.PULL_UP)
-
-while True:
-    # button.value() is 0 when pressed, 1 when released
-    led.value(0 if button.value() else 1)
-    sleep(0.02)
-```
-
-`picozero` hides some of this complexity for you, but later you might want the full power of `machine.Pin`.
-
----
-
 ### 4) RGB LED color mixing
 
 **Idea:** Use three GPIO pins to control the red, green, and blue channels of an **RGB LED**, then mix your own colors.
@@ -307,9 +307,9 @@ while True:
 - **Common cathode** → **GND**.  
 - Connect the three color legs to three GPIO pins:
 
-- **GPIO 17** → R pin (`RGB_R_PIN`)  
-- **GPIO 18** → G pin (`RGB_G_PIN`)  
-- **GPIO 19** → B pin (`RGB_B_PIN`)  
+- **GPIO 17** → R pin 
+- **GPIO 18** → G pin  
+- **GPIO 19** → B pin  
 
 > If your LED is **common anode**, connect the common pin to **3V3** and set `active_high=False` when creating the `RGBLED`.
 
@@ -319,7 +319,7 @@ while True:
 from picozero import RGBLED
 from time import sleep
 
-led = RGBLED(red=17, green=18, blue=19)  # or RGBLED(RGB_R_PIN, RGB_G_PIN, RGB_B_PIN)
+led = RGBLED(red=17, green=18, blue=19) 
 
 while True:
     led.color = (1, 0, 0)   # red
@@ -360,84 +360,165 @@ Examples: purple ≈ `(1, 0, 0.4)`, cyan ≈ `(0, 1, 1)`, yellow ≈ `(1, 1, 0)`
 
 ---
 
-### 5) Measure distance and add simple sound
+### 7) Ultrasonic Distance Sensor (HC-SR04) with picozero
 
-**Idea:** Use an **HC-SR04P ultrasonic sensor** to measure distance, and use a buzzer or speaker to give feedback when something is too close.
+**Goal:** Measure distance to an object using sound. The sensor sends a ping and measures the echo time.
 
-#### Ultrasonic distance sensor (HC-SR04P) with `picozero`
+**Safety & voltage note (important)**
+- Many **HC-SR04** modules run on **5V** and return a **5V echo** signal, which can **damage** the Pico (3.3V max on inputs).  
+- Solutions:
+  1) Use a **voltage divider** on the **ECHO** line (e.g., **1 kΩ** to Pico + **2 kΩ** to GND, from the sensor’s echo output).  
+  2) Use a **3.3V-safe module** (e.g., HC-SR04P) or a proper **level shifter**.  
+  3) Some modules *may* work on 3.3V Vcc but are unreliable—prefer 5V with a **stepped-down echo**.
 
-We’ll use the **P version** (HC-SR04P), which is **3.3 V safe**.
+**Wiring (typical HC-SR04)**
+- **VCC** → **5V** (or 3V3 if your module supports it)  
+- **GND** → **GND**  
+- **TRIG** → **GPIO 10**  
+- **ECHO** → **voltage divider → GPIO 11** (see note above)
 
-- Power from **Pico 3V3(OUT)**, not 5 V.  
-- Echo pin also stays at 3.3 V, so it is safe for GPIO.
-
-**Wiring**
-
-- **VCC** → **Pico 3V3(OUT)**  
-- **GND** → **Pico GND**  
-- **TRIG** → **Pico GP10** (`ULTRA_TRIG_PIN`)  
-- **ECHO** → **Pico GP11** (`ULTRA_ECHO_PIN`)
-
-```text
-Pico 3V3(OUT)  ----->  VCC   (HC-SR04P)
-Pico GND       ----->  GND
-Pico GP10      ----->  TRIG
-Pico GP11      ----->  ECHO
-```
-
-**Code**
-
+**Code (based on picozero recipe: Ultrasonic distance sensor)**
 ```python
 from picozero import DistanceSensor
 from time import sleep
 
-sensor = DistanceSensor(echo=11, trigger=10)   # echo first, then trigger
+# echo pin first, then trigger (picozero signature: DistanceSensor(echo, trigger))
+sensor = DistanceSensor(echo=11, trigger=10)
 
 while True:
-    d_m = sensor.distance       # in meters
+    # distance is in meters
+    d_m = sensor.distance
     d_cm = d_m * 100
     print(f"{d_cm:.1f} cm")
     sleep(0.2)
 ```
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Ultrasonic.jpeg" width="400" >
 
-#### Add a simple “too close” beep
 
-**Basic buzzer wiring**
+**Pitfalls & tips**
+- Point the sensor **straight** at the target; soft or angled surfaces reflect poorly.  
+- Minimum range is ~2–3 cm; maximum ~3–4 m for typical modules.  
+- Avoid very fast polling; ~5–10 readings/second is plenty.  
+- If readings seem random, check **ground common** between Pico and sensor, and verify the **ECHO** line is **3.3V-safe**.
 
-- **GPIO 20** → **+** buzzer pin (`SPEAKER_PIN`)  
+### 8) Speaker (buzzer) & Play a Tune
+
+**Goal:** Make sound for alerts and simple melodies.
+
+**Which part do I need?**
+- Prefer a **passive piezo buzzer** (works with tones of different frequencies).  
+- An **active buzzer** has a built‑in oscillator—it only makes one fixed tone when powered. Use it for simple beeps.
+
+**Basic wiring (passive piezo)**
+- **GPIO 20** → **+** buzzer pin  
 - **GND** → **–** buzzer pin  
+> Passive piezos draw very little current and can be driven directly from a GPIO. For bigger speakers, use a driver (transistor).
 
-> Passive piezo buzzers draw very little current and can be driven directly from a GPIO pin. For a larger speaker, use a transistor or driver board.
-
-**Code**
-
+**Code — quick beeps (picozero Speaker)**
 ```python
-from picozero import DistanceSensor, Buzzer
+from time import sleep
+from picozero import Buzzer
+
+buzzer = Buzzer(20)
+
+buzzer.on()
+sleep(1)
+buzzer.off()
+sleep(1)
+
+buzzer.beep()
+sleep(4)
+buzzer.off()
+```
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Speaker.jpeg" width="400" >
+
+**Control a passive buzzer or speaker that can play different tones or frequencies:**
+```python
+from picozero import Speaker
 from time import sleep
 
-sensor = DistanceSensor(echo=11, trigger=10)
-buzzer = Buzzer(20)   # or Buzzer(SPEAKER_PIN)
+speaker = Speaker(20)
 
-while True:
-    d_cm = sensor.distance * 100
-    print(f"{d_cm:.1f} cm")
-
-    if d_cm < 20:
-        buzzer.on()          # object closer than 20 cm
-    else:
-        buzzer.off()
-
+def tada():
+    c_note = 523
+    speaker.play(c_note, 0.1)
     sleep(0.1)
+    speaker.play(c_note, 0.9)
+
+def chirp():
+    global speaker
+    for _ in range(5):
+        for i in range(5000, 2999, -100):
+          speaker.play(i, 0.01)
+        sleep(0.2)
+
+
+try: 
+    tada()
+    sleep(1)
+    chirp()
+    
+finally: # Turn the speaker off if interrupted
+    speaker.off()
 ```
 
-**Notes & pitfalls**
+**Play a tune of note names and durations in beats:**
+```python
+from picozero import Speaker
 
-- If readings are random or stuck at 0:  
-  - Check **VCC is on 3V3(OUT)**, not 5 V.  
-  - Make sure all grounds (Pico, sensor, buzzer) are **connected together**.  
-  - Confirm the sensor really says **HC-SR04P** or “3.3–5 V”.  
-- `DistanceSensor(echo=11, trigger=10)` takes **echo first**, then **trigger**—easy to swap by accident.  
-- Passive buzzers are not very loud; shorter wires and firm breadboard connections can help.
+speaker = Speaker(20)
+
+BEAT = 0.25 # 240 BPM
+
+liten_mus = [ ['d5', BEAT / 2], ['d#5', BEAT / 2], ['f5', BEAT], ['d6', BEAT], ['a#5', BEAT], ['d5', BEAT],  
+              ['f5', BEAT], ['d#5', BEAT], ['d#5', BEAT], ['c5', BEAT / 2],['d5', BEAT / 2], ['d#5', BEAT], 
+              ['c6', BEAT], ['a5', BEAT], ['d5', BEAT], ['g5', BEAT], ['f5', BEAT], ['f5', BEAT], ['d5', BEAT / 2],
+              ['d#5', BEAT / 2], ['f5', BEAT], ['g5', BEAT], ['a5', BEAT], ['a#5', BEAT], ['a5', BEAT], ['g5', BEAT],
+              ['g5', BEAT], ['', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT / 2], ['d6', BEAT / 2], ['c6', BEAT / 2],
+              ['a#5', BEAT / 2], ['a5', BEAT / 2], ['g5', BEAT / 2], ['a5', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT],
+              ['f5', BEAT], ['f5', BEAT], ['f5', BEAT / 2], ['d#5', BEAT / 2], ['d5', BEAT], ['f5', BEAT], ['d6', BEAT],
+              ['d6', BEAT / 2], ['c6', BEAT / 2], ['b5', BEAT], ['g5', BEAT], ['g5', BEAT], ['c6', BEAT / 2],
+              ['a#5', BEAT / 2], ['a5', BEAT], ['f5', BEAT], ['d6', BEAT], ['a5', BEAT], ['a#5', BEAT * 1.5]]
+
+try:
+    speaker.play(liten_mus)
+       
+finally: # Turn speaker off if interrupted
+    speaker.off()
+```
+**Play individual notes and control the timing or perform another action:**
+```python
+from picozero import Speaker
+from time import sleep
+
+speaker = Speaker(20)
+
+BEAT = 0.4
+
+liten_mus = [ ['d5', BEAT / 2], ['d#5', BEAT / 2], ['f5', BEAT], ['d6', BEAT], ['a#5', BEAT], ['d5', BEAT],  
+              ['f5', BEAT], ['d#5', BEAT], ['d#5', BEAT], ['c5', BEAT / 2],['d5', BEAT / 2], ['d#5', BEAT], 
+              ['c6', BEAT], ['a5', BEAT], ['d5', BEAT], ['g5', BEAT], ['f5', BEAT], ['f5', BEAT], ['d5', BEAT / 2],
+              ['d#5', BEAT / 2], ['f5', BEAT], ['g5', BEAT], ['a5', BEAT], ['a#5', BEAT], ['a5', BEAT], ['g5', BEAT],
+              ['g5', BEAT], ['', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT / 2], ['d6', BEAT / 2], ['c6', BEAT / 2],
+              ['a#5', BEAT / 2], ['a5', BEAT / 2], ['g5', BEAT / 2], ['a5', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT],
+              ['f5', BEAT], ['f5', BEAT], ['f5', BEAT / 2], ['d#5', BEAT / 2], ['d5', BEAT], ['f5', BEAT], ['d6', BEAT],
+              ['d6', BEAT / 2], ['c6', BEAT / 2], ['b5', BEAT], ['g5', BEAT], ['g5', BEAT], ['c6', BEAT / 2],
+              ['a#5', BEAT / 2], ['a5', BEAT], ['f5', BEAT], ['d6', BEAT], ['a5', BEAT], ['a#5', BEAT * 1.5]]
+
+try:
+    for note in liten_mus:
+        speaker.play(note)
+        sleep(0.1) # leave a gap between notes
+       
+finally: # Turn speaker off if interrupted
+    speaker.off()
+```
+
+
+**Tips & pitfalls**
+- If it sounds quiet, try a different piezo or a **shorter wire run**. Passive piezos are not loud.  
+- If you only get one constant tone regardless of `play()`/`play_tone()`, you probably have an **active** buzzer—use `sp.beep()` or swap for a passive piezo.  
+- Keep melodies simple and short to avoid blocking your main loop (or move playback to its own loop/function).
 
 ---
 
@@ -459,8 +540,8 @@ Use the same power rails you already set up for other parts:
 
 - **OLED VCC** → **Pico 3V3(OUT)**  
 - **OLED GND** → **Pico GND**  
-- **OLED SCL** → **Pico GP1** (`OLED_SCL_PIN`)  
-- **OLED SDA** → **Pico GP0** (`OLED_SDA_PIN`)
+- **OLED SCL** → **Pico GP1** 
+- **OLED SDA** → **Pico GP0** 
 
 ```text
 Pico 3V3(OUT)  ----->  VCC   (OLED)
