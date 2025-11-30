@@ -598,3 +598,17 @@ finally: # Turn speaker off if interrupted
 - **RGB LED:** set colors with `(r, g, b)` values  
 - **Buzzer:** play simple tones for game feedback  
 - **Ultrasonic sensor (HC‑SR04):** measure distance in cm and t
+
+## Explore PicoZero  (pick 1–2 to try next)
+- **RGB LED:** set colors with `(r, g, b)` values  
+- **Buzzer:** play simple tones for game feedback  
+- **Ultrasonic sensor (HC‑SR04):** measure distance in cm and trigger lights/sounds
+- Find & adapt additional PicoZero [recipes](https://picozero.readthedocs.io/en/latest/recipes.html) 
+
+> Tip: Start from a recipe, then adapt **pin numbers** to match your wiring and tweak delays/thresholds.
+
+---
+
+## Next up
+Do the matching lab: **[03 – Pico Breadboard](../Labs/03-pico-breadboard.md)**
+
