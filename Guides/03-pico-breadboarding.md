@@ -30,7 +30,7 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 - [3) RGB LED color mixing](#3-rgb-led-color-mixing)
 - [4) Ultrasonic Distance Sensor](#4-ultrasonic-distance-sensor)
 - [5) Speaker](#5-speaker)
-- [6) OLED Display](#5-oled-display)
+- [6) OLED Display](#6-oled-display)
 
 
 
