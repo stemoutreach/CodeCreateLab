@@ -25,7 +25,7 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 
 ## Table of Contents (Walkthrough 1–8)
 
-- [1) Blink LEDs (onboard and external)](#1-blink-led-onboard-and-external)
+- [1) Blink LEDs (onboard and external)](#1-blink-leds-onboard-and-external)
 - [3) Read pushbuttons](#2-read-pushbuttons)
 - [3) RGB LED color mixing](#3-rgb-led-color-mixing)
 - [4) Ultrasonic Distance Sensor](#4-ultrasonic-distance-sensor)
