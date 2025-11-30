@@ -117,6 +117,22 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny**._
 
 ## Table of Contents (Walkthrough 1–8)
 
+### Standard pin map used in this guide
+
+```python
+# Ultrasonic (HC-SR04P)
+ULTRA_TRIG_PIN = 10
+ULTRA_ECHO_PIN = 11
+
+# Inputs / Outputs
+BUTTON_PIN = 16       # main pushbutton
+BUTTON2_PIN = 15      # second button for reaction game
+RGB_R_PIN = 17
+RGB_G_PIN = 18
+RGB_B_PIN = 19
+SPEAKER_PIN = 20       # passive buzzer / speaker
+```
+
 - [1) Blink the onboard LED](#1-blink-the-onboard-led)
 - [2) Blink an external LED](#2-blink-an-external-led)
 - [3) Read a pushbutton (and avoid false presses)](#3-read-a-pushbutton-and-avoid-false-presses)
@@ -196,7 +212,7 @@ while True:
 **Goal:** Light the LED only when the button is pressed.
 
 **Wiring**
-- One button leg → **GPIO 15**
+- One button leg → **GPIO 16**
 - The opposite leg → **GND**  
 (Place the button so the legs you use are on **opposite sides**—tact switches connect across the gap.)
 
@@ -205,7 +221,7 @@ while True:
 from picozero import Button, LED
 from time import sleep
 
-button = Button(15)   # picozero handles the internal pull-up
+button = Button(16)   # picozero handles the internal pull-up
 led = LED(14)
 
 while True:
@@ -235,7 +251,7 @@ from machine import Pin
 from time import sleep
 
 led = Pin(14, Pin.OUT)
-button = Pin(15, Pin.IN, Pin.PULL_UP)  # enable internal pull-up
+button = Pin(16, Pin.IN, Pin.PULL_UP)  # enable internal pull-up
 
 while True:
     led.value(0 if button.value() else 1)  # pressed = 0 (to GND)
@@ -251,8 +267,8 @@ while True:
 
 **Wiring**
 - **LED** on GPIO **14** 
-- **Button 1** on GPIO **15** to GND
-- **Button 2** on GPIO **17** to GND
+- **Button 1** on GPIO **16** to GND
+- **Button 2** on GPIO **15** to GND
 
 **Code**
 ```python
@@ -261,8 +277,8 @@ from time import sleep
 import random
 
 led = LED(14)
-p1 = Button(15)
-p2 = Button(17)
+p1 = Button(16)
+p2 = Button(15)
 
 print("Get ready...")
 sleep(random.uniform(2, 5))
@@ -299,12 +315,12 @@ led.off()
 - Connect the three color pins to **three GPIOs**.
 
 **Example wiring**
-- **GPIO 15** → **R pin**  
-- **GPIO 14** → **G pin**  
-- **GPIO 13** → **B pin**  
+- **GPIO 17** → **R pin**  
+- **GPIO 18** → **G pin**  
+- **GPIO 19** → **B pin**  
 - **Common cathode** → **GND**
 
-> If your LED is **common anode**, connect the common pin to **3V3** and set `active_high=False` in `RGBLED(...)` (so the logic is inverted). RGBLED(red=15, green=14, blue=13, active_high=False)
+> If your LED is **common anode**, connect the common pin to **3V3** and set `active_high=False` in `RGBLED(...)` (so the logic is inverted). RGBLED(red=17, green=18, blue=19, active_high=False)
 
 **Code (based on picozero recipe: Blink)**
 ```python
@@ -312,7 +328,7 @@ from picozero import RGBLED
 from time import sleep
 
 # Common cathode: active_high=True (default)
-led = RGBLED(red=15, green=14, blue=13)
+led = RGBLED(red=17, green=18, blue=19)
 
 # Simple blink through a few colors
 while True:
@@ -431,7 +447,7 @@ while True:
 - An **active buzzer** has a built‑in oscillator—it only makes one fixed tone when powered. Use it for simple beeps.
 
 **Basic wiring (passive piezo)**
-- **GPIO 14** → **+** buzzer pin  
+- **GPIO 2** → **+** buzzer pin  
 - **GND** → **–** buzzer pin  
 > Passive piezos draw very little current and can be driven directly from a GPIO. For bigger speakers, use a driver (transistor).
 
@@ -440,7 +456,7 @@ while True:
 from time import sleep
 from picozero import Buzzer
 
-buzzer = Buzzer(14)
+buzzer = Buzzer(2)
 
 buzzer.on()
 sleep(1)
@@ -458,7 +474,7 @@ buzzer.off()
 from picozero import Speaker
 from time import sleep
 
-speaker = Speaker(14)
+speaker = Speaker(2)
 
 def tada():
     c_note = 523
@@ -487,7 +503,7 @@ finally: # Turn the speaker off if interrupted
 ```python
 from picozero import Speaker
 
-speaker = Speaker(14)
+speaker = Speaker(2)
 
 BEAT = 0.25 # 240 BPM
 
@@ -512,7 +528,7 @@ finally: # Turn speaker off if interrupted
 from picozero import Speaker
 from time import sleep
 
-speaker = Speaker(14)
+speaker = Speaker(2)
 
 BEAT = 0.4
 
@@ -581,12 +597,4 @@ finally: # Turn speaker off if interrupted
 ## Explore PicoZero  (pick 1–2 to try next)
 - **RGB LED:** set colors with `(r, g, b)` values  
 - **Buzzer:** play simple tones for game feedback  
-- **Ultrasonic sensor (HC‑SR04):** measure distance in cm and trigger lights/sounds
-- Find & adapt additional PicoZero [recipes](https://picozero.readthedocs.io/en/latest/recipes.html) 
-
-> Tip: Start from a recipe, then adapt **pin numbers** to match your wiring and tweak delays/thresholds.
-
----
-
-## Next up
-Do the matching lab: **[03 – Pico Breadboard](../Labs/03-pico-breadboard.md)**
+- **Ultrasonic sensor (HC‑SR04):** measure distance in cm and t
