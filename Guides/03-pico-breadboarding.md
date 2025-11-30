@@ -657,7 +657,7 @@ while True:
     ```python
     from picozero import Button, LED
 
-    button = Button(16)
+    button = Button(13)
     led = LED(14)
 
     while True:
