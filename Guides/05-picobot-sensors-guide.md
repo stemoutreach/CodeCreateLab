@@ -52,7 +52,7 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny IDE**._
   - L298N motor driver (already wired to motors + battery)  
   - 2× DC gear motors + wheels  
 - **Inputs/Outputs to add to the robot**
-  - 1 × **tactile pushbutton** (start button)
+  - 2 × **tactile pushbutton** (start button)
   - 1 × **RGB LED**, common cathode preferred (one common GND pin)  
   - 1 × **Ultrasonic distance sensor — HC-SR04P (3.3 V-safe)**  
   - 1 × **passive piezo speaker** (or buzzer)  
@@ -103,7 +103,8 @@ We’ll leave your L298N pins exactly as they were in the drive guide and add ne
   - GP2  → ENB (PWM, right / Motor B)
 
 - **New for this guide (sensors + feedback):**
-  - **Button** → GP16  
+  - **Button** → GP13 
+  - **Button2** → GP15  
   - **RGB LED (common cathode)**  
     - Red → GP17  
     - Green → GP18  
@@ -126,7 +127,7 @@ We’ll leave your L298N pins exactly as they were in the drive guide and add ne
 
 #### Wiring (button + RGB)
 
-- Button: one leg → GP16, opposite leg → GND.  
+- Button: one leg → GP13, opposite leg → GND.  
 - RGB LED:  
   - Longest leg (common cathode) → GND.  
   - R, G, B legs → GP17, GP18, GP19 (order may need trying).
@@ -137,7 +138,7 @@ We’ll leave your L298N pins exactly as they were in the drive guide and add ne
 from picozero import Button, RGBLED
 from time import sleep
 
-button = Button(16)
+button = Button(13)
 rgb = RGBLED(red=17, green=18, blue=19)
 
 mode = "idle"
