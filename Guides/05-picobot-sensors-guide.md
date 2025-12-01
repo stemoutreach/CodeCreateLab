@@ -170,7 +170,7 @@ while True:
 
 **Anatomy / breaking it down**
 
-- `Button(16)` uses an internal pull-up; wiring to GND means “pressed = 0”.  
+- `Button(13)` uses an internal pull-up; wiring to GND means “pressed = 0”.  
 - `RGBLED` expects values from `0.0` to `1.0` for `(r, g, b)`.  
 - `show_mode()` is a helper: you can change colors later in **one place**.
 
@@ -178,7 +178,7 @@ while True:
 
 - If the button does nothing:
   - Make sure legs are across the **breadboard gap**, not on the same side.
-  - Confirm one leg is truly on **GND**, the other on **GP16**.
+  - Confirm one leg is truly on **GND**, the other on **GP13**.
 - If RGB colors look “weird”:
   - You might have red/green/blue legs in a different order—swap wires until red/green/blue are correct.
 - RGB always off? Ensure you’re using a **common cathode** LED or set `active_high=False` for a common anode.
@@ -275,7 +275,7 @@ from picozero import Button, RGBLED, DistanceSensor, Speaker
 # --- from your drive code (import or copy) ---
 from picobot_drive import forward, back, stop, set_speed
 
-button = Button(16)
+button = Button(13)
 rgb = RGBLED(red=17, green=18, blue=19)
 sensor = DistanceSensor(echo=11, trigger=10)
 speaker = Speaker(20)
