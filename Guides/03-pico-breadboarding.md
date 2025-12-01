@@ -200,8 +200,8 @@ while True:
     sleep(1)
 ```
 
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED1.jpeg" width="380" alt="External LED wired to a breadboard and Pico" >  
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/BlinkLED2.jpeg" width="400" alt="Close-up of LED wiring on a breadboard" >
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/LEDPico.jpeg" width="380" alt="External LED wired to a breadboard and Pico" >  
+
 
 **Notes & pitfalls**
 
@@ -239,7 +239,7 @@ while True:
     sleep(0.02)       # small delay reduces switch bounce noise
 ```
 
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/ReadpushbuttonON.jpeg" width="400" alt="Pushbutton and LED wired on a breadboard to the Pico" >
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/button.JPG" width="400" alt="Pushbutton and LED wired on a breadboard to the Pico" >
 
 **What’s debouncing?**
 
