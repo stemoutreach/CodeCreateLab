@@ -301,6 +301,8 @@ while True:
 
 led.off()
 ```
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/game.JPG" width="380" >  
+
 
 **Notes & pitfalls**
 
@@ -342,7 +344,7 @@ while True:
     sleep(0.5)
 ```
 
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/RGBLED.jpeg" width="400" alt="RGB LED connected to Pico on a breadboard" >  
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/rgbled2.jpeg" width="400" alt="RGB LED connected to Pico on a breadboard" >  
 <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/RGBDiagram.JPG" width="400" alt="Diagram of RGB LED legs and common cathode connection" >
 
 **Mix your own colors**
@@ -402,7 +404,7 @@ while True:
     print(f"{d_cm:.1f} cm")
     sleep(0.2)
 ```
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Ultrasonic.jpeg" width="400" >
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/distancepico.jpeg" width="400" >
 
 
 **Pitfalls & tips**
@@ -440,7 +442,7 @@ buzzer.beep()
 sleep(4)
 buzzer.off()
 ```
- <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Speaker.jpeg" width="400" >
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/picospeaker.jpeg" width="400" >
 
 **Control a passive buzzer or speaker that can play different tones or frequencies:**
 ```python
@@ -559,6 +561,8 @@ Pico GND       ----->  GND   (OLED)
 Pico GP1       ----->  SCL
 Pico GP0       ----->  SDA
 ```
+
+ <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Display.jpeg" width="400" >
 
 > ✅ Most SSD1306 boards accept **3.3–5 V** on VCC. Always confirm before wiring.
 
