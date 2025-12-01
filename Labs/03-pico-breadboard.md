@@ -93,14 +93,14 @@ Write your ranges and button behavior as a short list in comments or on paper.
 
 ## 2) Build / Prep (3–5 min)
 
-Use the pin choices below (change only if your teacher says so):
+Use the pin choices below:
 
 - **Status LED (single color)**  
   - Long leg (anode) → **GPIO 14**.  
   - Short leg (cathode) → **GND**.
 
 - **Pushbutton**  
-  - One leg → **GPIO 16**.  
+  - One leg → **GPIO 13**.  
   - Opposite leg → **GND** (picozero/Button will use an internal pull-up).
 
 - **RGB LED** (common cathode recommended)  
@@ -243,7 +243,7 @@ from time import sleep
 
 # --- Pin setup (matches the lab instructions) ---
 STATUS_LED_PIN = 14
-BUTTON_PIN = 16
+BUTTON_PIN = 13
 RGB_RED_PIN = 17
 RGB_GREEN_PIN = 18
 RGB_BLUE_PIN = 19
