@@ -90,7 +90,7 @@ Write your decisions at the top of your file as comments (this helps you and you
 
 - Double-check your **wiring** matches the 05 Guide for:
   - Ultrasonic sensor (HC-SR04P) → powered from **3V3(OUT)**, not 5 V.  
-  - Button → `GP16` + GND.  
+  - Button → `GP13` + GND.  
   - RGB LED → `GP17, GP18, GP19` + common GND.  
   - Speaker → `GP20` + GND.  
 - Confirm your **drive helpers** work:
@@ -131,7 +131,7 @@ from picozero import Button, RGBLED, DistanceSensor, Speaker
 from picobot_drive import forward, back, stop, set_speed
 
 # --- devices ---
-button = Button(16)
+button = Button(13)
 rgb = RGBLED(red=17, green=18, blue=19)
 sensor = DistanceSensor(echo=11, trigger=10)
 speaker = Speaker(20)
@@ -312,7 +312,7 @@ from time import sleep
 from picozero import Button, RGBLED, DistanceSensor, Speaker
 from picobot_drive import forward, back, stop, set_speed
 
-button = Button(16)
+button = Button(13)
 rgb = RGBLED(red=17, green=18, blue=19)
 sensor = DistanceSensor(echo=11, trigger=10)
 speaker = Speaker(20)
