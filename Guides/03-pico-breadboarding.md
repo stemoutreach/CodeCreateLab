@@ -217,7 +217,7 @@ while True:
 
 **Wiring**
 
-- One button leg → **GPIO 16** 
+- One button leg → **GPIO 13** 
 - Opposite leg → **GND**  
 
 Make sure the two legs you use are on **opposite sides of the switch**, across the breadboard gap.
