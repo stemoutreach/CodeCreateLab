@@ -51,7 +51,7 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny IDE**._
 ## Materials  (hardware)
 - **Raspberry Pi Pico** (W or non-W)  
 - **Breadboard** and jumper wires  
-- **1× pushbutton** (tact switch), plus optional **second button**  
+- **2× pushbutton** (tact switch), plus optional **second button**  
 - **1× single-color LED** (+ resistor if needed; many kits include pre-resisted LEDs)  
 - **1× common cathode RGB LED**  
 - **HC-SR04P** ultrasonic distance sensor (3.3–5 V version)  
