@@ -12,7 +12,7 @@
 > - Raspberry Pi Pico + micro-USB cable  
 > - Breadboard + jumper wires  
 > - 1 × single-color LED  
-> - 1 × pushbutton  
+> - 2 × pushbutton  
 > - 1 × RGB LED  
 > - 1 × Ultrasonic sensor (HC-SR04 or 3.3V-safe variant)  
 > - 1 × passive piezo speaker/buzzer  
