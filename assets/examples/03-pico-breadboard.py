@@ -7,13 +7,13 @@ from time import sleep
 
 # --- Pin setup (matches the lab instructions) ---
 STATUS_LED_PIN = 14
-BUTTON_PIN = 15
+BUTTON_PIN = 13
 RGB_RED_PIN = 16
 RGB_GREEN_PIN = 17
 RGB_BLUE_PIN = 18
 ULTRASONIC_ECHO_PIN = 2
 ULTRASONIC_TRIG_PIN = 3
-SPEAKER_PIN = 12
+SPEAKER_PIN = 20
 
 # --- Distance thresholds (in cm) ---
 CLOSE_CM = 20.0
