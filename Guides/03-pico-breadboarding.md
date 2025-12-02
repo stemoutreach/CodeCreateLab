@@ -404,7 +404,7 @@ while True:
     print(f"{d_cm:.1f} cm")
     sleep(0.2)
 ```
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/distancepico.jpeg" width="400" >
+<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/distancepico.jpeg" width="200" >
 
 
 **Pitfalls & tips**
