@@ -54,7 +54,7 @@ Each **Guide** teaches skills. Each **Lab** applies those skills in a small proj
 | 02 | [Sense HAT](Guides/02-sense-hat.md) | [Sense HAT — Reaction Timer](Labs/02-sense-hat-reaction-timer.md) — LEDs, joystick, timing, optional sensor intermission | Raspberry Pi + Sense HAT | 45–70 min |
 | 03 | [Pico Breadboarding](Guides/03-pico-breadboarding.md) | [Pico Breadboard Lab](Labs/03-pico-breadboard-lab.md) — button + LED (+ RGB/buzzer/HC-SR04 optional) | Raspberry Pi + Pico + breadboard + LEDs and sensors | 45–75 min |
 | 04 | [PicoBot — Drive with L298N (No Sensors)](Guides/04-picobot.md) | [PicoBot Drive Basics](Labs/04-picobot-drive-basics.md) — forward/turn/stop, PWM trim, timed square | Raspberry Pi + PicoBot (Pico + L298N + motors) | 60–90 min |
-| 05 | [PicoBot Sensors & Obstacle Sensing](Guides/05-picobot-sensors-guide.md) | [PicoBot Obstacle Sensing & Maze Explorer](Labs/05-picobot-obstacle-sensing-maze-explorer.md) — HC-SR04 distance sensing, safe stopping, basic maze strategy | Raspberry Pi + PicoBot with ultrasonic sensor | 75–105 min |
+| 05 | [PicoBot Sensors & Obstacle Sensing](Guides/05-picobot-sensors-guide.md) | [PicoBot Obstacle Sensing Explorer](Labs/05-picobot-obstacle-sensing.md) — HC-SR04 distance sensing, safe stopping, basic maze strategy | Raspberry Pi + PicoBot with ultrasonic sensor | 75–105 min |
 
 > **04 → 05 progression:**  
 > - **04** focuses on *reliable motion* (drive, turn, timing, trim).  
