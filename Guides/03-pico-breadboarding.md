@@ -613,6 +613,44 @@ while True:
 - `oled.fill(0)` clears the buffer; `oled.text()` writes into the buffer.  
 - `oled.show()` transfers the buffer to the screen.
 
+#### Example: 4 lines of text
+
+```python
+from machine import Pin, I2C
+from ssd1306 import SSD1306_I2C
+
+i2c = I2C(0, scl=Pin(1), sda=Pin(0), freq=400000)
+oled = SSD1306_I2C(128, 64, i2c)
+
+oled.fill(0)  # clear screen
+
+oled.text("Line 1", 0, 0)    # y = 0
+oled.text("Line 2", 0, 8)    # y = 8
+oled.text("Line 3", 0, 16)   # y = 16
+oled.text("Line 4", 0, 24)   # y = 24
+
+oled.show()
+```
+
+You can keep going:
+- Max height is 64 pixels
+- With 8-pixel text, you can fit about 8 lines (0,8,16,24,32,40,48,56)
+- If you want to make it friendlier in your labs:
+
+```python
+def print_line(text, line_num):
+    y = line_num * 8      # 8 pixels per line
+    oled.text(text, 0, y)
+
+oled.fill(0)
+print_line("Code & Create", 0)
+print_line("PicoBot Rocks!", 1)
+print_line("Distance: 23cm", 2)
+oled.show()
+
+```
+
+
 **Notes & pitfalls**
 
 - Nothing shows? Check VCC, GND, and that SDA/SCL are not swapped.  
