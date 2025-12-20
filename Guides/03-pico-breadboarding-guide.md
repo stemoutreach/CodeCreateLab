@@ -1,4 +1,4 @@
-# Raspberry Pi Pico Breadboarding
+# Raspberry Pi Pico Breadboarding Guide
 
 > ### Quick Summary  
 > **Level:** 03 • **Time:** 60–90 min  
