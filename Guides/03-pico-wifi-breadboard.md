@@ -1,4 +1,4 @@
-# 04 — Pico WiFi Breadboard Dashboard App (Guide)
+# 03 — Pico WiFi Breadboard Dashboard (Guide)
 
 > ### Quick Summary  
 > **Level:** 03+ • **Time:** 60–90 min  
