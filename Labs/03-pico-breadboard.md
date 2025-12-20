@@ -421,5 +421,5 @@ if __name__ == "__main__":
 
 # Next Up
 
-Ready for motion? Move from a stationary smart station to a **rolling robot** in **[04 — PicoBot Drive Basics](../Guides/04-picobot.md)**.
+Ready for Wifi setup Guide? Develop an app interface and connect to smart station through a web interface in **[04 — Pico Wifi_Smart Station App](../Guides/04-pico-wifi-breadboard-app.md)**.
 
