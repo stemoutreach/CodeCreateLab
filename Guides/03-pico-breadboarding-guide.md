@@ -63,7 +63,6 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny IDE**._
 - **HC-SR04P** ultrasonic distance sensor *(3.3–5 V version recommended)*
 - **Passive piezo buzzer or small speaker**
 - **0.96\" I2C OLED display** (SSD1306, 128×64, 4-pin VCC/GND/SCL/SDA)
-- **Optional (recommended if your ultrasonic ECHO is 5V):** two resistors for a voltage divider (ex: 1 kΩ + 2 kΩ)
 
 > ⚠️ **Safety note:** Pico GPIO pins are **3.3 V only**. Never feed 5 V into a GPIO. Always share a common **GND** between Pico and sensors.
 
