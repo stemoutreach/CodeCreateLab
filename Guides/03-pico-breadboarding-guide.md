@@ -1,62 +1,69 @@
 # Raspberry Pi Pico Breadboarding Guide
 
-> ### Quick Summary  
+> ### Quick Summary
 > **Level:** 03 • **Time:** 60–90 min  
 > **Prereqs:** Guides: [Python Basics](../Guides/00-python-basics.md) & [Python Functions](../Guides/01-python-functions.md)  
-> **Hardware:** Raspberry Pi Pico + micro-USB cable; breadboard, jumper wires, LEDs, pushbuttons, RGB LED, ultrasonic sensor (HC-SR04P), passive buzzer or small speaker, 0.96" I2C OLED  
-> **You’ll practice:** blink LEDs, read buttons with debouncing, mix RGB colors, measure distance with ultrasonic, play tones on a buzzer, draw text on an I2C OLED display  
+> **Hardware:** Raspberry Pi Pico + micro-USB cable; breadboard, jumper wires, LEDs, pushbuttons, RGB LED, ultrasonic sensor (HC-SR04P), passive buzzer/small speaker, 0.96\" I2C OLED. *(Pico W / Pico 2 W needed for Sections 7–8.)*  
+> **You’ll practice:** blink LEDs, read buttons with debouncing, mix RGB colors, measure distance with ultrasonic, play tones, draw text on an I2C OLED, connect to WiFi, host a tiny web page
 
 > **Learn → Try:** Learn concepts here with tiny examples, then try mini-exercises before you do the matching Lab.
 
 # Why This Matters
-Breadboards let you prototype **electronics without soldering**. Pairing the **Raspberry Pi Pico** with MicroPython gives you instant feedback: blink LEDs, read buttons, measure distance, make sounds, and show messages on a tiny screen. Mastering these basics prepares you for sensors, buzzers, motors, and bigger robot projects.
+Breadboards let you prototype **electronics without soldering**. Pairing the **Raspberry Pi Pico** with MicroPython gives you instant feedback: blink LEDs, read buttons, measure distance, make sounds, and show messages on a tiny screen. Mastering these basics prepares you for sensors, motors, and bigger robot projects.
 
 ---
 
 ## What you’ll learn
-- Breadboard anatomy (power rails, rows, and the center “gap”).  
-- GPIO basics: inputs vs outputs, pin numbering, and 3.3 V safety.  
-- Using MicroPython with **Thonny** and the **picozero** library.  
-- Controlling onboard and external LEDs, including RGB color mixing.  
-- Reading pushbuttons reliably and understanding **debouncing**.  
-- Measuring distance with an **HC-SR04P** ultrasonic sensor.  
-- Playing beeps and tones on a passive buzzer or small speaker.  
-- Displaying text and simple graphics on a **0.96" SSD1306 I2C OLED**.
+- Breadboard anatomy (power rails, rows, and the center “gap”)
+- GPIO basics: inputs vs outputs, pin numbering, and **3.3 V safety**
+- Using MicroPython with **Thonny** and the **picozero** library
+- Onboard + external LEDs, plus RGB color mixing
+- Reading pushbuttons reliably and understanding **debouncing**
+- Measuring distance with an **HC-SR04P** ultrasonic sensor
+- Making beeps and tones on a passive buzzer/speaker
+- Displaying text on a **0.96\" SSD1306 I2C OLED**
+- *(Pico W / Pico 2 W only)* Joining WiFi and finding the Pico’s IP address
+- *(Pico W / Pico 2 W only)* Hosting a tiny web page with **ON/OFF** buttons
 
 ## Table of Contents (Walkthrough 1–8)
-
 - [1) Blink LEDs (onboard and external)](#1-blink-leds-onboard-and-external)
 - [2) Read pushbuttons](#2-read-pushbuttons)
 - [3) RGB LED color mixing](#3-rgb-led-color-mixing)
 - [4) Ultrasonic Distance Sensor](#4-ultrasonic-distance-sensor)
 - [5) Speaker](#5-speaker)
 - [6) OLED Display](#6-oled-display)
-- [7) Wifi Config and Connect](#7-wifi-config-and-connect)
+- [7) WiFi Config and Connect](#7-wifi-config-and-connect)
 - [8) Simple Web Button](#8-simple-web-button)
+
+---
 
 ## Setup
 _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny IDE**._
 
-1. Connect the **Pico** via **micro-USB** to the Raspberry Pi 500.  
-2. Open **Thonny** → **Tools ▸ Options ▸ Interpreter**:  
-   - Interpreter: **MicroPython (Raspberry Pi Pico)**  
-   - Port: **Automatic**  
-   - If prompted, let Thonny **install/flash MicroPython (UF2)** to the Pico.  
-3. In Thonny, create a folder like `~/Documents/CodeCreate/`.  
-4. Save your script there **or** directly on the Pico (File → Save as… → **Raspberry Pi Pico**).  
-5. Press **Run ▶** to execute your code.  
+1. Connect the **Pico** via **micro-USB** to the Raspberry Pi 500.
+2. Open **Thonny** → **Tools ▸ Options ▸ Interpreter**:
+   - Interpreter: **MicroPython (Raspberry Pi Pico)**
+   - Port: **Automatic**
+   - If prompted, let Thonny **install/flash MicroPython (UF2)** to the Pico.
+3. Save your script either:
+   - On your computer (good for experiments), or
+   - Directly on the Pico (File → Save as… → **Raspberry Pi Pico**).
+4. Press **Run ▶** to execute your code.
 
 > Tip: A file named **`main.py`** saved on the Pico will **auto-run** whenever the Pico powers up.
 
-## Materials  (hardware)
-- **Raspberry Pi Pico** (W or non-W)  
-- **Breadboard** and jumper wires  
-- **2× pushbutton** (tact switch), plus optional **second button**  
-- **1× single-color LED** (+ resistor if needed; many kits include pre-resisted LEDs)  
-- **1× common cathode RGB LED**  
-- **HC-SR04P** ultrasonic distance sensor (3.3–5 V version)  
-- **Passive piezo buzzer or small speaker**  
-- **0.96" I2C OLED display** (SSD1306, 128×64, 4-pin VCC/GND/SCL/SDA)  
+---
+
+## Materials (hardware)
+- **Raspberry Pi Pico** (W recommended)
+- **Breadboard** and jumper wires
+- **2× pushbutton** (tact switches)
+- **1× single-color LED** *(with resistor, or a pre-resisted LED from a kit)*
+- **1× common cathode RGB LED**
+- **HC-SR04P** ultrasonic distance sensor *(3.3–5 V version recommended)*
+- **Passive piezo buzzer or small speaker**
+- **0.96\" I2C OLED display** (SSD1306, 128×64, 4-pin VCC/GND/SCL/SDA)
+- **Optional (recommended if your ultrasonic ECHO is 5V):** two resistors for a voltage divider (ex: 1 kΩ + 2 kΩ)
 
 > ⚠️ **Safety note:** Pico GPIO pins are **3.3 V only**. Never feed 5 V into a GPIO. Always share a common **GND** between Pico and sensors.
 
@@ -64,18 +71,8 @@ _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny IDE**._
 
 ## Walkthrough — Step by Step (with explanations)
 
-We’ll build up features in small steps:
-
-1. Meet the Pico, GPIO, and breadboard.  
-2. Blink LEDs (onboard + external).  
-3. Read pushbuttons and build a reaction game.  
-4. Use an RGB LED for color mixing.  
-5. Measure distance and add simple sound feedback.  
-6. Show “Hello, world!” on a 0.96" I2C OLED.
-
 ### Standard pin map used in this guide
-
-We’ll use this **standard map** so the Lab and Guide match:
+Use this **standard map** so the Lab and Guide match:
 
 ```python
 # Ultrasonic (HC-SR04P)
@@ -83,80 +80,38 @@ ULTRA_TRIG_PIN = 10
 ULTRA_ECHO_PIN = 11
 
 # Inputs / Outputs
-BUTTON_PIN = 13        # main pushbutton
-BUTTON2_PIN = 15       # second button for reaction game
-RGB_R_PIN = 17
-RGB_G_PIN = 18
-RGB_B_PIN = 19
-SPEAKER_PIN = 20       # passive buzzer / speaker
+BUTTON_PIN  = 13        # main pushbutton
+BUTTON2_PIN = 15        # second button (reaction game)
+LED_PIN     = 14        # external LED
+RGB_R_PIN   = 17
+RGB_G_PIN   = 18
+RGB_B_PIN   = 19
+SPEAKER_PIN = 20        # passive buzzer / speaker
 
 # OLED Display (0.96" I2C 128x64, SSD1306)
-OLED_SDA_PIN = 0       # I2C0 SDA
-OLED_SCL_PIN = 1       # I2C0 SCL
+OLED_SDA_PIN = 0        # I2C0 SDA
+OLED_SCL_PIN = 1        # I2C0 SCL
 ```
 
-You can copy this at the top of your program and use the names instead of raw pin numbers.
+---
+
+### Meet the Pico, GPIO, and breadboard (fast version)
+
+- The **Pico** is a microcontroller. It runs your MicroPython code directly (no full operating system).
+- **GPIO pins** can be **outputs** (LEDs, buzzers) or **inputs** (buttons, sensors).
+- Breadboards connect:
+  - **Rows of 5 holes** together (on each side of the center gap)
+  - **Power rails** along the side for 3V3 and GND
+  - The **center gap** separates left/right sides (prevents shorts)
+
+> If something doesn’t work, it’s usually a wire in the wrong **row**, wrong **side of the gap**, or a missing **GND** connection.
 
 ---
 
-### Meet the Pico, GPIO, and breadboard
+## 1) Blink LEDs (onboard and external)
 
-**Idea:** Before wiring anything, understand what the Pico is, what GPIO pins do, and how the breadboard’s hidden connections work.
-
-#### The Raspberry Pi Pico (RP2040) — what it is & how code runs
-
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/5544-02.jpg" width="400" alt="Raspberry Pi Pico microcontroller board top view" >
-
-- The **Raspberry Pi Pico** is a tiny microcontroller board based on the **RP2040** chip.  
-- It runs **MicroPython** or **C/C++** directly on the chip (no full operating system).  
-- Uses **3.3 V logic only** (never feed 5 V into a GPIO pin).  
-- ~**26 usable GPIO pins** for digital I/O; 3 pins support **analog input (ADC)**.  
-- Its **USB port** is used for both **power** and **programming**.
-
-**How code is loaded (Thonny way):**
-
-- Thonny connects to the Pico and runs code line by line or from a saved file.  
-- If you save your program as **`main.py`** on the Pico, it will **run automatically** when powered.
-
-> **Pico vs Pico W:** On Pico (non-W) the onboard LED is **GP25**. On Pico W, the LED is controlled by the Wi-Fi chip. Use `picozero.pico_led` so your code works on both.
-
-#### GPIO map (numbering & special pins)
-
-<img src="https://github.com/stemoutreach/PicoBot/blob/main/zzimages/picodiagram.jpg" width="200" alt="Raspberry Pi Pico pinout diagram" >
-
-Key facts:
-
-- **Digital GPIO:** `GP0`–`GP22` are used for LEDs, buttons, sensors, etc.  
-- **Analog inputs (ADC):** `GP26`, `GP27`, `GP28`.  
-- **Power & control:** multiple **GND** pins, **3V3(OUT)**, **VBUS/VSYS**, **RUN**, `3V3_EN`.  
-- **Onboard LED:** typically **GP25** (use `picozero.pico_led` to hide the difference between Pico and Pico W).
-
-**Safety rules**
-
-- GPIO pins are **3.3 V max**. If a sensor outputs 5 V, you must use a **level shifter** (or pick a 3.3-V-safe version like HC-SR04P).  
-- Never tie a driven GPIO directly to **3V3** or **GND**; that can short the pin.  
-- Always share a **common ground** (GND) between the Pico and all connected parts.
-
-#### Inside the breadboard
-
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/PicoBreadboard.png" width="184" alt="Raspberry Pi Pico plugged into a breadboard" > <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Insidebread.jpg" width="195" alt="Diagram showing how breadboard rows and columns connect internally" >
-
-- Long **power rails** run along the edges (often marked **+** and **–**).  
-- **Rows of 5 holes** are connected **horizontally** on each side of the **center gap**.  
-- The **gap** in the middle separates left and right sides—perfect for placing ICs or the Pico so pins don’t short together.
-
-**Notes & pitfalls**
-
-- Some breadboards have power rails that are **split in the middle**—check continuity or the printed marks.  
-- If something doesn’t work, it’s often just a wire in the wrong **row** or **side of the gap**.
-
----
-
-### 1) Blink LEDs (onboard and external)
-
-**Idea:** First, prove your setup works with the **onboard LED**. Then move that idea to an **external LED** on the breadboard.
-
-#### Onboard LED blink
+### Onboard LED blink
+Use `picozero.pico_led` so your code works on both Pico and Pico W.
 
 ```python
 from picozero import pico_led
@@ -169,29 +124,16 @@ while True:
     sleep(0.5)
 ```
 
-- `pico_led` is a ready-made object connected to the on-board LED.  
-- `sleep(0.5)` pauses the program for half a second.
-
-**Try this:** Change `0.5` to `0.1` (faster) or `1.0` (slower).
-
-#### External LED blink
-
-**Wiring (series path)**
-
-- Pico **GPIO 14** → **LED long leg (anode)**  
-- LED **short leg (cathode)** → **GND**  
-
-```text
-GPIO14 ──► ( +| LED |− ) ──► GND
-```
-
-**Code**
+### External LED blink (GPIO 14)
+**Wiring**
+- Pico **GPIO 14** → LED long leg (anode) *(through resistor if needed)*
+- LED short leg (cathode) → **GND**
 
 ```python
 from picozero import LED
 from time import sleep
 
-led = LED(14)     # GPIO number for the external LED
+led = LED(LED_PIN)  # LED_PIN = 14
 
 while True:
     led.on()
@@ -200,92 +142,43 @@ while True:
     sleep(1)
 ```
 
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/LEDPico.jpeg" width="380" alt="External LED wired to a breadboard and Pico" >  
-
-
-**Notes & pitfalls**
-
-- If the LED never lights, flip it: the **long leg** should face the GPIO (through a resistor or pre-resisted LED).  
-- Double-check that **GPIO number in code** matches your wiring.  
-- Press **Stop** in Thonny to break out of the infinite loop.
+**Quick fixes**
+- If it never lights, flip the LED.
+- Confirm the GPIO number in code matches your wiring.
+- Press **Stop** in Thonny to end the loop.
 
 ---
 
-### 2) Read pushbuttons
-
-**Idea:** Use a pushbutton as **input** to control an LED. Learn how to avoid “noisy” reads (debouncing).
+## 2) Read pushbuttons
 
 **Wiring**
-
-- One button leg → **GPIO 13** 
-- Opposite leg → **GND**  
-
-Make sure the two legs you use are on **opposite sides of the switch**, across the breadboard gap.
-
-**Code**
+- One button leg → **GPIO 13**
+- Opposite leg → **GND**
+- Make sure the button straddles the breadboard **center gap**.
 
 ```python
 from picozero import Button, LED
 from time import sleep
 
-button = Button(13)  
-led = LED(14)
+button = Button(BUTTON_PIN)   # BUTTON_PIN = 13
+led = LED(LED_PIN)            # LED_PIN = 14
 
 while True:
-    if button.is_pressed:
-        led.on()
-    else:
-        led.off()
-    sleep(0.02)       # small delay reduces switch bounce noise
+    led.value = button.is_pressed
+    sleep(0.02)               # small delay helps with debouncing
 ```
 
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/button.JPG" width="400" alt="Pushbutton and LED wired on a breadboard to the Pico" >
-
-**What’s debouncing?**
-
-When you press a real button, the contacts **“chatter”** for a few milliseconds, causing multiple quick on/off transitions.
-
-- A short delay like `sleep(0.02)` smooths this out.  
-- For more advanced control you can use `button.when_pressed = handler` or track timestamps.
-
-#### Optional: compare with low-level `machine.Pin`
-
-```python
-from machine import Pin
-from time import sleep
-
-led = Pin(14, Pin.OUT)
-button = Pin(13, Pin.IN, Pin.PULL_UP)
-
-while True:
-    # button.value() is 0 when pressed, 1 when released
-    led.value(0 if button.value() else 1)
-    sleep(0.02)
-```
-
-`picozero` hides some of this complexity for you, but later you might want the full power of `machine.Pin`.
-
----
-
-#### Mini reaction game (two players)
-
-**Goal:** After a random wait, the LED turns on. The **first** player to press their button wins.
-
-**Extra wiring**
-
-- **Button 1** on GPIO **13** to GND.  
-- **Button 2** on GPIO **15** to GND.
-
-**Code**
+### Mini reaction game (two players)
+After a random wait, the LED turns on. First button press wins.
 
 ```python
 from picozero import Button, LED
 from time import sleep
 import random
 
-led = LED(14)
-p1 = Button(13)   # player 1
-p2 = Button(15)   # player 2
+led = LED(LED_PIN)
+p1 = Button(BUTTON_PIN)
+p2 = Button(BUTTON2_PIN)
 
 print("Get ready...")
 sleep(random.uniform(2, 5))
@@ -301,405 +194,185 @@ while True:
 
 led.off()
 ```
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/game.JPG" width="380" >  
 
+---
 
-**Notes & pitfalls**
+## 3) RGB LED color mixing
 
-- If a button “does nothing”, it might be wired **on the same side** of the switch instead of across the gap.  
-- `picozero.Button` enables an internal **pull-up** for you; the input reads **HIGH** when not pressed and **LOW** when pressed (connected to GND).
-
-### 3) RGB LED color mixing
-
-**Idea:** Use three GPIO pins to control the red, green, and blue channels of an **RGB LED**, then mix your own colors.
-
-**Parts & wiring**
-
-- Use a **common cathode** RGB LED (recommended).  
-- **Common cathode** → **GND**.  
-- Connect the three color legs to three GPIO pins:
-
-- **GPIO 17** → R pin 
-- **GPIO 18** → G pin  
-- **GPIO 19** → B pin  
-
-> If your LED is **common anode**, connect the common pin to **3V3** and set `active_high=False` when creating the `RGBLED`.
-
-**Code (blink through basic colors)**
+**Wiring (common cathode RGB LED)**
+- Common cathode (usually longest leg) → **GND**
+- Red leg → **GPIO 17**
+- Green leg → **GPIO 18**
+- Blue leg → **GPIO 19**
 
 ```python
 from picozero import RGBLED
 from time import sleep
 
-led = RGBLED(red=17, green=18, blue=19) 
+rgb = RGBLED(red=RGB_R_PIN, green=RGB_G_PIN, blue=RGB_B_PIN)
 
 while True:
-    led.color = (1, 0, 0)   # red
+    rgb.color = (1, 0, 0)   # red
     sleep(0.5)
-    led.color = (0, 1, 0)   # green
+    rgb.color = (0, 1, 0)   # green
     sleep(0.5)
-    led.color = (0, 0, 1)   # blue
+    rgb.color = (0, 0, 1)   # blue
     sleep(0.5)
-    led.off()
+    rgb.color = (1, 1, 0)   # yellow
+    sleep(0.5)
+    rgb.off()
     sleep(0.5)
 ```
 
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/rgbled2.jpeg" width="400" alt="RGB LED connected to Pico on a breadboard" >  
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/RGBDiagram.JPG" width="400" alt="Diagram of RGB LED legs and common cathode connection" >
-
-**Mix your own colors**
-
-Use **floats from 0.0 to 1.0** for each channel:
-
-```python
-# Fade red up and down
-for i in range(0, 11):
-    led.color = (i / 10, 0, 0)
-    sleep(0.05)
-
-for i in range(10, -1, -1):
-    led.color = (i / 10, 0, 0)
-    sleep(0.05)
-```
-
-Examples: purple ≈ `(1, 0, 0.4)`, cyan ≈ `(0, 1, 1)`, yellow ≈ `(1, 1, 0)`.
-
-**Notes & pitfalls**
-
-- RGB LEDs have **four legs**; the **longest leg** is usually the common pin (GND for common cathode).  
-- If colors look **inverted**, you probably have a **common anode** LED—use `active_high=False`.  
-- Different colors may have different brightness; you can reduce green/blue a bit for a nicer balance.
+> If your LED is **common anode**, set `RGBLED(..., active_high=False)` and connect the common pin to **3V3**.
 
 ---
 
-### 4) Ultrasonic Distance Sensor
+## 4) Ultrasonic Distance Sensor
 
-**Goal:** Measure distance to an object using sound. The sensor sends a ping and measures the echo time.
+**Goal:** Measure distance by timing an echo.
 
-**Safety & voltage note (important)**
-- Many **HC-SR04** modules run on **5V** and return a **5V echo** signal, which can **damage** the Pico (3.3V max on inputs).  
-- Solutions:
-  1) Use a **voltage divider** on the **ECHO** line (e.g., **1 kΩ** to Pico + **2 kΩ** to GND, from the sensor’s echo output).  
-  2) Use a **3.3V-safe module** (e.g., HC-SR04P) or a proper **level shifter**.  
-  3) Some modules *may* work on 3.3V Vcc but are unreliable—prefer 5V with a **stepped-down echo**.
+### Important voltage note (read this)
+Many HC-SR04-style sensors output a **5V ECHO** signal. Pico inputs must stay at **3.3V max**.
 
-**Wiring (typical HC-SR04)**
-- **VCC** → **5V** (or 3V3 if your module supports it)  
-- **GND** → **GND**  
-- **TRIG** → **GPIO 10**  
-- **ECHO** → **voltage divider → GPIO 11** (see note above)
+- If your sensor’s ECHO is 5V, use a **voltage divider** on ECHO (example: 2 kΩ from ECHO to Pico, 1 kΩ from Pico to GND).
+- If you have an **HC-SR04P** (3.3–5 V), it’s typically safer, but still treat ECHO carefully.
 
-**Code (based on picozero recipe: Ultrasonic distance sensor)**
+### Wiring (typical)
+- VCC → 5V (or 3V3 if your module supports it)
+- GND → GND
+- TRIG → GPIO 10
+- ECHO → (through divider if needed) → GPIO 11
+
+### Code
 ```python
 from picozero import DistanceSensor
 from time import sleep
 
-# echo pin first, then trigger (picozero signature: DistanceSensor(echo, trigger))
-sensor = DistanceSensor(echo=11, trigger=10)
+sensor = DistanceSensor(echo=ULTRA_ECHO_PIN, trigger=ULTRA_TRIG_PIN)
 
 while True:
-    # distance is in meters
-    d_m = sensor.distance
-    d_cm = d_m * 100
+    d_cm = sensor.distance * 100   # distance is meters
     print(f"{d_cm:.1f} cm")
     sleep(0.2)
 ```
-<img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/distancepico.jpeg" width="200" >
 
-
-**Pitfalls & tips**
-- Point the sensor **straight** at the target; soft or angled surfaces reflect poorly.  
-- Minimum range is ~2–3 cm; maximum ~3–4 m for typical modules.  
-- Avoid very fast polling; ~5–10 readings/second is plenty.  
-- If readings seem random, check **ground common** between Pico and sensor, and verify the **ECHO** line is **3.3V-safe**.
-
-### 5) Speaker
-
-**Goal:** Make sound for alerts and simple melodies.
-
-**Which part do I need?**
-- Prefer a **passive piezo buzzer** (works with tones of different frequencies).  
-- An **active buzzer** has a built‑in oscillator—it only makes one fixed tone when powered. Use it for simple beeps.
-
-**Basic wiring (passive piezo)**
-- **GPIO 20** → **+** buzzer pin  
-- **GND** → **–** buzzer pin  
-> Passive piezos draw very little current and can be driven directly from a GPIO. For bigger speakers, use a driver (transistor).
-
-**Code — quick beeps (picozero Speaker)**
-```python
-from time import sleep
-from picozero import Buzzer
-
-buzzer = Buzzer(20)
-
-buzzer.on()
-sleep(1)
-buzzer.off()
-sleep(1)
-
-buzzer.beep()
-sleep(4)
-buzzer.off()
-```
- <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/picospeaker.jpeg" width="400" >
-
-**Control a passive buzzer or speaker that can play different tones or frequencies:**
-```python
-from picozero import Speaker
-from time import sleep
-
-speaker = Speaker(20)
-
-def tada():
-    c_note = 523
-    speaker.play(c_note, 0.1)
-    sleep(0.1)
-    speaker.play(c_note, 0.9)
-
-def chirp():
-    global speaker
-    for _ in range(5):
-        for i in range(5000, 2999, -100):
-          speaker.play(i, 0.01)
-        sleep(0.2)
-
-
-try: 
-    tada()
-    sleep(1)
-    chirp()
-    
-finally: # Turn the speaker off if interrupted
-    speaker.off()
-```
-
-**Play a tune of note names and durations in beats:**
-```python
-from picozero import Speaker
-
-speaker = Speaker(20)
-
-BEAT = 0.25 # 240 BPM
-
-liten_mus = [ ['d5', BEAT / 2], ['d#5', BEAT / 2], ['f5', BEAT], ['d6', BEAT], ['a#5', BEAT], ['d5', BEAT],  
-              ['f5', BEAT], ['d#5', BEAT], ['d#5', BEAT], ['c5', BEAT / 2],['d5', BEAT / 2], ['d#5', BEAT], 
-              ['c6', BEAT], ['a5', BEAT], ['d5', BEAT], ['g5', BEAT], ['f5', BEAT], ['f5', BEAT], ['d5', BEAT / 2],
-              ['d#5', BEAT / 2], ['f5', BEAT], ['g5', BEAT], ['a5', BEAT], ['a#5', BEAT], ['a5', BEAT], ['g5', BEAT],
-              ['g5', BEAT], ['', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT / 2], ['d6', BEAT / 2], ['c6', BEAT / 2],
-              ['a#5', BEAT / 2], ['a5', BEAT / 2], ['g5', BEAT / 2], ['a5', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT],
-              ['f5', BEAT], ['f5', BEAT], ['f5', BEAT / 2], ['d#5', BEAT / 2], ['d5', BEAT], ['f5', BEAT], ['d6', BEAT],
-              ['d6', BEAT / 2], ['c6', BEAT / 2], ['b5', BEAT], ['g5', BEAT], ['g5', BEAT], ['c6', BEAT / 2],
-              ['a#5', BEAT / 2], ['a5', BEAT], ['f5', BEAT], ['d6', BEAT], ['a5', BEAT], ['a#5', BEAT * 1.5]]
-
-try:
-    speaker.play(liten_mus)
-       
-finally: # Turn speaker off if interrupted
-    speaker.off()
-```
-**Play individual notes and control the timing or perform another action:**
-```python
-from picozero import Speaker
-from time import sleep
-
-speaker = Speaker(20)
-
-BEAT = 0.4
-
-liten_mus = [ ['d5', BEAT / 2], ['d#5', BEAT / 2], ['f5', BEAT], ['d6', BEAT], ['a#5', BEAT], ['d5', BEAT],  
-              ['f5', BEAT], ['d#5', BEAT], ['d#5', BEAT], ['c5', BEAT / 2],['d5', BEAT / 2], ['d#5', BEAT], 
-              ['c6', BEAT], ['a5', BEAT], ['d5', BEAT], ['g5', BEAT], ['f5', BEAT], ['f5', BEAT], ['d5', BEAT / 2],
-              ['d#5', BEAT / 2], ['f5', BEAT], ['g5', BEAT], ['a5', BEAT], ['a#5', BEAT], ['a5', BEAT], ['g5', BEAT],
-              ['g5', BEAT], ['', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT / 2], ['d6', BEAT / 2], ['c6', BEAT / 2],
-              ['a#5', BEAT / 2], ['a5', BEAT / 2], ['g5', BEAT / 2], ['a5', BEAT / 2], ['a#5', BEAT / 2], ['c6', BEAT],
-              ['f5', BEAT], ['f5', BEAT], ['f5', BEAT / 2], ['d#5', BEAT / 2], ['d5', BEAT], ['f5', BEAT], ['d6', BEAT],
-              ['d6', BEAT / 2], ['c6', BEAT / 2], ['b5', BEAT], ['g5', BEAT], ['g5', BEAT], ['c6', BEAT / 2],
-              ['a#5', BEAT / 2], ['a5', BEAT], ['f5', BEAT], ['d6', BEAT], ['a5', BEAT], ['a#5', BEAT * 1.5]]
-
-try:
-    for note in liten_mus:
-        speaker.play(note)
-        sleep(0.1) # leave a gap between notes
-       
-finally: # Turn speaker off if interrupted
-    speaker.off()
-```
-
-
-**Tips & pitfalls**
-- If it sounds quiet, try a different piezo or a **shorter wire run**. Passive piezos are not loud.  
-- If you only get one constant tone regardless of `play()`/`play_tone()`, you probably have an **active** buzzer—use `sp.beep()` or swap for a passive piezo.  
-- Keep melodies simple and short to avoid blocking your main loop (or move playback to its own loop/function).
+**Tips**
+- Aim at a flat surface.
+- Don’t spam readings; 5–10 per second is plenty.
 
 ---
 
-### 6) OLED Display
+## 5) Speaker
 
-**Idea:** Connect a small **I2C OLED display** and show a message. This is a great way to see sensor readings without a computer.
+**Goal:** Make simple beeps and tones.
 
-Most 0.96" OLED modules:
+### Passive buzzer / small speaker wiring
+- GPIO 20 → + buzzer
+- GND → – buzzer
 
-- Use the **SSD1306** controller.  
-- Speak over **I2C** using just two data lines: **SDA** (data) and **SCL** (clock).  
-- Have **4 pins**: VCC, GND, SCL, SDA.
+### Simple beeps (works with most buzzers)
+```python
+from picozero import Buzzer
+from time import sleep
 
-We’ll use **I2C0** on `GP0` (SDA) and `GP1` (SCL).
+buzzer = Buzzer(SPEAKER_PIN)
 
-#### Wiring
-
-Use the same power rails you already set up for other parts:
-
-- **OLED VCC** → **Pico 3V3(OUT)**  
-- **OLED GND** → **Pico GND**  
-- **OLED SCL** → **Pico GP1** 
-- **OLED SDA** → **Pico GP0** 
-
-```text
-Pico 3V3(OUT)  ----->  VCC   (OLED)
-Pico GND       ----->  GND   (OLED)
-Pico GP1       ----->  SCL
-Pico GP0       ----->  SDA
+buzzer.on()
+sleep(0.2)
+buzzer.off()
+sleep(0.2)
+buzzer.beep(on_time=0.1, off_time=0.1, n=5)
 ```
 
- <img src="https://github.com/stemoutreach/CodeCreateLab/blob/main/assets/Display.jpeg" width="400" >
+### Tones (requires a passive buzzer/speaker)
+```python
+from picozero import Speaker
+from time import sleep
 
-> ✅ Most SSD1306 boards accept **3.3–5 V** on VCC. Always confirm before wiring.
+sp = Speaker(SPEAKER_PIN)
 
-#### Make sure you have the `ssd1306` driver
+sp.play(440, 0.2)   # A4
+sleep(0.1)
+sp.play(523, 0.2)   # C5
+sleep(0.1)
+sp.play(659, 0.2)   # E5
+sp.off()
+```
 
-This example expects a file named **`ssd1306.py`** to be on the Pico.
+> If your buzzer only ever makes one fixed tone, it’s probably an **active buzzer** (great for beeps, not for melodies).
 
-- In class, your mentor may pre-load this file.  
-- Otherwise, open `ssd1306.py` in Thonny, then **File → Save as… → Raspberry Pi Pico** and name it `ssd1306.py`.
+---
 
-You only need to do this **once** per Pico.
+## 6) OLED Display
 
-#### Hello World code
+**Goal:** Show text on a 0.96\" I2C SSD1306 OLED.
 
+### Wiring (I2C0)
+- OLED VCC → Pico 3V3(OUT)
+- OLED GND → Pico GND
+- OLED SDA → Pico GP0
+- OLED SCL → Pico GP1
+
+### Driver file
+This requires **`ssd1306.py`** on the Pico.
+- If it’s missing, open `ssd1306.py` in Thonny and **Save as… → Raspberry Pi Pico**.
+
+### Hello World
 ```python
 from machine import Pin, I2C
 import ssd1306
 from time import sleep
 
-# Match the standard map
-OLED_SDA_PIN = 0
-OLED_SCL_PIN = 1
-
-# I2C0 on GP0 (SDA) and GP1 (SCL)
-i2c = I2C(0, scl=Pin(OLED_SCL_PIN), sda=Pin(OLED_SDA_PIN))
-
-# Most 0.96" OLEDs use 128x64 pixels and address 0x3C
+i2c = I2C(0, scl=Pin(OLED_SCL_PIN), sda=Pin(OLED_SDA_PIN), freq=400_000)
 oled = ssd1306.SSD1306_I2C(128, 64, i2c, addr=0x3C)
 
-# Clear the screen (fill with 0 = black)
 oled.fill(0)
-
-# Draw some text at (x=0, y=0)
 oled.text("Hello, world!", 0, 0)
-
-# You must call show() to update the display
+oled.text("Pico OLED OK", 0, 16)
 oled.show()
 
-# Keep program alive so display stays on
 while True:
     sleep(1)
 ```
 
-**What’s happening?**
-
-- `I2C(0, scl=Pin(1), sda=Pin(0))` sets up the hardware I2C bus.  
-- `SSD1306_I2C(128, 64, i2c, addr=0x3C)` knows the display size and I2C address.  
-- `oled.fill(0)` clears the buffer; `oled.text()` writes into the buffer.  
-- `oled.show()` transfers the buffer to the screen.
-
-#### Example: 4 lines of text
-
-```python
-from machine import Pin, I2C
-from ssd1306 import SSD1306_I2C
-
-i2c = I2C(0, scl=Pin(1), sda=Pin(0), freq=400000)
-oled = SSD1306_I2C(128, 64, i2c)
-
-oled.fill(0)  # clear screen
-
-oled.text("Line 1", 0, 0)    # y = 0
-oled.text("Line 2", 0, 8)    # y = 8
-oled.text("Line 3", 0, 16)   # y = 16
-oled.text("Line 4", 0, 24)   # y = 24
-
-oled.show()
-```
-
-You can keep going:
-- Max height is 64 pixels
-- With 8-pixel text, you can fit about 8 lines (0,8,16,24,32,40,48,56)
-- If you want to make it friendlier in your labs:
-
-```python
-def print_line(text, line_num):
-    y = line_num * 8      # 8 pixels per line
-    oled.text(text, 0, y)
-
-oled.fill(0)
-print_line("Code & Create", 0)
-print_line("PicoBot Rocks!", 1)
-print_line("Distance: 23cm", 2)
-oled.show()
-
-```
-
-
-**Notes & pitfalls**
-
-- Nothing shows? Check VCC, GND, and that SDA/SCL are not swapped.  
-- If you get `ImportError: no module named 'ssd1306'`, the driver file is not on the Pico.  
-- Some boards use address `0x3D` instead of `0x3C`—try changing the `addr` if needed.
+> If nothing shows: check SDA/SCL aren’t swapped, confirm the address (some boards use `0x3D`).
 
 ---
 
-### 7) Wifi Config and Connect
+## 7) WiFi Config and Connect
 
+WiFi only works on **Pico W / Pico 2 W**. If you have a non‑W Pico, skip this section.
 
+**Goal:** Connect to WiFi and print the Pico’s IP address in Thonny.
 
+### Quick rules
+- Use a **2.4 GHz** network (5 GHz won’t work on many microcontrollers).
+- Captive portals (hotel/school “sign-in” pages) usually **won’t work**.
+- If stuck, try a **phone hotspot**.
 
-
-WiFi is only available on **Pico W / Pico 2 W** boards. (If you have a non‑W Pico, skip this section for now.)
-
-**Goal:** Run one simple script that joins WiFi and prints the Pico’s IP address in the Thonny Shell.
-
-### WiFi quick rules (keep it simple)
-- Use a **2.4 GHz** network (many microcontrollers can’t join 5 GHz).
-- Some school/public networks use a **captive portal** (a web “sign-in” page). Those usually won’t work.  
-  If you get stuck, try a **phone hotspot**.
-
-### Single-script WiFi connect (no extra files)
-Create a new file in Thonny (you can keep it on your computer for now) and run it:
-
+### Single-script WiFi connect (no extra files yet)
 ```python
 import network
 import time
 
-# 1) Put your WiFi info here (temporary for this demo)
 SSID = "CHANGE_ME_WIFI_NAME"
 PASSWORD = "CHANGE_ME_PASSWORD"
 
 def connect_wifi(timeout_s=15):
-    """Connect the Pico to WiFi and return the IP address string."""
-    wlan = network.WLAN(network.STA_IF)  # STA = join an existing WiFi network
+    wlan = network.WLAN(network.STA_IF)   # join an existing WiFi network
     wlan.active(True)
 
     if wlan.isconnected():
         return wlan.ifconfig()[0]
 
-    print("Connecting to WiFi...", end="")
+    print("Connecting to WiFi", end="")
     wlan.connect(SSID, PASSWORD)
 
     start = time.time()
     while not wlan.isconnected():
         if time.time() - start > timeout_s:
-            raise RuntimeError("WiFi connection failed (check SSID/PASSWORD, 2.4GHz, captive portal).")
+            raise RuntimeError("WiFi failed (SSID/PASSWORD, 2.4GHz, captive portal).")
         print(".", end="")
         time.sleep(1)
 
@@ -707,34 +380,16 @@ def connect_wifi(timeout_s=15):
     print("\nConnected! IP:", ip)
     return ip
 
-# --- Run it ---
 ip = connect_wifi()
 ```
 
-**What to look for**
-- The Shell should print something like: `Connected! IP: 192.168.1.42`
-- That IP address is what you’ll type into a browser in the next section.
-
-> Tip: If you change networks often, we’ll eventually move SSID/PASSWORD into a separate config file — but **not yet** (no file layout until the lab).
-
-
-
 ---
 
-### 8) Simple Web Button
+## 8) Simple Web Button
 
+Now we’ll host a tiny web page on the Pico. Your browser will show **ON** and **OFF** buttons to control the **onboard LED**.
 
-
-
-
-Now let’s use the same idea to run a **tiny web server** on the Pico.  
-Your browser will show two buttons: **ON** and **OFF**. Clicking them controls the Pico’s **onboard LED**.
-
-**Goal:** Open a web page hosted by the Pico and toggle the onboard LED.
-
-### Single-script “web button” demo (onboard LED)
-Create a new file in Thonny and run this **one script**:
-
+### Single-script web server (onboard LED)
 ```python
 import network
 import socket
@@ -744,7 +399,7 @@ from machine import Pin
 SSID = "CHANGE_ME_WIFI_NAME"
 PASSWORD = "CHANGE_ME_PASSWORD"
 
-pico_led = Pin("LED", Pin.OUT)  # works on Pico W / Pico 2 W with modern MicroPython
+pico_led = Pin("LED", Pin.OUT)  # Pico W / Pico 2 W
 
 def connect_wifi(timeout_s=15):
     wlan = network.WLAN(network.STA_IF)
@@ -753,13 +408,13 @@ def connect_wifi(timeout_s=15):
     if wlan.isconnected():
         return wlan.ifconfig()[0]
 
-    print("Connecting to WiFi...", end="")
+    print("Connecting to WiFi", end="")
     wlan.connect(SSID, PASSWORD)
 
     start = time.time()
     while not wlan.isconnected():
         if time.time() - start > timeout_s:
-            raise RuntimeError("WiFi connection failed (check SSID/PASSWORD, 2.4GHz, captive portal).")
+            raise RuntimeError("WiFi failed (SSID/PASSWORD, 2.4GHz, captive portal).")
         print(".", end="")
         time.sleep(1)
 
@@ -767,8 +422,7 @@ def connect_wifi(timeout_s=15):
     print("\nConnected! IP:", ip)
     return ip
 
-def make_response(led_on: bool) -> str:
-    state = "ON" if led_on else "OFF"
+def page(state: str) -> str:
     return f"""HTTP/1.1 200 OK
 Content-Type: text/html
 
@@ -780,43 +434,35 @@ Content-Type: text/html
   <style>
     body {{ font-family: sans-serif; margin: 1rem; }}
     button {{ padding: 0.8rem 1.2rem; margin-right: 0.5rem; }}
-    .box {{ border: 1px solid #ccc; padding: 0.75rem; margin-top: 1rem; }}
   </style>
 </head>
 <body>
   <h1>Pico Web Button</h1>
   <p><strong>Onboard LED:</strong> {state}</p>
-
-  <div class="box">
+  <p>
     <a href="/on"><button>ON</button></a>
     <a href="/off"><button>OFF</button></a>
-  </div>
-
-  <p>Refresh the page to see the current state.</p>
+  </p>
 </body>
 </html>
 """
 
-def run_server(ip: str, port: int = 80):
+def run_server(port=80):
     addr = socket.getaddrinfo("0.0.0.0", port)[0][-1]
     s = socket.socket()
     s.bind(addr)
     s.listen(1)
 
-    print(f"Web server ready! Open: http://{ip}:{port}/")
-
     led_on = False
     pico_led.off()
 
-    while True:
-        cl, remote = s.accept()
-        try:
-            request = cl.recv(1024).decode("utf-8")
-            if not request:
-                continue
+    print(f"Web server ready: http://{ip}:{port}/")
 
-            # First line looks like: GET /on HTTP/1.1
-            path = request.split(" ")[1]
+    while True:
+        cl, _ = s.accept()
+        try:
+            req = cl.recv(1024).decode("utf-8")
+            path = req.split(" ")[1] if req else "/"
 
             if path.startswith("/on"):
                 pico_led.on()
@@ -825,147 +471,76 @@ def run_server(ip: str, port: int = 80):
                 pico_led.off()
                 led_on = False
 
-            cl.send(make_response(led_on))
-        except Exception as e:
-            # If something goes wrong, just print and keep going
-            print("Server error:", e)
+            cl.send(page("ON" if led_on else "OFF"))
         finally:
             cl.close()
 
-# --- Run it ---
 ip = connect_wifi()
-run_server(ip)
+run_server(port=80)
 ```
 
 ### Use it
-1. Run the script.  
-2. In the Shell, find the printed IP like `192.168.1.42`.  
-3. On a phone/laptop on the **same WiFi**, open: `http://<ip>/`  
-4. Click **ON** / **OFF** and watch the onboard LED change.
+1. Run the script.
+2. Copy the printed IP (example `192.168.1.42`).
+3. On a device on the **same WiFi**, open: `http://<ip>/`
+4. Click **ON** / **OFF** and watch the onboard LED.
 
-**Stop the server:** click the Thonny **Stop** button (or press `Ctrl+C`).
+**Stop the server:** click Thonny **Stop** or press `Ctrl+C`.
 
-> If port **80** doesn’t work on your network, change `port=80` to `port=8080`, then open `http://<ip>:8080/`.
+> If port **80** is blocked on your network, change `port=80` to `port=8080`, then open `http://<ip>:8080/`.
 
 ---
 
-
 ## Vocabulary
-- **MicroPython:** A lightweight version of Python that runs directly on microcontrollers like the Pico.  
-- **picozero:** Beginner-friendly library that wraps common Pico hardware (LEDs, buttons, sensors) into simple Python objects.  
-- **GPIO (General-Purpose Input/Output):** Pins you can use to send signals out (outputs) or read signals in (inputs).  
-- **Breadboard rails:** Long strips of connected holes along the sides, usually used for 3V3 and GND.  
-- **Debouncing:** Smoothing out the rapid on/off “chatter” when a real button is pressed or released.  
-- **I2C:** A two-wire communication bus (SDA + SCL) used to talk to smart devices like displays and sensors.  
-- **Ultrasonic sensor:** A device that sends high-frequency sound pulses and measures how long the echo takes to return to estimate distance.  
-- **Buzzer / Speaker:** Output device that turns electrical signals into sound; passive buzzers can play different tones, active ones usually make one fixed beep.  
-- **OLED (Organic LED) display:** A small, bright screen where each pixel lights up individually—great for text and simple graphics.  
-- **Pull-up resistor:** Keeps an input pin at a stable HIGH level until a button or sensor pulls it down to LOW.
+- **MicroPython:** A lightweight version of Python that runs on microcontrollers like the Pico
+- **GPIO:** Pins used for input (read) or output (control)
+- **Debouncing:** Smoothing out rapid on/off “chatter” from a physical button press
+- **I2C:** Two-wire device bus (SDA + SCL) used for OLEDs and sensors
+- **STA mode:** “Station” mode (the Pico joins an existing WiFi network)
+- **Socket:** A basic network connection used to send/receive data (like a tiny web server)
+- **HTTP:** The simple request/response protocol your browser uses
 
 ---
 
 ## Check your understanding
-
-1. On a breadboard, which holes are connected together in a **row**, and what does the **center gap** do?  
-2. Why is it important that Pico GPIO pins use **3.3 V logic**, and what can go wrong if you connect a 5 V signal directly to a GPIO pin?  
-3. **Predict the output:** What will this code do?
-
-    ```python
-    from picozero import LED
-    from time import sleep
-
-    led = LED(14)
-
-    for i in range(3):
-        led.on()
-        sleep(0.2)
-        led.off()
-        sleep(0.2)
-
-    print("Done")
-    ```
-
-4. **Debug this button code:** There is a bug that stops the LED from ever turning on. What is wrong, and how would you fix it?
-
-    ```python
-    from picozero import Button, LED
-
-    button = Button(13)
-    led = LED(14)
-
-    while True:
-        if button.is_pressed:
-            led.on
-        else:
-            led.off()
-    ```
-
-5. What is the difference between using a **pushbutton** and using an **ultrasonic sensor** to detect objects? When might you choose one over the other in a project?  
-6. Why might you choose to display information on the **OLED** instead of only printing to the **Thonny Shell**? Give one concrete example.
+1. Why is the Pico’s GPIO limit **3.3 V**, and what can happen if you feed a GPIO **5 V**?
+2. On a breadboard, what does the **center gap** do?
+3. What is **debouncing**, and why do we add a small delay in a button loop?
+4. Why do Sections 7–8 require a **Pico W / Pico 2 W**?
+5. In the web server, what URL path turns the LED on?
 
 ---
 
 ## Try it: Mini-exercises
-
-Each of these should take about **3–8 minutes**. Start simple, then build up.
-
-1. **SOS blink:** Use the external LED to blink the Morse code for SOS (`... --- ...`) in a loop.  
-2. **Toggle button:** Make a program where **each button press toggles** the LED between ON and OFF (hint: use a `state` variable).  
-3. **Traffic light:** Use the RGB LED to cycle through **red → green → yellow** like a traffic signal, with short delays between each color.  
-4. **Distance warning light:** Combine the ultrasonic sensor and LED so the LED turns on only when an object is closer than **20 cm**.  
-5. **Distance + beep:** Extend the previous exercise to play a **short beep** on the buzzer when something is too close, and stay silent otherwise.  
-6. **OLED distance display:** Show the **current distance in cm** on the OLED and update it a few times per second.
-
-### Stretch goals
-
-Pick one or two if you finish early:
-
-- **Best reaction time:** Modify the reaction game to print the **reaction time in milliseconds** for each player (use `time.ticks_ms()` or a similar approach).  
-- **Multi-mode menu:** At startup, ask the user (via `input()` in the Thonny Shell) which mode to run:  
-  - `1` = LED blink demo  
-  - `2` = button + LED  
-  - `3` = ultrasonic + buzzer  
-  Loop until the user enters `q` to quit.  
-- **OLED dashboard:** Design a simple “dashboard” screen that shows **distance**, a **status message** (“SAFE” / “TOO CLOSE”), and maybe a tiny border box around the edges of the screen.  
-- **Color-coded distance:** Use the RGB LED to show **green** when far away, **yellow** in the middle, and **red** when very close based on the ultrasonic reading.
+1. **SOS blink:** Blink Morse code SOS (`... --- ...`) with the external LED.
+2. **Toggle press:** Each button press toggles the LED on/off (use a `state` variable).
+3. **Traffic light:** RGB LED cycles red → green → yellow.
+4. **Distance warning:** Turn the LED on when distance is < **20 cm**.
+5. **OLED dashboard:** Show distance on the OLED and update it 5×/second.
+6. *(WiFi)* Print the Pico’s IP, then show it on the OLED (extra challenge).
+7. *(Web)* Add a third button: **BLINK** (blink onboard LED 3 times).
 
 ---
 
-## Troubleshooting
+## Troubleshooting (quick hits)
 
-- **LED never lights**  
-  - Check the LED orientation (**long leg** should go toward the GPIO path).  
-  - Confirm the GPIO number in your code matches the pin actually wired.  
-  - Make sure you are powering the Pico and that Thonny is set to **MicroPython (Raspberry Pi Pico)**.
+- **LED never lights**
+  - Flip the LED, verify GPIO number, check GND.
 
-- **Button always “pressed” or never pressed**  
-  - Verify the button is wired **across the center gap**, not on the same side.  
-  - One side of the button must go to **GND**.  
-  - If you use `machine.Pin` instead of `picozero.Button`, remember to set a **pull-up** or **pull-down**.
+- **Button always pressed / never pressed**
+  - Button must straddle the breadboard gap, one side to GND.
 
-- **Ultrasonic distance readings are wrong or random**  
-  - Confirm you have **HC-SR04P** (3.3–5 V) and not a 5-V-only version.  
-  - Double-check VCC → **3V3(OUT)** and GND → **GND**.  
-  - Make sure `echo` and `trigger` are not swapped in the code.  
-  - Point the sensor at a flat, hard surface; soft or angled surfaces reflect poorly.
+- **Ultrasonic readings random**
+  - Confirm shared GND, check TRIG/ECHO pins, and protect ECHO voltage.
 
-- **Buzzer is silent or always on**  
-  - Ensure the positive buzzer pin goes to **GPIO 20** and the negative to **GND**.  
-  - Check that you are calling `buzzer.on()` / `buzzer.off()` (with parentheses).  
-  - If the buzzer only ever makes one fixed tone regardless of your code, it is probably an **active** buzzer—use it for simple beeps, not melodies.
+- **OLED blank**
+  - Swap SDA/SCL if needed, ensure `ssd1306.py` is on the Pico, try `addr=0x3D`.
 
-- **OLED shows nothing**  
-  - Check VCC and GND; do not mix them up.  
-  - Make sure **SDA** is on GPIO 0 and **SCL** is on GPIO 1.  
-  - Ensure the `ssd1306.py` file is saved on the **Pico**, not just your computer.  
-  - Try switching `addr=0x3C` to `addr=0x3D` if your module uses a different I2C address.
+- **WiFi won’t connect**
+  - Check SSID/PASSWORD, use **2.4 GHz**, avoid captive portals, try a phone hotspot.
 
-- **Error: `ImportError: no module named 'ssd1306'`**  
-  - The driver file is missing. Re-open `ssd1306.py` in Thonny and save it directly to the **Raspberry Pi Pico**.
-
-- **Random resets or hot components**  
-  - Look for accidental **shorts** (e.g., GPIO driven HIGH directly to GND).  
-  - Make sure the Pico is powered from a good USB cable and port (not a loose power bank).
+- **Web page won’t load**
+  - Ensure your phone/laptop is on the same WiFi, try `:8080` if port 80 is blocked.
 
 ---
 
