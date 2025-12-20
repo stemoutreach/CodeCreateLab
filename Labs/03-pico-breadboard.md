@@ -91,36 +91,32 @@ Before wiring anything, sketch your idea:
 
 Write your ranges and button behavior as a short list in comments or on paper.
 
-## 2) Build / Prep (3–5 min)
+## 2) Standard pin map used in this guide
 
-Use the pin choices below:
+Use this **standard map** so the Lab and Guide match:
 
-- **Status LED (single color)**  
-  - Long leg (anode) → **GPIO 14**.  
-  - Short leg (cathode) → **GND**.
+```python
+# Ultrasonic (HC-SR04P)
+ULTRA_TRIG_PIN = 10
+ULTRA_ECHO_PIN = 11
 
-- **Pushbutton**  
-  - One leg → **GPIO 13**.  
-  - Opposite leg → **GND** (picozero/Button will use an internal pull-up).
+# Inputs / Outputs
+BUTTON_PIN  = 13        # main pushbutton
+BUTTON2_PIN = 15        # second button (reaction game)
+LED_PIN     = 14        # external LED
+RGB_R_PIN   = 17
+RGB_G_PIN   = 18
+RGB_B_PIN   = 19
+SPEAKER_PIN = 20        # passive buzzer / speaker
 
-- **RGB LED** (common cathode recommended)  
-  - Common cathode leg → **GND**.  
-  - Red leg → **GPIO 17**.  
-  - Green leg → **GPIO 18**.  
-  - Blue leg → **GPIO 19**.
+# OLED Display (0.96" I2C 128x64, SSD1306)
+OLED_SDA_PIN = 0        # I2C0 SDA
+OLED_SCL_PIN = 1        # I2C0 SCL
+```
 
-- **Ultrasonic sensor (HC-SR04 or similar)**  
-  - VCC → **5V** (or 3.3V *only* if your module supports it).  
-  - GND → **GND**.  
-  - TRIG → **GPIO 10**.  
-  - ECHO → **GPIO 11** through a **3.3V-safe connection**  
-    - Your kit may provide a safe board.  
-    - If not, use a **voltage divider** or level shifter as shown in the Guide.  
-  - Ask your coach if you’re unsure—protect the Pico’s 3.3 V pins.
+You can copy this at the top of your program and use the names instead of raw pin numbers.
 
-- **Speaker (passive piezo)**  
-  - `+` or long leg → **GPIO 20**.  
-  - `-` or short leg → **GND**.
+---
 
 Double-check:
 
@@ -241,15 +237,22 @@ Update your code, re-test, and stop when it feels like a polished mini-project.
 from picozero import LED, Button, RGBLED, DistanceSensor, Speaker
 from time import sleep
 
-# --- Pin setup (matches the lab instructions) ---
-STATUS_LED_PIN = 14
-BUTTON_PIN = 13
-RGB_RED_PIN = 17
-RGB_GREEN_PIN = 18
-RGB_BLUE_PIN = 19
+# Ultrasonic (HC-SR04P)
 ULTRA_TRIG_PIN = 10
 ULTRA_ECHO_PIN = 11
-SPEAKER_PIN = 20
+
+# Inputs / Outputs
+BUTTON_PIN  = 13        # main pushbutton
+BUTTON2_PIN = 15        # second button (reaction game)
+LED_PIN     = 14        # external LED
+RGB_R_PIN   = 17
+RGB_G_PIN   = 18
+RGB_B_PIN   = 19
+SPEAKER_PIN = 20        # passive buzzer / speaker
+
+# OLED Display (0.96" I2C 128x64, SSD1306)
+OLED_SDA_PIN = 0        # I2C0 SDA
+OLED_SCL_PIN = 1        # I2C0 SCL
 
 # --- Objects ---
 status_led = LED(STATUS_LED_PIN)
