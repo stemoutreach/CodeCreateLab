@@ -34,9 +34,10 @@ This is the same pattern used by robots, smart home devices, and “monitor + co
 ## Part A — Smart Distance Station (local)
 
 - Ultrasonic sensor measures distance.  
-- Status LED shows whether the station is “armed” and measuring.  
-- (Optional) RGB LED acts like a traffic light (far/medium/close).  
-- (Optional) Speaker beeps faster as you get closer.
+- Status LED shows whether the station is “armed” and measuring.
+- Structure a simple state machine (idle vs active) driven by a pushbutton. 
+- RGB LED acts like a traffic light (far/medium/close).  
+- Speaker beeps faster as you get closer.
 
 ## Part B — WiFi Dashboard (browser)
 
@@ -54,7 +55,9 @@ By the end you can:
 
 - Wire and use multiple parts on one breadboard (LED, button, ultrasonic, speaker).  
 - Read distance and convert it to **cm**.  
-- Write clean code using small functions (instead of one giant loop).  
+- Write clean code using small functions (instead of one giant loop).
+- Map distance ranges to RGB colors, a status LED, and speaker beeps.
+- Structure a simple state machine (idle vs active) driven by a pushbutton.
 - Connect a Pico 2 W to WiFi and find its **IP address**.  
 - Run a tiny HTTP server and create “routes” like `/led/on` and `/led/off`.  
 
@@ -76,31 +79,29 @@ By the end you can:
 > If you’re already comfortable wiring these parts, you can move faster here.  
 > The key is: **get stable distance readings first**, then add outputs.
 
-## A1) Wire it (5–10 min)
+## A1) Standard pin map used in this guide
 
-Use the pin choices below (we’ll reuse these in Part B too):
+Use this **standard map** so the Lab and Guide match:
 
-- **Status LED (single color)**  
-  - Long leg (anode) → **GPIO 14**  
-  - Short leg (cathode) → **GND**
+```python
+# Ultrasonic (HC-SR04P)
+ULTRA_TRIG_PIN = 10
+ULTRA_ECHO_PIN = 11
 
-- **Pushbutton**  
-  - One leg → **GPIO 13**  
-  - Opposite leg → **GND**  
-  - (We’ll use an internal pull-up in code.)
+# Inputs / Outputs
+BUTTON_PIN  = 13        # main pushbutton
+LED_PIN     = 14        # external LED
+RGB_R_PIN   = 17
+RGB_G_PIN   = 18
+RGB_B_PIN   = 19
+SPEAKER_PIN = 20        # passive buzzer / speaker
 
-- **Ultrasonic sensor (HC-SR04 or similar)**  
-  - VCC → **5V** (or 3.3V *only* if your module supports it)  
-  - GND → **GND**  
-  - TRIG → **GPIO 10**  
-  - ECHO → **GPIO 11** through a **3.3V-safe connection**  
-    - If your kit includes a safe interface board, use it.  
-    - Otherwise, use a **voltage divider/level shifter** as shown in the Breadboarding Guide.
+# OLED Display (0.96" I2C 128x64, SSD1306)
+OLED_SDA_PIN = 0        # I2C0 SDA
+OLED_SCL_PIN = 1        # I2C0 SCL
+```
 
-- **Speaker (passive piezo)** *(optional but recommended)*  
-  - `+` / long leg → **GPIO 20**  
-  - `-` / short leg → **GND**
-
+---
 **Double-check**
 - All grounds are shared (Pico GND, sensor GND, LED GND, speaker GND).  
 - TRIG/ECHO are not swapped.  
