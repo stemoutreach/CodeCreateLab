@@ -31,8 +31,8 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 - [4) Ultrasonic Distance Sensor](#4-ultrasonic-distance-sensor)
 - [5) Speaker](#5-speaker)
 - [6) OLED Display](#6-oled-display)
-
-
+- [7) Wifi Config and Connect](#7-wifi-config-and-connect)
+- [8) Simple Web Button](#8-simple-web-button)
 
 ## Setup
 _Classroom default: **Raspberry Pi 500** (Raspberry Pi OS) + **Thonny IDE**._
@@ -658,6 +658,23 @@ oled.show()
 - Some boards use address `0x3D` instead of `0x3C`—try changing the `addr` if needed.
 
 ---
+
+### 7) Wifi Config and Connect
+
+
+
+
+
+---
+
+### 8) Simple Web Button
+
+
+
+
+
+---
+
 
 ## Vocabulary
 - **MicroPython:** A lightweight version of Python that runs directly on microcontrollers like the Pico.  
