@@ -26,7 +26,7 @@ Breadboards let you prototype **electronics without soldering**. Pairing the **R
 ## Table of Contents (Walkthrough 1–8)
 
 - [1) Blink LEDs (onboard and external)](#1-blink-leds-onboard-and-external)
-- [3) Read pushbuttons](#2-read-pushbuttons)
+- [2) Read pushbuttons](#2-read-pushbuttons)
 - [3) RGB LED color mixing](#3-rgb-led-color-mixing)
 - [4) Ultrasonic Distance Sensor](#4-ultrasonic-distance-sensor)
 - [5) Speaker](#5-speaker)
@@ -665,6 +665,60 @@ oled.show()
 
 
 
+WiFi is only available on **Pico W / Pico 2 W** boards. (If you have a non‑W Pico, skip this section for now.)
+
+**Goal:** Run one simple script that joins WiFi and prints the Pico’s IP address in the Thonny Shell.
+
+### WiFi quick rules (keep it simple)
+- Use a **2.4 GHz** network (many microcontrollers can’t join 5 GHz).
+- Some school/public networks use a **captive portal** (a web “sign-in” page). Those usually won’t work.  
+  If you get stuck, try a **phone hotspot**.
+
+### Single-script WiFi connect (no extra files)
+Create a new file in Thonny (you can keep it on your computer for now) and run it:
+
+```python
+import network
+import time
+
+# 1) Put your WiFi info here (temporary for this demo)
+SSID = "CHANGE_ME_WIFI_NAME"
+PASSWORD = "CHANGE_ME_PASSWORD"
+
+def connect_wifi(timeout_s=15):
+    """Connect the Pico to WiFi and return the IP address string."""
+    wlan = network.WLAN(network.STA_IF)  # STA = join an existing WiFi network
+    wlan.active(True)
+
+    if wlan.isconnected():
+        return wlan.ifconfig()[0]
+
+    print("Connecting to WiFi...", end="")
+    wlan.connect(SSID, PASSWORD)
+
+    start = time.time()
+    while not wlan.isconnected():
+        if time.time() - start > timeout_s:
+            raise RuntimeError("WiFi connection failed (check SSID/PASSWORD, 2.4GHz, captive portal).")
+        print(".", end="")
+        time.sleep(1)
+
+    ip = wlan.ifconfig()[0]
+    print("\nConnected! IP:", ip)
+    return ip
+
+# --- Run it ---
+ip = connect_wifi()
+```
+
+**What to look for**
+- The Shell should print something like: `Connected! IP: 192.168.1.42`
+- That IP address is what you’ll type into a browser in the next section.
+
+> Tip: If you change networks often, we’ll eventually move SSID/PASSWORD into a separate config file — but **not yet** (no file layout until the lab).
+
+
+
 ---
 
 ### 8) Simple Web Button
@@ -672,6 +726,126 @@ oled.show()
 
 
 
+
+Now let’s use the same idea to run a **tiny web server** on the Pico.  
+Your browser will show two buttons: **ON** and **OFF**. Clicking them controls the Pico’s **onboard LED**.
+
+**Goal:** Open a web page hosted by the Pico and toggle the onboard LED.
+
+### Single-script “web button” demo (onboard LED)
+Create a new file in Thonny and run this **one script**:
+
+```python
+import network
+import socket
+import time
+from machine import Pin
+
+SSID = "CHANGE_ME_WIFI_NAME"
+PASSWORD = "CHANGE_ME_PASSWORD"
+
+pico_led = Pin("LED", Pin.OUT)  # works on Pico W / Pico 2 W with modern MicroPython
+
+def connect_wifi(timeout_s=15):
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+
+    if wlan.isconnected():
+        return wlan.ifconfig()[0]
+
+    print("Connecting to WiFi...", end="")
+    wlan.connect(SSID, PASSWORD)
+
+    start = time.time()
+    while not wlan.isconnected():
+        if time.time() - start > timeout_s:
+            raise RuntimeError("WiFi connection failed (check SSID/PASSWORD, 2.4GHz, captive portal).")
+        print(".", end="")
+        time.sleep(1)
+
+    ip = wlan.ifconfig()[0]
+    print("\nConnected! IP:", ip)
+    return ip
+
+def make_response(led_on: bool) -> str:
+    state = "ON" if led_on else "OFF"
+    return f"""HTTP/1.1 200 OK
+Content-Type: text/html
+
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pico Web Button</title>
+  <style>
+    body {{ font-family: sans-serif; margin: 1rem; }}
+    button {{ padding: 0.8rem 1.2rem; margin-right: 0.5rem; }}
+    .box {{ border: 1px solid #ccc; padding: 0.75rem; margin-top: 1rem; }}
+  </style>
+</head>
+<body>
+  <h1>Pico Web Button</h1>
+  <p><strong>Onboard LED:</strong> {state}</p>
+
+  <div class="box">
+    <a href="/on"><button>ON</button></a>
+    <a href="/off"><button>OFF</button></a>
+  </div>
+
+  <p>Refresh the page to see the current state.</p>
+</body>
+</html>
+"""
+
+def run_server(ip: str, port: int = 80):
+    addr = socket.getaddrinfo("0.0.0.0", port)[0][-1]
+    s = socket.socket()
+    s.bind(addr)
+    s.listen(1)
+
+    print(f"Web server ready! Open: http://{ip}:{port}/")
+
+    led_on = False
+    pico_led.off()
+
+    while True:
+        cl, remote = s.accept()
+        try:
+            request = cl.recv(1024).decode("utf-8")
+            if not request:
+                continue
+
+            # First line looks like: GET /on HTTP/1.1
+            path = request.split(" ")[1]
+
+            if path.startswith("/on"):
+                pico_led.on()
+                led_on = True
+            elif path.startswith("/off"):
+                pico_led.off()
+                led_on = False
+
+            cl.send(make_response(led_on))
+        except Exception as e:
+            # If something goes wrong, just print and keep going
+            print("Server error:", e)
+        finally:
+            cl.close()
+
+# --- Run it ---
+ip = connect_wifi()
+run_server(ip)
+```
+
+### Use it
+1. Run the script.  
+2. In the Shell, find the printed IP like `192.168.1.42`.  
+3. On a phone/laptop on the **same WiFi**, open: `http://<ip>/`  
+4. Click **ON** / **OFF** and watch the onboard LED change.
+
+**Stop the server:** click the Thonny **Stop** button (or press `Ctrl+C`).
+
+> If port **80** doesn’t work on your network, change `port=80` to `port=8080`, then open `http://<ip>:8080/`.
 
 ---
 
