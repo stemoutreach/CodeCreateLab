@@ -1,5 +1,3 @@
-
-
 # 03 — Pico Smart Distance Station
 
 > ### Quick Summary  
@@ -226,49 +224,6 @@ Pick **one** improvement:
 
 Update your code, re-test, and stop when it feels like a polished mini-project.
 
-
-## 7) WiFi Dashboard Upgrade (optional, 10–15 min)
-
-> **Prereq:** You’ve already completed the simple WiFi setup + web app lesson.  
-> In this upgrade, you’ll reuse that idea—but your page will **update live** and you’ll also push the **distance to the OLED**.
-
-### What you’ll add
-
-- A **live web dashboard** that polls `/data` (JSON) every ~0.5 seconds  
-- A **Capture toggle**:
-  - **ACTIVE:** ultrasonic reads + RGB color updates + OLED shows `Distance=...`
-  - **INACTIVE:** ultrasonic is **not read** + RGB is OFF + OLED shows `Distance=PAUSED`
-- Two ways to toggle Capture:
-  - **Web button** (on the dashboard)
-  - **Physical Pico button** on **GPIO 13** (debounced)
-
-### Files to add / update
-
-Copy these files into your Pico project (same folder as `main.py`):
-
-- `wifi_config.py` (your SSID/password settings)
-- `wifi.py` (connect helper)
-- `web_dashboard.py` (**live dashboard + capture toggle + RGB + OLED distance**)
-- `oled_status.py` (**adds `show_distance()`** so the OLED can update live)
-- `main.py` (calls `show_wifi_ip(ip)` then starts the server)
-
-> **Reference docs (recommended):**
-> - **[web_dashboard.py reference](../Guides/04-web-dashboard-reference.md)**
-> - **[oled_status.py reference](../Guides/04-oled-status-reference.md)**
-
-### Quick test
-
-1. Boot the Pico and read the IP on the OLED.
-2. Open the IP in your browser.
-3. Click **Toggle Capture**:
-   - Web page distance starts updating
-   - RGB turns **RED/YELLOW/GREEN** based on distance
-   - OLED bottom line updates to `Distance=12.3cm`
-4. Press the **physical button (GPIO 13)** to toggle again:
-   - OLED shows `Distance=PAUSED`
-   - RGB turns OFF
-
-
 ---
 
 # Skeleton Starter (start here)
@@ -422,7 +377,7 @@ if __name__ == "__main__":
 - [ ] Button reliably toggles between modes (or mute/unmute) without glitching.  
 - [ ] Program exits cleanly (LEDs off, speaker off) when stopped.  
 - [ ] Code is organized into functions (no giant 100-line `while True`).
-- [ ] *(Optional)* Live WiFi dashboard works: Toggle Capture from the web and GPIO 13; OLED shows `Distance=...` when active.
+
 ---
 
 # Extensions (choose one)
@@ -430,7 +385,7 @@ if __name__ == "__main__":
 - **Extension A — Danger zone:** Add a “danger” behavior when distance is *very* small (e.g., < 10 cm): flash RGB quickly and play an alarm pattern.  
 - **Extension B — Distance bargraph:** Use RGB brightness as a “bar” for distance (very bright when close, dim when far).  
 - **Extension C — Silent mode:** Add a second button press sequence that cycles through `active`, `active but muted`, and `idle`. Show the current mode with different colors.
-- **Extension D — Live WiFi dashboard:** Add the live web dashboard + OLED distance line using `web_dashboard.py` and `oled_status.py` (Capture toggle from web + GPIO 13).
+
 ---
 
 # Troubleshooting
@@ -455,10 +410,6 @@ if __name__ == "__main__":
   - Add a “previous state” variable and only toggle when it changes from not-pressed to pressed.  
   - Add a very short delay (`sleep(0.05)`) in your loop to help.
 
-- **OLED shows `Distance=PAUSED` but never updates (WiFi dashboard upgrade):**  
-  - Make sure you copied the **updated** `oled_status.py` that includes `show_distance()`.  
-  - Confirm you are running the **updated** `web_dashboard.py` that calls `show_distance()` while Capture is ACTIVE.  
-  - Toggle Capture ON from the web page (or GPIO 13) and verify the web page distance is updating—OLED updates at the same time.
 ---
 
 # Reflection (1–2 sentences)
@@ -469,4 +420,6 @@ if __name__ == "__main__":
 ---
 
 # Next Up
+
+Ready for Wifi setup Guide? Develop an app interface and connect to smart station through a web interface in **[04 — Pico Wifi_Smart Station App](../Guides/04-pico-wifi-breadboard-app.md)**.
 
