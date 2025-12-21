@@ -259,6 +259,29 @@ Save these files to **Raspberry Pi Pico** storage (`/flash`):
   ssd1306.py          # SSD1306 driver (copied once, no edits)
 ```
 
+### Why we use separate files (modules)
+
+Instead of one huge script, we split the project into **small files that each do one job**:
+
+```text
+main.py             # Entry point: connect WiFi, show IP, start web dashboard
+wifi_config.py      # WiFi name + password only (students edit this)
+wifi.py             # WiFi helper (connect_wifi)
+oled_status.py      # OLED setup + show_wifi_ip
+web_dashboard.py    # HTTP server + LED/sensor routes
+```
+
+**Benefits:**
+- **Easier debugging:** if WiFi isn’t working, you know to check `wifi_config.py` + `wifi.py`.
+- **Easier teamwork:** one person can work on the web page while another works on the OLED.
+- **Reuse:** you can reuse `wifi.py` and `oled_status.py` in later labs/projects.
+
+**Rule of thumb:** students should usually only edit **`wifi_config.py`** (SSID + password).  
+Everything else is “project code.”
+
+> Note: You’ll also copy `ssd1306.py` onto the Pico one time as the OLED driver file (no edits).
+
+
 > If `main.py` exists on the Pico, it will auto-run on boot.
 
 ## B3) Copy the SSD1306 driver (1–2 min)
