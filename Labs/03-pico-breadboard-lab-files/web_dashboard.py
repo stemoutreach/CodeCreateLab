@@ -1,62 +1,166 @@
-# web_dashboard.py
 """
-Pico WiFi Dashboard (Live + Capture Toggle + Part A RGB + OLED Distance)
+Pico WiFi Dashboard (Live + Capture Toggle + Part A RGB + OLED Distance + Buzzer)
 
-Why your OLED stayed on "PAUSED":
-- Your current oled_status.py only has show_status_line().
-- The live dashboard tries to call show_distance() for updates.
-- If show_distance() doesn't exist, the dashboard can’t update the OLED.
+What this does
+- Web dashboard at http://<Pico IP>/
+- Toggle "capture" (ultrasonic sampling) from the page or from the physical button
+- While ACTIVE:
+  - Reads distance
+  - Sets RGB color using Part A thresholds
+  - Updates OLED bottom line (if present)
+  - Beeps the buzzer (same "distance-station" style feedback)
 
-This version:
-- Updates OLED live using show_distance() if available,
-  OR falls back to show_status_line("Distance=...") if not.
-- Matches Part A thresholds:
-    close < 20 cm  -> RGB RED
-    20–40 cm       -> RGB YELLOW
-    > 40 cm        -> RGB GREEN
+RGB thresholds (cm)
+- distance < 20   -> RED
+- 20–40           -> YELLOW
+- > 40            -> GREEN
+
+Buzzer behavior (cm)
+- distance < 20   -> fast beeps
+- 20–40           -> slow beeps
+- > 40 / no read  -> silent
 """
 
 import gc
 import socket
 import ujson
 import utime
-from machine import Pin
+from machine import Pin, PWM
 from picozero import LED, Button, DistanceSensor, RGBLED
 
 # --- Pins (Lab Standard Map) ---
-STATUS_LED_PIN = 14
-BUTTON_PIN = 13
+STATUS_LED_PIN = 14            # external status LED (optional)
+BUTTON_PIN     = 13            # pushbutton toggles capture
 ULTRA_TRIG_PIN = 10
 ULTRA_ECHO_PIN = 11
-RGB_R_PIN = 17
-RGB_G_PIN = 18
-RGB_B_PIN = 19
+RGB_R_PIN      = 17
+RGB_G_PIN      = 18
+RGB_B_PIN      = 19
+SPEAKER_PIN    = 20            # buzzer/speaker
 
 # --- Part A thresholds (cm) ---
 CLOSE_CM = 20.0
 MEDIUM_MAX_CM = 40.0
 
-RGB_COMMON_ANODE = False
+# --- Timing ---
 _DEBOUNCE_MS = 250
 _SENSOR_UPDATE_MS = 500
 
+# --- Buzzer tune ---
+BUZZER_FREQ_HZ = 2000
+BUZZER_DUTY_U16 = 20000  # volume (0..65535)
+
+# Beep patterns (ms) while ACTIVE
+BEEP_FAST_PERIOD_MS = 250
+BEEP_FAST_ON_MS     = 60
+
+BEEP_SLOW_PERIOD_MS = 800
+BEEP_SLOW_ON_MS     = 50
+
+# If your RGB is common-anode, set True to invert
+RGB_COMMON_ANODE = False
+
 status_led = LED(STATUS_LED_PIN)
-button = Button(BUTTON_PIN)
+button = Button(BUTTON_PIN, pull_up=True)
 sensor = DistanceSensor(echo=ULTRA_ECHO_PIN, trigger=ULTRA_TRIG_PIN)
 rgb = RGBLED(red=RGB_R_PIN, green=RGB_G_PIN, blue=RGB_B_PIN)
 onboard_led = Pin("LED", Pin.OUT)
 
-# OLED support (show_distance preferred, show_status_line fallback)
+# --- OLED support (show_distance preferred, show_status_line fallback) ---
 try:
     import oled_status
 except Exception:
     oled_status = None
+
+# --- Buzzer (PWM) ---
+_buzzer_pwm = None
+try:
+    _buzzer_pwm = PWM(Pin(SPEAKER_PIN))
+    _buzzer_pwm.freq(BUZZER_FREQ_HZ)
+    _buzzer_pwm.duty_u16(0)  # OFF
+except Exception:
+    _buzzer_pwm = None
 
 sensor_active = False
 _last_distance_cm = None
 _last_rgb_name = "OFF"
 _last_rgb_f = (0.0, 0.0, 0.0)
 _last_sensor_update_ms = 0
+
+# Buzzer scheduler state
+_buzzing = False
+_buzzer_on_until_ms = 0
+_buzzer_next_start_ms = 0
+
+
+def _buzzer_off():
+    global _buzzing
+    if _buzzer_pwm is None:
+        return
+    try:
+        _buzzer_pwm.duty_u16(0)
+    except Exception:
+        pass
+    _buzzing = False
+
+
+def _buzzer_on():
+    global _buzzing
+    if _buzzer_pwm is None:
+        return
+    try:
+        _buzzer_pwm.duty_u16(BUZZER_DUTY_U16)
+    except Exception:
+        pass
+    _buzzing = True
+
+
+def _buzzer_reset():
+    global _buzzer_on_until_ms, _buzzer_next_start_ms
+    _buzzer_off()
+    _buzzer_on_until_ms = 0
+    _buzzer_next_start_ms = 0
+
+
+def _buzzer_pattern_for_distance(distance_cm):
+    """Return (period_ms, on_ms) or (None, None) for silent."""
+    if distance_cm is None:
+        return (None, None)
+
+    if distance_cm < CLOSE_CM:
+        return (BEEP_FAST_PERIOD_MS, BEEP_FAST_ON_MS)
+
+    if distance_cm <= MEDIUM_MAX_CM:
+        return (BEEP_SLOW_PERIOD_MS, BEEP_SLOW_ON_MS)
+
+    return (None, None)
+
+
+def _buzzer_tick(distance_cm, active: bool):
+    """Non-blocking buzzer scheduler. Call frequently."""
+    global _buzzer_on_until_ms, _buzzer_next_start_ms
+
+    if (not active) or (_buzzer_pwm is None):
+        _buzzer_reset()
+        return
+
+    period_ms, on_ms = _buzzer_pattern_for_distance(distance_cm)
+
+    if period_ms is None:
+        _buzzer_reset()
+        return
+
+    now = utime.ticks_ms()
+
+    # Turn off when on-time expires
+    if _buzzing and utime.ticks_diff(now, _buzzer_on_until_ms) >= 0:
+        _buzzer_off()
+
+    # Start a new beep if it's time (and we're currently off)
+    if (not _buzzing) and (utime.ticks_diff(now, _buzzer_next_start_ms) >= 0):
+        _buzzer_on()
+        _buzzer_on_until_ms = utime.ticks_add(now, on_ms)
+        _buzzer_next_start_ms = utime.ticks_add(now, period_ms)
 
 
 def _set_active(active: bool) -> bool:
@@ -66,6 +170,7 @@ def _set_active(active: bool) -> bool:
     if sensor_active:
         status_led.on()
         onboard_led.on()
+        _maybe_update_sensor(force=True)
     else:
         status_led.off()
         onboard_led.off()
@@ -74,6 +179,7 @@ def _set_active(active: bool) -> bool:
         _last_rgb_f = (0.0, 0.0, 0.0)
         _rgb_off()
         _oled_distance(None, active=False)
+        _buzzer_reset()
 
     return sensor_active
 
@@ -103,10 +209,6 @@ def _rgb_off():
     _rgb_apply(0.0, 0.0, 0.0)
 
 
-def _rgb_to_255(r: float, g: float, b: float):
-    return int(r * 255), int(g * 255), int(b * 255)
-
-
 def _color_from_distance(distance_cm):
     if distance_cm is None:
         return "NO READ", (0.0, 0.0, 1.0)  # BLUE = read error while active
@@ -133,7 +235,6 @@ def _oled_distance(distance_cm, active: bool):
             oled_status.show_distance(distance_cm, active=active)
             return
 
-        # Fallback to show_status_line only
         if not active:
             oled_status.show_status_line("Distance=PAUSED")
             return
@@ -142,11 +243,8 @@ def _oled_distance(distance_cm, active: bool):
             oled_status.show_status_line("Distance=---")
             return
 
-        # "Distance=123.4cm" fits 16 chars
         oled_status.show_status_line("Distance=%0.1fcm" % float(distance_cm))
-    except Exception as e:
-        # Don't hard-crash if OLED isn't present; just print once in a while if you want
-        # print("OLED update error:", e)
+    except Exception:
         pass
 
 
@@ -170,6 +268,10 @@ def _maybe_update_sensor(force: bool = False):
 
     _rgb_apply(r, g, b)
     _oled_distance(d_cm, active=True)
+
+
+def _rgb_to_255(r: float, g: float, b: float):
+    return int(r * 255), int(g * 255), int(b * 255)
 
 
 def _http_response(body: bytes, content_type: str = "text/plain", status: str = "200 OK") -> bytes:
@@ -208,7 +310,7 @@ def _page_html(ip: str, poll_ms: int = 500) -> bytes:
     <h2>Ultrasonic Capture</h2>
     <p>
       <button onclick="toggleActive()">Toggle Capture</button>
-      <span class="small">Tip: Pico button (GPIO 13) toggles too.</span>
+      <span class="small">Tip: button (GPIO {BUTTON_PIN}) toggles too.</span>
     </p>
     <p><strong>Capture:</strong> <span id="active" class="value">--</span></p>
   </div>
@@ -278,6 +380,7 @@ def _parse_path(request_text: str) -> str:
 def run_server(ip: str, poll_ms: int = 500):
     _set_active(False)
     _oled_distance(None, active=False)
+    _buzzer_reset()
 
     addr = socket.getaddrinfo("0.0.0.0", 80)[0][-1]
     s = socket.socket()
@@ -297,12 +400,13 @@ def run_server(ip: str, poll_ms: int = 500):
             now = utime.ticks_ms()
             if utime.ticks_diff(now, last_toggle_ms) >= _DEBOUNCE_MS:
                 _toggle_active()
-                if sensor_active:
-                    _maybe_update_sensor(force=True)
                 last_toggle_ms = now
         last_pressed = pressed
 
         _maybe_update_sensor(force=False)
+
+        # Non-blocking buzzer
+        _buzzer_tick(_last_distance_cm, active=sensor_active)
 
         try:
             cl, _ = s.accept()
@@ -321,8 +425,6 @@ def run_server(ip: str, poll_ms: int = 500):
 
             if path.startswith("/capture/toggle"):
                 new_state = _toggle_active()
-                if new_state:
-                    _maybe_update_sensor(force=True)
                 body = ujson.dumps({"sensor_active": bool(new_state)}).encode()
                 cl.sendall(_http_response(body, "application/json"))
                 continue
