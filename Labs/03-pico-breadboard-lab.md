@@ -111,7 +111,7 @@ OLED_SCL_PIN = 1        # I2C0 SCL
 
 Create a new file (on your computer or the Pico) called:
 
-- `03_distance_station.py` (recommended while testing)
+- `03A_distance_station.py` (recommended while testing)
 
 Starter code (fill in TODOs as you go):
 
