@@ -102,7 +102,6 @@ ULTRA_ECHO_PIN = 11
 
 # Inputs / Outputs
 BUTTON_PIN  = 13        # main pushbutton
-BUTTON2_PIN = 15        # second button (reaction game)
 LED_PIN     = 14        # external LED
 RGB_R_PIN   = 17
 RGB_G_PIN   = 18
