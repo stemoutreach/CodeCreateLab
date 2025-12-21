@@ -5,9 +5,9 @@
 > ### Quick Summary  
 > **Level:** 03 • **Time:** 60–90 min  
 > **Prereqs:**  
-> - [Guide: 00 — Python Basics](../Guides/00-python-basics.md)  
-> - [Guide: 01 — Python Functions](../Guides/01-python-functions.md)  
-> - [Guide: 03 — Pico Breadboarding](../Guides/03-pico-breadboarding.md)  
+> - [Guide: 00 — Python Basics](../Guides/00-python-basics-guide.md)  
+> - [Guide: 01 — Python Functions](../Guides/01-python-functions-guide.md)  
+> - [Guide: 03 — Pico Breadboarding](../Guides/03-pico-breadboarding-guide.md)  
 > **Hardware:**  
 > - Raspberry Pi Pico + micro-USB cable  
 > - Breadboard + jumper wires  
