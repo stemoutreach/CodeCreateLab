@@ -183,7 +183,7 @@ Change only ONE number at a time and test.
 
 ---
 
-# Ideas to improve maze solving (student-friendly upgrades)
+# Ideas to improve maze solving
 
 Below are **incremental upgrades** (start simple, then level up).
 
