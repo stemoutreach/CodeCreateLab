@@ -9,7 +9,7 @@ This guide explains how the PicoBot **web control** works using these files:
 
 ---
 
-## What students get from this project
+## What to get from this project
 
 - A web page at: `http://<PicoBot-IP>/`
 - Buttons to drive: **Forward / Back / Left / Right / Stop**
@@ -47,8 +47,8 @@ from wifi_config import SSID, PASSWORD
 
 It retries and supports a callback (`status_cb`) so you can display short messages on the OLED while connecting.
 
-**Important student rule:**  
-✅ `wifi_config.py` is student-editable and should not be committed to GitHub.
+**Important rule:**  
+✅ `wifi_config.py` is editable and should not be committed to GitHub.
 
 ---
 
@@ -219,7 +219,7 @@ So the OLED shows:
 
 ---
 
-# 6) Safety behavior (important for students)
+# 6) Safety behavior 
 
 ### On boot
 `main_web.py` ensures motors are stopped and speed is 0. fileciteturn1file3
@@ -244,7 +244,7 @@ If you want safety-first behavior, you can add:
 
 ---
 
-# 7) Improvement ideas (awesome student extensions)
+# 7) Improvement ideas 
 
 ## Level 1 (easy)
 ### A) Add a “Brake Stop” button
@@ -268,7 +268,7 @@ Add routes like:
 - `/pulse/forward?ms=400`
 - It drives, sleeps, then stops
 
-This can help students drive more precisely.
+This can help drive more precisely.
 
 ---
 
@@ -309,7 +309,7 @@ Adjust trims in `picobot_lib.py`:
 
 ---
 
-# Student TODOs (copy/paste)
+# TODOs (copy/paste)
 
 - TODO 1: Add an “Emergency Stop (Brake)” button.
 - TODO 2: Add auto-stop if distance < 10 cm.
